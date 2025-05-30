@@ -1,0 +1,51 @@
+site_name: AD - Accés a Dades - Ficheros
+
+extra_css:
+  - css/extra.css
+  - img/favicon.ico 
+
+theme: 
+  name: readthedocs
+  features:
+    - navigation.expand
+    - navigation.sections
+    - navigation.tabs
+    - copy-to-clipboard
+    - content.code.copy
+  #highlightjs: true
+  logo: assets/logocaminas.png
+    
+
+#extra_javascript:
+#  - js/extra.js
+
+
+markdown_extensions:
+  - admonition
+  - tables    
+  - attr_list
+  - toc
+
+nav:
+- Introducción: 
+  - RA_CE.md
+  - IntelliJ: Idea.md
+  - Ficheros_Java.md
+  - Kotlin (gestión eficiente): Buenas_practicas.md  
+- Sistema de ficheros:
+  - 🔹 Acceso al sistema de ficheros: AD_T1_Sistema_de_fitxers/NIO_AccesoFicheros.md
+  - 🔹 Otras Operaciones: AD_T1_Sistema_de_fitxers/otras_clases.md
+  - Exercicis: AD_T1_Sistema_de_fitxers/exercicis.md
+- Lectura y Escritura de ficheros:
+    - 🔹Ficheros de texto y binarios: AD_T2_Gesti_del_contingut_de_fitxers/Lectura_Escritura_ficheros.md
+    - 🔹Otros Tipos de acceso: AD_T2_Gesti_del_contingut_de_fitxers/Otras_clases.md
+    - Exercicis: AD_T2_Gesti_del_contingut_de_fitxers/exercicis.md  
+- Ficheros con formatos diferentes:
+    - 🔹Introducción: AD_T3_Fitxers_de_diferents_formats/objectius.md
+    - 🔹Serialización de Objetos: AD_T3_Fitxers_de_diferents_formats/seriaci_dobjectes.md
+    - 🔹Ficheros de intercambio: AD_T3_Fitxers_de_diferents_formats/ficheros_intercambio.md    
+    - Exercicis: AD_T3_Fitxers_de_diferents_formats/exercicis.md
+- Conversión entre formatos diferentes: Conversion.md    
+- Resumen: 
+    - Tipos de ficheros: Resumen_tipos.md    
+       
