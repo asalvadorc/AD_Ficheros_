@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹Ficheros de texto y binarios - AD - Accés a Dades - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39Ficheros de texto y binarios";
+        var mkdocs_page_input_path = "AD_T2_Gesti_del_contingut_de_fitxers/Lectura_Escritura_ficheros.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introducción</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">🗂️ Tabla resumen: Contenidos vs Criterios de Evaluación</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Idea/">IntelliJ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Ficheros_Java/">Ficheros y Java (Kotlin)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Buenas_practicas/">Kotlin (gestión eficiente)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/otras_clases/">🔹 Otras Operaciones</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lectura y Escritura de ficheros</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">🔹Ficheros de texto y binarios</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#lectura-de-ficheros">Lectura de ficheros</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#escritura-de-ficheros">Escritura de ficheros</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Otras_clases/">🔹Otros Tipos de acceso</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros con formatos diferentes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/objectius/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Conversion/">Conversión entre formatos diferentes</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resumen</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Resumen_tipos/">Tipos de ficheros</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Accés a Dades - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Lectura y Escritura de ficheros</li>
+      <li class="breadcrumb-item active">🔹Ficheros de texto y binarios</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ficheros-de-texto-y-binarios">Ficheros de texto y binarios</h1>
+<p>En cualquier aplicación real, tarde o temprano, necesitaremos guardar información de forma permanente. Una de las formas más comunes y sencillas de hacerlo es a través de ficheros.</p>
+<p>Un fichero es una unidad de almacenamiento que permite guardar datos en el disco, ya sea para leerlos más tarde o para compartirlos con otros programas. Puede contener texto, imágenes, configuraciones, datos binarios, etc.</p>
+<div class="admonition note">
+<p><strong>Java.nio.file</strong> no tiene constructores públicos. Fue introducido en Java 7 como parte de la nueva API de ficheros (NIO.2). Sigue un diseño más moderno, basado en:  </p>
+<ul>
+<li>Interfaces: como Path, FileSystem.</li>
+<li>Métodos estáticos utilitarios: como Paths.get(...), Files.readAllLines(...).</li>
+<li>Patrón de factoría: no se crean objetos directamente con new, sino que se obtienen mediante métodos de creación controlada.</li>
+</ul>
+</div>
+<p><strong class="azul">Métodos de lectura y escritura de archivos con Files (Java NIO)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tipo de archivo</th>
+<th>Operación</th>
+<th>Método</th>
+<th>Descripción breve</th>
+<th>Uso recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Texto</td>
+<td>Lectura</td>
+<td><code>readString(path)</code></td>
+<td>Lee todo el archivo como un único <code>String</code></td>
+<td>Archivos pequeños de texto plano</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>readAllLines(path)</code></td>
+<td>Devuelve una <code>List&lt;String&gt;</code> con todas las líneas</td>
+<td>Procesar líneas en memoria</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>newBufferedReader(path)</code></td>
+<td>Devuelve un lector eficiente para línea a línea (<code>Reader</code>)</td>
+<td>Lectura eficiente de archivos grandes</td>
+</tr>
+<tr>
+<td></td>
+<td>Escritura</td>
+<td><code>writeString(path, text)</code></td>
+<td>Escribe un <code>String</code> completo en el archivo</td>
+<td>Escritura simple de texto completo</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>write(path, List&lt;String&gt;)</code></td>
+<td>Escribe varias líneas desde una lista</td>
+<td>Escritura estructurada en líneas</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>newBufferedWriter(path)</code></td>
+<td>Devuelve un escritor (<code>Writer</code>) con buffer</td>
+<td>Escritura eficiente línea a línea</td>
+</tr>
+<tr>
+<td>Binario</td>
+<td>Lectura</td>
+<td><code>readAllBytes(path)</code></td>
+<td>Lee todo el contenido del archivo como un <code>ByteArray</code></td>
+<td>Lectura de imágenes o archivos binarios</td>
+</tr>
+<tr>
+<td></td>
+<td>Escritura</td>
+<td><code>write(path, ByteArray)</code></td>
+<td>Escribe un array de bytes en el archivo</td>
+<td>Guardar datos binarios (imagen, bin, etc.)</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">Ejemplos de lectura y escritura de ficheros en Kotlin (java.nio.file)</strong></p>
+<hr />
+<h2 id="lectura-de-ficheros"><strong>Lectura de ficheros</strong></h2>
+<ol>
+<li>
+<p>Leer todo el archivo como texto con <strong>readString</strong></p>
+<pre><code>import java.nio.file.Files
+import java.nio.file.Paths
+
+val contenido = Files.readString(Paths.get("documentos/archivo.txt"))
+println(contenido)
+</code></pre>
+</li>
+<li>
+<p>Leer todas las líneas como lista con <strong>readAllLines</strong></p>
+<pre><code>import java.nio.file.Files
+import java.nio.file.Paths
+
+val lineas = Files.readAllLines(Paths.get("archivo.txt"))
+lineas.forEach { println(it) }
+</code></pre>
+</li>
+<li>
+<p>Leer línea por línea con <strong>newBufferedReader</strong></p>
+<pre><code>import java.nio.file.Files
+import java.nio.file.Paths
+
+Files.newBufferedReader(Paths.get("archivo.txt")).use { reader -&gt;
+    reader.lineSequence().forEach { println(it) }
+}
+</code></pre>
+</li>
+<li>
+<p>Leer archivo binario como array de bytes con <strong>readAllBytes</strong></p>
+<pre><code>import java.nio.file.Files
+import java.nio.file.Paths
+
+val bytes = Files.readAllBytes(Paths.get("imagen.png"))
+println("Tamaño en bytes: ${bytes.size}")
+</code></pre>
+</li>
+</ol>
+<h2 id="escritura-de-ficheros"><strong>Escritura de ficheros</strong></h2>
+<ol>
+<li>
+<p>Escribir texto completo con <strong>writeString</strong></p>
+<pre><code>import java.nio.file.Files
+import java.nio.file.Paths
+
+val texto = "Hola, mundo desde Kotlin"
+Files.writeString(Paths.get("saludo.txt"), texto)
+</code></pre>
+</li>
+<li>
+<p>Escribir lista de líneas con <strong>write</strong></p>
+<pre><code>import java.nio.file.Files
+import java.nio.file.Paths
+
+val lineas = listOf("Línea 1", "Línea 2", "Línea 3")
+Files.write(Paths.get("lineas.txt"), lineas)
+</code></pre>
+</li>
+<li>
+<p>Escribir usando <strong>newBufferedWriter</strong></p>
+<pre><code>import java.nio.file.Files
+import java.nio.file.Paths
+
+Files.newBufferedWriter(Paths.get("log.txt")).use { writer -&gt;
+    writer.write("Log iniciado...\n")
+    writer.write("Proceso completado.\n")
+}
+</code></pre>
+</li>
+<li>
+<p>Escribir archivo binario (bytes) con <strong>write</strong>.</p>
+<pre><code>import java.nio.file.Files
+import java.nio.file.Paths
+
+val datos = byteArrayOf(1, 2, 3, 4, 5)
+Files.write(Paths.get("datos.bin"), datos)
+</code></pre>
+</li>
+</ol>
+<p><strong>Ejemplo_Lect_esc_fichero.kt</strong>: lectura y escritura en ficheros de texto (UTF-8)</p>
+<pre><code>    import java.nio.file.Files
+    import java.nio.file.Paths
+    import java.nio.charset.StandardCharsets
+
+    fun main() {
+    val ruta = Paths.get("texto.txt")
+
+    //Escritura en fichero de texto
+    val lineasParaGuardar = listOf(
+            "Primera línea",
+            "Segunda línea",
+            "¡Hola desde Kotlin!"
+    )
+    Files.write(ruta, lineasParaGuardar, StandardCharsets.UTF_8)
+    println("Fichero de texto escrito.")
+
+    //Lectura del fichero de texto
+    val lineasLeidas = Files.readAllLines(ruta, StandardCharsets.UTF_8)
+    println("Contenido leído:")
+    lineasLeidas.forEach { println(it) }
+    }
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../AD_T1_Sistema_de_fitxers/exercicis/" class="btn btn-neutral float-left" title="Exercicis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Otras_clases/" class="btn btn-neutral float-right" title="🔹Otros Tipos de acceso">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../AD_T1_Sistema_de_fitxers/exercicis/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Otras_clases/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹Ficheros de intercambio - AD - Accés a Dades - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39Ficheros de intercambio";
+        var mkdocs_page_input_path = "AD_T3_Fitxers_de_diferents_formats/ficheros_intercambio.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introducción</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">🗂️ Tabla resumen: Contenidos vs Criterios de Evaluación</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Idea/">IntelliJ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Ficheros_Java/">Ficheros y Java (Kotlin)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Buenas_practicas/">Kotlin (gestión eficiente)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/otras_clases/">🔹 Otras Operaciones</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lectura y Escritura de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/Lectura_Escritura_ficheros/">🔹Ficheros de texto y binarios</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/Otras_clases/">🔹Otros Tipos de acceso</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros con formatos diferentes</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../objectius/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">🔹Ficheros de intercambio</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#uso-de-gradle-para-trabajar-con-ficheros-csv-json-y-xml">Uso de Gradle para trabajar con ficheros CSV, JSON y XML</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ficheros-csv">Ficheros CSV</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ficheros-json">Ficheros JSON</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ficheros-xml">Ficheros XML</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Conversion/">Conversión entre formatos diferentes</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resumen</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Resumen_tipos/">Tipos de ficheros</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Accés a Dades - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Ficheros con formatos diferentes</li>
+      <li class="breadcrumb-item active">🔹Ficheros de intercambio</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ficheros-de-intercambio">Ficheros de intercambio</h1>
+<p>En el desarrollo de aplicaciones, es habitual trabajar con datos almacenados o transmitidos en distintos formatos de ficheros. La conversión entre estos formatos permite intercambiar información entre sistemas heterogéneos, integrarse con APIs, facilitar la persistencia de datos o adaptarse a requisitos específicos.</p>
+<p>Los formatos más comunes con los que se trabaja incluyen:</p>
+<table>
+<thead>
+<tr>
+<th>Formato</th>
+<th>Descripción</th>
+<th>Soporte en Kotlin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JSON</td>
+<td>Formato de texto ligero para intercambio de datos estructurados.</td>
+<td>kotlinx.serialization, Gson, Jackson</td>
+</tr>
+<tr>
+<td>XML</td>
+<td>Formato estructurado y extensible muy usado en sistemas legados.</td>
+<td>JAXB (via Java), kotlinx-serialization-xml, Simple XML</td>
+</tr>
+<tr>
+<td>CSV</td>
+<td>Formato simple de texto para datos tabulares (separados por comas).</td>
+<td>Librerías como OpenCSV, Kotlin CSV</td>
+</tr>
+<tr>
+<td>YAML</td>
+<td>Formato legible para humanos, útil para configuración.</td>
+<td>jackson-dataformat-yaml, SnakeYAML</td>
+</tr>
+<tr>
+<td>PROTOBUF</td>
+<td>Formato binario eficiente para transmisión entre sistemas.</td>
+<td>kotlinx.serialization-protobuf, Protobuf oficial de Google</td>
+</tr>
+<tr>
+<td>AVRO</td>
+<td>Formato binario usado en Big Data (Apache Avro).</td>
+<td>A través de librerías Java</td>
+</tr>
+<tr>
+<td>TOML/INI</td>
+<td>Archivos de configuración estructurada.</td>
+<td>Soportado por librerías externas</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">¿Cuándo utilizar cada uno de ellos?</strong></p>
+<ul>
+<li>JSON y XML: para APIs REST, configuración, exportación de datos.</li>
+<li>CSV: para importar/exportar datos desde hojas de cálculo.</li>
+<li>YAML / TOML: en archivos de configuración de aplicaciones.</li>
+<li>PROTOBUF / AVRO: en comunicaciones eficientes, microservicios, Big Data.</li>
+</ul>
+<h2 id="uso-de-gradle-para-trabajar-con-ficheros-csv-json-y-xml">Uso de Gradle para trabajar con ficheros CSV, JSON y XML</h2>
+<p>En esta apartado vamos a desarrollar una aplicación en Kotlin que gestione la lectura y escritura de datos utilizando distintos formatos de archivo estructurado: CSV, JSON y XML.</p>
+<p>Para facilitar el uso de librerías externas que nos ayuden a trabajar con estos formatos, vamos a utilizar <strong>Gradle</strong> como herramienta de construcción del proyecto. Gradle nos permitirá:</p>
+<ul>
+<li>Gestionar las dependencias necesarias (como OpenCSV o kotlinx.serialization).</li>
+<li>Automatizar el proceso de compilación y ejecución.</li>
+<li>Organizar el proyecto de forma profesional y escalable.</li>
+</ul>
+<p>Utilizaremos el archivo <strong>build.gradle.kts</strong> (Kotlin DSL) para declarar las dependencias y configurar el proyecto.</p>
+<table>
+<thead>
+<tr>
+<th>Formato</th>
+<th>Librería</th>
+<th>Propósito principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSV</td>
+<td>OpenCSV</td>
+<td>Lectura y escritura de archivos separados por comas o punto y coma</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>kotlinx.serialization</td>
+<td>Conversión entre objetos Kotlin y texto JSON</td>
+</tr>
+<tr>
+<td>XML</td>
+<td>javax.xml (DOM API)</td>
+<td>Construcción manual de documentos XML</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ficheros-csv">Ficheros CSV</h2>
+<p>El formato CSV es un archivo de texto donde los valores están separados por comas u otro delimitador (como punto y coma), muy usado para intercambiar datos entre hojas de cálculo, sistemas contables, etc.</p>
+<p>Se puede utiizar Kotlin puro, mediante la lectura línea a línea + split(), o la librería opencsv.</p>
+<p>Para utilizar <strong>OpenCSV</strong> es necesario  <strong>añadir la dependencia OpenCSV (build.gradle.kts):</strong></p>
+<pre><code>    dependencies {
+        implementation("com.opencsv:opencsv:5.9")
+    }
+</code></pre>
+<p><strong>La sintaxis básica</strong> para leer y escribir un CSV es la siguiente:</p>
+<ul>
+<li>
+<p><strong>Lectura de un CSV</strong></p>
+<pre><code>val reader = CSVReader(FileReader("archivo.csv"))
+val filas = reader.readAll()
+reader.close()
+</code></pre>
+</li>
+<li>
+<p><strong>Escritura de un CSV</strong>    </p>
+<pre><code>val writer = CSVWriter(FileWriter("salida.csv"))
+writer.writeNext(arrayOf("Nombre", "Edad"))
+writer.writeNext(arrayOf("Ana", "28"))
+writer.writeNext(arrayOf("Luis", "32"))
+writer.close()
+</code></pre>
+</li>
+</ul>
+<p>En los siguiente ejemplos vemos como leer el contenido del siguiente archivo (alumnos.csv) sin utilizar librerías y utlilizando OpenCSV.</p>
+<pre><code>fichero alumnos.csv:
+
+    Lucía;9
+    Carlos;8
+    Elena;10
+</code></pre>
+<p>--</p>
+<p><strong>Ejemplo_CSV.kt (sin librerías)</strong>: Leer el contenido del fichero alumnos.csv e imprimir cada línea como par(nombre, nota).</p>
+<pre><code>import java.io.File
+
+fun main() {
+    val alumnos = mutableListOf&lt;Pair&lt;String, Int&gt;&gt;()
+
+    File("documentos/alumnos.csv").forEachLine { linea -&gt;
+        val partes = linea.split(";")
+        if (partes.size == 2) {
+            val nombre = partes[0].trim()
+            val nota = partes[1].trim().toIntOrNull()
+            if (nota != null) {
+                alumnos.add(nombre to nota)
+            } else {
+                println("Nota no válida en línea: $linea")
+            }
+        } else {
+            println("Línea mal formada: $linea")
+        }
+    }
+
+    alumnos.forEach { println("Nombre: ${it.first}, Nota: ${it.second}") }
+}
+</code></pre>
+<p><strong>Ejempo_openCSV.kt</strong>: Ejemplo con OpenCSV</p>
+<pre><code>    import com.opencsv.CSVParserBuilder
+    import com.opencsv.CSVReaderBuilder
+    import java.io.FileReader
+
+    fun main() {
+        val lector = FileReader("documentos/alumnos.csv")
+
+        val parser = CSVParserBuilder()
+            .withSeparator(';') // importante: separador punto y coma
+            .build()
+
+        val csv = CSVReaderBuilder(lector)
+            .withCSVParser(parser)
+            .build()
+
+        for (linea in csv) {
+            println("Nombre: ${linea[0]}, Nota: ${linea[1]}")
+        }
+    }
+</code></pre>
+<h2 id="ficheros-json">Ficheros JSON</h2>
+<p>En muchas aplicaciones modernas, los datos deben almacenarse o intercambiarse en formato JSON (JavaScript Object Notation), un formato ligero y legible ampliamente utilizado en APIs, configuraciones, bases de datos NoSQL y almacenamiento persistente.</p>
+<p><strong class="azul">Estructura</strong></p>
+<p>La estructura de los ficheros JSON (JavaScript Object Notation) se basa en una sintaxis sencilla y legible para representar datos estructurados. JSON está formado por pares clave-valor y/o listas ordenadas de valores. Ejemplo:</p>
+<pre><code>    {
+        "alumno": {
+            "nombre": "María",
+            "edad": 20,
+            "activo": true,
+            "notas": [8.5, 9.2, 7.8],
+            "direccion": {
+            "calle": "Av. del Sol",
+            "ciudad": "Valencia",
+            "codigoPostal": 46001
+            }
+        }
+    }
+</code></pre>
+<p><strong class="azul">Elementos principales</strong></p>
+<ul>
+<li><strong>Objeto:</strong>   Conjunto de pares clave-valor, delimitado por {}:   { "nombre": "María" }</li>
+<li><strong>Array:</strong>    Lista ordenada de valores, delimitada por []:   [8, 5, 9.2, 7.8]</li>
+<li><strong>Clave:</strong>    Siempre entre comillas dobles: "edad"</li>
+<li><strong>Valor:</strong>    Puede ser: string, número, booleano, null, objeto o array:  "Valencia", 20, true, etc.</li>
+</ul>
+<p><strong class="azul">Librerías</strong></p>
+<p>En Kotlin, existen varias librerías que permiten trabajar con ficheros JSON de forma sencilla:</p>
+<table>
+<thead>
+<tr>
+<th>Librería</th>
+<th>Lenguaje base</th>
+<th>Uso recomendado</th>
+<th>Multiplataforma</th>
+<th>Notas destacadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kotlinx.serialization</code></td>
+<td>Kotlin</td>
+<td>Kotlin puro y Kotlin Multiplatform</td>
+<td>✅ Sí</td>
+<td>Ligera, rápida y con soporte oficial de JetBrains</td>
+</tr>
+<tr>
+<td><code>Jackson</code></td>
+<td>Java</td>
+<td>Proyectos Java/Kotlin con Spring Boot</td>
+<td>❌ No</td>
+<td>Muy flexible y poderosa</td>
+</tr>
+<tr>
+<td><code>Gson</code></td>
+<td>Java</td>
+<td>Aplicaciones Android o proyectos simples</td>
+<td>❌ No</td>
+<td>Fácil de usar, pero más lenta y menos segura</td>
+</tr>
+<tr>
+<td><code>org.json</code></td>
+<td>Java</td>
+<td>Scripts rápidos o aprendizaje</td>
+<td>❌ No</td>
+<td>Acceso directo a claves sin clases de datos</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando trabajamos con ficheros JSON en Kotlin, existen dos formas de acceder a los datos: tratarlos como texto plano o estructuras genéricas, o convertirlos directamente en objetos Kotlin. Aunque la primera opción es posible y útil en ciertos casos, trabajar sin conversión implica mayor esfuerzo manual, riesgo de errores en los nombres de claves y ausencia de validación de tipos. En cambio, <strong>kotlinx.serialization</strong> ofrece una solución nativa, segura y eficaz que permite mapear directamente estructuras JSON en clases de datos (data class) mediante la anotación <strong>@Serializable</strong>.</p>
+<p>Esto proporciona importantes <strong>ventajas</strong>:  </p>
+<p>✔️ Validación automática de la estructura del JSON.<br />
+✔️ Conversión directa entre JSON y objetos Kotlin.<br />
+✔️ Código más limpio y mantenible.<br />
+✔️ Mayor seguridad de tipos, detectando errores en tiempo de compilación.  </p>
+<p><strong class="azul">kotlinx.serialization</strong></p>
+<p>kotlinx.serialization es la librería oficial de serialización de Kotlin, desarrollada por JetBrains, que permite convertir objetos Kotlin a y desde diferentes formatos como JSON, ProtoBuf, CBOR, XML (experimental), entre otros.</p>
+<p>Como ya vimos en el apartado anterior, <strong>la serialización</strong> es el proceso de convertir los datos utilizados por una aplicación a un formato que pueda transferirse por red o almacenarse en una base de datos o archivo. A su vez, la deserialización es el proceso inverso: leer datos de una fuente externa y convertirlos en un objeto de tiempo de ejecución.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Todas las bibliotecas de serialización de Kotlin pertenecen al grupo <strong>org.jetbrains.kotlinx:grupo</strong>. Sus nombres empiezan con <em>kotlinx-serialization-</em> y tienen sufijos que reflejan el formato de serialización:  </p>
+<ul>
+<li>org.jetbrains.kotlinx:kotlinx-serialization-json Proporciona serialización JSON para proyectos Kotlin.</li>
+<li>org.jetbrains.kotlinx:kotlinx-serialization-cbor Proporciona serialización CBOR.</li>
+</ul>
+</div>
+<p><strong class="azul">Requisitos para usar kotlinx.serialization en Gradle (JSON)</strong></p>
+<ul>
+<li>Activar el plugin de Kotlin serialization en build.gradle.kts<pre><code>plugins {
+    kotlin("jvm") version "2.0.20"
+    kotlin("plugin.serialization") version "2.0.20"
+    application
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+}
+</code></pre>
+</li>
+</ul>
+<p>⚠️ Asegúrate de usar una versión compatible con tu Kotlin. Por ejemplo, 1.6.3 funciona bien con Kotlin 2.0.20.        </p>
+<ul>
+<li>
+<p>Anotar tus clases con @Serializable</p>
+<pre><code>import kotlinx.serialization.Serializable
+
+@Serializable
+data class Alumno(val nombre: String, val edad: Int)
+</code></pre>
+</li>
+<li>
+<p>Usar el objeto Json para serializar/deserializar        </p>
+</li>
+</ul>
+<p>Para serializar una instancia de esta clase llamamos a <strong>Json.encodeToString()</strong> y para
+deserializar llamamos a <strong>Json.decodeFromString()</strong>.</p>
+<pre><code>    import kotlinx.serialization.json.Json
+    import kotlinx.serialization.encodeToString
+    import kotlinx.serialization.decodeFromString
+
+    fun main() {
+        val alumno = Alumno("María", 22)
+
+        val json = Json.encodeToString(alumno)
+        println("JSON: $json")
+
+        val obj = Json.decodeFromString&lt;Alumno&gt;(json)
+        println("Objeto: $obj")
+    }
+</code></pre>
+<p>También puedes serializar colecciones de objetos, como listas, en una sola llamada:</p>
+<pre><code>    val dataList = listOf(Data(42, "str"), Data(12, "test"))
+    val jsonList = Json.encodeToString(dataList)
+</code></pre>
+<p><strong>Ejemplo_JSON.kt</strong>: lee el fichero persona.json y crea el archivo persona_guardada.json. Estructura del proyecto:</p>
+<pre><code>    tu-proyecto/            
+    ├── documentos/
+    |       └──persona.json
+    └── src/
+        └── main/
+            └── kotlin/
+                └── ejemplos/
+                        └──Ejemplo_JSON.kt
+                            └── Persona
+                            └── main()
+</code></pre>
+<ol>
+<li>
+<p>Copia el siguiente fichero <strong>persona.json</strong> en la raiz del proyecto/documentos:</p>
+<pre><code>{
+"nombre": "Lucía",
+"edad": 28
+}
+</code></pre>
+</li>
+<li>
+<p>Crea el programa <strong>Ejemplo_JSON.kt</strong> que lea el fichero <strong>persona.kt</strong> y crea el fichero <strong>persona_guardada.kt</strong>  con el siguiente contenido:    </p>
+<pre><code>{
+"nombre": "Mario",
+"edad": 35
+}
+</code></pre>
+</li>
+</ol>
+<p><strong>Ejemplo_JSON.kt</strong></p>
+<pre><code>        import kotlinx.serialization.*
+        import kotlinx.serialization.json.*
+        import java.nio.file.Files
+        import java.nio.file.Paths
+        import java.io.IOException
+        import java.nio.file.Files.readString
+
+
+        @Serializable
+        data class Persona(val nombre: String, val edad: Int)
+
+        fun main() {
+            val rutaEntrada = Paths.get("documentos/persona.json")
+            val rutaSalida = Paths.get("documentos/persona_guardada.json")
+
+            // --- Lectura segura ---
+            try {
+                if (!Files.exists(rutaEntrada)) {
+                    println("El archivo no existe: $rutaEntrada")
+                    return
+                }
+
+                val contenidoJson = readString(rutaEntrada)
+                val persona = Json.decodeFromString&lt;Persona&gt;(contenidoJson)
+                println("Lectura correcta: $persona")
+
+                // --- Escritura segura ---
+                val nuevoJson = Json.encodeToString(persona.copy(nombre = "Mario", edad = 35))
+                Files.writeString(rutaSalida, nuevoJson)
+                println("Archivo guardado como: $rutaSalida")
+
+            } catch (e: SerializationException) {
+                println("Error al deserializar: ${e.message}")
+            } catch (e: IOException) {
+                println("Error de E/S: ${e.message}")
+            }
+        }
+</code></pre>
+<h2 id="ficheros-xml">Ficheros XML</h2>
+<p>Un fichero <strong>XML</strong> (eXtensible Markup Language) es un formato de texto estructurado diseñado para almacenar y transportar datos de forma legible tanto para humanos como para máquinas.</p>
+<p>Tiene una estructura jerárquica basada en etiquetas, similar al HTML, pero orientada al contenido de datos, no a la presentación. <strong>XML</strong> permite guardar objetos o estructuras de datos en un archivo de texto legible.</p>
+<p><strong class="azul">Estructura</strong></p>
+<?xml version="1.0" encoding="UTF-8"?>
+<pre><code>&lt;raiz&gt;                             &lt;!-- Elemento raíz obligatorio --&gt;
+    &lt;elemento&gt;
+        &lt;subelemento&gt;valor&lt;/subelemento&gt;
+    &lt;/elemento&gt;
+    &lt;otroElemento atributo="valor" /&gt;
+&lt;/raiz&gt;
+</code></pre>
+<p>La mejor forma de trabajar con XML en <strong>Kotlin</strong> es utlizar la librería <strong>DOM</strong> (Document Object Model) o <strong>JDOM2</strong>, que permiten crear, leer y modificar fácilmente estructuras XML.</p>
+<ul>
+<li>DOM   -&gt; Estándar Java, sin dependencias. Requiere muchas líneas de código para hacer algo relativamente simple. </li>
+<li>JDOM2 -&gt;  API más amigable para desarrolladores.  Requiere añadir una librería externa.</li>
+</ul>
+<p>La elección, por tanto, será <strong>JDOM2</strong>, al ser más amigable.</p>
+<p><strong class="azul">Ejemplo 1</strong></p>
+<p>El siguiente ejemplo muestra como leer y escribor un archivo xml utilizando la librería JDOM2:</p>
+<ul>
+<li>
+<p>Lo primero será añadir la dependencia en Gradle (<strong>build.gradle.kts</strong>):</p>
+<pre><code>dependencies {
+    implementation("org.jdom:jdom2:2.0.6")
+}
+</code></pre>
+</li>
+<li>
+<p>Guarda el siguiente fichero <strong>alumnos.xml</strong> en la raiz del proyecto/documentos:</p>
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;alumnos&gt;
+    &lt;alumno&gt;
+        &lt;nombre&gt;Ana&lt;/nombre&gt;
+        &lt;nota&gt;9&lt;/nota&gt;
+    &lt;/alumno&gt;
+    &lt;alumno&gt;
+        &lt;nombre&gt;Pedro&lt;/nombre&gt;
+        &lt;nota&gt;7&lt;/nota&gt;
+    &lt;/alumno&gt;
+&lt;/alumnos&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Ejemplo_lecturaXML.kt</strong>: Lectura de alumnos.xml</p>
+<pre><code>import org.jdom2.input.SAXBuilder
+import java.io.File
+
+fun main() {
+    val archivo = File("documentos/alumnos.xml")
+    val builder = SAXBuilder()
+    val documento = builder.build(archivo)
+    val raiz = documento.rootElement
+    val listaAlumnos = raiz.getChildren("alumno")
+
+    for (alumno in listaAlumnos) {
+        val nombre = alumno.getChildText("nombre")
+        val nota = alumno.getChildText("nota")
+        println("Alumno: $nombre, Nota: $nota")
+    }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Ejemplo_escrituraXML.kt</strong>: Escritura de alumnos.xml</p>
+<pre><code>import org.jdom2.Document
+import org.jdom2.Element
+import org.jdom2.output.Format
+import org.jdom2.output.XMLOutputter
+import java.io.File
+
+fun main() {
+    // Crear elementos
+    val raiz = Element("alumnos")
+
+    val alumno1 = Element("alumno")
+    alumno1.addContent(Element("nombre").setText("Lucía"))
+    alumno1.addContent(Element("nota").setText("8"))
+
+    val alumno2 = Element("alumno")
+    alumno2.addContent(Element("nombre").setText("Carlos"))
+    alumno2.addContent(Element("nota").setText("6"))
+
+    // Añadir alumnos a la raíz
+    raiz.addContent(alumno1)
+    raiz.addContent(alumno2)
+
+    // Crear documento y escribirlo
+    val documento = Document(raiz)
+    val salida = XMLOutputter()
+    salida.format = Format.getPrettyFormat()
+    salida.output(documento, File("nuevo_alumnos.xml").outputStream())
+
+    println("Archivo XML creado con éxito.")
+}
+</code></pre>
+</li>
+</ul>
+<p><strong class="azul">Ejemplo 2</strong></p>
+<p>Los siguientes ejemplos convierten un archivo xml en un objeto y viceversa.</p>
+<ul>
+<li>
+<p>Primero crearemos la clase Alumnos:</p>
+<pre><code>data class Alumno(val nombre: String, val nota: Int)
+</code></pre>
+</li>
+<li>
+<p><strong>Ejemplo_XMLaObjeto.kt</strong>: Leemos el archivo alumnos.xml creado en el ejemplo anterior y lo convertimos a objeto.</p>
+<pre><code>import org.jdom2.input.SAXBuilder
+import java.io.File
+
+fun main() {
+    val alumnos = mutableListOf&lt;Alumno&gt;()
+
+    val archivo = File("documentos/alumnos.xml")
+    val builder = SAXBuilder()
+    val documento = builder.build(archivo)
+    val raiz = documento.rootElement
+
+    val listaAlumnos = raiz.getChildren("alumno")
+
+    for (elemento in listaAlumnos) {
+        val nombre = elemento.getChildText("nombre")
+        val nota = elemento.getChildText("nota").toIntOrNull() ?: 0
+        alumnos.add(Alumno(nombre, nota))
+    }
+
+    // Mostrar los objetos
+    alumnos.forEach { println(it) }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Ejemplo_ObjetoaXML.kt</strong>: Leemos el objeto Alumno y lo convertimos en fichero xml (alumnos_generado.xml).</p>
+<pre><code>import org.jdom2.Document
+import org.jdom2.Element
+import org.jdom2.output.Format
+import org.jdom2.output.XMLOutputter
+import java.io.File
+
+fun main() {
+    // Lista de alumnos
+    val alumnos = listOf(
+        Alumno("Lucía", 8),
+        Alumno("Carlos", 6),
+        Alumno("María", 10)
+    )
+
+    // Crear elemento raíz &lt;alumnos&gt;
+    val raiz = Element("alumnos")
+
+    // Añadir cada alumno como &lt;alumno&gt;
+    for (alumno in alumnos) {
+        val alumnoElement = Element("alumno")
+        alumnoElement.addContent(Element("nombre").setText(alumno.nombre))
+        alumnoElement.addContent(Element("nota").setText(alumno.nota.toString()))
+        raiz.addContent(alumnoElement)
+    }
+
+    // Crear el documento XML
+    val documento = Document(raiz)
+
+    // Escribir en archivo con formato bonito
+    val salida = XMLOutputter()
+    salida.format = Format.getPrettyFormat()
+    salida.output(documento, File("documentos/alumnos_generado.xml").outputStream())
+
+    println("Archivo XML creado con éxito.")
+}
+</code></pre>
+</li>
+</ul>
+<!--
+## Conversión entre formatos
+
+En el desarrollo de software, es habitual tener que leer, transformar y guardar información en distintos formatos de fichero. Un ejemplo típico de flujo de conversión sería:
+
+Se parte de un fichero en un formato (como CSV o JSON), se convierte en una lista de objetos (List<Alumno>), y luego esos objetos se pueden persistir en otro formato como JSON o XML.
+
+
+    [alumnos.csv] → List<Alumno> → alumnos.json → alumnos.xml
+
+**Ejemplo:**  
+
+✅ Lee un fichero alumnos.json
+
+✅ Lo convierte en una lista de objetos Kotlin (Alumno) usando kotlinx.serialization
+
+✅ Escribe los datos en formato XML con JDOM2
+
+-->
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../seriaci_dobjectes/" class="btn btn-neutral float-left" title="🔹Serialización de Objetos"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exercicis/" class="btn btn-neutral float-right" title="Exercicis">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../seriaci_dobjectes/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../exercicis/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Exercicis - AD - Accés a Dades - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercicis";
+        var mkdocs_page_input_path = "AD_T3_Fitxers_de_diferents_formats/exercicis.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introducción</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">🗂️ Tabla resumen: Contenidos vs Criterios de Evaluación</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Idea/">IntelliJ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Ficheros_Java/">Ficheros y Java (Kotlin)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Buenas_practicas/">Kotlin (gestión eficiente)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/otras_clases/">🔹 Otras Operaciones</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lectura y Escritura de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/Lectura_Escritura_ficheros/">🔹Ficheros de texto y binarios</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/Otras_clases/">🔹Otros Tipos de acceso</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros con formatos diferentes</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../objectius/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercicis</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-t3_1">Exercici T3_1</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-t3_2">Exercici T3_2</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-t3_3">Exercici T3_3</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-t3_4">Exercici T3_4</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-t3_5">Exercici T3_5</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-t3_6">Exercici T3_6</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Conversion/">Conversión entre formatos diferentes</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resumen</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Resumen_tipos/">Tipos de ficheros</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Accés a Dades - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Ficheros con formatos diferentes</li>
+      <li class="breadcrumb-item active">Exercicis</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exercicis">Exercicis</h1>
+<h2 id="exercici-t3_1"><img alt="" src="icon_activity.gif" /> Exercici T3_1</h2>
+<p>En el projecte anomenat <strong>Tema3</strong> , crea't un paquet anomenat <strong>exercicis</strong> on
+col·locarem tot el relatiu als exercicis d'aquest tema. Copia't dins del
+projecte el fitxer <strong>Rutes.dat</strong> que us passarà el professor. En ell tenim
+dades prèviament guardades que seran unes <strong>rutes</strong> consistents en una sèrie
+de punts amb una descripció. Cada punt seran unes coordenades (com en un
+mapa).</p>
+<p>L'estructura de les dades guardades és la següent</p>
+<ul>
+<li>nom de la ruta (string)</li>
+<li>desnivell (int)</li>
+<li>desnivell acumulat (int)</li>
+<li>número de punts (int)</li>
+<li>Per cada punt: <ul>
+<li>nom (string)</li>
+<li>latitud (double)</li>
+<li>longitud (double)</li>
+</ul>
+</li>
+</ul>
+<p>Observa que la quarta dada és un enter amb el número de punts de la ruta.</p>
+<p>Fes un programa (amb <strong>fun main()</strong>) en el fitxer Kotlin
+<strong>Ex3_1_LlegirRutesSerial.kt</strong> que agafe les dades del fitxer (hi ha 2 rutes,
+però ho heu de fer genèric per a un número indeterminat de rutes) i les traga
+per pantalla amb aquest aspecte:</p>
+<pre><code>Ruta: Pujada a Penyagolosa  
+Desnivell: 530  
+Desnivell acumulat: 530  
+Té 5 punts  
+Punt 1: Sant Joan (40.251036,-0.354223)  
+Punt 2: Encreuament (40.25156,-0.352507)  
+Punt 3: Barranc de la Pegunta (40.247318,-0.351713)  
+Punt 4: El Corralico (40.231708,-0.348859)  
+Punt 5: Penyagolosa (40.222632,-0.350339)  
+
+Ruta: La Magdalena  
+Desnivell: 51  
+Desnivell acumulat: 84  
+Té 7 punts  
+Punt 1: Primer Molí (39.99385,-0.032941)  
+Punt 2: Segon Molí (39.99628,-0.029427)  
+Punt 3: Caminàs (40.00513,-0.022569)  
+Punt 4: Riu Sec (40.006765,-0.02237)  
+Punt 5: Sant Roc (40.017906,-0.02289)  
+Punt 6: Explanada (40.034048,-0.00633)  
+Punt 7: La Magdalena (40.034519,-0.005856)
+</code></pre>
+<h2 id="exercici-t3_2"><img alt="" src="icon_activity.gif" /> Exercici T3_2</h2>
+<p>Construeix les següents classes:</p>
+<p><strong>Coordenades</strong> , que derivarà de <strong>Serializable</strong> (i que és convenient posar-
+li el número de versió per defecte: <strong>private const val serialVersionUID: Long
+= 1</strong>). Podeu consultar la classe Ruta que us passe per veure la manera de
+derivar de Serializable i posar-li número de sèrie.</p>
+<p>Contindrà:</p>
+<ul>
+<li><strong>latitud</strong> (double)</li>
+<li><strong>longitud</strong> (double)</li>
+</ul>
+<p>No caldrà contructor, ni getters ni setters, ja que Kotlin els genera
+automàticament  </p>
+<hr />
+<p><strong>PuntGeo</strong> , que derivarà de <strong>Serializable</strong> (i que és convenient posar-li
+el número de versió per defecte: <strong>private const val serialVersionUID: Long =
+1</strong>). Podeu consultar la classe Ruta que us passe per veure la manera de
+derivar de Serializable i posar-li número de sèrie.</p>
+<p>Contindrà:</p>
+<ul>
+<li><strong>nom</strong> (String)</li>
+<li><strong>coord</strong> (Coordenades)</li>
+</ul>
+<hr />
+<p><strong>Ruta</strong> . Aquesta classe us la passarà el professor.</p>
+<p>També implementa <strong>Serializable</strong> i conté:</p>
+<ul>
+<li><strong>nom</strong> (String)****</li>
+<li><strong>desnivell</strong> (int)</li>
+<li><strong>desnivellAcumulat</strong> (int)</li>
+<li><strong>llistaDePunts</strong> : un ArrayList de PuntGeo</li>
+</ul>
+<p>Observa com per a més comoditat té els mètodes:</p>
+<ul>
+<li><strong>addPunt(PuntGeo)</strong> , que afegirà un nou PuntGeo a la llista</li>
+<li><strong>getPunt(int)</strong> , al qual se li passa l'índex del punt que es vol i torna tot aquest punt</li>
+<li><strong>getPuntNom(int)</strong> , al qual se li passa l'índex del punt que es vol i tornarà el seu nom</li>
+<li><strong>getPuntLatitud(int)</strong>, al qual se li passa l'índex del punt que es vol i tornarà la seua latitud</li>
+<li><strong>getPuntLongitud(int)</strong> , al qual se li passa l'índex del punt que es vol i tornarà la seua longitud</li>
+<li><strong>size()</strong> , que ens dóna el número de punts guardats en la llista.</li>
+</ul>
+<p>L'únic que has de fer en aquesta classe és:</p>
+<ul>
+<li>Fes un mètode nou en la classe <strong>Ruta</strong> anomenat <strong>mostraRuta()</strong> , que mostre el contingut de la ruta amb aquest aspecte:</li>
+</ul>
+<pre><code>Ruta: Pujada a Penyagolosa  
+Desnivell: 530  
+Desnivell Acumulat: 530  
+Té 5 punts  
+Punt 1: Sant Joan (40.251036,-0.354223)  
+Punt 2: Encreuament (40.25156,-0.352507)  
+Punt 3: Barranc de la Pegunta (40.247318,-0.351713)  
+Punt 4: El Corralico (40.231708,-0.348859)  
+Punt 5: Penyagolosa (40.222632,-0.350339)
+</code></pre>
+<hr />
+<p>En un fitxer Kotlin anomenat <strong>Ex3_2_PassarRutesSerialObj.kt</strong> , fes el
+programa que passe del fitxe <strong>Rutes.dat</strong> al fitxer <strong>Rutes.obj</strong>. És a dir,
+has d'anar agafant la informació del fitxer <strong>Rutes.dat</strong> , guardar la
+informació en un objecte <strong>Ruta</strong> , visualitzar la seua informació amb
+<strong>mostraRuta()</strong> i per últim guardar la informació de l'objecte en un fitxer
+anomenat <strong>Rutes.obj</strong>. I això fins el final de fitxer (hi ha 2 rutes)</p>
+<p>En un fitxer Kotlin anomenat <strong>Ex3_2_LlegirRutesObj.kt</strong> , llig les rutes
+guardades en el fitxer <strong>Rutes.obj</strong> i mostra-les per pantalla utilitzant el
+mètode <strong>mostraRuta()</strong><strong><br />
+</strong></p>
+<h2 id="exercici-t3_3"><img alt="" src="icon_activity.gif" /> Exercici T3_3</h2>
+<p>Fes un programa en el fitxer <strong>Ex3_3_PassarRutesObjXML.kt</strong> (amb main) que
+passe el fitxer <strong>Rutes.obj</strong> a un fitxer XML anomenat <strong>Rutes.xml</strong> amb
+aquest aspecte. Els punts suspensius indiquen que hi ha més d'un punt en cada
+ruta, i que hi ha més d'una ruta</p>
+<pre><code>&lt;rutes&gt;
+    &lt;ruta&gt;
+        &lt;nom&gt;Pujada a Penyagolosa&lt;/nom&gt;
+        &lt;desnivell&gt;530&lt;/desnivell&gt;
+        &lt;desnivellAcumulat&gt;530&lt;/desnivellAcumulat&gt;
+        &lt;punts&gt;
+            &lt;punt num=&quot;1&quot;&gt;
+                &lt;nom&gt;Sant Joan&lt;/nom&gt;
+                &lt;latitud&gt;...&lt;/latitud&gt;
+                &lt;longitud&gt;...&lt;/longitud&gt;
+            &lt;/punt&gt;
+        ...
+        &lt;/punts&gt;
+    &lt;/ruta&gt;
+    ...
+&lt;/rutes&gt;
+</code></pre>
+<h2 id="exercici-t3_4"><img alt="" src="icon_activity.gif" /> Exercici T3_4</h2>
+<p>Fer una aplicació gràfica que llegirà el fitxer <strong>Rutes.xml</strong> per a que
+apareguen els noms de les rutes en un JComboBox. Quan se seleccione una, ha
+d'aparèixer la llista de punts (nom, latitud i longitud) en un JTextArea.
+L'aspecte podria ser el següent:</p>
+<p><img alt="" src="../T3_Ex3_4_1.png" /></p>
+<p>Hi ha dos mètodes per a saber quin és l'element seleccionat del <strong>JComboBox</strong>
+:</p>
+<ul>
+<li><strong>getSelectedItem()</strong> torna un String amb l'element seleccionat</li>
+<li><strong>getSelectedIndex()</strong> torna un enter amb el número d'ordre de l'element seleccionat (0 per al primer; 1 per al segon; ...)</li>
+</ul>
+<p>Observeu com en aquest cas ens convé <strong>getSelectedIndex()</strong> , ja que el número
+d'ordre de l'element seleccionat serà el mateix que el número d'ordre de la
+ruta que busquem en el NodeList <strong>doc.getElementsByTagName("ruta")</strong></p>
+<p>L'esquelet del programa seria aquest. Copieu-lo en un fitxer Kotlin anomenat
+<strong>Ex3_4_VisRutesXML.kt</strong> :</p>
+<pre><code>import javax.swing.*
+import java.awt.*
+import org.w3c.dom.Document
+import org.w3c.dom.Element
+import javax.xml.parsers.DocumentBuilderFactory
+
+
+class Finestra : JFrame() {
+
+    init {
+        var doc: Document
+        // sentències per a omplir doc
+
+        defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+        setTitle("Punts d'una ruta")
+        setSize(400, 300)
+        setLayout(BorderLayout())
+
+        val panell1 = JPanel(FlowLayout())
+        val panell2 = JPanel(BorderLayout())
+        add(panell1,BorderLayout.NORTH)
+        add(panell2,BorderLayout.CENTER)
+
+        val llistaRutes = arrayListOf&lt;String&gt;()
+        // sentències per a omplir l'ArrayList anterior amb el nom de les rutes
+
+        val combo = JComboBox(llistaRutes.toArray())
+        panell1.add(combo)
+
+        panell2.add(JLabel("Llista de punts de la ruta:"),BorderLayout.NORTH)
+        val area = JTextArea()
+        panell2.add(area)
+
+        combo.addActionListener{
+            // accions quan s'ha seleccionat un element del combobox,
+            // i que han de consistir en omplir el JTextArea
+
+        }
+    }
+}
+
+fun main(args: Array&lt;String&gt;) {
+    EventQueue.invokeLater {
+        Finestra().isVisible = true
+    }
+}
+</code></pre>
+<h2 id="exercici-t3_5"><img alt="" src="icon_activity.gif" /> Exercici T3_5</h2>
+<p>Fer un programa en el fitxer Kotlin <strong>Ex3_5_PassarRutesObjJSON.kt</strong> que passe
+el fitxer <strong>Rutes.obj</strong> a un fitxer JSON <strong>Rutes.json</strong> amb aquest aspecte:</p>
+<pre><code>
+    {
+      &quot;rutes&quot;: [
+        {
+          &quot;nom&quot;: &quot;Pujada a Penyagolosa&quot;,   
+          &quot;desnivell&quot;: 530,
+          &quot;desnivellAcumulat&quot;: 530,
+          &quot;llistaDePunts&quot;: [
+            {
+              &quot;nom&quot;: &quot;Sant Joan&quot;,  
+              &quot;coord&quot;: {
+                &quot;latitud&quot;: 40.251036,
+                &quot;longitud&quot;: -0.354223
+              }
+            },
+            ...  
+           ]
+        },
+        ...  
+       ]  
+    }
+</code></pre>
+<p>Com que ja tenim creades les classes <strong>Ruta</strong> , <strong>PuntGeo</strong> i <strong>Coord</strong> , el
+més còmode serà utilitzar <strong>Moshi</strong>. Tan sols ens farà falta una classe que ho
+englobe tot:</p>
+<pre><code>
+    class Rutes(var rutes: MutableList&lt;Ruta&gt; = mutableListOf&lt;Ruta&gt;())
+</code></pre>
+<h2 id="exercici-t3_6"><img alt="" src="icon_activity.gif" /> Exercici T3_6</h2>
+<p>Replicar l'exercici 3_4, però ara llegint del fitxer <strong>Rutes.json</strong> , en
+compte de <strong>Rutes.xml</strong></p>
+<p>Fer una aplicació gràfica que llegirà el fitxer <strong>Rutes.json</strong> i que aparega
+el nom de les rutes en un JComboBox. Quan se seleccione una, ha d'aparèixer la
+llista de punts (nom, latitud i longitud) en un JTextArea. L'aspecte podria
+ser el següent:</p>
+<p><img alt="" src="../T3_Ex6.png" /></p>
+<p>Hi ha dos mètodes per a saber quin és l'element seleccionat del <strong>JComboBox</strong>
+:</p>
+<ul>
+<li><strong>getSelectedItem()</strong> torna un String amb l'element seleccionat</li>
+<li><strong>getSelectedIndex()</strong> torna un enter amb el número d'ordre de l'element seleccionat (0 per al primer; 1 per al segon; ...)</li>
+</ul>
+<p>Observeu com en aquest cas, igual que en l'exercici 3_4, ens convé
+<strong>getSelectedIndex()</strong>.</p>
+<p>I com que ja tenim definides les classes, ens convé utilitzar <strong>Moshi</strong>.</p>
+<p>Aquest seria l'esquelet del programa. Copieu el següent codi en un fitxer
+Kotlin anomenat <strong>Ex3_6_VisRutaJSON.kt</strong> :</p>
+<pre><code>import javax.swing.*
+import java.awt.*
+import com.squareup.moshi.Moshi
+import java.io.File
+
+class FinestraJSON : JFrame() {
+
+    init {
+        var llistaRutes: ArrayList&lt;Ruta&gt;
+        // sentències per a omplir llistaRutes
+
+        defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+        setTitle("JSON: Punts d'una ruta")
+        setSize(400, 300)
+        setLayout(BorderLayout())
+
+        val panell1 = JPanel(FlowLayout())
+        val panell2 = JPanel(BorderLayout())
+        add(panell1, BorderLayout.NORTH)
+        add(panell2, BorderLayout.CENTER)
+
+        var nomsLlistaRutes = arrayListOf&lt;String&gt;()
+        // sentències per a omplir l'ArrayList anterior amb el nom de les rutes
+
+        val combo = JComboBox(nomsLlistaRutes.toArray())
+        panell1.add(combo)
+
+        panell2.add(JLabel("Llista de punts de la ruta:"), BorderLayout.NORTH)
+        val area = JTextArea()
+        panell2.add(area)
+
+        combo.addActionListener {
+            // accions quan s'ha seleccionat un element del combobox,
+            // i que han de consistir en omplir el JTextArea
+
+        }
+    }
+}
+
+fun main(args: Array&lt;String&gt;) {
+    EventQueue.invokeLater {
+        FinestraJSON().isVisible = true
+    }
+}
+</code></pre>
+<!--    
+
+## ![](icon_activity.gif) Exercici T3_7 (voluntari)
+
+Per a practicar un poquet més, anem a fer un altre exercici per a construir un
+fitxer JSON però ara amb la llibreria **org.json**
+
+Feu un programa en el fitxer Kotlin anomenat **Ex3_7_PassarCotxesXMLJSON.kt**
+,**** que haurà de passar el fitxer **cotxes.xml** al fitxer **cotxes.json**.
+No tenim creades les classes dels cotxes, i per això utilitzarem la llibreria
+**org.json**.
+
+Aquest és el fitxer **cotxes.xml** :
+
+<pre><code>&lt;oferta&gt;  
+    &lt;vehiculo&gt;  
+        &lt;marca&gt;ford&lt;/marca&gt;  
+        &lt;modelo color=&quot;gris&quot;&gt;focus&lt;/modelo&gt;  
+        &lt;motor combustible=&quot;gasolina&quot;&gt;duratorc 1.4&lt;/motor&gt;  
+        &lt;matricula&gt;1234AAA&lt;/matricula&gt;  
+        &lt;kilometros&gt;12500&lt;/kilometros&gt;  
+        &lt;precio_inicial&gt;12000&lt;/precio_inicial&gt;  
+        &lt;precio_oferta&gt;10000&lt;/precio_oferta&gt;  
+        &lt;extra valor=&quot;250&quot;&gt;pintura metalizada&lt;/extra&gt;  
+        &lt;extra valor=&quot;300&quot;&gt;llantas&lt;/extra&gt;  
+        &lt;foto&gt;11325.jpg&lt;/foto&gt;  
+        &lt;foto&gt;11326.jpg&lt;/foto&gt;  
+    &lt;/vehiculo&gt;  
+    &lt;vehiculo&gt;  
+        &lt;marca&gt;ford&lt;/marca&gt;  
+        &lt;modelo color=&quot;gris&quot;&gt;focus&lt;/modelo&gt;  
+        &lt;motor combustible=&quot;diesel&quot;&gt;duratorc 2.0&lt;/motor&gt;  
+        &lt;matricula&gt;1235AAA&lt;/matricula&gt;  
+        &lt;kilometros&gt;125000&lt;/kilometros&gt;  
+        &lt;precio_inicial&gt;10000&lt;/precio_inicial&gt;  
+        &lt;precio_oferta&gt;9000&lt;/precio_oferta&gt;  
+        &lt;extra valor=&quot;250&quot;&gt;pintura metalizada&lt;/extra&gt;  
+        &lt;extra valor=&quot;200&quot;&gt;spoiler trasero&lt;/extra&gt;  
+        &lt;extra valor=&quot;500&quot;&gt;climatizador&lt;/extra&gt;  
+        &lt;foto&gt;11327.jpg&lt;/foto&gt;  
+        &lt;foto&gt;11328.jpg&lt;/foto&gt;  
+    &lt;/vehiculo&gt;  
+&lt;/oferta&gt;
+</code></pre>
+
+I aquest ha de ser l'aspecte de **cotxes.json** :
+
+<pre><code>{  
+    &quot;oferta&quot;: {  
+        &quot;vehiculos&quot;: 
+        [  
+            {  
+                &quot;marca&quot;: &quot;ford&quot;,  
+                &quot;modelo&quot;: {  
+                    &quot;color&quot;: &quot;gris&quot;,  
+                    &quot;nombre_modelo&quot;: &quot;focus&quot;  
+                        },  
+                &quot;motor&quot;: {  
+                    &quot;combustible&quot;: &quot;gasolina&quot;,  
+                    &quot;nombre_motor&quot;: &quot;duratorc 1.4&quot;  
+                        },  
+                &quot;matricula&quot;: &quot;1234AAA&quot;,  
+                &quot;kilometros&quot;: &quot;12500&quot;,  
+                &quot;precio_inicial&quot;: &quot;12000&quot;,  
+                &quot;precio_oferta&quot;: &quot;10000&quot;,  
+                &quot;extra&quot;: [  
+                    {  
+                        &quot;valor&quot;: &quot;250&quot;,  
+                        &quot;nombre_extra&quot;: &quot;pintura metalizada&quot;  
+                    },  
+                    {  
+                        &quot;valor&quot;: &quot;300&quot;,  
+                        &quot;nombre_extra&quot;: &quot;llantas&quot;  
+                    }  
+                        ],  
+                &quot;foto&quot;: [  
+                    &quot;11325.jpg&quot;,  
+                    &quot;11326.jpg&quot;  
+                        ]  
+            },  
+            {  
+                &quot;marca&quot;: &quot;ford&quot;,  
+                &quot;modelo&quot;: {  
+                &quot;color&quot;: &quot;gris&quot;,  
+                &quot;nombre_modelo&quot;: &quot;focus&quot;  
+                    },  
+                &quot;motor&quot;: {  
+                &quot;combustible&quot;: &quot;diesel&quot;,  
+                &quot;nombre_motor&quot;: &quot;duratorc 2.0&quot;  
+                    },  
+                &quot;matricula&quot;: &quot;1235AAA&quot;,  
+                &quot;kilometros&quot;: &quot;125000&quot;,  
+                &quot;precio_inicial&quot;: &quot;10000&quot;,  
+                &quot;precio_oferta&quot;: &quot;9000&quot;,  
+                &quot;extra&quot;: [  
+                    {  
+                        &quot;valor&quot;: &quot;250&quot;,  
+                        &quot;nombre_extra&quot;: &quot;pintura metalizada&quot;  
+                    },  
+                    {  
+                        &quot;valor&quot;: &quot;200&quot;,  
+                        &quot;nombre_extra&quot;: &quot;spoiler trasero&quot;  
+                    },  
+                    {  
+                        &quot;valor&quot;: &quot;500&quot;,  
+                        &quot;nombre_extra&quot;: &quot;climatizador&quot;  
+                    }  
+                        ],  
+                &quot;foto&quot;: [  
+                            &quot;11327.jpg&quot;,  
+                            &quot;11328.jpg&quot;  
+                        ]  
+            }  
+        ]  
+    }  
+}
+</code></pre>
+
+## ![](icon_activity.gif) Exercici T3.8 (voluntari)
+
+Visualitzar en un programa gràfic l'estat actual de Bicicas, agafant-lo
+directament de la pàgina <http://gestiona.bicicas.es/apps/apps.php>.
+
+  * En el mètode **agafarBicicas()** farem les instruccions per agafar-lo directament d'Internet, utilitzant un **URL** , en el qual:
+
+>   * Inicialitzarem amb la pàgina que busquem
+>   * Obrirem la connexió amb el mètode **openConnection()**
+>   * Després obtindrem el contingut amb el mètode **getInputStream()** , que
+> com el seu nom indica serà un InputStream
+>
+
+  * En el mètode **mostrarEstacions()** introduirem les instruccions per a visualitzar les estacions, utilitzant un **JList** (el que està a la part de l'esquerra), que s'ha de construir a partir d'un **DefaultListModel**. Per anar col·locant els diferents elements del JList, els haurem d'anar afegint al **DefaultListModel** , i aniran apareixent en el JList. Intentarem mostrar el número d'estació, nom i número de bicicletes (posicions ocupades) i el total de posicions.
+  * El mètode **visualitzaEstacio()** s'activa quan seleccionem un element del JList, i en ell mostrarem les propietats de l'estació seleccionada en el **TextArea** que està a la part de la dreta.
+
+Aquest seria l'aspecte:
+
+![](T3_Ex8.png)
+
+Aquest és l'esquelet. Copieu-lo en un fitxer Kotlin anomenat
+**Ex3_8_VisBicicasJSONList.kt** :
+
+
+
+    import javax.swing.*
+    import java.awt.*
+    import org.json.JSONTokener
+    import org.json.JSONObject
+    import org.json.JSONArray
+    import java.net.URL
+    import java.io.InputStreamReader
+
+    class FinestraBicicas : JFrame() {
+        var estacions = JSONArray()
+        var listModel = DefaultListModel<String>()
+        var list = JList(listModel)
+        var area = JTextArea(5, 15)
+
+        init {
+
+            defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+            setTitle("JSON: Vista detallada BICICAS")
+            setSize(800, 800)
+            setLayout(BorderLayout())
+
+            val panell1 = JPanel(FlowLayout())
+            val panell2 = JPanel(GridLayout(1, 2))
+            add(panell1, BorderLayout.NORTH)
+            add(panell2, BorderLayout.CENTER)
+            list.setForeground(Color.blue)
+            var scroll1 = JScrollPane(list)
+            var scroll2 = JScrollPane(area)
+            panell2.add(scroll1)
+            panell2.add(scroll2)
+
+            panell1.add(JLabel("LListat actual BICICAS"))
+
+            agafarBicicas()
+
+            mostrarEstacions()
+
+            list.addListSelectionListener() {
+                if (list.getSelectedIndex() >= 0)
+                    visualitzaEstacio(list.getSelectedIndex())
+            }
+        }
+
+        fun agafarBicicas() {
+            // Instruccions per a llegir de la pàgina de Bicicas i col·locar en arrel
+            val bicicas = URL("http://gestiona.bicicas.es/apps/apps.php");
+            val arrel = (JSONTokener(bicicas.openConnection().getInputStream()).nextValue() as JSONArray).get(0) as JSONObject
+            // Instruccions per a col·locar les estacions en estacions (JsonArray)  
+
+        }
+
+        fun mostrarEstacions() {
+            // Instruccions per a introduir en el JList les estacions
+            // La manera d'anar introduint informació en el JList és a través del DefaultListModel:
+            // listModel.addElement("Linia que es vol introduir ")
+
+        }
+
+        fun visualitzaEstacio(numEst: Int) {
+            // Instruccions per a mostrar les característiques en el area, el JTextArea de la dreta anomenat area
+
+        }
+    }
+
+    fun main(args: Array<String>) {
+        EventQueue.invokeLater {
+            FinestraBicicas().isVisible = true
+        }
+    }
+
+
+``
+-->
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/">Llicència Creative Commons Reconeixement NoComercial
+CompartirIgual 2.5</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ficheros_intercambio/" class="btn btn-neutral float-left" title="🔹Ficheros de intercambio"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../Conversion/" class="btn btn-neutral float-right" title="Conversión entre formatos diferentes">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ficheros_intercambio/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../Conversion/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
