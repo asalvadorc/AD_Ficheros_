@@ -36,8 +36,7 @@ A mode orientatiu del que es vol fer, us adjunte la classe **FitxerImatge** a
 la qual heu de modificar el constructor i els tres mètodes de transformació
 (l'últim és voluntari). Recordeu que ha d'anar al paquet **exercicis**.****
 
-    
-    
+       
     package exercicis
     
     import java.io.File
