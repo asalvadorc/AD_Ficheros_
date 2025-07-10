@@ -3,7 +3,7 @@
 Java permite el acceso a ficheros de múltiples maneras, según el tipo de contenido y la funcionalidad requerida. 
 
 
- Una vez visto como acceder a los ficheros y a su contenido, en los siguientes apartados veremos como guardar datos de diferentes tipos, como acceder a fichero de acceso aleatorio y como guardar objetos en ficheros. Por último, también veremos como acceder a ficheros de diferentes formatos, como son CSV, JSON y XML.
+ Una vez visto como acceder a los ficheros y a su contenido, en los siguientes apartados veremos como guardar objetos java en ficheros y como acceder a ficheros de diferentes formatos, como son CSV, JSON y XML.
 
 
 <!--

@@ -1,6 +1,6 @@
-## Acceso al sistema de ficheros
+## Acceso al sistema de ficheros. Java.nio 
 
-Hemos usado durante muchos años **java.io** para trabajar con ficheros en el mundo Java. Se trata de un **API** muy potente y flexible que nos permite realizar casi cualquier tipo de operación. Sin embargo es una API complicada de entender. Java **NIO** (New IO) es una nueva API disponible desde Java7 que nos permite mejorar el rendimiento, así como simplificar el manejo de muchas operaciones. 
+Hemos usado durante muchos años **java.io** para trabajar con ficheros en el mundo Java. Se trata de un **API** muy potente y flexible que nos permite realizar casi cualquier tipo de operación. Sin embargo es una API complicada de entender. **Java.nio** (New IO) es una nueva API disponible desde Java7 que nos permite mejorar el rendimiento, así como simplificar el manejo de muchas operaciones. 
 
 **Java.nio** define interfaces y clases para que la máquina virtual Java tenga acceso a archivos, atributos de archivos y sistemas de archivos. Aunque dicho API comprende numerosas clases, solo existen unas pocas de ellas que sirven de puntos de entrada al API, lo que simplifica considerablemente su manejo.
 
@@ -16,17 +16,16 @@ La clase **java.nio.file.Files** es el otro punto de entrada a la librería de f
 
 ### **Paths**{.azul}
 
-La clase **Paths** es una clase de utilidad que proporciona métodos estáticos para crear objetos Path.
-Paths no representa una ruta, solo sirve para construir instancias de Path de forma sencilla. Paths tiene un único propósito, devolver un objeto Path, que luego puedes usar con métodos de Files.
+La clase **Paths** es una clase de utilidad que proporciona métodos estáticos para crear objetos **Path**, que luego puedes usar con métodos de **Files**.
 
      
-**Métodos más importantes de Paths:**
-
 |Método     |Descripción|
 |-----------|-----------|
-|get(String first, String... mor e)|	Crea un objeto Path a partir de una o más cadenas.|
-|get(URI uri)|	Crea un Path desde un URI que debe ser del esquema file:///.  |      
+|- get(String first, String... mor e)|	Crea un objeto Path a partir de una o más cadenas.|
+|- get(URI uri)|	Crea un Path desde un URI que debe ser del esquema file:///.  |      
 
+!!!Note ""
+    El uso de **Paths.get(...)** en Java (o Kotlin) no implica que el archivo o directorio exista. Este método simplemente crea una instancia de Path que representa una ruta en el sistema de archivos, pero no accede al disco ni verifica su existencia.
 
 **Ejemplo_get.kt**
 
@@ -59,21 +58,20 @@ Paths no representa una ruta, solo sirve para construir instancias de Path de fo
 ### **Path**{.azul}
 
 La clase **Path** Se utiliza junto con la clase **Files** para realizar operaciones como lectura, escritura, copia, o eliminación de archivos.  
-La forma mas sencilla de construir un objeto que cumpla la interfaz Path es a partir de la clase java.nio.file.Paths, que tiene métodos estáticos que retornan objetos Path a partir de una representación tipo String del path deseado.  
-Por supuesto, no es necesario que los ficheros existan de verdad en el disco duro para que se puedan crear los objetos Path correspondientes
+La forma mas sencilla de construir un objeto que cumpla la interfaz **Path** es a partir de la clase **java.nio.file.Paths**, que tiene métodos estáticos que retornan objetos Path a partir de una representación tipo String del path deseado.  
+Por supuesto, no es necesario que los ficheros existan de verdad en el disco duro para que se puedan crear los objetos Path correspondientes.
 
-Un objeto Path puede representar una ruta **absoluta** (/home/usuario/archivo.txt) o **relativa** (documentos/archivo.txt).
-
-**ejemplo:** Devuelve la ruta relativa 
-
-    val path = Paths.get("documentos/ejemplo.txt")
+Un objeto Path puede representar una ruta **absoluta**:
+    
+    - val path = Paths.get("/home/usuario/archivo.txt")
+o **relativa**:
+    
+    - val path = Paths.get("documentos/ejemplo.txt")
     println(path.toAbsolutePath())
 
-**ejemplo:** Devuelve la ruta absoluta
 
-    val path = Paths.get("/home/usuario/archivo.txt")
-
-**Operaciones con Path**
+ 
+Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
 
 - Recuperar partes de una ruta
 - Eliminar redundancias de una ruta
@@ -82,7 +80,6 @@ Un objeto Path puede representar una ruta **absoluta** (/home/usuario/archivo.tx
 - Crear una ruta relativa a otra dada
 - Comparar dos rutas
   
-**Principales métodos de Path:**
 
 |Método     |Métodos principales|
 |-----------|---------------|
@@ -127,14 +124,14 @@ Un objeto Path puede representar una ruta **absoluta** (/home/usuario/archivo.tx
 
 La clase **Files** es el otro punto de entrada a la librería de ficheros de Java. Es la que nos permite manejar ficheros reales del disco desde Java.  
 Esta clase tiene métodos estáticos para el manejo de ficheros, los métodos de la clase **Files** trabajan sobre objetos **Path**.  
-Las operaciones principales a realizar con archivos y directorios son:
+
+Las **operaciones** y **métodos** principales a realizar con Files son:
 
   - Verificación de existencia y accesibilidad
   - Borrar un archivo o directorio
   - Copiar un archivo o directorio
   - Mover un archivo o directorio
 
-**Principales métodos de Files:**
 
 |Método     |Métodos principales|
 |-----------|---------------|
@@ -161,55 +158,8 @@ Las operaciones principales a realizar con archivos y directorios son:
             println("readable = ${Files.isReadable(path)}")
             println("writable = ${Files.isWritable(path)}")
             println("executable = ${Files.isExecutable(path)}")
-        }
 
   
-**Ejemplo_directorios.kt**: creación y borrado de directorios
-
-        import java.nio.file.Path
-        import java.nio.file.Paths
-        import java.nio.file.Files
-        import java.io.IOException
-
-        fun main() {
-            val path: Path = Paths.get("documentos/ejemplo.txt")
-
-            try {
-                if (Files.exists(path)) {
-                    Files.delete(path)
-                    println("Archivo eliminado: $path")
-                } else {
-                    Files.createFile(path)
-                    println("Archivo creado: $path")
-                }
-            } catch (e: IOException) {
-                System.err.println("Error: ${e.message}")
-                System.exit(1)
-            }
-        }
-
-El método  **delete(Path)** borra el fichero o directorio o lanza una excepción si el borrado falla. El siguiente ejemplo muestra como capturar y gestionar las excepciones que pueden producirse en el borrado. Si el fichero o directorio no existe, la excepción que se produce es  **NoSuchFileException**. Los sucesivos **cath** permiten determinar por  que ha fallado el borrado:
-
-       import java.nio.file.*
-       import java.io.IOException
-
-        fun main() {
-            val path = Paths.get("documentos/ejemplo.txt")
-            try {
-                Files.delete(path)
-            } catch (e: NoSuchFileException) {
-                System.err.printf("%s: no such file or directory%n", path)
-            } catch (e: DirectoryNotEmptyException) {
-                System.err.printf("%s not empty%n", path)
-            } catch (e: IOException) {
-                // Problemas de permisos u otros errores de E/S
-                System.err.println("Error: ${e.message}")
-            }
-        }
-
-
-El metodo **deleteIfExists(Path)** tambien borra el fichero o directorio, pero no lanza ningun error en caso de que el fichero o directorio no exista.
-
 **Ejemplo_creardirectorio.kt**: crear un directorio
 
 
@@ -233,37 +183,79 @@ El metodo **deleteIfExists(Path)** tambien borra el fichero o directorio, pero n
             }
         }
 
+**Ejemplo_borrardirectorio.kt**: elimina un directorio
+
+        import java.nio.file.Files
+        import java.nio.file.Path
+        import java.nio.file.Paths
+
+        fun main() {
+            val directorio: Path = Paths.get("c:/mi_directorio")
+
+            // Si ya existe, lo eliminamos
+            if (Files.exists(directorio)) {
+                println("El directorio ya existe. Borrándolo...")
+                Files.delete(directorio)
+            }
+
+        }
+
+
+El método  **delete(Path)** borra el fichero o directorio o lanza una excepción si el borrado falla. El siguiente ejemplo muestra como capturar y gestionar las excepciones que pueden producirse en el borrado. Si el fichero o directorio no existe, la excepción que se produce es  **NoSuchFileException**. Los sucesivos **cath** permiten determinar por  que ha fallado el borrado:
+
+        import java.nio.file.*
+        import java.io.IOException
+
+            fun main() {
+                val path = Paths.get("c:/mi_directorio")
+                try {
+                    Files.delete(path)
+                } catch (e: NoSuchFileException) {
+                    System.err.printf("%s: no such file or directory%n", path)
+                } catch (e: DirectoryNotEmptyException) {
+                    System.err.printf("%s not empty%n", path)
+                } catch (e: IOException) {
+                    // Problemas de permisos u otros errores de E/S
+                    System.err.println("Error: ${e.message}")
+                }
+            }
+
+
+!!!Note ""
+    El metodo **deleteIfExists(Path)** tambien borra el fichero o directorio, pero no lanza ningun error en caso de que el fichero o directorio no exista.
+
+
 
 **Ejemplo_copiardirectorio.kt**: copiar directorios
 
 Se puede copiar un archivo o directorio usando el método copy(Path, Path, CopyOption...). La copia falla si el archivo de destino existe, a menos que se especifique la opción REPLACE_EXISTING. 
 
-Se puede copiar directorios  Aunque, los archivos dentro del directorio no se copian, por lo que el nuevo directorio está vacío incluso cuando el directorio original contiene archivos.
+Se puede copiar directorios aunque, los archivos dentro del directorio no se copian, por lo que el nuevo directorio está vacío incluso cuando el directorio original contiene archivos.
 
-      import java.io.IOException
-import java.nio.file.FileAlreadyExistsException
-import java.nio.file.Files
-import java.nio.file.Path
-import java.nio.file.Paths
-// import java.nio.file.StandardCopyOption  // si se desea sobrescribir
+       import java.io.IOException
+        import java.nio.file.FileAlreadyExistsException
+        import java.nio.file.Files
+        import java.nio.file.Path
+        import java.nio.file.Paths
+        // import java.nio.file.StandardCopyOption  // si se desea sobrescribir
 
-fun main() {
-    val sourcePath: Path = Paths.get("documentos")
-    val destinationPath: Path = Paths.get("documentos/destino")
+        fun main() {
+            val sourcePath: Path = Paths.get("documentos")
+            val destinationPath: Path = Paths.get("documentos/destino")
 
-    try {
-        Files.copy(sourcePath, destinationPath)
-        // Para sobrescribir si ya existe, descomenta la siguiente línea:
-        // Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING)
+            try {
+                Files.copy(sourcePath, destinationPath)
+                // Para sobrescribir si ya existe, descomenta la siguiente línea:
+                // Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING)
 
-        println("Copia realizada con éxito.")
-    } catch (e: FileAlreadyExistsException) {
-        println("El fichero o directorio ya existe en el destino.")
-    } catch (e: IOException) {
-        println("Error al copiar: ${e.message}")
-        e.printStackTrace()
-    }
-}
+                println("Copia realizada con éxito.")
+            } catch (e: FileAlreadyExistsException) {
+                println("El fichero o directorio ya existe en el destino.")
+            } catch (e: IOException) {
+                println("Error al copiar: ${e.message}")
+                e.printStackTrace()
+            }
+        }
 
 **Ejemplo_copiarficheros.kt**: copiar ficheros
 
@@ -317,7 +309,7 @@ fun main() {
 
 
 
-
+El siguiente ejemplo recorre la estructura home en tu sistema, indicando los permisos de cada archivo y directorio: 
 
 **Ejemplo_SistemaFicheros.kt**
 

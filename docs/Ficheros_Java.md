@@ -1,4 +1,7 @@
 # Ficheros y Java (Kotlin)
+
+## Ficheros
+
 Un **fichero** es una unidad de almacenamiento de datos en un sistema informático. Se trata de un conjunto de información organizada y almacenada en un dispositivo de almacenamiento (secuencia de bytes), como un disco duro, una memoria USB o un servidor en la nube.
 A los datos que se guardan en ficheros se llaman datos persistentes, porque persisten más allá de la ejecución de la aplicación que los trata.
 
@@ -28,15 +31,18 @@ El uso de ficheros para la persistencia de datos es una alternativa sencilla y e
 - Comunicación entre programas mediante archivos JSON o XML.
 - Aplicaciones que funcionan sin internet o sin una base de datos centralizada.
 
+## JAVA (Kotlin)
 
-!!!Note "Kotlin"
-    **Kotlin** es un lenguaje de programación moderno, conciso y seguro, desarrollado por JetBrains, la misma empresa que creó IntelliJ IDEA. Está diseñado para interoperar totalmente con Java.  Ambos lenguajes comparten las mismas APIs para la gestión del sistema de archivos, principalmente las de **java.io** y **java.nio.file**, sin embargo, Kotlin ofrece algunas diferencias clave en estilo, sintaxis y características de lenguaje que mejoran la experiencia, por lo que, **en este curso, utilizaremos la sintaxis de Kotlin**. 
+En el módulo de **Programación**, de 1º de DAM, hemos trabajado principalmente con Java, un lenguaje robusto, orientado a objetos y ampliamente utilizado en el desarrollo de aplicaciones empresariales. Gracias a Java, hemos aprendido conceptos clave como clases, objetos, herencia, interfaces y estructuras de control.
+
+A partir de ahora, en el módulo de Acceso a Datos (AD), vamos a continuar aplicando estos mismos conceptos, pero dando un paso más allá y utilizando **Kotlin**, un lenguaje moderno que ofrece mayor concisión, legibilidad y seguridad sin dejar de ser totalmente compatible con Java.
+
 
 **Librerías java.io y java.nio**{.azul}
 
 A las operaciones que constituyen un flujo de información del programa con el exterior, se les conoce como Entrada/Salida (E/S).
 
-En Kotlin (y Java), la gestión de ficheros se apoya en los paquetes estándar de la plataforma Java. Kotlin no tiene su propia API de ficheros independiente, sino que utiliza las siguientes librerías estándar de Java: **java.io** y **java.nio**.
+En Java (y Kotlin), la gestión de ficheros se apoya en los paquetes estándar de la plataforma Java. Kotlin no tiene su propia API de ficheros independiente, sino que utiliza las siguientes librerías estándar de Java: **java.io** y **java.nio**.
 
 
 ✅ **java.io (E/S clásica)**
@@ -73,3 +79,6 @@ En Kotlin (y Java), la gestión de ficheros se apoya en los paquetes estándar d
 
 !!!Note "Importante"
     ✔ En este curso utilizaremos la librería **java.nio**, ya que es la recomendada para la mayoría de los usos modernos de E/S de archivos.
+
+!!!Note "Kotlin"
+    **Kotlin** es un lenguaje de programación moderno, conciso y seguro, desarrollado por JetBrains, la misma empresa que creó IntelliJ IDEA. Está diseñado para interoperar totalmente con Java.  Ambos lenguajes comparten las mismas APIs para la gestión del sistema de archivos, principalmente las de **java.io** y **java.nio.file**, sin embargo, Kotlin ofrece algunas diferencias clave en estilo, sintaxis y características de lenguaje que mejoran la experiencia, por lo que, **en este curso, utilizaremos la sintaxis de Kotlin**. 

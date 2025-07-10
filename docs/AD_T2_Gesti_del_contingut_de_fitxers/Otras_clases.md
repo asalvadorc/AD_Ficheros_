@@ -1,4 +1,4 @@
-# 🔹 Otros tipos de acceso
+# Otros tipos de acceso a ficheros
 
 Además del acceso a ficheros de texto o binarios simples, en programación también es común trabajar con otros tipos de ficheros más especializados, según cómo se estructuran y acceden los datos. Entre ellos destacan:
 
@@ -11,7 +11,7 @@ Además del acceso a ficheros de texto o binarios simples, en programación tamb
 - **Ficheros de imagen**:representan datos visuales y requieren herramientas específicas para interpretarlos como imágenes, no solo como bytes.  
   🧪 Ejemplo típico: invertir los colores de una imagen .png o escribir texto sobre ella.
 
-## 🔹 Binarios estructurados y acceso aleatorio 
+## Binarios estructurados y acceso aleatorio 
 
 Las clases **FileChannel**, **ByteBuffer** y **StandardOpenOption** forman parte de la API **java.nio** y se utilizan juntas para realizar lectura y escritura de archivos **binarios estructurados** y en el **acceso aleatorio a ficheros**.
 
@@ -277,7 +277,7 @@ Cuando se necesita mayor control, eficiencia y rendimiento en el acceso a ficher
         }
                       
 
-## 🔹 Ficheros de imagen
+## Ficheros de imagen
 
 Los ficheros de imagen contienen datos que representan gráficamente una imagen visual (fotografías, ilustraciones, iconos, etc.). A diferencia de los ficheros de texto o binarios crudos, estos archivos tienen estructura interna que depende del formato (como .png, .jpg, .bmp, etc.).
 

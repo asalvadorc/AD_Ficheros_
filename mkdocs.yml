@@ -38,8 +38,8 @@ nav:
   - Exercicis: AD_T1_Sistema_de_fitxers/exercicis.md
 - Lectura y Escritura de ficheros:
     - 🔹Ficheros de texto y binarios: AD_T2_Gesti_del_contingut_de_fitxers/Lectura_Escritura_ficheros.md
-    - 🔹Otros Tipos de acceso: AD_T2_Gesti_del_contingut_de_fitxers/Otras_clases.md
-    - Exercicis: AD_T2_Gesti_del_contingut_de_fitxers/exercicis.md  
+    - 🔹Otros Tipos de acceso a Ficheros: AD_T2_Gesti_del_contingut_de_fitxers/Otras_clases.md
+    #- Exercicis: AD_T2_Gesti_del_contingut_de_fitxers/exercicis.md  
 - Ficheros con formatos diferentes:
     - 🔹Introducción: AD_T3_Fitxers_de_diferents_formats/objectius.md
     - 🔹Serialización de Objetos: AD_T3_Fitxers_de_diferents_formats/seriaci_dobjectes.md

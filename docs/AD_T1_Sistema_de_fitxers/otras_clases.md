@@ -35,22 +35,22 @@ Pero usando FileSystems.getDefault() puedes:
 **Ejemplo_FileSystem.kt**: obtener el nombre de un fichero así como la carpeta padre en la que se encuentra ubicado.
 
         import java.nio.file.FileSystems
-    import java.nio.file.Path
+        import java.nio.file.Path
 
-    fun main() {
-        val sistemaFicheros = FileSystems.getDefault()
-        val rutaFichero: Path = sistemaFicheros.getPath("documentos/destino/ejemplo3.txt")
+        fun main() {
+            val sistemaFicheros = FileSystems.getDefault()
+            val rutaFichero: Path = sistemaFicheros.getPath("documentos/destino/ejemplo3.txt")
 
-        println(rutaFichero.fileName)
-        println(rutaFichero.parent.fileName)
+            println(rutaFichero.fileName)
+            println(rutaFichero.parent.fileName)
 
-        val rutaDirectorio: Path = sistemaFicheros.getPath("documentos/destino")
-        val it = rutaDirectorio.iterator()
+            val rutaDirectorio: Path = sistemaFicheros.getPath("documentos/destino")
+            val it = rutaDirectorio.iterator()
 
-        while (it.hasNext()) {
-            println(it.next().fileName)
+            while (it.hasNext()) {
+                println(it.next().fileName)
+            }
         }
-    }
 
 
 ## BasicFileAttributes  
