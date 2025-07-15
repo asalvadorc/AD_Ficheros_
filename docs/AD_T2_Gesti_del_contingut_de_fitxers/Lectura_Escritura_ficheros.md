@@ -4,18 +4,15 @@ En cualquier aplicación real, tarde o temprano, necesitaremos guardar informaci
 
 Un fichero es una unidad de almacenamiento que permite guardar datos en el disco, ya sea para leerlos más tarde o para compartirlos con otros programas. Puede contener texto, imágenes, configuraciones, datos binarios, etc.
 
+- **Ficheros de texto**: contienen únicamente caracteres. Su contenido se puede leer y escribir con cualquier editor de texto.
 
-!!!Note ""
-    **Java.nio.file** no tiene constructores públicos. Fue introducido en Java 7 como parte de la nueva API de ficheros (NIO.2). Sigue un diseño más moderno, basado en:  
-
-      - Interfaces: como Path, FileSystem.
-      - Métodos estáticos utilitarios: como Paths.get(...), Files.readAllLines(...).
-      - Patrón de factoría: no se crean objetos directamente con new, sino que se obtienen mediante métodos de creación controlada.
+- **Ficheros binarios**: son ficheros que contienen cualquier tipo de información (texto, imágenes, vídeos, ficheros…) codificada como bytes. En general, requiere de programas especiales para mostrar la información que contienen.
 
 
+<!--
 **Métodos de lectura y escritura de archivos con Files (Java NIO)**{.azul}
 
-| Tipo de archivo     | Operación   | Método                           | Descripción breve                                              | Uso recomendado                              |
+| Tipo | Operación   | Método                           | Descripción breve                                              | Uso recomendado                              |
 |---------------------|-------------|----------------------------------|----------------------------------------------------------------|-----------------------------------------------|
 | Texto               | Lectura     | `readString(path)`               | Lee todo el archivo como un único `String`                     | Archivos pequeños de texto plano              |
 |                   |      | `readAllLines(path)`             | Devuelve una `List<String>` con todas las líneas               | Procesar líneas en memoria                    |
@@ -26,102 +23,14 @@ Un fichero es una unidad de almacenamiento que permite guardar datos en el disco
 | Binario             | Lectura     | `readAllBytes(path)`             | Lee todo el contenido del archivo como un `ByteArray`          | Lectura de imágenes o archivos binarios       |
 |              | Escritura   | `write(path, ByteArray)`         | Escribe un array de bytes en el archivo                        | Guardar datos binarios (imagen, bin, etc.)    |
 
+-->
 
 
+Los siguientes ejemplos utilizan las [Clases y métodos](http://127.0.0.1:8000/AD_T2_Gesti_del_contingut_de_fitxers/Introduccion/#clases-y-metodos-para-la-lectura-y-escritura) apropiadas para estos tipos de archivos.
 
-**Ejemplos de lectura y escritura de ficheros en Kotlin (java.nio.file)**{.azul}
+**Lectura y escritura de un archivo de texto**{.azul}
 
----
-
-## **Lectura de ficheros**
-
-**Ficheros de texto**{.azul}
-
-1. Leer todo el archivo como texto con **readString**
-
-    
-        import java.nio.file.Files
-        import java.nio.file.Paths
-
-        val contenido = Files.readString(Paths.get("documentos/archivo.txt"))
-        println(contenido)
-
-2. Leer todas las líneas como lista con **readAllLines**
-
-        import java.nio.file.Files
-        import java.nio.file.Paths
-
-        val lineas = Files.readAllLines(Paths.get("archivo.txt"))
-        lineas.forEach { println(it) }
-
-
-3. Leer línea por línea con **newBufferedReader**
-
-        import java.nio.file.Files
-        import java.nio.file.Paths
-
-        Files.newBufferedReader(Paths.get("archivo.txt")).use { reader ->
-            reader.lineSequence().forEach { println(it) }
-        }
-
-**Ficheros binarios**{.azul}
-        
-- Leer archivo binario como array de bytes con **readAllBytes**
-
-        import java.nio.file.Files
-        import java.nio.file.Paths
-
-        val bytes = Files.readAllBytes(Paths.get("imagen.png"))
-        println("Tamaño en bytes: ${bytes.size}")
-
-
-      
-
-## **Escritura de ficheros**
-
-**Ficheros de texto**{.azul}
-
-1. Escribir texto completo con **writeString**
-
-        import java.nio.file.Files
-        import java.nio.file.Paths
-
-        val texto = "Hola, mundo desde Kotlin"
-        Files.writeString(Paths.get("saludo.txt"), texto)
-
-2. Escribir lista de líneas con **write**
-
-        import java.nio.file.Files
-        import java.nio.file.Paths
-
-        val lineas = listOf("Línea 1", "Línea 2", "Línea 3")
-        Files.write(Paths.get("lineas.txt"), lineas)
-
-     
-
-3. Escribir usando **newBufferedWriter**
-
-        import java.nio.file.Files
-        import java.nio.file.Paths
-
-        Files.newBufferedWriter(Paths.get("log.txt")).use { writer ->
-            writer.write("Log iniciado...\n")
-            writer.write("Proceso completado.\n")
-        }
-
-**Ficheros binarios**{.azul}
-
--  Escribir archivo binario (bytes) con **write**.
-
-        import java.nio.file.Files
-        import java.nio.file.Paths
-
-        val datos = byteArrayOf(1, 2, 3, 4, 5)
-        Files.write(Paths.get("datos.bin"), datos)
-
-**Ejemplos**{.azul}
-
-
+       
 **Ejemplo_Lect_esc_ficheroTexto.kt**: lectura y escritura en ficheros de texto (UTF-8)
 
         import java.nio.file.Files
@@ -129,47 +38,62 @@ Un fichero es una unidad de almacenamiento que permite guardar datos en el disco
         import java.nio.charset.StandardCharsets
 
         fun main() {
-        val ruta = Paths.get("documentos/texto.txt")
 
-        //Escritura en fichero de texto
-        val lineasParaGuardar = listOf(
-                "Primera línea",
-                "Segunda línea",
-                "¡Hola desde Kotlin!"
-        )
-        Files.write(ruta, lineasParaGuardar, StandardCharsets.UTF_8)
-        println("Fichero de texto escrito.")
+                //Escritura en fichero de texto
 
-        //Lectura del fichero de texto
+                //writeString
+                val texto = "Hola, mundo desde Kotlin"
+                Files.writeString(Paths.get("documentos/saludo.txt"), texto)
 
-        //readAllLines
-        val lineasLeidas = Files.readAllLines(ruta)
-        println("Contenido leído con readAllLines:")
-        for (lineas in lineasLeidas) {
-                println(lineas)
+
+                //write
+                val ruta = Paths.get("documentos/texto.txt")
+
+                
+                val lineasParaGuardar = listOf(
+                        "Primera línea",
+                        "Segunda línea",
+                        "¡Hola desde Kotlin!"
+                )
+                Files.write(ruta, lineasParaGuardar, StandardCharsets.UTF_8)
+                println("Fichero de texto escrito.")
+
+                //newBuffered
+                Files.newBufferedWriter(Paths.get("documentos/log.txt")).use { writer ->
+                writer.write("Log iniciado...\n")
+                writer.write("Proceso completado.\n")
+
+                //Lectura del fichero de texto
+
+                //readAllLines
+                val lineasLeidas = Files.readAllLines(ruta)
+                println("Contenido leído con readAllLines:")
+                for (lineas in lineasLeidas) {
+                        println(lineas)
+                }
+
+                //readString
+                val contenido = Files.readString(ruta)
+                println("Contenido leído con readString:")
+                println(contenido)
+                
+                //newBufferedReader
+                Files.newBufferedReader(ruta).use { reader ->
+                        println("Contenido leído con newBufferedReader:")
+                        reader.lineSequence().forEach { println(it) }
+                }
         }
 
-        //readString
-        val contenido = Files.readString(ruta)
-        println("Contenido leído con readString:")
-        println(contenido)
-        
-        //newBufferedReader
-        Files.newBufferedReader(ruta).use { reader ->
-                println("Contenido leído con newBufferedReader:")
-                reader.lineSequence().forEach { println(it) }
-        }
-        }
-
+**Lectura y escritura de un archivo binario**{.azul}
 
 **Ejemplo_Lect_esc_ficheroBinario.kt**: lectura y escritura en ficheros binario
 
 
-                import java.nio.file.Files
-                import java.nio.file.Paths
+        import java.nio.file.Files
+        import java.nio.file.Paths
 
 
-                fun main() {
+        fun main() {
                 val ruta = Paths.get("documentos/datos.bin")
 
                 //Escritura en fichero binario
@@ -184,4 +108,4 @@ Un fichero es una unidad de almacenamiento que permite guardar datos en el disco
                 for (b in bytes) {
                         print("$b ")
                 }
-                }
+         }

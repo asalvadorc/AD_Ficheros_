@@ -1,6 +1,6 @@
 # Exercicis
 
-## ![](icon_activity.gif) Exercici T3_1
+## Exercici T3_1
 
 En el projecte anomenat **Tema3** , crea't un paquet anomenat **exercicis** on
 col·locarem tot el relatiu als exercicis d'aquest tema. Copia't dins del
@@ -49,7 +49,7 @@ Punt 5: Sant Roc (40.017906,-0.02289)
 Punt 6: Explanada (40.034048,-0.00633)  
 Punt 7: La Magdalena (40.034519,-0.005856)
 ```
-## ![](icon_activity.gif) Exercici T3_2
+## Exercici T3_2
 
 Construeix les següents classes:
 
@@ -124,7 +124,7 @@ guardades en el fitxer **Rutes.obj** i mostra-les per pantalla utilitzant el
 mètode **mostraRuta()****  
 **
 
-## ![](icon_activity.gif) Exercici T3_3
+## Exercici T3_3
 
 Fes un programa en el fitxer **Ex3_3_PassarRutesObjXML.kt** (amb main) que
 passe el fitxer **Rutes.obj** a un fitxer XML anomenat **Rutes.xml** amb
@@ -148,7 +148,7 @@ ruta, i que hi ha més d'una ruta
 	...
 </rutes>
 ```
-## ![](icon_activity.gif) Exercici T3_4
+## Exercici T3_4
 
 Fer una aplicació gràfica que llegirà el fitxer **Rutes.xml** per a que
 apareguen els noms de les rutes en un JComboBox. Quan se seleccione una, ha
@@ -220,7 +220,7 @@ L'esquelet del programa seria aquest. Copieu-lo en un fitxer Kotlin anomenat
     }
     
 
-## ![](icon_activity.gif) Exercici T3_5
+## Exercici T3_5
 
 Fer un programa en el fitxer Kotlin **Ex3_5_PassarRutesObjJSON.kt** que passe
 el fitxer **Rutes.obj** a un fitxer JSON **Rutes.json** amb aquest aspecte:
@@ -256,7 +256,7 @@ englobe tot:
     
     class Rutes(var rutes: MutableList<Ruta> = mutableListOf<Ruta>())
 ```
-## ![](icon_activity.gif) Exercici T3_6
+## Exercici T3_6
 
 Replicar l'exercici 3_4, però ara llegint del fitxer **Rutes.json** , en
 compte de **Rutes.xml**
