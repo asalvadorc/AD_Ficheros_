@@ -35,9 +35,10 @@ nav:
   - 🔹 Ficheros: AD_T1_Sistema_de_fitxers/ficheros.md
   - 🔹 Acceso al sistema de ficheros. Java nio: AD_T1_Sistema_de_fitxers/NIO_AccesoFicheros.md
   - Exercicis: AD_T1_Sistema_de_fitxers/exercicis.md
-- Lectura y Escritura de ficheros:
-    - 🔹Introducción: AD_T2_Gesti_del_contingut_de_fitxers/Introduccion.md
-    - 🔹Tipos de ficheros: 
+- Manejo de ficheros:
+    - 🔹Formas de acceso a un fichero: AD_T2_Gesti_del_contingut_de_fitxers/Formas_acceso.md
+    - 🔹Clases y métodos sobre ficheros: AD_T2_Gesti_del_contingut_de_fitxers/clases.md
+    - 🔹Lectura y escritura de ficheros: 
       - 🔹Ficheros de texto y binarios: AD_T2_Gesti_del_contingut_de_fitxers/Lectura_Escritura_ficheros.md
       - 🔹Ficheros de imagen: AD_T2_Gesti_del_contingut_de_fitxers/ficheros_img.md
       - 🔹Ficheros binarios estructurados: AD_T2_Gesti_del_contingut_de_fitxers/binarios_estucturados.md  
