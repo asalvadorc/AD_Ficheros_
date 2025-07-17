@@ -22,7 +22,7 @@ lanzaría una excepción de tipos **NotSerializableException** , impidiendo
 el almacenamiento.
 
 !!!Note ""
-    Kotlin no proporciona ninguna librería adicional para serializar objetos java.  Utiliza exactamente el mismo sistema de serialización binaria de Java, ya que es 100 % compatible.
+    **Kotlin** no proporciona ninguna librería adicional para serializar objetos java.  Utiliza exactamente el mismo sistema de serialización binaria de Java, ya que es 100% compatible.
 
 **Clases y herramientas que se utilizan**{.azul}
 
@@ -34,7 +34,7 @@ el almacenamiento.
 |transient|	Excluye atributos de la serialización|
 
 !!!Note "Nota"
-    La serialización en java sigue necesitando usar las clases de java.io (ObjectOutputStream, ObjectInputStream) porque java.nio no proporciona soporte directo para serialización de objetos.  
+    La serialización en java sigue necesitando usar las clases de **java.io** (ObjectOutputStream, ObjectInputStream) porque java.nio no proporciona soporte directo para serialización de objetos.  
     Con java.nio.file.Files y Paths puedes usar Files para escribir directamente un ByteArray generado con la serialización tradicional.
 
 Los Streams **ObjectInputStream** y **ObjectOutputStream** añaden a cualquier otro Stream la capacidad de seriar cualquier objeto Serializable. El stream de salida dispondrá del método **writeObject** y el stream de entrada, el método de lectura **readObject**.
@@ -81,9 +81,9 @@ Los pasos para serializar un objeto java (kotlin) son los siguientes:
             println("Nombre: ${persona.nombre}, Edad: ${persona.edad}")
         }
 
-Si hay atributos que no quieres guardar, usa el modificador @Transient:
+Si hay atributos que no quieres guardar, usa el modificador **@Transient**:
 
-    data class Usuario(
+    class Usuario(
         val nombre: String,
         @Transient val clave: String
     ) : Serializable
@@ -108,57 +108,6 @@ La clase **persona.kt** quedaría así:
 
 
 <!--
-La tècnica de la **seriació** és segurament la més senzilla de totes, però
-també a la vegada la més problemàtica. Java, i per tant també Kotlin, disposa
-d’un sistema genèric de seriació de qualsevol objecte, un sistema **recursiu**
-que es repeteix per cada objecte contingut a la instància que s’està seriant.
-Aquest procés para en arribar als tipus primitius, els quals es guarden com
-una sèrie de bytes. A banda dels tipus primitius, Java serialitza també molta
-informació addicional o metadades específiques de cada classe (el nom de les
-classe, els noms dels atributs i molta més informació addicional). Gràcies a
-les metadades es fa possible automatitzar la seriació de forma genèrica **amb
-garanties de recuperar un objecte tal com es va guardar**.
-
-Lamentablement, **aquest és un procediment específic de Java**. És a dir, no
-és possible recuperar els objectes seriats des de Java utilitzant un altre
-llenguatge. D’altra banda, el fet de guardar metadades pot arribar a comportar
-també problemes, encara que utilitzem sempre el llenguatge Java. La
-modificació d’una classe pot fer variar les seues metadades. Aquestes
-variacions poden donar problemes de recuperació d’instàncies que hagen estat
-guardades amb algunes versions anteriors a la modificació, impedint que
-l’objecte puga ser recuperat.
-
-Aquestes consideracions fa que no siga pràctica aquesta tècnica per guardar
-objectes de forma més o menys permanent. En canvi, la seua senzillesa la fa
-una perfecta candidata per a l’emmagatzematge temporal, per exemple dins de la
-mateixa sessió.
-
-Per a que un objecte puga ser seriat cal que la seua classe i tot el seu
-contingut implementen la interfície **Serializable**. Es tracta d’una
-interfície sense mètodes, perquè l’únic objectiu de la interfície és actuar de
-marcador per indicar a la màquina virtual quines classes es poden seriar i
-quines no.
-
-Totes les classes equivalents als tipus bàsics ja implementen Serializable.
-També implementen aquesta interfície la classe String i tots els contenidors i
-els objectes Array. La seriació de col·leccions depèn en últim terme dels
-elements continguts. Si aquestos són seriables, la col·lecció també ho serà.
-
-En cas que la classe de l’objecte que s’intente seriar, o les d’algun dels
-objectes que continga, no implementaren la interfície Serializable, es
-llançaria una excepció de tipus **NotSerializableException** , impedint
-l’emmagatzematge.
-
-Els Streams **ObjectInputStream** i **ObjectOutputStream** són decoradors que
-afegeixen a qualsevol altre Stream la capacitat de seriar qualsevol objecte
-Serializable. El stream d'eixida disposarà del mètode **writeObject**. i el
-stream d’entrada, el mètode de lectura **readObject**.
-
-El mètode **readObject** només permet recuperar instàncies que siguen de la
-mateixa classe que la que es va guardar. En cas contrari, es llançaria una
-excepció de tipus **ClassCastExeception**. A més, cal que l’aplicació dispose
-del codi compilat de la classe; si no fóra així, l’excepció llançada seria
-**ClassNotFoundException**.
 
 **Exemple**
 

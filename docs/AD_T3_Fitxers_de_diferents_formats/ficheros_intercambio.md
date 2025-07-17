@@ -1,6 +1,7 @@
 # Ficheros de intercambio
 
-En el desarrollo de aplicaciones, es habitual trabajar con datos almacenados o transmitidos en distintos formatos de ficheros. La conversión entre estos formatos permite intercambiar información entre sistemas heterogéneos, integrarse con APIs, facilitar la persistencia de datos o adaptarse a requisitos específicos.
+En el desarrollo de aplicaciones, es habitual trabajar con datos almacenados o transmitidos en distintos formatos de ficheros. La conversión entre estos formatos permite intercambiar información entre sistemas heterogéneos, integrarse con APIs, facilitar la persistencia de datos o adaptarse a requisitos específicos. 
+
 
 Los formatos más comunes con los que se trabaja incluyen:
 
@@ -26,7 +27,7 @@ TOML/INI|	Archivos de configuración estructurada.|	Soportado por librerías ext
 ## Uso de Gradle para trabajar con ficheros CSV, JSON y XML
 
 
-En esta apartado vamos a desarrollar una aplicación en Kotlin que gestione la lectura y escritura de datos utilizando distintos formatos de archivo estructurado: CSV, JSON y XML.
+En este apartado vamos a desarrollar una aplicación en Kotlin que gestione la lectura y escritura de datos utilizando distintos formatos de archivo estructurado: CSV, JSON y XML.
 
 Para facilitar el uso de librerías externas que nos ayuden a trabajar con estos formatos, vamos a utilizar **Gradle** como herramienta de construcción del proyecto. Gradle nos permitirá:
 
@@ -43,96 +44,141 @@ Utilizaremos el archivo **build.gradle.kts** (Kotlin DSL) para declarar las depe
 | XML     | javax.xml (DOM API)   | Construcción manual de documentos XML                             |
 
 
+En el fichero **build.gradle.kts** se incluirán los plugins y dependencias necesarias:
+
+        plugins {
+            kotlin("jvm") version "2.0.20"
+            kotlin("plugin.serialization") version "2.0.20"
+            application
+        }
+
+
+        repositories {
+            mavenCentral()
+        }
+
+        dependencies {
+            // Kotlin estándar
+            implementation(kotlin("stdlib"))
+
+            // Serialización JSON
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+            // OpenCSV para CSV
+            implementation("com.opencsv:opencsv:5.9")
+
+            // librería JDOM2
+            implementation("org.jdom:jdom2:2.0.6")
+        }
+
+
 ## Ficheros CSV  
 
 El formato CSV es un archivo de texto donde los valores están separados por comas u otro delimitador (como punto y coma), muy usado para intercambiar datos entre hojas de cálculo, sistemas contables, etc.
 
-Se puede utiizar Kotlin puro, mediante la lectura línea a línea + split(), o la librería opencsv.
+La lectura y escrituara de un archivo CSV se puede hacer de dos maneras:
 
-Para utilizar **OpenCSV** es necesario  **añadir la dependencia OpenCSV (build.gradle.kts):**
-   
-        dependencies {
-            implementation("com.opencsv:opencsv:5.9")
-        }
+1. Sin utilizar librerías y mediante la lectura línea a línea + split().
+2. Utilizando la librería opencsv.
 
-**La sintaxis básica** para leer y escribir un CSV es la siguiente:
-
-- **Lectura de un CSV**
-
-        val reader = CSVReader(FileReader("archivo.csv"))
-        val filas = reader.readAll()
-        reader.close()
-
-
-- **Escritura de un CSV**    
-
-        val writer = CSVWriter(FileWriter("salida.csv"))
-        writer.writeNext(arrayOf("Nombre", "Edad"))
-        writer.writeNext(arrayOf("Ana", "28"))
-        writer.writeNext(arrayOf("Luis", "32"))
-        writer.close()
-
-
-
-En los siguiente ejemplos vemos como leer el contenido del siguiente archivo (alumnos.csv) sin utilizar librerías y utlilizando OpenCSV.
-
-    fichero alumnos.csv:
+**Ejemplos: escribir y Leer el siguiente archivo CSV sin librerias y con la librería OpenCSV**{.azul}
 
         Lucía;9
         Carlos;8
         Elena;10
 
---
-
-**Ejemplo_CSV.kt (sin librerías)**: Leer el contenido del fichero alumnos.csv e imprimir cada línea como par(nombre, nota).
-
-    import java.io.File
-
-    fun main() {
-        val alumnos = mutableListOf<Pair<String, Int>>()
-
-        File("documentos/alumnos.csv").forEachLine { linea ->
-            val partes = linea.split(";")
-            if (partes.size == 2) {
-                val nombre = partes[0].trim()
-                val nota = partes[1].trim().toIntOrNull()
-                if (nota != null) {
-                    alumnos.add(nombre to nota)
-                } else {
-                    println("Nota no válida en línea: $linea")
-                }
-            } else {
-                println("Línea mal formada: $linea")
-            }
-        }
-
-        alumnos.forEach { println("Nombre: ${it.first}, Nota: ${it.second}") }
-    }
 
 
 
-**Ejempo_openCSV.kt**: Ejemplo con OpenCSV
+**Ejemplo_lect_esc_CSV.kt**: Sin librerias.
 
-
-        import com.opencsv.CSVParserBuilder
-        import com.opencsv.CSVReaderBuilder
-        import java.io.FileReader
+        import java.nio.file.Files
+        import java.nio.file.Paths
+        import java.nio.file.StandardOpenOption
 
         fun main() {
-            val lector = FileReader("documentos/alumnos.csv")
+            val ruta = Paths.get("documentos/alumnos1.csv")
 
-            val parser = CSVParserBuilder()
-                .withSeparator(';') // importante: separador punto y coma
-                .build()
+            // 1. Crear contenido CSV
+            val lineas = listOf(
+                "Lucía;9",
+                "Carlos;8",
+                "Elena;10"
+            )
 
-            val csv = CSVReaderBuilder(lector)
-                .withCSVParser(parser)
-                .build()
+            // 2. Escribir el archivo
+            Files.write(ruta, lineas, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)
+            println("Archivo CSV creado: ${ruta.toAbsolutePath()}")
 
-            for (linea in csv) {
-                println("Nombre: ${linea[0]}, Nota: ${linea[1]}")
+            // 3. Leer y mostrar contenido 
+            println("\nContenido del archivo CSV:")
+            val lineasLeidas = Files.readAllLines(ruta)
+
+            for (i in lineasLeidas.indices) {
+                val linea = lineasLeidas[i]
+                val partes = linea.split(";")
+                if (partes.size == 2) {
+                    val nombre = partes[0]
+                    val nota = partes[1]
+                    println("Alumno: $nombre, Nota: $nota")
+                } else {
+                    println("Línea mal formada: $linea")
+                }
             }
         }
+
+
+
+**Ejempo_lect_esc_openCSV.kt**: Con OpenCSV
+
+
+        import com.opencsv.CSVReaderBuilder
+        import com.opencsv.CSVWriterBuilder
+        import com.opencsv.CSVParserBuilder
+        import java.io.FileReader
+        import java.io.FileWriter
+        import java.nio.file.Paths
+
+        fun main() {
+            val ruta = Paths.get("documentos/alumnos2.csv").toFile()
+
+            // 1. Escribir el archivo CSV con punto y coma como separador
+            val escritor = CSVWriterBuilder(FileWriter(ruta))
+                .withSeparator(';')
+                .build()
+
+            escritor.writeNext(arrayOf("Lucía", "9"))
+            escritor.writeNext(arrayOf("Carlos", "8"))
+            escritor.writeNext(arrayOf("Elena", "10"))
+            escritor.close()
+
+            println("Archivo CSV creado: ${ruta.absolutePath}")
+
+            // 2. Leer el archivo CSV 
+            val lector = CSVReaderBuilder(FileReader(ruta))
+                .withCSVParser(CSVParserBuilder().withSeparator(';').build())
+                .build()
+
+            println("\nContenido del archivo CSV:")
+            var fila: Array<String>? = lector.readNext()
+
+            while (fila != null) {
+                if (fila.size >= 2) {
+                    val nombre = fila[0]
+                    val nota = fila[1]
+                    println("Alumno: $nombre, Nota: $nota")
+                } else {
+                    println("Línea mal formada.")
+                }
+                fila = lector.readNext()
+            }
+
+            lector.close()
+        }
+
+
+!!!Note "Nota"
+    El archivo CSV generado sin librerías es un archivo de texto plano con el separador **;**, pero sin comillas y sin escape. En cambio, el fichero CSV generado con OpenCSV sigue el estantar CSV (RFC 4180) que incluye encerrar los campos entre comillas dobles, si el campo contiene el separador (como **;** o **,**).
 
 
 ## Ficheros JSON
@@ -202,7 +248,7 @@ Como ya vimos en el apartado anterior, **la serialización** es el proceso de co
     Todas las bibliotecas de serialización de Kotlin pertenecen al grupo **org.jetbrains.kotlinx:grupo**. Sus nombres empiezan con _kotlinx-serialization-_ y tienen sufijos que reflejan el formato de serialización:  
     
     - org.jetbrains.kotlinx:kotlinx-serialization-json Proporciona serialización JSON para proyectos Kotlin.
-    - org.jetbrains.kotlinx:kotlinx-serialization-cbor Proporciona serialización CBOR.
+    
 
 
 
@@ -224,15 +270,19 @@ Como ya vimos en el apartado anterior, **la serialización** es el proceso de co
 
 ⚠️ Asegúrate de usar una versión compatible con tu Kotlin. Por ejemplo, 1.6.3 funciona bien con Kotlin 2.0.20.        
 
-- Anotar tus clases con @Serializable
+- Anota tus clases con @Serializable
   
         import kotlinx.serialization.Serializable
 
         @Serializable
         data class Alumno(val nombre: String, val edad: Int)
 
+!!!Note "Nota"
+    En Kotlin, las **data class** están diseñadas para modelar datos puros. La palabra clave **data** no es obligatoria para la serialización, pero se usa por buena práctica y para obtener funcionalidades adicionales que son muy útiles, especialmente cuando trabajas con objetos de datos, como toString(), equals(), hashCode(), copy()..     
+    
 
-- Usar el objeto Json para serializar/deserializar        
+
+- Utiliza el objeto Json para serializar/deserializar        
 
 Para serializar una instancia de esta clase llamamos a **Json.encodeToString()** y para
 deserializar llamamos a **Json.decodeFromString()**.
@@ -257,9 +307,9 @@ deserializar llamamos a **Json.decodeFromString()**.
         val dataList = listOf(Data(42, "str"), Data(12, "test"))
         val jsonList = Json.encodeToString(dataList)
 
+**Ejemplo de lectura y escritura de un archivo json**{.azul}
 
-
-**Ejemplo_JSON.kt**: lee el fichero persona.json y crea el archivo persona_guardada.json. Estructura del proyecto:
+**Estructura del proyecto:**
 
 
         tu-proyecto/            
@@ -281,12 +331,17 @@ deserializar llamamos a **Json.decodeFromString()**.
         "edad": 28
         }
 
-2. Crea el programa **Ejemplo_JSON.kt** que lea el fichero **persona.kt** y crea el fichero **persona_guardada.kt**  con el siguiente contenido:    
+2. El programa deberá leer el fichero **persona.json** y crear el fichero **persona_guardada.json**  con el siguiente contenido:    
 
         {
         "nombre": "Mario",
         "edad": 35
         }
+
+3. En el programa añadiremos la **clase Persona** con la misma estructura del archivo persona.json
+
+        @Serializable
+        data class Persona(val nombre: String, val edad: Int)
 
 **Ejemplo_JSON.kt**
 
@@ -297,7 +352,7 @@ deserializar llamamos a **Json.decodeFromString()**.
             import java.io.IOException
             import java.nio.file.Files.readString
 
-
+            
             @Serializable
             data class Persona(val nombre: String, val edad: Int)
 
