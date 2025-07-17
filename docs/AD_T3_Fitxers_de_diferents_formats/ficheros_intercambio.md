@@ -90,7 +90,7 @@ La lectura y escrituara de un archivo CSV se puede hacer de dos maneras:
 
 
 
-**Ejemplo_lect_esc_CSV.kt**: Sin librerias.
+**Ejemplo_CSV_lect_esc.kt**: Sin librerias.
 
         import java.nio.file.Files
         import java.nio.file.Paths
@@ -129,7 +129,7 @@ La lectura y escrituara de un archivo CSV se puede hacer de dos maneras:
 
 
 
-**Ejempo_lect_esc_openCSV.kt**: Con OpenCSV
+**Ejempo_OpenCSV_lect_esc.kt**: Con OpenCSV
 
 
         import com.opencsv.CSVReaderBuilder
@@ -315,73 +315,111 @@ deserializar llamamos a **Json.decodeFromString()**.
         tu-proyecto/            
         ├── documentos/
         |       └──persona.json
+        |       └──persona_nueva.json
         └── src/
             └── main/
                 └── kotlin/
                     └── ejemplos/
-                            └──Ejemplo_JSON.kt
-                                └── Persona
+                            └──Ejemplo_esc_JSON.kt 
                                 └── main()
+                            └──Ejemplo_lect_JSON.kt 
+                                └── main()    
+                            └── Persona.kt
 
 
-1. Copia el siguiente fichero **persona.json** en la raiz del proyecto/documentos:
+1- Copia el siguiente fichero **persona.json** en la raiz del proyecto/documentos:
 
         {
         "nombre": "Lucía",
         "edad": 28
         }
 
-2. El programa deberá leer el fichero **persona.json** y crear el fichero **persona_guardada.json**  con el siguiente contenido:    
+2- Crea la clase **Persona.kt** con la misma estructura del archivo **persona.json**. Este es el objeto en Java que se corresponde con el archivo json y que se utiliza en la serialización.
 
-        {
-        "nombre": "Mario",
-        "edad": 35
-        }
 
-3. En el programa añadiremos la **clase Persona** con la misma estructura del archivo persona.json
+        import kotlinx.serialization.Serializable
 
         @Serializable
         data class Persona(val nombre: String, val edad: Int)
 
-**Ejemplo_JSON.kt**
 
-            import kotlinx.serialization.*
-            import kotlinx.serialization.json.*
-            import java.nio.file.Files
-            import java.nio.file.Paths
-            import java.io.IOException
-            import java.nio.file.Files.readString
 
-            
-            @Serializable
-            data class Persona(val nombre: String, val edad: Int)
 
-            fun main() {
-                val rutaEntrada = Paths.get("documentos/persona.json")
-                val rutaSalida = Paths.get("documentos/persona_guardada.json")
+**Ejemplo_JSON_lect.kt**
 
-                // --- Lectura segura ---
-                try {
-                    if (!Files.exists(rutaEntrada)) {
-                        println("El archivo no existe: $rutaEntrada")
-                        return
-                    }
+        import kotlinx.serialization.json.*
+        import java.nio.file.Files
+        import java.nio.file.Paths
+        import java.io.IOException
+        import java.nio.file.Files.readString
 
-                    val contenidoJson = readString(rutaEntrada)
-                    val persona = Json.decodeFromString<Persona>(contenidoJson)
-                    println("Lectura correcta: $persona")
 
-                    // --- Escritura segura ---
-                    val nuevoJson = Json.encodeToString(persona.copy(nombre = "Mario", edad = 35))
-                    Files.writeString(rutaSalida, nuevoJson)
-                    println("Archivo guardado como: $rutaSalida")
+        fun main() {
+            val rutaEntrada = Paths.get("documentos/persona.json")
 
-                } catch (e: SerializationException) {
-                    println("Error al deserializar: ${e.message}")
-                } catch (e: IOException) {
-                    println("Error de E/S: ${e.message}")
+            // --- Lectura segura ---
+            try {
+                if (!Files.exists(rutaEntrada)) {
+                    println("El archivo no existe: $rutaEntrada")
+                    return
                 }
+
+                val contenidoJson = readString(rutaEntrada)
+                val persona = Json.decodeFromString<Persona>(contenidoJson)
+                println("Lectura correcta: $persona")
+
+
+            } catch (e: IOException) {
+                println("Error de E/S: ${e.message}")
             }
+        }
+
+
+
+3- El programa deberá crear el fichero **persona_nueva.json**  con el siguiente contenido:    
+
+        {
+        "nombre": "Mario",
+        "edad": 35
+        }            
+
+**Ejemplo_JSON_esc.kt**
+
+        import kotlinx.serialization.json.*
+        import java.io.IOException
+        import java.nio.file.Files
+        import java.nio.file.Paths
+
+        fun main() {
+            val ruta = Paths.get("documentos/persona_nueva.json")
+
+            try {
+                // Crear el JSON directamente desde los datos
+                val json = buildJsonObject {
+                    put("nombre", "Mario")
+                    put("edad", 35)
+                }
+
+                // Convertir a String con formato bonito
+                val jsonString = Json { prettyPrint = true }.encodeToString(JsonObject.serializer(), json)
+
+                // Crear carpeta si no existe
+                Files.createDirectories(ruta.parent)
+
+                // Escribir JSON en archivo
+                Files.writeString(ruta, jsonString)
+
+                println("Archivo JSON creado en: ${ruta.toAbsolutePath()}")
+                println("Contenido:\n$jsonString")
+
+            } catch (e: IOException) {
+                println("Error de entrada/salida: ${e.message}")
+            } catch (e: Exception) {
+                println("Error inesperado: ${e.message}")
+            }
+        }
+
+
 
 
 
@@ -437,7 +475,7 @@ El siguiente ejemplo muestra como leer y escribor un archivo xml utilizando la l
         </alumnos>
 
 
-- **Ejemplo_lecturaXML.kt**: Lectura de alumnos.xml
+- **Ejemplo_XML_lect.kt**: Lectura de alumnos.xml
 
         import org.jdom2.input.SAXBuilder
         import java.io.File
@@ -456,7 +494,7 @@ El siguiente ejemplo muestra como leer y escribor un archivo xml utilizando la l
             }
         }
 
-- **Ejemplo_escrituraXML.kt**: Escritura de alumnos.xml
+- **Ejemplo_XML_esc.kt**: Escritura en alumnos_nuevo.xml
 
         import org.jdom2.Document
         import org.jdom2.Element
@@ -484,7 +522,7 @@ El siguiente ejemplo muestra como leer y escribor un archivo xml utilizando la l
             val documento = Document(raiz)
             val salida = XMLOutputter()
             salida.format = Format.getPrettyFormat()
-            salida.output(documento, File("nuevo_alumnos.xml").outputStream())
+            salida.output(documento, File("documentos/nuevo_alumnos.xml").outputStream())
 
             println("Archivo XML creado con éxito.")
         }
@@ -499,7 +537,7 @@ Los siguientes ejemplos convierten un archivo xml en un objeto y viceversa.
         data class Alumno(val nombre: String, val nota: Int)
 
 
-- **Ejemplo_XMLaObjeto.kt**: Leemos el archivo alumnos.xml creado en el ejemplo anterior y lo convertimos a objeto.
+- **Ejemplo_XML_a_Objeto.kt**: Leemos el archivo alumnos.xml creado en el ejemplo anterior y lo convertimos a objeto.
 
         import org.jdom2.input.SAXBuilder
         import java.io.File
@@ -525,7 +563,7 @@ Los siguientes ejemplos convierten un archivo xml en un objeto y viceversa.
             alumnos.forEach { println(it) }
         }
 
-- **Ejemplo_ObjetoaXML.kt**: Leemos el objeto Alumno y lo convertimos en fichero xml (alumnos_generado.xml).
+- **Ejemplo_Objeto_a_XML.kt**: Leemos el objeto Alumno y lo convertimos en fichero xml (alumnos_generado.xml).
 
 
         import org.jdom2.Document
@@ -565,22 +603,3 @@ Los siguientes ejemplos convierten un archivo xml en un objeto y viceversa.
             println("Archivo XML creado con éxito.")
         }
 
-<!--
-## Conversión entre formatos
-
-En el desarrollo de software, es habitual tener que leer, transformar y guardar información en distintos formatos de fichero. Un ejemplo típico de flujo de conversión sería:
-
-Se parte de un fichero en un formato (como CSV o JSON), se convierte en una lista de objetos (List<Alumno>), y luego esos objetos se pueden persistir en otro formato como JSON o XML.
-
-
-    [alumnos.csv] → List<Alumno> → alumnos.json → alumnos.xml
-
-**Ejemplo:**  
-
-✅ Lee un fichero alumnos.json
-
-✅ Lo convierte en una lista de objetos Kotlin (Alumno) usando kotlinx.serialization
-
-✅ Escribe los datos en formato XML con JDOM2
-                        
--->
