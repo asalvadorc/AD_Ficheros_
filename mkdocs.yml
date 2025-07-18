@@ -47,8 +47,8 @@ nav:
     - 🔹Introducción: AD_T3_Fitxers_de_diferents_formats/objectius.md
     - 🔹Serialización de Objetos: AD_T3_Fitxers_de_diferents_formats/seriaci_dobjectes.md
     - 🔹Ficheros de intercambio: AD_T3_Fitxers_de_diferents_formats/ficheros_intercambio.md    
-    - Exercicis: AD_T3_Fitxers_de_diferents_formats/exercicis.md
-- Conversión entre formatos diferentes: Conversion.md
+   # - Exercicis: AD_T3_Fitxers_de_diferents_formats/exercicis.md
+    - 🔹Conversión entre formatos diferentes: Conversion.md
 # - Programación de componentes: Componentes.md    
 - Resumen: 
     - Tipos de ficheros: Resumen_tipos.md    
