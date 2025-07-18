@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹Conversión entre formatos diferentes - AD - Accés a Dades - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39Conversi\u00f3n entre formatos diferentes";
+        var mkdocs_page_input_path = "AD_T3_Fitxers_de_diferents_formats/Conversion.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introducción</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">🗂️ Tabla resumen: Contenidos vs Criterios de Evaluación</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Idea/">IntelliJ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Kotlin/">Kotlin</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >🔹Lectura y escritura de ficheros</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/Lectura_Escritura_ficheros/">🔹Ficheros de texto y binarios</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/ficheros_img/">🔹Ficheros de imagen</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/binarios_estucturados/">🔹Ficheros binarios estructurados</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/Acceso_aleatorio/">🔹Ficheros de acceso aleatorio</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros con formatos diferentes</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../objectius/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">🔹Conversión entre formatos diferentes</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resumen</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Resumen_tipos/">Tipos de ficheros</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Accés a Dades - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Ficheros con formatos diferentes</li>
+      <li class="breadcrumb-item active">🔹Conversión entre formatos diferentes</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="conversion-entre-formatos-de-ficheros-en-kotlinjava">🔹 Conversión entre formatos de ficheros en Kotlin/Java</h1>
+<table>
+<thead>
+<tr>
+<th>Conversión</th>
+<th>Herramientas recomendadas</th>
+<th>Proceso resumido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CSV → JSON</strong></td>
+<td>OpenCSV + kotlinx.serialization</td>
+<td>Leer CSV → mapear a objetos → serializar con <code>Json.encodeToString</code></td>
+</tr>
+<tr>
+<td><strong>JSON → CSV</strong></td>
+<td>kotlinx.serialization + OpenCSV</td>
+<td>Deserializar JSON a objetos → escribir filas CSV</td>
+</tr>
+<tr>
+<td><strong>CSV → XML</strong></td>
+<td>OpenCSV + DOM (<code>DocumentBuilderFactory</code>)</td>
+<td>Leer CSV → construir documento XML nodo a nodo</td>
+</tr>
+<tr>
+<td><strong>JSON → XML</strong></td>
+<td>Jackson (<code>ObjectMapper</code>, <code>XmlMapper</code>)</td>
+<td>Convertir JSON a objeto → serializar con <code>XmlMapper.writeValueAsString()</code></td>
+</tr>
+<tr>
+<td><strong>XML → JSON</strong></td>
+<td>Jackson (<code>XmlMapper</code>, <code>ObjectMapper</code>)</td>
+<td>Leer XML como objeto → serializar como JSON</td>
+</tr>
+<tr>
+<td><strong>Texto plano → JSON/XML</strong></td>
+<td><code>Files.readLines()</code> + kotlinx.serialization o manual</td>
+<td>Interpretar el texto → mapear a estructura → serializar</td>
+</tr>
+<tr>
+<td><strong>JSON → binario estructurado</strong></td>
+<td>kotlinx.serialization + <code>DataOutputStream</code></td>
+<td>Deserializar JSON → escribir datos con tipo fijo (enteros, strings, etc.)</td>
+</tr>
+<tr>
+<td><strong>Binario estructurado → JSON</strong></td>
+<td><code>DataInputStream</code> o <code>ByteBuffer</code> + kotlinx.serialization</td>
+<td>Leer bytes → construir objetos → serializar a JSON</td>
+</tr>
+<tr>
+<td><strong>Texto → binario</strong></td>
+<td><code>OutputStream</code>, <code>DataOutputStream</code></td>
+<td>Codificar texto (ej. UTF-8) o campos → guardar en binario</td>
+</tr>
+<tr>
+<td><strong>Binario → texto legible</strong></td>
+<td><code>InputStream</code>, <code>ByteBuffer</code>, interpretación personalizada</td>
+<td>Leer bytes → convertir a texto interpretando la estructura</td>
+</tr>
+<tr>
+<td><strong>PNG → JPG (imagen)</strong></td>
+<td><code>ImageIO.read()</code> + <code>ImageIO.write(..., "jpg", archivo)</code></td>
+<td>Leer imagen → guardar con otro formato</td>
+</tr>
+<tr>
+<td><strong>Imagen → binario base64</strong></td>
+<td><code>ImageIO.read()</code> + <code>Base64.getEncoder().encodeToString()</code></td>
+<td>Convertir imagen a bytes → codificarlos como texto</td>
+</tr>
+<tr>
+<td><strong>Imagen → texto (OCR)</strong></td>
+<td>Tesseract OCR + librería externa (<code>Tess4J</code>)</td>
+<td>Procesar imagen → extraer texto con reconocimiento óptico de caracteres</td>
+</tr>
+</tbody>
+</table>
+<p>alumnos.csv</p>
+<pre><code>nombre;nota
+Lucía;9
+Carlos;8
+Elena;10
+</code></pre>
+<p>persona.xml</p>
+<pre><code>&lt;Persona&gt;
+    &lt;nombre&gt;Lucía&lt;/nombre&gt;
+    &lt;edad&gt;28&lt;/edad&gt;
+&lt;/Persona&gt;
+</code></pre>
+<p>perosna.json</p>
+<pre><code>{
+"nombre" : "Lucía",
+"edad" : 28
+}
+</code></pre>
+<p><strong class="azul">CSV a JSON</strong></p>
+<p><strong>Ejemplo_convertir_csv_a_json.kt</strong></p>
+<pre><code>    import com.opencsv.CSVReaderBuilder
+    import com.opencsv.CSVParserBuilder
+    import com.fasterxml.jackson.databind.ObjectMapper
+    import com.fasterxml.jackson.module.kotlin.KotlinModule
+    import java.io.File
+    import java.io.FileReader
+
+
+
+    fun main() {
+        val rutaCSV = "documentos/alumnos.csv"
+        val rutaJSON = "documentos/alumnos.json"
+
+        val reader = CSVReaderBuilder(FileReader(rutaCSV))
+            .withCSVParser(CSVParserBuilder().withSeparator(';').build())
+            .withSkipLines(1)
+            .build()
+
+        val alumnos = reader.readAll().map { campos -&gt;
+            Alumno(
+                nombre = campos[0],
+                nota = campos[1].toInt()
+            )
+        }
+
+        reader.close()
+
+        val mapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+        mapper.writerWithDefaultPrettyPrinter().writeValue(File(rutaJSON), alumnos)
+
+        println("✅ Conversión CSV → JSON completada: $rutaJSON")
+    }
+</code></pre>
+<p><strong class="azul">JSON a CSV</strong></p>
+<p><strong>Ejemplo_convertir_json_a_csv.kt</strong>        </p>
+<pre><code>    import com.fasterxml.jackson.databind.ObjectMapper
+    import com.fasterxml.jackson.module.kotlin.KotlinModule
+    import com.fasterxml.jackson.module.kotlin.readValue
+    import com.opencsv.CSVWriter
+    import java.io.File
+    import java.io.FileWriter
+
+
+    fun main() {
+        val rutaJson = "documentos/alumnos.json"
+        val rutaCsv = "documentos/alumnos_convertido.csv"
+
+        // 1. Leer JSON
+        val mapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+        val alumnos: List&lt;Alumno&gt; = mapper.readValue(File(rutaJson))
+
+        // 2. Escribir CSV
+        val writer = CSVWriter(FileWriter(rutaCsv), ';', CSVWriter.NO_QUOTE_CHARACTER,
+            CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END)
+
+        // Cabecera
+        writer.writeNext(arrayOf("nombre", "nota"))
+
+        // Cuerpo
+        for (alumno in alumnos) {
+            writer.writeNext(arrayOf(alumno.nombre, alumno.nota.toString()))
+        }
+
+        writer.close()
+
+        println("✅ Conversión JSON → CSV completada: $rutaCsv")
+    }
+</code></pre>
+<p><strong class="azul">JSON a XML</strong></p>
+<p><strong>Ejemplo_convertir_json_a_xml.kt</strong></p>
+<pre><code>import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import com.fasterxml.jackson.module.kotlin.KotlinModule
+import java.io.File
+
+fun convertirJsonAXml(jsonPath: String, xmlPath: String) {
+    val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+    val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
+
+    val persona = jsonMapper.readValue(File(jsonPath), Persona::class.java)
+    xmlMapper.writerWithDefaultPrettyPrinter().writeValue(File(xmlPath), persona)
+
+    println("Conversión JSON → XML completada")
+}
+
+
+fun main() {
+    convertirJsonAXml("documentos/persona.json", "documentos/persona_generada.xml")
+
+}
+</code></pre>
+<p><strong class="azul">XML a JSON</strong></p>
+<p><strong>Ejemplo_convertir_xml_a_json.kt</strong></p>
+<pre><code>import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import com.fasterxml.jackson.module.kotlin.KotlinModule
+import java.io.File
+
+fun convertirXmlAJson(xmlPath: String, jsonPath: String) {
+    val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
+    val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+
+    val persona = xmlMapper.readValue(File(xmlPath), Persona::class.java)
+    jsonMapper.writerWithDefaultPrettyPrinter().writeValue(File(jsonPath), persona)
+
+    println("Conversión XML → JSON completada")
+}
+
+
+fun main() {
+
+    convertirXmlAJson("documentos/persona.xml", "documentos/persona_generada.json")
+}
+</code></pre>
+<p><strong class="azul">Hoja de ejercicios para el aula</strong></p>
+<p>🧪 Ejercicios prácticos por tipo de conversión
+📝 Nivel básico
+Leer un archivo CSV con nombre y edad, y convertirlo a JSON usando kotlinx.serialization.</p>
+<p>Leer un archivo de texto plano línea a línea y transformarlo en una lista de objetos Persona(nombre, edad), luego convertirlo a JSON.</p>
+<p>🧱 Nivel intermedio
+Convertir un archivo JSON a CSV generando un nuevo archivo con formato delimitado por ;.</p>
+<p>Leer un archivo de imagen PNG y guardarlo como JPG usando ImageIO.</p>
+<p>Invertir los colores de una imagen .png y guardar el resultado como .png.</p>
+<p>🧩 Nivel avanzado
+Leer un archivo binario estructurado que almacene nombres y edades (string + int), y convertirlo a JSON.</p>
+<p>Escribir un archivo binario estructurado a partir de un JSON con personas, usando DataOutputStream.</p>
+<p>🧠 Extra (OCR)
+Utilizar OCR (Tesseract) para extraer texto de una imagen escaneada y guardar el resultado en un archivo .txt.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ficheros_intercambio/" class="btn btn-neutral float-left" title="🔹Ficheros de intercambio"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../Resumen_tipos/" class="btn btn-neutral float-right" title="Tipos de ficheros">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ficheros_intercambio/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../Resumen_tipos/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

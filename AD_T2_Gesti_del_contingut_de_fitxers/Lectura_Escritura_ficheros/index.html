@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹Ficheros de texto y binarios - AD - Accés a Dades - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39Ficheros de texto y binarios";
+        var mkdocs_page_input_path = "AD_T2_Gesti_del_contingut_de_fitxers/Lectura_Escritura_ficheros.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introducción</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">🗂️ Tabla resumen: Contenidos vs Criterios de Evaluación</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Idea/">IntelliJ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Kotlin/">Kotlin</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >🔹Lectura y escritura de ficheros</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">🔹Ficheros de texto y binarios</a>
+    <ul class="current">
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ficheros_img/">🔹Ficheros de imagen</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../binarios_estucturados/">🔹Ficheros binarios estructurados</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../Acceso_aleatorio/">🔹Ficheros de acceso aleatorio</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros con formatos diferentes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/objectius/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resumen</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Resumen_tipos/">Tipos de ficheros</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Accés a Dades - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Manejo de ficheros</li>
+          <li class="breadcrumb-item">🔹Lectura y escritura de ficheros</li>
+      <li class="breadcrumb-item active">🔹Ficheros de texto y binarios</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ficheros-de-texto-y-binarios">Ficheros de texto y binarios</h1>
+<p>En cualquier aplicación real, tarde o temprano, necesitaremos guardar información de forma permanente. Una de las formas más comunes y sencillas de hacerlo es a través de ficheros.</p>
+<p>Un fichero es una unidad de almacenamiento que permite guardar datos en el disco, ya sea para leerlos más tarde o para compartirlos con otros programas. Puede contener texto, imágenes, configuraciones, datos binarios, etc.</p>
+<ul>
+<li>
+<p><strong>Ficheros de texto</strong>: contienen únicamente caracteres. Su contenido se puede leer y escribir con cualquier editor de texto.</p>
+</li>
+<li>
+<p><strong>Ficheros binarios</strong>: son ficheros que contienen cualquier tipo de información (texto, imágenes, vídeos, ficheros…) codificada como bytes. En general, requiere de programas especiales para mostrar la información que contienen.</p>
+</li>
+</ul>
+<!--
+**Métodos de lectura y escritura de archivos con Files (Java NIO)**{.azul}
+
+| Tipo | Operación   | Método                           | Descripción breve                                              | Uso recomendado                              |
+|---------------------|-------------|----------------------------------|----------------------------------------------------------------|-----------------------------------------------|
+| Texto               | Lectura     | `readString(path)`               | Lee todo el archivo como un único `String`                     | Archivos pequeños de texto plano              |
+|                   |      | `readAllLines(path)`             | Devuelve una `List<String>` con todas las líneas               | Procesar líneas en memoria                    |
+|                |      | `newBufferedReader(path)`        | Devuelve un lector eficiente para línea a línea (`Reader`)     | Lectura eficiente de archivos grandes         |
+|                | Escritura   | `writeString(path, text)`        | Escribe un `String` completo en el archivo                     | Escritura simple de texto completo            |
+|                |    | `write(path, List<String>)`      | Escribe varias líneas desde una lista                          | Escritura estructurada en líneas              |
+|                |    | `newBufferedWriter(path)`        | Devuelve un escritor (`Writer`) con buffer                     | Escritura eficiente línea a línea             |
+| Binario             | Lectura     | `readAllBytes(path)`             | Lee todo el contenido del archivo como un `ByteArray`          | Lectura de imágenes o archivos binarios       |
+|              | Escritura   | `write(path, ByteArray)`         | Escribe un array de bytes en el archivo                        | Guardar datos binarios (imagen, bin, etc.)    |
+
+-->
+
+<p>Los siguientes ejemplos utilizan las <a href="http://127.0.0.1:8000/AD_T2_Gesti_del_contingut_de_fitxers/Introduccion/#clases-y-metodos-para-la-lectura-y-escritura">Clases y métodos</a> apropiadas para estos tipos de archivos.</p>
+<p><strong class="azul">Lectura y escritura de un archivo de texto</strong></p>
+<p><strong>Ejemplo_Lect_esc_ficheroTexto.kt</strong>: lectura y escritura en ficheros de texto (UTF-8)</p>
+<pre><code>    import java.nio.file.Files
+    import java.nio.file.Paths
+    import java.nio.charset.StandardCharsets
+
+    fun main() {
+
+            //Escritura en fichero de texto
+
+            //writeString
+            val texto = "Hola, mundo desde Kotlin"
+            Files.writeString(Paths.get("documentos/saludo.txt"), texto)
+
+
+            //write
+            val ruta = Paths.get("documentos/texto.txt")
+
+
+            val lineasParaGuardar = listOf(
+                    "Primera línea",
+                    "Segunda línea",
+                    "¡Hola desde Kotlin!"
+            )
+            Files.write(ruta, lineasParaGuardar, StandardCharsets.UTF_8)
+            println("Fichero de texto escrito.")
+
+            //newBuffered
+            Files.newBufferedWriter(Paths.get("documentos/log.txt")).use { writer -&gt;
+            writer.write("Log iniciado...\n")
+            writer.write("Proceso completado.\n")
+
+            //Lectura del fichero de texto
+
+            //readAllLines
+            val lineasLeidas = Files.readAllLines(ruta)
+            println("Contenido leído con readAllLines:")
+            for (lineas in lineasLeidas) {
+                    println(lineas)
+            }
+
+            //readString
+            val contenido = Files.readString(ruta)
+            println("Contenido leído con readString:")
+            println(contenido)
+
+            //newBufferedReader
+            Files.newBufferedReader(ruta).use { reader -&gt;
+                    println("Contenido leído con newBufferedReader:")
+                    reader.lineSequence().forEach { println(it) }
+            }
+    }
+</code></pre>
+<p><strong class="azul">Lectura y escritura de un archivo binario</strong></p>
+<p><strong>Ejemplo_Lect_esc_ficheroBinario.kt</strong>: lectura y escritura en ficheros binario</p>
+<pre><code>    import java.nio.file.Files
+    import java.nio.file.Paths
+
+
+    fun main() {
+            val ruta = Paths.get("documentos/datos.bin")
+
+            //Escritura en fichero binario
+            val datos = byteArrayOf(1, 2, 3, 4, 5)
+            Files.write(ruta, datos)
+            println("Archivo binario creado: ${ruta.toAbsolutePath()}")
+
+
+            val bytes = Files.readAllBytes(ruta)
+
+            println("Contenido leído (byte a byte):")
+            for (b in bytes) {
+                    print("$b ")
+            }
+     }
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../clases/" class="btn btn-neutral float-left" title="🔹Clases y métodos sobre ficheros. Java.nio"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ficheros_img/" class="btn btn-neutral float-right" title="🔹Ficheros de imagen">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../clases/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ficheros_img/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

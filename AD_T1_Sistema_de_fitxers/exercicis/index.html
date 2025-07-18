@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Exercicis - AD - Accés a Dades - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercicis";
+        var mkdocs_page_input_path = "AD_T1_Sistema_de_fitxers/exercicis.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introducción</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">🗂️ Tabla resumen: Contenidos vs Criterios de Evaluación</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Idea/">IntelliJ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Kotlin/">Kotlin</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercicis</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >🔹Lectura y escritura de ficheros</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/Lectura_Escritura_ficheros/">🔹Ficheros de texto y binarios</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/ficheros_img/">🔹Ficheros de imagen</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/binarios_estucturados/">🔹Ficheros binarios estructurados</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../AD_T2_Gesti_del_contingut_de_fitxers/Acceso_aleatorio/">🔹Ficheros de acceso aleatorio</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros con formatos diferentes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/objectius/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resumen</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Resumen_tipos/">Tipos de ficheros</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Accés a Dades - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Sistema de ficheros</li>
+      <li class="breadcrumb-item active">Exercicis</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ejemplo-completo-y-ejercicio">Ejemplo completo y ejercicio</h1>
+<p><strong>Ejemplo: Explorador básico del sistema de archivos</strong></p>
+<pre><code>    import java.io.File
+    import java.nio.file.*
+    import java.nio.file.attribute.BasicFileAttributes
+    import java.nio.file.FileStore
+    import java.nio.file.FileSystems
+
+    fun main() {
+        println(" Raíces del sistema:")
+        File.listRoots().forEach { raiz -&gt;
+            println("- ${raiz.absolutePath}")
+        }
+
+        println("\n Sistemas de archivos detectados:")
+        val fileSystem: FileSystem = FileSystems.getDefault()
+        fileSystem.fileStores.forEach { store: FileStore -&gt;
+            println("Unidad: ${store.name()} (${store.type()})")
+            println("Total: ${store.totalSpace / 1024 / 1024} MB")
+            println("Libre: ${store.usableSpace / 1024 / 1024} MB")
+        }
+
+        // Usamos Path y Files para analizar un fichero concreto
+        val path: Path = Paths.get("datos.txt")
+
+        // Si el fichero existe, mostramos sus atributos
+        if (Files.exists(path)) {
+            println("\n Atributos del fichero '${path.fileName}':")
+            val attrs: BasicFileAttributes = Files.readAttributes(path, BasicFileAttributes::class.java)
+
+            println("Creación: ${attrs.creationTime()}")
+            println("Último acceso: ${attrs.lastAccessTime()}")
+            println("Última modificación: ${attrs.lastModifiedTime()}")
+            println("Tamaño: ${attrs.size()} bytes")
+            println("¿Es directorio?: ${attrs.isDirectory}")
+            println("¿Es archivo normal?: ${attrs.isRegularFile}")
+        } else {
+            println("\n El fichero 'datos.txt' no existe en la raíz del proyecto.")
+        }
+    }
+</code></pre>
+<p>Ejercicio propuesto: Crea un programa en Kotlin que:</p>
+<pre><code>- Liste todas las unidades del sistema (C:, D:, /, etc.).
+- Pida al usuario que introduzca una ruta (fichero o carpeta).
+- Si la ruta existe:
+
+    - Muestra si es un archivo o un directorio.
+    - Muestra la fecha de creación, último acceso y última modificación.
+    - Muestra su tamaño.
+    - Muestra el tipo y espacio disponible de la unidad donde está almacenado.
+    - Si no existe, indica que la ruta no es válida.
+
+- Además, muestra el separador de directorios del sistema y el nombre del sistema de archivos.
+</code></pre>
+<p>Extras opcionales (para ampliar)</p>
+<pre><code>- Permitir al usuario navegar recursivamente por los subdirectorios.
+- Mostrar los archivos contenidos si la ruta es un directorio.
+- Detectar si el archivo tiene permisos de lectura, escritura o ejecución.
+- Mostrar si el archivo está oculto.
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Competencia</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RA3 – Planifica la ejecución del proyecto</td>
+<td>Análisis y diseño de recorrido de sistema de archivos</td>
+</tr>
+<tr>
+<td>RA4 – Define procedimientos de control</td>
+<td>Verificación de existencia y atributos de ficheros</td>
+</tr>
+<tr>
+<td>CE – Acceso a estructuras de almacenamiento</td>
+<td>Uso de rutas, atributos y sistemas de ficheros reales</td>
+</tr>
+</tbody>
+</table>
+<h1 id="actividad-evaluable-mini-indexador-de-archivos">📘 Actividad evaluable: Mini-indexador de archivos</h1>
+<h2 id="objetivo">🎯 Objetivo</h2>
+<p>Diseñar un programa en <strong>Kotlin</strong> que recorra un directorio de forma <strong>recursiva</strong>, analice sus archivos y genere un <strong>informe personalizado</strong> con información detallada de cada uno, aplicando técnicas del sistema de ficheros con <code>java.nio.file</code>.</p>
+<hr />
+<h2 id="enunciado">📝 Enunciado</h2>
+<p>Desarrolla una aplicación que:</p>
+<ol>
+<li>Solicite al usuario un directorio raíz (por consola o argumento).</li>
+<li>Recorra recursivamente todos los archivos y subdirectorios.</li>
+<li>Genere un informe (en <code>.txt</code>, <code>.csv</code> o <code>.md</code>) que contenga, para cada archivo:</li>
+<li>Nombre del archivo</li>
+<li>Ruta absoluta</li>
+<li>Ruta relativa desde la raíz indicada</li>
+<li>Tamaño en KB</li>
+<li>Fecha de última modificación</li>
+<li>Unidad o volumen donde está almacenado</li>
+<li>Al final del informe, incluye estadísticas como:</li>
+<li>Total de archivos y carpetas</li>
+<li>Tamaño total acumulado</li>
+<li>Archivo más grande</li>
+<li>Archivo más reciente</li>
+</ol>
+<hr />
+<h2 id="requisitos-tecnicos">🧩 Requisitos técnicos</h2>
+<ul>
+<li>Uso de <code>Path</code>, <code>Files</code>, <code>BasicFileAttributes</code>, <code>FileStore</code> y <code>FileSystem</code></li>
+<li>Uso de <code>Files.walk()</code> o alternativa recursiva</li>
+<li>Generación de archivo de salida (<code>Files.write()</code> o <code>BufferedWriter</code>)</li>
+<li>Comentarios explicativos en el código</li>
+<li>Código estructurado y legible</li>
+</ul>
+<hr />
+<h2 id="criterios-de-evaluacion">🧠 Criterios de evaluación</h2>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>Peso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Funcionalidad general</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>Uso correcto de las clases de NIO</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>Cálculo y presentación de estadísticas</td>
+<td>15%</td>
+</tr>
+<tr>
+<td>Generación clara del informe</td>
+<td>15%</td>
+</tr>
+<tr>
+<td>Documentación y estilo de código</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>Propuesta de mejora o extra (opcional)</td>
+<td>10%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="rubrica-de-niveles">🎯 Rúbrica de niveles</h2>
+<table>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⭐ Básico</td>
+<td>El programa recorre el directorio y lista archivos correctamente. No incluye rutas relativas ni estadísticas completas.</td>
+</tr>
+<tr>
+<td>✅ Competente</td>
+<td>Incluye rutas relativas, atributos básicos (<code>Files</code>, <code>Path</code>, <code>BasicFileAttributes</code>) y genera un informe funcional en texto.</td>
+</tr>
+<tr>
+<td>🏆 Excelente</td>
+<td>Añade cálculo de estadísticas, identifica el archivo más grande/reciente, usa correctamente <code>FileStore</code>, y organiza bien la salida.</td>
+</tr>
+<tr>
+<td>🚀 Extra</td>
+<td>Permite aplicar filtros (por extensión, fecha...), elegir formato de salida (CSV, Markdown) o integrar interfaz simple.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="entrega">📁 Entrega</h2>
+<ul>
+<li>Código fuente (<code>.kt</code>)</li>
+<li>Archivo generado de informe</li>
+<li>Explicación breve del funcionamiento (opcional <code>.md</code>)</li>
+</ul>
+<h2 id="exercicis">Exercicis</h2>
+<h3 id="exercici-t1_1">Exercici T1_1</h3>
+<p>Realiza un programa utilizando la libreria java.nio en un archivo llamado Ejercicio_1.kt en el paquete ejercicios, que permita navegar por los directorios de la unidad principal del sistema de archivos. </p>
+<ul>
+<li>Tiene que empezar por la raíz.</li>
+<li>Debe indicar el directorio que está mostrando.</li>
+<li>Debe poner como primera opción ir al directorio padre (opción 0).</li>
+<li>Debe poner un número delante de cada archivo o subdirectorio que se está mostrando. Observe que este número comienza con 1 (el 0 es para el padre). Si se ha guardado en un array la lista de archivos y directorios del directorio actual, recuerde que el primer elemento es el 0 (pero usted lo mostrará con un 1 delante).</li>
+<li>En caso de ser un archivo debe decir el tamaño. En caso de ser un subdirectorio, debe indicarlo con &lt; directorio&gt;</li>
+<li>
+<p>Posteriormente debe dejar introducir un número. Las opciones serán:</p>
+<ul>
+<li>1 para terminar</li>
+<li>0 ir al directorio padre.</li>
+<li>Si se ha elegido el 0 (para ir al padre) debe controlarse que existe el padre (en el caso de la raíz, no tiene). Si no lo tiene, no se debe hacer nada.</li>
+<li>Cualquier otro número debe servir para cambiar a ese directorio como directorio activo. Si era un archivo, no debe hacer nada (en la imagen, no se puede ir al 9, ya que es un archivo).</li>
+<li>Se debe controlar que hay permiso de lectura sobre un directorio, antes de cambiar a él, sino dará error (en la imagen, por ejemplo, seguramente no se podrá cambiar en el directorio root, ya que no tendremos permiso de lectura sobre él). Esta comprobación debe realizarse antes de cambiar al directorio elegido.</li>
+<li>Y debe controlarse que el número introducido está en el rango correcto (en la imagen, de -1 hasta 28)</li>
+</ul>
+</li>
+</ul>
+<p>Realitza un programa en un fitxer anomenat <strong>Exercici_1.kt</strong> en el paquet
+<strong>exercicis</strong> , que permeta navegar pels directoris de la unitat principal del
+sistema d'arxius.</p>
+<ul>
+<li>Ha de començar per l'arrel (/ en Linux; c:\ en Windows). Recordeu que el mètode estàtic <strong>File.listRoots()[0]</strong> ens dóna l'arrel.</li>
+<li>Ha d'indicar el directori que està mostrant.</li>
+<li>Ha de posar com a primera opció anar al directori pare (opció 0).</li>
+<li>Ha de posar un número davant de cada arxiu o subdirectori que s'està mostrant. Observeu que aquest número comença amb 1 (el 0 és per al pare). Si us heu guardat en un array la llista de fitxers i directoris del directori actual, recordeu que el primer element és el 0 (però vosaltres el mostrareu amb un 1 davant).</li>
+<li>En cas de ser un arxiu ha de dir la grandària. En cas de ser un subdirectori, ha d'indicar-lo amb <strong>&lt; directori&gt;</strong></li>
+<li>Posteriorment ha de deixar introduir un número. Les opcions seran: <ul>
+<li>-1 per acabar</li>
+<li>0 anar al directori pare.</li>
+<li>Si s'ha triat el 0 (per anar al pare) s'ha de controlar que existeix el pare (en el cas de l'arrel, no en té). Si no en té, no s'ha de fer res.</li>
+<li>Qualsevol altre número ha de servir per canviar a aquest directori com a directori actiu. Si era un fitxer, no ha de fer res (en la imatge, no s'ha de poder anar al 9, ja que és un fitxer).</li>
+<li>S'ha de controlar que hi ha permís de lectura sobre un directori, abans de canviar a ell, sinó donarà error (en la imatge, per exemple, segurament no es podrà canviar al directori <strong>root</strong> , ja que no tindrem permís de lectura sobre ell). Aquesta comprovació s'ha de fer abans de canviar al directori triat.</li>
+<li>I s'ha de controlar que el número introduït està en el rang correcte (en la imatge, de -1 fins a 28)</li>
+</ul>
+</li>
+</ul>
+<p>La següent imatge mostra el resultat:</p>
+<p><img alt="" src="../T1_Ex_1_1.png" /></p>
+<!-- Solución (hay que probarla)
+
+package ejercicios
+
+import java.nio.file.*
+import java.util.Scanner
+import kotlin.io.path.isDirectory
+import kotlin.io.path.isReadable
+import kotlin.io.path.fileSizeOrNull
+
+fun main() {
+    val scanner = Scanner(System.`in`)
+    var currentPath = FileSystems.getDefault().rootDirectories.first()
+
+    while (true) {
+        println("\n Directorio actual: $currentPath")
+
+        val contenido = try {
+            Files.list(currentPath)
+                .filter { Files.exists(it) }
+                .sorted()
+                .toList()
+        } catch (e: Exception) {
+            println(" No se pudo leer el contenido del directorio: ${e.message}")
+            continue
+        }
+
+        println("0. .. (Ir al directorio padre)")
+
+        contenido.forEachIndexed { index, path ->
+            val nombre = path.fileName ?: path
+            if (Files.isDirectory(path)) {
+                println("${index + 1}. <directorio> $nombre")
+            } else {
+                val size = path.fileSizeOrNull() ?: "desconocido"
+                println("${index + 1}. $nombre ($size bytes)")
+            }
+        }
+
+        print("\nSeleccione una opción (-1 para salir): ")
+        val input = scanner.nextLine()
+        val opcion = input.toIntOrNull()
+
+        when {
+            opcion == null -> {
+                println("Entrada no válida.")
+            }
+            opcion == -1 -> {
+                println("Saliendo del programa.")
+                return
+            }
+            opcion == 0 -> {
+                val parent = currentPath.parent
+                if (parent != null && Files.isReadable(parent)) {
+                    currentPath = parent
+                } else {
+                    println("No se puede acceder al directorio padre.")
+                }
+            }
+            opcion in 1..contenido.size -> {
+                val seleccionado = contenido[opcion - 1]
+                if (Files.isDirectory(seleccionado)) {
+                    if (Files.isReadable(seleccionado)) {
+                        currentPath = seleccionado
+                    } else {
+                        println("No tienes permisos de lectura para entrar en ese directorio.")
+                    }
+                } else {
+                    println("No se puede acceder, es un archivo.")
+                }
+            }
+            else -> {
+                println("Opción fuera de rango.")
+            }
+        }
+    }
+}
+-->
+
+<!--
+## ![](icon_activity.gif) Exercici T1_2
+
+Modifica l'anterior per a que també ens proporcione dades sobre si és un
+directori, els permisos, grandària i data de modificació a l'estil de Linux
+quan fas **ls -l** . L'aspecte podria ser aquest:
+
+![](T1_Ex_1_2.png)-->
+
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/">Llicència Creative Commons Reconeixement NoComercial
+CompartirIgual 2.5</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../NIO_AccesoFicheros/" class="btn btn-neutral float-left" title="🔹 Acceso al sistema de ficheros. Java.nio"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../AD_T2_Gesti_del_contingut_de_fitxers/Formas_acceso/" class="btn btn-neutral float-right" title="🔹Formas de acceso a un fichero">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../NIO_AccesoFicheros/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../AD_T2_Gesti_del_contingut_de_fitxers/Formas_acceso/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Kotlin - AD - Accés a Dades - Ficheros</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+        <link href="../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Kotlin";
+        var mkdocs_page_input_path = "Kotlin.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introducción</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../RA_CE/">🗂️ Tabla resumen: Contenidos vs Criterios de Evaluación</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Idea/">IntelliJ</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Kotlin</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#gestion-de-excepciones">Gestión de excepciones</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#funciones-lambda">Funciones lambda</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_T1_Sistema_de_fitxers/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_T1_Sistema_de_fitxers/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_T1_Sistema_de_fitxers/exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_T2_Gesti_del_contingut_de_fitxers/Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_T2_Gesti_del_contingut_de_fitxers/clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >🔹Lectura y escritura de ficheros</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../AD_T2_Gesti_del_contingut_de_fitxers/Lectura_Escritura_ficheros/">🔹Ficheros de texto y binarios</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../AD_T2_Gesti_del_contingut_de_fitxers/ficheros_img/">🔹Ficheros de imagen</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../AD_T2_Gesti_del_contingut_de_fitxers/binarios_estucturados/">🔹Ficheros binarios estructurados</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../AD_T2_Gesti_del_contingut_de_fitxers/Acceso_aleatorio/">🔹Ficheros de acceso aleatorio</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros con formatos diferentes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_T3_Fitxers_de_diferents_formats/objectius/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_T3_Fitxers_de_diferents_formats/seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_T3_Fitxers_de_diferents_formats/ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_T3_Fitxers_de_diferents_formats/Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Resumen</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Resumen_tipos/">Tipos de ficheros</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">AD - Accés a Dades - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Introducción</li>
+      <li class="breadcrumb-item active">Kotlin</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="kotlin">Kotlin</h1>
+<p>En el módulo de Programación, de 1º de DAM, hemos trabajado principalmente con Java, un lenguaje robusto, orientado a objetos y ampliamente utilizado en el desarrollo de aplicaciones empresariales. Gracias a Java, hemos aprendido conceptos clave como clases, objetos, herencia, interfaces y estructuras de control.</p>
+<p>A partir de ahora, en el módulo de Acceso a Datos (AD), vamos a continuar aplicando estos mismos conceptos, pero dando un paso más allá y utilizando <strong>Kotlin</strong>, un lenguaje moderno, conciso y seguro que funciona sobre la máquina virtual de Java (JVM). Fue desarrollado por JetBrains (los creadores de IntelliJ IDEA) y es 100% interoperable con Java.</p>
+<p>Los principales usos de Kotlin son:</p>
+<ul>
+<li>Aplicaciones Android 📱 (mayoría actuales)</li>
+<li>Aplicaciones de escritorio (con Swing, JavaFX o Compose Desktop)</li>
+<li>Backends web (con frameworks como Ktor o Spring)</li>
+<li>Desarrollo multiplataforma (Kotlin Multiplatform)</li>
+</ul>
+<h2 id="gestion-de-excepciones">Gestión de excepciones</h2>
+<p>Una <strong>excepción</strong> es un error que ocurre en tiempo de ejecución y que interrumpe el flujo normal del programa (por ejemplo: dividir por cero, leer un archivo que no existe, etc.).</p>
+<p>La gestión de excepciones implica detectar, manejar y recuperarse de errores en el código.
+Kotlin utiliza el mismo modelo de excepciones que Java, pero con algunas diferencias importantes. En Kotlin hay dos formas comunes de gestionar excepciones:</p>
+<p><strong class="azul">1. try-catch → Captura y manejo explícito de errores</strong></p>
+<p>Se utiliza cuando queremos atrapar y manejar una excepción que puede producirse en un bloque de código.</p>
+<p><strong>Sintaxis</strong></p>
+<pre><code>    try {
+        //  Código que puede fallar
+    } catch (e1: IOException) {
+        // Código para manejar el error
+    } catch (e2: Exception) {
+        // Código para manejar el error
+    } finally {
+        // opcional. Finalización y liberación de recursos
+    }
+</code></pre>
+<p><strong>Ejemplo</strong></p>
+<pre><code>    fun main() {
+    try {
+        val resultado = 10 / 0
+        println("Resultado: $resultado")
+    } catch (e: ArithmeticException) {
+        println("Error: no se puede dividir entre cero.")
+    } finally {
+        println("Fin del bloque try-catch.")
+    }
+}
+</code></pre>
+<p><strong class="azul">2. use → Gestión automática de recursos</strong></p>
+<p>Se utiliza con objetos que implementan la interfaz Closeable o AutoCloseable (como archivos, streams, lectores, sockets...). Es el equivalente de <strong>try-with-resources</strong> en Java.</p>
+<p>Con <strong>use</strong>, Kotlin abre, utiliza y cierra automáticamente el recurso (como un archivo), incluso si ocurre una excepción.</p>
+<pre><code>    recurso.use {
+        // Aquí usas el recurso
+    }
+
+- recurso es un objeto como BufferedReader, FileWriter, InputStream, etc.
+</code></pre>
+<p><strong>Ejemplo 1:</strong> Leer archivo con BufferedReader</p>
+<pre><code>    import java.io.BufferedReader
+    import java.io.FileReader
+
+    fun main() {
+        BufferedReader(FileReader("archivo.txt")).use { reader -&gt;
+            val linea = reader.readLine()
+            println(linea)
+        }
+    }
+
+- Cuando el bloque use { ... } termina, el reader se cierra automáticamente.
+</code></pre>
+<p><strong>Ejemplo 2:</strong> Escribir archivo con FileWriter</p>
+<pre><code>    import java.io.FileWriter
+
+    fun main() {
+        FileWriter("archivo.txt").use {
+            it.write("Hola, Kotlin\n")
+        }
+    }
+</code></pre>
+<p>Internamente, <strong>use</strong> hace lo mismo que esto:</p>
+<pre><code>        val writer = FileWriter("archivo.txt")
+        try {
+            writer.write("Texto")
+        } finally {
+            writer.close()
+        }
+</code></pre>
+<p><strong>Ejemplo 3:</strong> Ejemplo con BufferedReader. <strong>Use</strong> se encarga de cerrar el BufferedReader automáticamente, aunque haya un error.</p>
+<pre><code>import java.io.File
+
+fun main() {
+    val archivo = File("datos.txt")
+
+    try {
+        archivo.bufferedReader().use { reader -&gt;
+            println("Primera línea: ${reader.readLine()}")
+        }
+    } catch (e: Exception) {
+        println("Error al leer el archivo: ${e.message}")
+    }
+}
+</code></pre>
+<h2 id="funciones-lambda">Funciones lambda</h2>
+<p>Kotlin permite trabajar de forma concisa con <strong>funciones lambda</strong>, utilizando la palabra clave <strong>it</strong> para referirse al parámetro implícito cuando hay solo uno.</p>
+<p>Las funciones lambda son funciones definidas sin un nombre, utilizadas para operaciones simples y rápidas, mejorando la legibilidad del código y el rendimiento.</p>
+<p><strong>Una lambda</strong> es una expresión de función que se puede usar como valor. Kotlin la define con la siguiente sintaxis:</p>
+<pre><code>{ parámetro1, parámetro2 -&gt; cuerpo de la función }
+
+- Los parámetros van antes del -&gt;.
+- El cuerpo (lo que hace la función) va después del -&gt;.
+</code></pre>
+<p>🧪 Ejemplo básico:</p>
+<pre><code>    val saludar = { nombre: String -&gt; println("Hola, $nombre") }
+
+    saludar("Ana")
+
+- Aquí saludar es una variable que almacena una lambda.
+- La lambda toma un String y muestra un saludo.
+</code></pre>
+<p><strong>Kotlin</strong> permite pasar <strong>lambdas como argumentos</strong> de funciones de orden superior:</p>
+<pre><code>    val lista = listOf(1, 2, 3, 4)
+
+    lista.forEach { println(it) }
+
+- { println(it) } es una lambda que se ejecuta para cada elemento de la lista.
+- it es el valor del elemento actual (ver it en el apartado siguiente).
+</code></pre>
+<ul>
+<li>
+<p>Lambdas sin parámetros</p>
+<pre><code>val decirHola = { println("Hola") }
+decirHola()
+</code></pre>
+</li>
+<li>
+<p>Lambdas con múltiples parámetros </p>
+<pre><code>val sumar = { a: Int, b: Int -&gt; a + b }
+println(sumar(3, 4)) // Imprime 7
+</code></pre>
+</li>
+<li>
+<p>Comparación con funciones tradicionales</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Función tradicional</th>
+<th>Lambda equivalente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fun saludar(nombre: String) { ... }</code></td>
+<td><code>val saludar = { nombre: String -&gt; ... }</code></td>
+</tr>
+<tr>
+<td><code>return a + b</code> dentro de una función</td>
+<td><code>val suma = { a: Int, b: Int -&gt; a + b }</code></td>
+</tr>
+<tr>
+<td><code>fun cuadrado(x: Int): Int = x * x</code></td>
+<td><code>val cuadrado = { x: Int -&gt; x * x }</code></td>
+</tr>
+<tr>
+<td><code>fun sinParametros() = println("Hola")</code></td>
+<td><code>val sinParametros = { println("Hola") }</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">it</strong></p>
+<p>En Kotlin, <strong>it</strong> es el nombre implícito que se le da <strong>al único parámetro de una lambda</strong> cuando no se le asigna un nombre explícito. Se usa cuando:</p>
+<ul>
+<li>Una lambda tiene solo un parámetro.</li>
+<li>No se necesita nombrar el parámetro explícitamente.</li>
+<li>Se quiere un código más conciso.</li>
+</ul>
+<p>Ejemplo</p>
+<pre><code>    val lista = listOf("Ana", "Luis", "Marta")
+
+    lista.forEach { println(it) } // 'it' representa cada elemento de la lista
+</code></pre>
+<p>Es equivalente a:</p>
+<pre><code>    lista.forEach { nombre -&gt; println(nombre) }
+</code></pre>
+<p>¿Cuándo no se puede usar it?</p>
+<ul>
+<li>
+<p>Si la lambda tiene más de un parámetro, debes nombrarlos explícitamente.</p>
+</li>
+<li>
+<p>Si quieres mejorar la legibilidad, puedes usar nombres explícitos aunque haya solo uno.</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p><strong>it</strong> es específico de Kotlin. En Java no existe como palabra clave ni como nombre implícito de parámetros.</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Idea/" class="btn btn-neutral float-left" title="IntelliJ"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../AD_T1_Sistema_de_fitxers/ficheros/" class="btn btn-neutral float-right" title="🔹 Ficheros">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Idea/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../AD_T1_Sistema_de_fitxers/ficheros/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
