@@ -16,7 +16,14 @@ En la plataforma Java (y por tanto en Kotlin), **el manejo de imágenes** se hac
 - **BufferedImage**: para acceder y modificar píxeles
 
 
-**Ejemplo_generar_imagen.kt:** genera una imagen de ejemplo.
+| Tipo de fichero           | Lectura                             | Escritura                            | Comentario                                               |
+|---------------------------|--------------------------------------|---------------------------------------|----------------------------------------------------------|
+| Imagen                 | `ImageIO.read(Path/File)`           | `ImageIO.write(BufferedImage, ...)`   | Usa `javax.imageio.ImageIO`                             |
+
+
+
+
+🖥️ **Ejemplo_generar_imagen.kt:** genera una imagen de ejemplo.
 
     import java.awt.Color
     import java.awt.image.BufferedImage
@@ -45,7 +52,7 @@ En la plataforma Java (y por tanto en Kotlin), **el manejo de imágenes** se hac
         println("✅ Imagen generada correctamente: ${archivo.absolutePath}")
     }
 
-**Ejemplo_invertircolores_imagen.kt:** invierte los colores de la imagen generada en el ejemplo atenerior.
+🖥️ **Ejemplo_invertircolores_imagen.kt:** invierte los colores de la imagen generada en el ejemplo atenerior.
 
     import java.awt.Color
     import java.awt.image.BufferedImage
@@ -78,7 +85,7 @@ En la plataforma Java (y por tanto en Kotlin), **el manejo de imágenes** se hac
     }
 
 
-**Ejemplo_img_penyagolosa.kt:** Invierte los colores de una imagen (penyagolosa.png)
+🖥️ **Ejemplo_img_penyagolosa.kt:** Invierte los colores de una imagen (penyagolosa.png)
 
     import java.awt.Color
     import java.awt.image.BufferedImage

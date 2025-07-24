@@ -3,14 +3,20 @@
 Cuando necesitamos almacenar datos en formato binario, por ejemplo, registros que combinan números enteros, decimales, caracteres, etc., debemos utilizar una forma de escritura que conserve fielmente su representación interna. Tradicionalmente, esto se hacía con clases como **DataInputStream** y **DataOutputStream**, ambos parte del paquete **java.io**, que permiten leer y escribir tipos primitivos directamente. Sin embargo, en aplicaciones modernas donde se requiere un mayor control sobre el formato binario, mejor eficiencia y rendimiento, y acceso aleatorio o directo a posiciones concretas del archivo, la solución recomendada es utilizar **FileChannel** junto con **ByteBuffer**, ambos parte del paquete **java.nio**.
 
 
-**FileChannel**{.verde}
+
+**FileChannel**{.azul}
 
 Es un canal de E/S que permite leer, escribir, moverse a posiciones específicas en un archivo y trabajar directamente con buffers (ByteBuffer). Es parte del paquete **java.nio**, diseñado para operaciones más rápidas y flexibles que las clases tradicionales como FileInputStream de **java.io**.
 
 
+| Tipo de fichero           | Lectura                             | Escritura                            | Comentario                                               |
+|---------------------------|--------------------------------------|---------------------------------------|----------------------------------------------------------|
+| Binario estructurado   | `FileChannel.read(ByteBuffer)`      | `FileChannel.write(ByteBuffer)`       | Usa `FileChannel` para secuencial o aleatorio
+
+
         val canal = FileChannel.open(Paths.get("archivo.txt"), StandardOpenOption.READ)
 
----
+**Métodos de FileChanel para binarios estructurados **{.verde}
 
 | Método                    | Descripción                                                                 |
 |---------------------------|------------------------------------------------------------------------------|
@@ -25,12 +31,12 @@ Es un canal de E/S que permite leer, escribir, moverse a posiciones específicas
                                         |
 
 
-**ByteBuffer**{.verde}
+**ByteBuffer**{.azul}
 
 Se utiliza para leer y escribir datos binarios con control total sobre el formato y la posición, siendo ideal para archivos binarios estructurados, protocolos de red, y sistemas de bajo nivel.
 
 
-**Métodos de creación**
+**Métodos de creación**{.verde}
 
 | Método                           | Descripción                                                                 |
 |----------------------------------|-----------------------------------------------------------------------------|
@@ -40,7 +46,7 @@ Se utiliza para leer y escribir datos binarios con control total sobre el format
 
 ---
 
-**Métodos de escritura (`put`)**
+**Métodos de escritura (`put`)**{.verde}
 
 | Método                        | Descripción                                      |
 |-------------------------------|--------------------------------------------------|
@@ -55,7 +61,7 @@ Se utiliza para leer y escribir datos binarios con control total sobre el format
 
 ---
 
-**Métodos de lectura (`get`)**
+**Métodos de lectura (`get`)**{.verde}
 
 | Método                        | Descripción                                      |
 |-------------------------------|--------------------------------------------------|
@@ -70,7 +76,7 @@ Se utiliza para leer y escribir datos binarios con control total sobre el format
 
 ---
 
-**Métodos de control del buffer**
+**Métodos de control del buffer**{.verde}
 
 | Método           | Descripción                                                                 |
 |------------------|-----------------------------------------------------------------------------|
@@ -86,7 +92,7 @@ Se utiliza para leer y escribir datos binarios con control total sobre el format
 | hasRemaining() | `true` si aún queda contenido por leer o escribir.                          |
 
 
-**Ejemplo_binario_estructurado.kt**: Lectura y escritura en ficheros binarios (con tipos primitivos).
+🖥️ **Ejemplo_binario_estructurado.kt**: Lectura y escritura en ficheros binarios (con tipos primitivos).
 
         import java.nio.ByteBuffer
         import java.nio.channels.FileChannel

@@ -42,7 +42,7 @@ perosna.json
 
 **CSV a JSON**{.azul}
 
-**Ejemplo_convertir_csv_a_json.kt**
+🖥️ **Ejemplo_convertir_csv_a_json.kt**
 
         import com.opencsv.CSVReaderBuilder
         import com.opencsv.CSVParserBuilder
@@ -79,7 +79,7 @@ perosna.json
 
 **JSON a CSV**{.azul}
 
-**Ejemplo_convertir_json_a_csv.kt**        
+🖥️ **Ejemplo_convertir_json_a_csv.kt**        
 
         import com.fasterxml.jackson.databind.ObjectMapper
         import com.fasterxml.jackson.module.kotlin.KotlinModule
@@ -119,7 +119,7 @@ perosna.json
 
 **JSON a XML**{.azul}
 
-**Ejemplo_convertir_json_a_xml.kt**
+🖥️ **Ejemplo_convertir_json_a_xml.kt**
 
     import com.fasterxml.jackson.databind.ObjectMapper
     import com.fasterxml.jackson.dataformat.xml.XmlMapper
@@ -144,7 +144,7 @@ perosna.json
 
 **XML a JSON**{.azul}
 
-**Ejemplo_convertir_xml_a_json.kt**
+🖥️ **Ejemplo_convertir_xml_a_json.kt**
 
 
 

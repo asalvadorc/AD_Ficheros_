@@ -15,7 +15,7 @@ La clase **java.nio.file.Files** es el otro punto de entrada a la librería de f
     - **Path**: Representa rutas a archivos o directorios
     - **Files**: Permite operaciones sobre archivos usando Path
 
-### **Paths**{.azul}
+### Paths
 
 La clase **Paths** es una clase de utilidad que proporciona métodos estáticos para crear objetos **Path**, que luego puedes usar con métodos de **Files**.
 
@@ -28,7 +28,7 @@ La clase **Paths** es una clase de utilidad que proporciona métodos estáticos 
 !!!Note ""
     El uso de **Paths.get(...)** en Java (o Kotlin) no implica que el archivo o directorio exista. Este método simplemente crea una instancia de Path que representa una ruta en el sistema de archivos, pero no accede al disco ni verifica su existencia.
 
-**Ejemplo_get.kt**
+🖥️ **Ejemplo_get.kt**
 
         import java.nio.file.Path
         import java.nio.file.Paths
@@ -42,7 +42,7 @@ La clase **Paths** es una clase de utilidad que proporciona métodos estáticos 
         }
 
 
-**Ejemplo_uri.kt**
+🖥️ **Ejemplo_uri.kt**
 
         import java.net.URI
         import java.nio.file.Path
@@ -56,7 +56,7 @@ La clase **Paths** es una clase de utilidad que proporciona métodos estáticos 
         }
 
 
-### **Path**{.azul}
+### Path
 
 La clase **Path** Se utiliza junto con la clase **Files** para realizar operaciones como lectura, escritura, copia, o eliminación de archivos.  
 La forma mas sencilla de construir un objeto que cumpla la interfaz **Path** es a partir de la clase **java.nio.file.Paths**, que tiene métodos estáticos que retornan objetos Path a partir de una representación tipo String del path deseado.  
@@ -92,7 +92,7 @@ Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
 |toString()|	Devuelve la representación de la ruta como un String.|
 |toAbsolutePath()|	Devuelve la ruta absoluta de este Path.|
 
-**Ejemplo_Path.kt**
+🖥️ **Ejemplo_Path.kt**
 
         import java.nio.file.Path
         import java.nio.file.Paths
@@ -121,7 +121,7 @@ Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
         
 
 
-### **Files**{.azul}
+### Files
 
 La clase **Files** es el otro punto de entrada a la librería de ficheros de Java. Es la que nos permite manejar ficheros reales del disco desde Java.  
 Esta clase tiene métodos estáticos para el manejo de ficheros, los métodos de la clase **Files** trabajan sobre objetos **Path**.  
@@ -145,7 +145,7 @@ Las **operaciones** y **métodos** principales a realizar con Files son:
 |Atributos|	size(), getLastModifiedTime(), getOwner(), getAttribute()|
 
 
-**Ejemplo_permisos.kt**: existencia y comprobación de permisos
+🖥️ **Ejemplo_permisos.kt**: existencia y comprobación de permisos
 
         import java.nio.file.Path
         import java.nio.file.Paths
@@ -159,9 +159,10 @@ Las **operaciones** y **métodos** principales a realizar con Files son:
             println("readable = ${Files.isReadable(path)}")
             println("writable = ${Files.isWritable(path)}")
             println("executable = ${Files.isExecutable(path)}")
+        }    
 
   
-**Ejemplo_creardirectorio.kt**: crear un directorio
+🖥️ **Ejemplo_creardirectorio.kt**: crear un directorio
 
 
         import java.nio.file.Path
@@ -184,7 +185,7 @@ Las **operaciones** y **métodos** principales a realizar con Files son:
             }
         }
 
-**Ejemplo_borrardirectorio.kt**: elimina un directorio
+🖥️ **Ejemplo_borrardirectorio.kt**: elimina un directorio
 
         import java.nio.file.Files
         import java.nio.file.Path
@@ -227,7 +228,7 @@ El método  **delete(Path)** borra el fichero o directorio o lanza una excepció
 
 
 
-**Ejemplo_copiardirectorio.kt**: copiar directorios
+🖥️ **Ejemplo_copiardirectorio.kt**: copiar directorios
 
 Se puede copiar un archivo o directorio usando el método copy(Path, Path, CopyOption...). La copia falla si el archivo de destino existe, a menos que se especifique la opción REPLACE_EXISTING. 
 
@@ -258,7 +259,7 @@ Se puede copiar directorios aunque, los archivos dentro del directorio no se cop
             }
         }
 
-**Ejemplo_copiarficheros.kt**: copiar ficheros
+🖥️ **Ejemplo_copiarficheros.kt**: copiar ficheros
 
         import java.io.IOException
         import java.nio.file.FileAlreadyExistsException
@@ -284,7 +285,7 @@ Se puede copiar directorios aunque, los archivos dentro del directorio no se cop
 
 
 
-**Ejemplo_moverficheros.kt**: mover ficheros y directorios cambiando el nombre.
+🖥️ **Ejemplo_moverficheros.kt**: mover ficheros y directorios cambiando el nombre.
 
         import java.io.IOException
         import java.nio.file.FileAlreadyExistsException
@@ -312,7 +313,7 @@ Se puede copiar directorios aunque, los archivos dentro del directorio no se cop
 
 El siguiente ejemplo recorre la estructura home en tu sistema, indicando los permisos de cada archivo y directorio: 
 
-**Ejemplo_SistemaFicheros.kt**
+🖥️ **Ejemplo_SistemaFicheros.kt**
 
         import java.nio.file.*
         import java.nio.file.attribute.BasicFileAttributes
@@ -415,7 +416,7 @@ Pero usando FileSystems.getDefault() puedes:
 
 - Obtener características del sistema.
 
-**Ejemplo_FileSystem.kt**: obtener el nombre de un fichero así como la carpeta padre en la que se encuentra ubicado.
+🖥️ **Ejemplo_FileSystem.kt**: obtener el nombre de un fichero así como la carpeta padre en la que se encuentra ubicado.
 
         import java.nio.file.FileSystems
         import java.nio.file.Path
@@ -449,7 +450,7 @@ BasicFileAttributes permite obtener **información detallada sobre archivos y di
 |isDirectory()	|Verifica si es un directorio.|
 |isRegularFile()	|Verifica si es un archivo normal.|
 
-**Ejemplo_BasicFileAttributes.kt**:  leer los atributos básicos de un archivo o directorio.
+🖥️ **Ejemplo_BasicFileAttributes.kt**:  leer los atributos básicos de un archivo o directorio.
 
     import java.nio.file.Files
     import java.nio.file.Paths
@@ -479,7 +480,7 @@ Método	|Descripción|
 |getUsableSpace()|	Espacio disponible para el usuario|
 |supportsFileAttributeView()|	Si soporta atributos como POSIX o DOS|
 
-**Ejemplo_FileStore.kt**: obtener información del almacenamiento físico.
+🖥️ **Ejemplo_FileStore.kt**: obtener información del almacenamiento físico.
 
     import java.nio.file.FileStore
     import java.nio.file.Files

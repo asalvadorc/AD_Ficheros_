@@ -9,29 +9,20 @@ Un fichero es una unidad de almacenamiento que permite guardar datos en el disco
 - **Ficheros binarios**: son ficheros que contienen cualquier tipo de información (texto, imágenes, vídeos, ficheros…) codificada como bytes. En general, requiere de programas especiales para mostrar la información que contienen.
 
 
-<!--
-**Métodos de lectura y escritura de archivos con Files (Java NIO)**{.azul}
-
-| Tipo | Operación   | Método                           | Descripción breve                                              | Uso recomendado                              |
-|---------------------|-------------|----------------------------------|----------------------------------------------------------------|-----------------------------------------------|
-| Texto               | Lectura     | `readString(path)`               | Lee todo el archivo como un único `String`                     | Archivos pequeños de texto plano              |
-|                   |      | `readAllLines(path)`             | Devuelve una `List<String>` con todas las líneas               | Procesar líneas en memoria                    |
-|                |      | `newBufferedReader(path)`        | Devuelve un lector eficiente para línea a línea (`Reader`)     | Lectura eficiente de archivos grandes         |
-|                | Escritura   | `writeString(path, text)`        | Escribe un `String` completo en el archivo                     | Escritura simple de texto completo            |
-|                |    | `write(path, List<String>)`      | Escribe varias líneas desde una lista                          | Escritura estructurada en líneas              |
-|                |    | `newBufferedWriter(path)`        | Devuelve un escritor (`Writer`) con buffer                     | Escritura eficiente línea a línea             |
-| Binario             | Lectura     | `readAllBytes(path)`             | Lee todo el contenido del archivo como un `ByteArray`          | Lectura de imágenes o archivos binarios       |
-|              | Escritura   | `write(path, ByteArray)`         | Escribe un array de bytes en el archivo                        | Guardar datos binarios (imagen, bin, etc.)    |
-
--->
-
 
 Los siguientes ejemplos utilizan las [Clases y métodos](http://127.0.0.1:8000/AD_T2_Gesti_del_contingut_de_fitxers/Introduccion/#clases-y-metodos-para-la-lectura-y-escritura) apropiadas para estos tipos de archivos.
 
 **Lectura y escritura de un archivo de texto**{.azul}
 
+
+| Tipo de fichero           | Lectura                             | Escritura                            | Comentario                                               |
+|---------------------------|--------------------------------------|---------------------------------------|----------------------------------------------------------|
+| Texto (líneas)         | `Files.readAllLines(Path)`          | `Files.write(Path, List<String>)`     | Carga todo en memoria                                    |
+|                           | `Files.newBufferedReader(Path)`     | `Files.newBufferedWriter(Path)`       | Más eficiente para archivos grandes                      |
+|                           | `Files.readString(Path)` (Java 11+) | `Files.writeString(Path, String)`     | Lectura/escritura completa como bloque                  |
+
        
-**Ejemplo_Lect_esc_ficheroTexto.kt**: lectura y escritura en ficheros de texto (UTF-8)
+🖥️ **Ejemplo_Lect_esc_ficheroTexto.kt**: lectura y escritura en ficheros de texto (UTF-8)
 
         import java.nio.file.Files
         import java.nio.file.Paths
@@ -86,7 +77,14 @@ Los siguientes ejemplos utilizan las [Clases y métodos](http://127.0.0.1:8000/A
 
 **Lectura y escritura de un archivo binario**{.azul}
 
-**Ejemplo_Lect_esc_ficheroBinario.kt**: lectura y escritura en ficheros binario
+| Tipo de fichero           | Lectura                             | Escritura                            | Comentario                                               |
+|---------------------------|--------------------------------------|---------------------------------------|----------------------------------------------------------|
+| Binario | `Files.readAllBytes(Path)`          | `Files.write(Path, ByteArray)`        | Lee y escribe bytes puros                               |
+|                           | `Files.newInputStream(Path)`        | `Files.newOutputStream(Path)`         | Flujo de bytes directo                                  |
+
+
+
+🖥️ **Ejemplo_Lect_esc_ficheroBinario.kt**: lectura y escritura en ficheros binario
 
 
         import java.nio.file.Files

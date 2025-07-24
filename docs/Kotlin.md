@@ -138,6 +138,17 @@ Las funciones lambda son funciones definidas sin un nombre, utilizadas para oper
     - Aquí saludar es una variable que almacena una lambda.
     - La lambda toma un String y muestra un saludo.
 
+    - Su equivalen sin lambda sería:
+
+            fun saludar(nombre: String) {
+            println("Hola, $nombre")
+            }
+
+            fun main() {
+            saludar("Ana")
+            }
+
+
 
 **Kotlin** permite pasar **lambdas como argumentos** de funciones de orden superior:
 

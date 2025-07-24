@@ -7,8 +7,30 @@ Como paso previo e inicial instalaremos el entorno de trabajo desde el que progr
 
 En el momento de realizar estos apuntes la última versión es la 2024.2.2. El siguiente vídeo muestra todo el proceso de instalación y creación del primer proyecto. Corresponde a una versión anterior, pero totalmente similar a la actual.
 
+<!--
+# Galería de imágenes
+
+## Idea 1
+
+![Idea 1](img/idea1.png)
+
+## Idea 2
+
+![Idea 2](img/idea2.png)
+
+-->
+
+
+
+_________
+
 
 <iframe src="https://slides.com/aliciasalvador/2021-2022-tema1_instal_intellij/embed" width="576" height="420" title="Copy of 2021-2022 Tema1_Instal_IntelliJ" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+
+
+
 
 Llicenciat sota la [Llicència Creative Commons Reconeixement NoComercial CompartirIgual 2.5](http://creativecommons.org/licenses/by-nc-sa/2.5/)
 

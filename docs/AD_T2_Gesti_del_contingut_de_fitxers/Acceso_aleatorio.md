@@ -8,7 +8,14 @@ Cuando se necesita mayor control, eficiencia y rendimiento en el acceso a ficher
 
 Las clases **FileChannel**, **ByteBuffer** y **StandardOpenOption** forman parte de la API **java.nio** y se utilizan juntas para realizar lectura y escritura de archivos **binarios estructurados** y en el **acceso aleatorio a ficheros**.
 
-**Métodos habituales de FileChannel para el acceso aleatorio a ficheros**{.azul}
+**FileChannel**{.azul}
+
+| Tipo de fichero           | Lectura                             | Escritura                            | Comentario                                               |
+|---------------------------|--------------------------------------|---------------------------------------|----------------------------------------------------------|
+| Acceso aleatorio       | `FileChannel.position(offset)`      | `FileChannel.position(offset)`        | Permite saltar a cualquier posición del fichero         |
+
+
+**Métodos habituales de FileChannel para el acceso aleatorio a ficheros**{.verde}
 
 | Método                   | Función principal                                         |
 |--------------------------|-----------------------------------------------------------|
@@ -20,7 +27,7 @@ Las clases **FileChannel**, **ByteBuffer** y **StandardOpenOption** forman parte
 
 
 
-**StandardOpenOption**{.verde}
+**StandardOpenOption**{.azul}
 
 Se utiliza para indicar cómo debe abrirse o crearse un archivo al trabajar con **FileChannel** o Files.newOutputStream, Files.newByteChannel, etc.
 
@@ -33,7 +40,7 @@ Se utiliza para indicar si el archivo se va a: Leer (READ), Escribir (WRITE), Cr
             StandardOpenOption.CREATE
             )
 
-**Ejemplo_acceso_posicion.kt**: realiza una operación básica de lectura y escritura de archivo de texto usando FileChannel y ByteBuffer. 
+🖥️ **Ejemplo_acceso_posicion.kt**: realiza una operación básica de lectura y escritura de archivo de texto usando FileChannel y ByteBuffer. 
 
         // Importamos las clases necesarias
         import java.nio.ByteBuffer                      // Para gestionar buffers de bytes
@@ -77,7 +84,7 @@ Se utiliza para indicar si el archivo se va a: Leer (READ), Escribir (WRITE), Cr
 
 
 
-**Ejemplo_acceso_aleatorio.kt** : acceso directo a posiciones en un archivo con FileChannel y ByteBuffer
+🖥️ **Ejemplo_acceso_aleatorio.kt** : acceso directo a posiciones en un archivo con FileChannel y ByteBuffer
 
         import java.nio.ByteBuffer
         import java.nio.channels.FileChannel

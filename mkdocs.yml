@@ -34,7 +34,7 @@ nav:
 - Sistema de ficheros:
   - 🔹 Ficheros: AD_T1_Sistema_de_fitxers/ficheros.md
   - 🔹 Acceso al sistema de ficheros. Java.nio: AD_T1_Sistema_de_fitxers/NIO_AccesoFicheros.md
-  - Exercicis: AD_T1_Sistema_de_fitxers/exercicis.md
+  - 🔹 Ejemplo completo: AD_T1_Sistema_de_fitxers/exercicis.md
 - Manejo de ficheros:
     - 🔹Formas de acceso a un fichero: AD_T2_Gesti_del_contingut_de_fitxers/Formas_acceso.md
     - 🔹Clases y métodos sobre ficheros. Java.nio: AD_T2_Gesti_del_contingut_de_fitxers/clases.md
@@ -44,7 +44,7 @@ nav:
       - 🔹Ficheros binarios estructurados: AD_T2_Gesti_del_contingut_de_fitxers/binarios_estucturados.md  
       - 🔹Ficheros de acceso aleatorio: AD_T2_Gesti_del_contingut_de_fitxers/Acceso_aleatorio.md
 - Ficheros con formatos diferentes:
-    - 🔹Introducción: AD_T3_Fitxers_de_diferents_formats/objectius.md
+    - 🔹Introducción: AD_T3_Fitxers_de_diferents_formats/intro.md
     - 🔹Serialización de Objetos: AD_T3_Fitxers_de_diferents_formats/seriaci_dobjectes.md
     - 🔹Ficheros de intercambio: AD_T3_Fitxers_de_diferents_formats/ficheros_intercambio.md    
     - 🔹Conversión entre formatos diferentes: AD_T3_Fitxers_de_diferents_formats/Conversion.md

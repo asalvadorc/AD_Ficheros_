@@ -13,7 +13,7 @@ En el desarrollo actual, especialmente en aplicaciones que manejan datos estruct
 
 La siguiente tabla resume las clases más utilizadas para trabajar con los distintos tipos de ficheros, indicando las opciones recomendadas para lectura y escritura, y proporcionando notas aclaratorias sobre su uso típico.
 
-**Resumen de clases y métodos para el acceso a ficheros en Kotlin (Java NIO)**{.azul}
+**Resumen de clases y métodos para el acceso a ficheros en Kotlin (Java NIO)**{.verde}
 
 
 | Tipo de fichero           | Lectura                             | Escritura                            | Comentario                                               |

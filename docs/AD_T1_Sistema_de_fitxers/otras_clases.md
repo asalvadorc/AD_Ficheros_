@@ -32,7 +32,7 @@ Pero usando FileSystems.getDefault() puedes:
 
 - Obtener características del sistema.
 
-**Ejemplo_FileSystem.kt**: obtener el nombre de un fichero así como la carpeta padre en la que se encuentra ubicado.
+🖥️ **Ejemplo_FileSystem.kt**: obtener el nombre de un fichero así como la carpeta padre en la que se encuentra ubicado.
 
         import java.nio.file.FileSystems
         import java.nio.file.Path
@@ -66,7 +66,7 @@ BasicFileAttributes permite obtener **información detallada sobre archivos y di
 |isDirectory()	|Verifica si es un directorio.|
 |isRegularFile()	|Verifica si es un archivo normal.|
 
-**Ejemplo_BasicFileAttributes.kt**:  leer los atributos básicos de un archivo o directorio.
+🖥️ **Ejemplo_BasicFileAttributes.kt**:  leer los atributos básicos de un archivo o directorio.
 
     import java.nio.file.Files
     import java.nio.file.Paths
@@ -96,7 +96,7 @@ Método	|Descripción|
 |getUsableSpace()|	Espacio disponible para el usuario|
 |supportsFileAttributeView()|	Si soporta atributos como POSIX o DOS|
 
-**Ejemplo_FileStore.kt**: obtener información del almacenamiento físico.
+🖥️ **Ejemplo_FileStore.kt**: obtener información del almacenamiento físico.
 
     import java.nio.file.FileStore
     import java.nio.file.Files
