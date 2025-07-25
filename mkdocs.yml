@@ -25,6 +25,7 @@ markdown_extensions:
   - tables    
   - attr_list
   - toc
+  - md_in_html
 
 nav:
 - Introducción: 
@@ -50,6 +51,6 @@ nav:
     - 🔹Conversión entre formatos diferentes: AD_T3_Fitxers_de_diferents_formats/Conversion.md
     # - Exercicis: AD_T3_Fitxers_de_diferents_formats/exercicis.md
     # - Programación de componentes: Componentes.md    
-- Resumen: 
-    - Tipos de ficheros: Resumen_tipos.md    
+# - Resumen: 
+  #  - Tipos de ficheros: Resumen_tipos.md    
        

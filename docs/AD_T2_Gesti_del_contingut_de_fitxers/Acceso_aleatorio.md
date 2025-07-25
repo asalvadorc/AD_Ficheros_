@@ -6,7 +6,7 @@ Pero, ¿y si queremos únicamente una determinada información? Afortunadamente 
 
 Cuando se necesita mayor control, eficiencia y rendimiento en el acceso a ficheros, especialmente en operaciones binarias o de acceso aleatorio, el enfoque tradicional con la clase **RandomAccessFile** de **Java.io** puede quedarse corto. Para estos casos, Java ofrece una solución moderna a través del paquete **java.nio.file** combinado con **FileChannel** y **ByteBuffer**. 
 
-Las clases **FileChannel**, **ByteBuffer** y **StandardOpenOption** forman parte de la API **java.nio** y se utilizan juntas para realizar lectura y escritura de archivos **binarios estructurados** y en el **acceso aleatorio a ficheros**.
+Las clases **FileChannel**, **ByteBuffer** y **StandardOpenOption** forman parte de la API **java.nio** y se utilizan juntas para realizar lectura y escritura de archivos **binarios** y en el **acceso aleatorio a ficheros**.
 
 **FileChannel**{.azul}
 
@@ -25,7 +25,65 @@ Las clases **FileChannel**, **ByteBuffer** y **StandardOpenOption** forman parte
 | size()                 |  Devuelve el tamaño total actual del archivo  
 
 
+**ByteBuffer**{.azul}
 
+ByteBuffer se utiliza en archivos de acceso aleatorio porque permite leer y escribir bloques binarios de datos en posiciones específicas del archivo de forma eficiente y controlada.
+
+
+**Métodos de creación**{.verde}
+
+| Método                           | Descripción                                                                 |
+|----------------------------------|-----------------------------------------------------------------------------|
+| allocate(capacidad)| Crea un buffer con capacidad fija en memoria (no compartida).              |
+| wrap(byteArray)    | Crea un buffer que envuelve un array de bytes existente (memoria compartida). |
+| wrap(byteArray, offset, length) | Crea un buffer desde una porción del array existente.            |
+
+---
+
+**Métodos de escritura (`put`)**{.verde}
+
+| Método                        | Descripción                                      |
+|-------------------------------|--------------------------------------------------|
+| put(byte)                   | Escribe un byte en la posición actual.          |
+| putInt(int)                 | Escribe un valor `int`.                         |
+| putDouble(double)           | Escribe un valor `double`.                      |
+| putFloat(float)             | Escribe un valor `float`.                       |
+| putChar(char)               | Escribe un carácter (`char`, 2 bytes).          |
+| putShort(short)             | Escribe un valor `short`.                       |
+| putLong(long)               | Escribe un valor `long`.                        |
+| put(byte[], offset, length)` | Escribe una porción de un array de bytes.       |
+
+---
+
+**Métodos de lectura (`get`)**{.verde}
+
+| Método                        | Descripción                                      |
+|-------------------------------|--------------------------------------------------|
+| get()                       | Lee un byte desde la posición actual.           |
+| getInt()                    | Lee un valor `int`.                             |
+| getDouble()                 | Lee un valor `double`.                          |
+| getFloat()                  | Lee un valor `float`.                           |
+| getChar()                   | Lee un carácter (`char`).                       |
+| getShort()                  | Lee un valor `short`.                           |
+| getLong()                   | Lee un valor `long`.                            |
+| get(byte[], offset, length)` | Lee una porción del buffer a un array.          |
+
+---
+
+**Métodos de control del buffer**{.verde}
+
+| Método           | Descripción                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| position()     | Devuelve la posición actual del cursor.                                     |
+| position(int)  | Establece la posición del cursor.                                           |
+| limit()        | Devuelve el límite del buffer.                                              |
+| limit(int)     | Establece un nuevo límite.                                                  |
+| capacity()     | Devuelve la capacidad total del buffer.                                     |
+| clear()        | Limpia el buffer: posición a 0, límite al máximo (sin borrar contenido).    |
+| flip()         | Prepara el buffer para lectura después de escribir.                         |
+| rewind()       | Posición a 0 para releer desde el inicio.                                   |
+| remaining    | Indica cuántos elementos quedan por procesar.                               |
+| hasRemaining() | `true` si aún queda contenido por leer o escribir.   
 
 **StandardOpenOption**{.azul}
 

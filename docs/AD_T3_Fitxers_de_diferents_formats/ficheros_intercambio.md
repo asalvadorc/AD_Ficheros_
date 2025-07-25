@@ -24,7 +24,7 @@ TOML/INI|	Archivos de configuración estructurada.|	Soportado por librerías ext
 - PROTOBUF / AVRO: en comunicaciones eficientes, microservicios, Big Data.
 
 
-## Uso de Gradle para trabajar con ficheros CSV, JSON y XML
+## 🔹Dependencias Gradle
 
 
 En este apartado vamos a desarrollar una aplicación en Kotlin que gestione la lectura y escritura de datos utilizando distintos formatos de archivo estructurado: CSV, JSON y XML.
@@ -84,7 +84,7 @@ En el fichero **build.gradle.kts** se incluirán los plugins y dependencias nece
         }
 
 
-## Ficheros CSV  
+## 🔹Ficheros CSV  
 
 El formato CSV es un archivo de texto donde los valores están separados por comas u otro delimitador (como punto y coma), muy usado para intercambiar datos entre hojas de cálculo, sistemas contables, etc.
 
@@ -263,7 +263,7 @@ Sin embargo, cuando desarrollamos en Kotlin, existen alternativas más modernas 
 
 
 
-## Ficheros JSON
+## 🔹Ficheros JSON
 
 En muchas aplicaciones modernas, los datos deben almacenarse o intercambiarse en formato JSON (JavaScript Object Notation), un formato ligero y legible ampliamente utilizado en APIs, configuraciones, bases de datos NoSQL y almacenamiento persistente.
 
@@ -318,7 +318,7 @@ Esto proporciona importantes **ventajas**:
 ✔️ Código más limpio y mantenible.  
 ✔️ Mayor seguridad de tipos, detectando errores en tiempo de compilación.  
 
-### kotlinx.serialization
+### 🔹 kotlinx.serialization
 
 kotlinx.serialization es la librería oficial de serialización de Kotlin, desarrollada por JetBrains, que permite convertir objetos Kotlin a y desde diferentes formatos como JSON, ProtoBuf, CBOR, XML (experimental), entre otros.
 
@@ -627,7 +627,7 @@ De la misma manera que en la escritura, si queremos leer un JSON directamente si
         }
 
 
-### Jackson (JSON)
+### 🔹Jackson (JSON)
 
 **kotlinx.serialization** es la librería oficial de serialización de Kotlin, pero **Jackson** es la librería más usada en Java para JSON. Muchos frameworks Java lo usan por defecto (Spring Boot, Micronaut, Quarkus, etc.). Conocerlo permite trabajar con APIs externas, backends y entornos mixtos (Java + Kotlin). 
 
@@ -729,7 +729,7 @@ Dependencia Gradle:
         }
 
 
-## Ficheros XML
+## 🔹Ficheros XML
 
 Un fichero **XML** (eXtensible Markup Language) es un formato de texto estructurado diseñado para almacenar y transportar datos de forma legible tanto para humanos como para máquinas.
 
@@ -753,7 +753,7 @@ La mejor forma de trabajar con XML en **Kotlin** es utlizar la librería **DOM**
 - DOM	-> Estándar Java, sin dependencias.	Requiere muchas líneas de código para hacer algo relativamente simple. 
 - JDOM2 ->	API más amigable para desarrolladores.	Requiere añadir una librería externa.
 
-### JDOM2
+### 🔹JDOM2
 
 JDOM2 es una librería Java (Kotlin) que permite leer, crear, modificar y guardar archivos XML de forma sencilla y orientada a objetos.
 
@@ -945,7 +945,7 @@ JDOM2 no realiza serialización automática de objetos Kotlin, se necesita mapea
 
 
 
-### Jackson (XML)
+### 🔹Jackson (XML)
 
 JDOM2 no realiza serialización automática de objetos Kotlin, pero se puede recurrir a librerías como **Jackson** o **kotlinx.serialization**.
 

@@ -2,8 +2,8 @@
 
 | Conversión                     | Herramientas recomendadas                                   | Proceso resumido                                                                 |
 |-------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------------------|
-| **CSV → JSON**                | OpenCSV + kotlinx.serialization                              | Leer CSV → mapear a objetos → serializar con `Json.encodeToString`              |
-| **JSON → CSV**                | kotlinx.serialization + OpenCSV                             | Deserializar JSON a objetos → escribir filas CSV                                |
+| **CSV → JSON**                | OpenCSV + kotlinx.serialization / Jackson                           | Leer CSV → mapear a objetos → serializar con `Json.encodeToString`              |
+| **JSON → CSV**                | kotlinx.serialization / Jackson + OpenCSV                             | Deserializar JSON a objetos → escribir filas CSV                                |
 | **CSV → XML**                 | OpenCSV + DOM (`DocumentBuilderFactory`)                    | Leer CSV → construir documento XML nodo a nodo                                  |
 | **JSON → XML**                | Jackson (`ObjectMapper`, `XmlMapper`)                        | Convertir JSON a objeto → serializar con `XmlMapper.writeValueAsString()`       |
 | **XML → JSON**                | Jackson (`XmlMapper`, `ObjectMapper`)                        | Leer XML como objeto → serializar como JSON                                     |
@@ -16,33 +16,22 @@
 | **Imagen → binario base64**   | `ImageIO.read()` + `Base64.getEncoder().encodeToString()`    | Convertir imagen a bytes → codificarlos como texto                              |
 | **Imagen → texto (OCR)**      | Tesseract OCR + librería externa (`Tess4J`)                  | Procesar imagen → extraer texto con reconocimiento óptico de caracteres         |
 
+## 🔹 Ejemplos de Conversión
 
-alumnos.csv
+En los siguientes ejemplos trabajaremos con tres archivos en diferentes formatos: **CSV**, **XML** y **JSON**. Estos archivos contienen información similar, representada con distinta estructura y sintaxis según el formato y los utilizaremos como base para realizar ejercicios de conversión entre formatos, análisis de estructura y lectura/escritura desde aplicaciones en Kotlin o Java.
 
-    nombre;nota
-    Lucía;9
-    Carlos;8
-    Elena;10
-
-persona.xml
-
-    <Persona>
-        <nombre>Lucía</nombre>
-        <edad>28</edad>
-    </Persona>
+A continuación, se muestran los contenidos de los archivos que usaremos:
 
 
-perosna.json
 
-    {
-    "nombre" : "Lucía",
-    "edad" : 28
-    }
+| **alumnos.csv** | **persona.xml** | **persona.json** |
+|-----------------|-----------------|------------------|
+| nombre;nota<br>Lucía;9<br>Carlos;8<br>Elena;10 | &lt;Persona&gt;<br>&nbsp;&nbsp;&lt;nombre&gt;Lucía&lt;/nombre&gt;<br>&nbsp;&nbsp;&lt;edad&gt;28&lt;/edad&gt;<br>&lt;/Persona&gt; | {<br>&nbsp;&nbsp;"nombre" : "Lucía",<br>&nbsp;&nbsp;"edad" : 28<br>} |
 
 
-**CSV a JSON**{.azul}
+### **CSV a JSON**{.azul}
 
-🖥️ **Ejemplo_convertir_csv_a_json.kt**
+🖥️ **Ejemplo_convertir_csv_a_json.kt** - En estos ejemplos utilizamos **Jackson** pero se podría también utilizar **Kotlinx.serialization**.
 
         import com.opencsv.CSVReaderBuilder
         import com.opencsv.CSVParserBuilder
@@ -51,7 +40,7 @@ perosna.json
         import java.io.File
         import java.io.FileReader
 
-
+        data class Alumno(val nombre: String, val nota: Int)
 
         fun main() {
             val rutaCSV = "documentos/alumnos.csv"
@@ -62,11 +51,14 @@ perosna.json
                 .withSkipLines(1)
                 .build()
 
-            val alumnos = reader.readAll().map { campos ->
-                Alumno(
-                    nombre = campos[0],
-                    nota = campos[1].toInt()
-                )
+            val registros = reader.readAll()
+            val alumnos = mutableListOf<Alumno>()
+
+            for (campos in registros) {
+                val nombre = campos[0]
+                val nota = campos[1].toInt()
+                val alumno = Alumno(nombre, nota)
+                alumnos.add(alumno)
             }
 
             reader.close()
@@ -76,73 +68,124 @@ perosna.json
 
             println("✅ Conversión CSV → JSON completada: $rutaJSON")
         }
+<!--
+🖥️ **Ejemplo_convertir_csv_a_json_kotlinx.kt** utilizando Kotlinx.serialization
 
-**JSON a CSV**{.azul}
+        import com.opencsv.CSVParserBuilder
+        import com.opencsv.CSVReaderBuilder
+        import kotlinx.serialization.*
+        import kotlinx.serialization.json.*
+        import java.io.File
+        import java.io.FileReader
+        import java.nio.file.Files
+        import java.nio.file.Paths
+
+        @Serializable
+        data class Alumno(val nombre: String, val nota: Int)
+
+        fun main() {
+            val rutaCSV = "documentos/alumnos.csv"
+            val rutaJSON = "documentos/alumnos.json"
+
+            val reader = CSVReaderBuilder(FileReader(rutaCSV))
+                .withCSVParser(CSVParserBuilder().withSeparator(';').build())
+                .withSkipLines(1) // saltar cabecera
+                .build()
+
+            val alumnos = mutableListOf<Alumno>()
+
+            var fila = reader.readNext()
+            while (fila != null) {
+                if (fila.size >= 2) {
+                    val nombre = fila[0]
+                    val nota = fila[1].toIntOrNull() ?: -1
+                    alumnos.add(Alumno(nombre, nota))
+                }
+                fila = reader.readNext()
+            }
+
+            reader.close()
+
+            // Serializar a JSON
+            val jsonString = Json { prettyPrint = true }.encodeToString(alumnos)
+
+            // Guardar el JSON
+            Files.createDirectories(Paths.get(rutaJSON).parent)
+            File(rutaJSON).writeText(jsonString)
+
+            println("✅ Conversión CSV → JSON completada: $rutaJSON")
+            println("📄 Contenido generado:\n$jsonString")
+        }
+
+-->
+
+### **JSON a CSV**{.azul}
 
 🖥️ **Ejemplo_convertir_json_a_csv.kt**        
 
         import com.fasterxml.jackson.databind.ObjectMapper
         import com.fasterxml.jackson.module.kotlin.KotlinModule
         import com.fasterxml.jackson.module.kotlin.readValue
-        import com.opencsv.CSVWriter
+        import com.opencsv.CSVWriterBuilder
+        import com.opencsv.ICSVWriter
         import java.io.File
         import java.io.FileWriter
 
+        data class Alumno(val nombre: String, val nota: Int)
 
         fun main() {
-            val rutaJson = "documentos/alumnos.json"
-            val rutaCsv = "documentos/alumnos_convertido.csv"
+            val rutaJSON = "documentos/alumnos.json"
+            val rutaCSV = "documentos/alumnos_convertido.csv"
 
-            // 1. Leer JSON
             val mapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
-            val alumnos: List<Alumno> = mapper.readValue(File(rutaJson))
+            val alumnos: List<Alumno> = mapper.readValue(File(rutaJSON))
 
-            // 2. Escribir CSV
-            val writer = CSVWriter(FileWriter(rutaCsv), ';', CSVWriter.NO_QUOTE_CHARACTER,
-                CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END)
+            val writer = CSVWriterBuilder(FileWriter(rutaCSV))
+                .withSeparator(';')
+                .build()
 
-            // Cabecera
+            // Escribir cabecera
             writer.writeNext(arrayOf("nombre", "nota"))
 
-            // Cuerpo
+            // Escribir cada alumno (sin usar lambda)
             for (alumno in alumnos) {
-                writer.writeNext(arrayOf(alumno.nombre, alumno.nota.toString()))
+                val fila = arrayOf(alumno.nombre, alumno.nota.toString())
+                writer.writeNext(fila)
             }
 
             writer.close()
 
-            println("✅ Conversión JSON → CSV completada: $rutaCsv")
+            println("✅ Conversión JSON → CSV completada: $rutaCSV")
         }
 
 
 
+### **JSON a XML**{.azul}
 
-**JSON a XML**{.azul}
+🖥️ Ejemplo_convertir_json_a_xml.kt
 
-🖥️ **Ejemplo_convertir_json_a_xml.kt**
+        import com.fasterxml.jackson.databind.ObjectMapper
+        import com.fasterxml.jackson.dataformat.xml.XmlMapper
+        import com.fasterxml.jackson.module.kotlin.KotlinModule
+        import java.io.File
 
-    import com.fasterxml.jackson.databind.ObjectMapper
-    import com.fasterxml.jackson.dataformat.xml.XmlMapper
-    import com.fasterxml.jackson.module.kotlin.KotlinModule
-    import java.io.File
+        fun convertirJsonAXml(jsonPath: String, xmlPath: String) {
+            val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+            val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
 
-    fun convertirJsonAXml(jsonPath: String, xmlPath: String) {
-        val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
-        val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
+            val persona = jsonMapper.readValue(File(jsonPath), Persona::class.java)
+            xmlMapper.writerWithDefaultPrettyPrinter().writeValue(File(xmlPath), persona)
 
-        val persona = jsonMapper.readValue(File(jsonPath), Persona::class.java)
-        xmlMapper.writerWithDefaultPrettyPrinter().writeValue(File(xmlPath), persona)
-
-        println("Conversión JSON → XML completada")
-    }
+            println("Conversión JSON → XML completada")
+        }
 
 
-    fun main() {
-        convertirJsonAXml("documentos/persona.json", "documentos/persona_generada.xml")
-        
-    }
+        fun main() {
+            convertirJsonAXml("documentos/persona.json", "documentos/persona_generada.xml")
 
-**XML a JSON**{.azul}
+        }
+
+### **XML a JSON**{.azul}
 
 🖥️ **Ejemplo_convertir_xml_a_json.kt**
 
@@ -170,28 +213,94 @@ perosna.json
     }
 
 
+### **JSON a Binario estructurado**{.azul}
+
+🖥️ **Ejemplo_convertir_json_a_binario.kt**
+
+        import kotlinx.serialization.decodeFromString
+        import kotlinx.serialization.json.Json
+        import java.io.DataOutputStream
+        import java.io.File
+        import java.io.FileOutputStream
+        import java.nio.file.Files
+        import java.nio.file.Paths
+
+        fun main() {
+            val rutaJson = "documentos/persona.json"
+            val rutaBin = "documentos/persona.dat"
+
+            // Leer JSON
+            val contenido = File(rutaJson).readText()
+            val persona = Json.decodeFromString<Persona>(contenido)
+
+            // Crear carpeta si no existe
+            Files.createDirectories(Paths.get(rutaBin).parent)
+
+            // Escribir como binario estructurado
+            val salida = DataOutputStream(FileOutputStream(rutaBin))
+            salida.writeUTF(persona.nombre)  // Guarda string como UTF con longitud
+            salida.writeInt(persona.edad)    // Guarda entero (4 bytes)
+            salida.close()
+
+            println("✅ Persona guardada como binario estructurado en: $rutaBin")
+        }
+
+    
+       
+Leer el binario estructurado:
+
+        import java.io.DataInputStream
+        import java.io.FileInputStream
+
+        fun leerBinario(ruta: String) {
+            val entrada = DataInputStream(FileInputStream(ruta))
+            val nombre = entrada.readUTF()
+            val edad = entrada.readInt()
+            entrada.close()
+
+            println("📄 Persona leída del binario:")
+            println("Nombre: $nombre, Edad: $edad")
+        }
 
 
-**Hoja de ejercicios para el aula**{.azul}
-   
-🧪 Ejercicios prácticos por tipo de conversión
-📝 Nivel básico
-Leer un archivo CSV con nombre y edad, y convertirlo a JSON usando kotlinx.serialization.
 
-Leer un archivo de texto plano línea a línea y transformarlo en una lista de objetos Persona(nombre, edad), luego convertirlo a JSON.
+### **Binario estructurado a JSON**{.azul}
 
-🧱 Nivel intermedio
-Convertir un archivo JSON a CSV generando un nuevo archivo con formato delimitado por ;.
+        import kotlinx.serialization.encodeToString
+        import kotlinx.serialization.json.Json
+        import java.io.DataInputStream
+        import java.io.File
+        import java.io.FileInputStream
+        import java.nio.file.Files
+        import java.nio.file.Paths
 
-Leer un archivo de imagen PNG y guardarlo como JPG usando ImageIO.
+        fun main() {
+            val rutaBin = "documentos/persona.dat"
+            val rutaJson = "documentos/persona_convertidaBinario.json"
 
-Invertir los colores de una imagen .png y guardar el resultado como .png.
+            // Leer binario estructurado
+            val entrada = DataInputStream(FileInputStream(rutaBin))
+            val nombre = entrada.readUTF()
+            val edad = entrada.readInt()
+            entrada.close()
 
-🧩 Nivel avanzado
-Leer un archivo binario estructurado que almacene nombres y edades (string + int), y convertirlo a JSON.
+            // Crear objeto
+            val persona = Persona(nombre, edad)
 
-Escribir un archivo binario estructurado a partir de un JSON con personas, usando DataOutputStream.
+            // Convertir a JSON con pretty print
+            val json = Json { prettyPrint = true }.encodeToString(persona)
 
-🧠 Extra (OCR)
-Utilizar OCR (Tesseract) para extraer texto de una imagen escaneada y guardar el resultado en un archivo .txt.
+            // Crear carpeta si no existe
+            Files.createDirectories(Paths.get(rutaJson).parent)
+
+            // Escribir JSON en archivo
+            File(rutaJson).writeText(json)
+
+            println("✅ Binario estructurado convertido a JSON:")
+            println(json)
+        }
+
+
+
+      
 

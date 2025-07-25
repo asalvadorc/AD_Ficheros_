@@ -15,7 +15,7 @@ La clase **java.nio.file.Files** es el otro punto de entrada a la librería de f
     - **Path**: Representa rutas a archivos o directorios
     - **Files**: Permite operaciones sobre archivos usando Path
 
-### Paths
+### 🔹Paths
 
 La clase **Paths** es una clase de utilidad que proporciona métodos estáticos para crear objetos **Path**, que luego puedes usar con métodos de **Files**.
 
@@ -56,7 +56,7 @@ La clase **Paths** es una clase de utilidad que proporciona métodos estáticos 
         }
 
 
-### Path
+### 🔹Path
 
 La clase **Path** Se utiliza junto con la clase **Files** para realizar operaciones como lectura, escritura, copia, o eliminación de archivos.  
 La forma mas sencilla de construir un objeto que cumpla la interfaz **Path** es a partir de la clase **java.nio.file.Paths**, que tiene métodos estáticos que retornan objetos Path a partir de una representación tipo String del path deseado.  
@@ -121,7 +121,7 @@ Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
         
 
 
-### Files
+### 🔹Files
 
 La clase **Files** es el otro punto de entrada a la librería de ficheros de Java. Es la que nos permite manejar ficheros reales del disco desde Java.  
 Esta clase tiene métodos estáticos para el manejo de ficheros, los métodos de la clase **Files** trabajan sobre objetos **Path**.  
@@ -384,7 +384,7 @@ El siguiente ejemplo recorre la estructura home en tu sistema, indicando los per
 
 
 
-### FileSystem
+### 🔹FileSystem
 
 En la biblioteca **java.nio** podemos encontrar otras clases que complementan y amplían lo que se puede hacer con **java.nio.file.Path**.
 
@@ -437,7 +437,7 @@ Pero usando FileSystems.getDefault() puedes:
         }
 
 
-### BasicFileAttributes  
+### 🔹BasicFileAttributes  
 
 BasicFileAttributes permite obtener **información detallada sobre archivos y directorios**, como fecha de creación, tamaño, etc.
 
@@ -468,7 +468,7 @@ BasicFileAttributes permite obtener **información detallada sobre archivos y di
         }
     }
 
-### FileStore
+### 🔹FileStore
 
 FileStore permite obtener **información sobre el sistema de archivos**, como el espacio disponible.
 
