@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹Ficheros de acceso aleatorio - AD - Accés a Dades - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39Ficheros de acceso aleatorio";
+        var mkdocs_page_input_path = "AD_T2_Gesti_del_contingut_de_fitxers/Acceso_aleatorio.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introducción</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">🗂️ Tabla resumen: Contenidos vs Criterios de Evaluación</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Idea/">IntelliJ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Kotlin/">Kotlin</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/exercicis/">🔹 Ejemplo completo</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >🔹Lectura y escritura de ficheros</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../Lectura_Escritura_ficheros/">🔹Ficheros de texto y binarios</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ficheros_img/">🔹Ficheros de imagen</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../binarios_estucturados/">🔹Ficheros binarios estructurados</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">🔹Ficheros de acceso aleatorio</a>
+    <ul class="current">
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros con formatos diferentes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/intro/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Accés a Dades - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Manejo de ficheros</li>
+          <li class="breadcrumb-item">🔹Lectura y escritura de ficheros</li>
+      <li class="breadcrumb-item active">🔹Ficheros de acceso aleatorio</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ficheros-de-acceso-aleatorio">Ficheros de acceso aleatorio</h1>
+<p>Hasta el momento todos los accesos que hemos hecho a los archivos, tanto binarios como de carácter, han sido secuenciales. Esto significa que siempre empezamos por el principio del archivo hasta que llegamos a la información que queremos, o en la mayor parte de los casos hasta el final de archivo.</p>
+<p>Pero, ¿y si queremos únicamente una determinada información? Afortunadamente hay otra forma de acceder, otro tipo de acceso. Se llama acceso directo o aleatorio, porque permitirá ir directamente a una posición determinada del archivo.</p>
+<p>Cuando se necesita mayor control, eficiencia y rendimiento en el acceso a ficheros, especialmente en operaciones binarias o de acceso aleatorio, el enfoque tradicional con la clase <strong>RandomAccessFile</strong> de <strong>Java.io</strong> puede quedarse corto. Para estos casos, Java ofrece una solución moderna a través del paquete <strong>java.nio.file</strong> combinado con <strong>FileChannel</strong> y <strong>ByteBuffer</strong>. </p>
+<p>Las clases <strong>FileChannel</strong>, <strong>ByteBuffer</strong> y <strong>StandardOpenOption</strong> forman parte de la API <strong>java.nio</strong> y se utilizan juntas para realizar lectura y escritura de archivos <strong>binarios</strong> y en el <strong>acceso aleatorio a ficheros</strong>.</p>
+<p><strong class="azul">FileChannel</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tipo de fichero</th>
+<th>Lectura</th>
+<th>Escritura</th>
+<th>Comentario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acceso aleatorio</td>
+<td><code>FileChannel.position(offset)</code></td>
+<td><code>FileChannel.position(offset)</code></td>
+<td>Permite saltar a cualquier posición del fichero</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="verde">Métodos habituales de FileChannel para el acceso aleatorio a ficheros</strong></p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Función principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>position()</td>
+<td>Devuelve la posición actual del puntero en el archivo</td>
+</tr>
+<tr>
+<td>position(long)</td>
+<td>Establece una posición exacta para lectura/escritura</td>
+</tr>
+<tr>
+<td>truncate(long)</td>
+<td>Recorta o amplía el tamaño del archivo</td>
+</tr>
+<tr>
+<td>size()</td>
+<td>Devuelve el tamaño total actual del archivo</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">ByteBuffer</strong></p>
+<p>ByteBuffer se utiliza en archivos de acceso aleatorio porque permite leer y escribir bloques binarios de datos en posiciones específicas del archivo de forma eficiente y controlada.</p>
+<p><strong class="verde">Métodos de creación</strong></p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>allocate(capacidad)</td>
+<td>Crea un buffer con capacidad fija en memoria (no compartida).</td>
+</tr>
+<tr>
+<td>wrap(byteArray)</td>
+<td>Crea un buffer que envuelve un array de bytes existente (memoria compartida).</td>
+</tr>
+<tr>
+<td>wrap(byteArray, offset, length)</td>
+<td>Crea un buffer desde una porción del array existente.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong class="verde">Métodos de escritura (<code>put</code>)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>put(byte)</td>
+<td>Escribe un byte en la posición actual.</td>
+</tr>
+<tr>
+<td>putInt(int)</td>
+<td>Escribe un valor <code>int</code>.</td>
+</tr>
+<tr>
+<td>putDouble(double)</td>
+<td>Escribe un valor <code>double</code>.</td>
+</tr>
+<tr>
+<td>putFloat(float)</td>
+<td>Escribe un valor <code>float</code>.</td>
+</tr>
+<tr>
+<td>putChar(char)</td>
+<td>Escribe un carácter (<code>char</code>, 2 bytes).</td>
+</tr>
+<tr>
+<td>putShort(short)</td>
+<td>Escribe un valor <code>short</code>.</td>
+</tr>
+<tr>
+<td>putLong(long)</td>
+<td>Escribe un valor <code>long</code>.</td>
+</tr>
+<tr>
+<td>put(byte[], offset, length)`</td>
+<td>Escribe una porción de un array de bytes.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong class="verde">Métodos de lectura (<code>get</code>)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>get()</td>
+<td>Lee un byte desde la posición actual.</td>
+</tr>
+<tr>
+<td>getInt()</td>
+<td>Lee un valor <code>int</code>.</td>
+</tr>
+<tr>
+<td>getDouble()</td>
+<td>Lee un valor <code>double</code>.</td>
+</tr>
+<tr>
+<td>getFloat()</td>
+<td>Lee un valor <code>float</code>.</td>
+</tr>
+<tr>
+<td>getChar()</td>
+<td>Lee un carácter (<code>char</code>).</td>
+</tr>
+<tr>
+<td>getShort()</td>
+<td>Lee un valor <code>short</code>.</td>
+</tr>
+<tr>
+<td>getLong()</td>
+<td>Lee un valor <code>long</code>.</td>
+</tr>
+<tr>
+<td>get(byte[], offset, length)`</td>
+<td>Lee una porción del buffer a un array.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong class="verde">Métodos de control del buffer</strong></p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>position()</td>
+<td>Devuelve la posición actual del cursor.</td>
+</tr>
+<tr>
+<td>position(int)</td>
+<td>Establece la posición del cursor.</td>
+</tr>
+<tr>
+<td>limit()</td>
+<td>Devuelve el límite del buffer.</td>
+</tr>
+<tr>
+<td>limit(int)</td>
+<td>Establece un nuevo límite.</td>
+</tr>
+<tr>
+<td>capacity()</td>
+<td>Devuelve la capacidad total del buffer.</td>
+</tr>
+<tr>
+<td>clear()</td>
+<td>Limpia el buffer: posición a 0, límite al máximo (sin borrar contenido).</td>
+</tr>
+<tr>
+<td>flip()</td>
+<td>Prepara el buffer para lectura después de escribir.</td>
+</tr>
+<tr>
+<td>rewind()</td>
+<td>Posición a 0 para releer desde el inicio.</td>
+</tr>
+<tr>
+<td>remaining</td>
+<td>Indica cuántos elementos quedan por procesar.</td>
+</tr>
+<tr>
+<td>hasRemaining()</td>
+<td><code>true</code> si aún queda contenido por leer o escribir.</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">StandardOpenOption</strong></p>
+<p>Se utiliza para indicar cómo debe abrirse o crearse un archivo al trabajar con <strong>FileChannel</strong> o Files.newOutputStream, Files.newByteChannel, etc.</p>
+<p>Se utiliza para indicar si el archivo se va a: Leer (READ), Escribir (WRITE), Crear (CREATE),sobrescribir (TRUNCATE_EXISTING), Añadir al final (APPEND).</p>
+<pre><code>    val canal = FileChannel.open(
+        Paths.get("archivo.txt"),
+        StandardOpenOption.WRITE,
+        StandardOpenOption.CREATE
+        )
+</code></pre>
+<p>🖥️ <strong>Ejemplo_acceso_posicion.kt</strong>: realiza una operación básica de lectura y escritura de archivo de texto usando FileChannel y ByteBuffer. </p>
+<pre><code>    // Importamos las clases necesarias
+    import java.nio.ByteBuffer                      // Para gestionar buffers de bytes
+    import java.nio.channels.FileChannel            // Para acceder al archivo como canal
+    import java.nio.file.Paths                      // Para crear la ruta del archivo
+    import java.nio.file.StandardOpenOption.*       // Para usar opciones como READ, WRITE, CREATE
+
+    fun main() {
+        // Creamos una ruta al archivo datos.txt
+        val path = Paths.get("documentos/datos.txt")
+
+        // Abrimos el canal con permisos de lectura, escritura y creación
+        FileChannel.open(path, READ, WRITE, CREATE).use { canal -&gt;
+
+            // Creamos un buffer con el texto a escribir convertido a bytes
+            val buffer = ByteBuffer.wrap("Hola desde Kotlin\n".toByteArray())
+
+            // Establecemos la posición del canal al principio del archivo
+            canal.position(0)
+
+            // Escribimos el contenido del buffer en el archivo
+            canal.write(buffer)
+
+            // Creamos un nuevo buffer vacío para leer hasta 1024 bytes
+            val bufferLectura = ByteBuffer.allocate(1024)
+
+            // Volvemos al principio del archivo para leer desde el inicio
+            canal.position(0)
+
+            // Leemos desde el archivo al buffer
+            canal.read(bufferLectura)
+
+            // Cambiamos el buffer de modo escritura a modo lectura
+            bufferLectura.flip()
+
+            // Convertimos el contenido leído a cadena y lo mostramos
+            println(String(bufferLectura.array(), 0, bufferLectura.limit()))
+        } // El canal se cierra automáticamente gracias a `use`
+    }
+</code></pre>
+<p>🖥️ <strong>Ejemplo_acceso_aleatorio.kt</strong> : acceso directo a posiciones en un archivo con FileChannel y ByteBuffer</p>
+<pre><code>    import java.nio.ByteBuffer
+    import java.nio.channels.FileChannel
+    import java.nio.file.Paths
+    import java.nio.file.StandardOpenOption.*
+
+    fun main() {
+        val path = Paths.get("documentos/datos.txt")
+
+        // Abrimos el canal con permisos de lectura y escritura
+        FileChannel.open(path, READ, WRITE, CREATE).use { canal -&gt;
+
+            // Escribimos "Inicio\n" en la posición 0 del archivo
+            canal.position(0)
+            val inicio = ByteBuffer.wrap("Inicio\n".toByteArray())
+            canal.write(inicio)
+
+            // Escribimos "Texto en posición 20\n" en la posición 20 del archivo
+            canal.position(20)
+            val texto = ByteBuffer.wrap("Texto en posición 20\n".toByteArray())
+            canal.write(texto)
+
+            // Leemos el contenido completo desde el inicio (posición 0)
+            val bufferLectura = ByteBuffer.allocate(1024)
+            canal.position(0)
+            canal.read(bufferLectura)
+
+            // Preparamos el buffer para lectura e imprimimos el contenido
+            bufferLectura.flip()
+            val contenido = String(bufferLectura.array(), 0, bufferLectura.limit())
+            println("Contenido leído del archivo:\n$contenido")
+        }
+    }
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../binarios_estucturados/" class="btn btn-neutral float-left" title="🔹Ficheros binarios estructurados"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../AD_T3_Fitxers_de_diferents_formats/intro/" class="btn btn-neutral float-right" title="🔹Introducción">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../binarios_estucturados/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../AD_T3_Fitxers_de_diferents_formats/intro/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

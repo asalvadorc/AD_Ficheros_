@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹Ficheros binarios estructurados - AD - Accés a Dades - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39Ficheros binarios estructurados";
+        var mkdocs_page_input_path = "AD_T2_Gesti_del_contingut_de_fitxers/binarios_estucturados.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introducción</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">🗂️ Tabla resumen: Contenidos vs Criterios de Evaluación</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Idea/">IntelliJ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Kotlin/">Kotlin</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T1_Sistema_de_fitxers/exercicis/">🔹 Ejemplo completo</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >🔹Lectura y escritura de ficheros</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../Lectura_Escritura_ficheros/">🔹Ficheros de texto y binarios</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ficheros_img/">🔹Ficheros de imagen</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">🔹Ficheros binarios estructurados</a>
+    <ul class="current">
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../Acceso_aleatorio/">🔹Ficheros de acceso aleatorio</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros con formatos diferentes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/intro/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../AD_T3_Fitxers_de_diferents_formats/Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Accés a Dades - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Manejo de ficheros</li>
+          <li class="breadcrumb-item">🔹Lectura y escritura de ficheros</li>
+      <li class="breadcrumb-item active">🔹Ficheros binarios estructurados</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ficheros-binarios-estructurados">Ficheros binarios estructurados</h1>
+<p>Aunque <strong>java.nio.file</strong> es la API moderna para trabajar con rutas y archivos, las clases <strong>DataOutputStream</strong> y <strong>DataInputStream</strong> de <strong>java.io</strong> siguen siendo la opción más adecuada para escribir y leer <strong>binario estructurado</strong>.
+Son más simples, seguras, portables y claras para representar estructuras secuenciales como registros.</p>
+<p>En contextos donde se requiera rendimiento avanzado o acceso aleatorio, puede usarse <strong>FileChannel</strong> y <strong>ByteBuffer</strong>, aunque su complejidad las hace menos recomendables para estructuras simples o tareas educativas.</p>
+<p><strong class="verde">Clases y método de  DataInputStream y DataOutputStream</strong></p>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th>Método</th>
+<th>Tipo de dato</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DataOutputStream</td>
+<td><code>writeInt(int)</code></td>
+<td>Entero (4 bytes)</td>
+<td>Escribe un entero con signo</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeDouble(double)</code></td>
+<td>Decimal (8 bytes)</td>
+<td>Escribe un número en coma flotante</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeFloat(float)</code></td>
+<td>Decimal (4 bytes)</td>
+<td>Escribe un número float</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeLong(long)</code></td>
+<td>Entero largo (8 bytes)</td>
+<td>Escribe un long</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeBoolean(boolean)</code></td>
+<td>Booleano (1 byte)</td>
+<td>Escribe un valor verdadero/falso</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeChar(char)</code></td>
+<td>Carácter (2 bytes)</td>
+<td>Escribe un carácter Unicode</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeUTF(String)</code></td>
+<td>Cadena UTF-8</td>
+<td>Escribe una cadena precedida por su longitud en 2 bytes</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeByte(int)</code></td>
+<td>Byte (1 byte)</td>
+<td>Escribe un solo byte</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeShort(int)</code></td>
+<td>Entero corto (2 bytes)</td>
+<td>Escribe un short</td>
+</tr>
+<tr>
+<td>DataInputStream</td>
+<td><code>readInt()</code></td>
+<td>Entero</td>
+<td>Lee un entero con signo</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readDouble()</code></td>
+<td>Decimal</td>
+<td>Lee un número double</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readFloat()</code></td>
+<td>Decimal</td>
+<td>Lee un número float</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readLong()</code></td>
+<td>Entero largo</td>
+<td>Lee un long</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readBoolean()</code></td>
+<td>Booleano</td>
+<td>Lee un valor verdadero/falso</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readChar()</code></td>
+<td>Carácter</td>
+<td>Lee un carácter Unicode</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readUTF()</code></td>
+<td>Cadena UTF-8</td>
+<td>Lee una cadena UTF-8</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readByte()</code></td>
+<td>Byte</td>
+<td>Lee un byte</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readShort()</code></td>
+<td>Entero corto</td>
+<td>Lee un short</td>
+</tr>
+</tbody>
+</table>
+<p>🖥️ <strong>Ejemplo_binario_estructurado.kt</strong>: Lectura y escritura en ficheros binarios (con tipos primitivos).</p>
+<pre><code>    import java.io.DataInputStream
+    import java.io.DataOutputStream
+    import java.io.FileInputStream
+    import java.io.FileOutputStream
+    import java.nio.file.Files
+    import java.nio.file.Paths
+
+    fun main() {
+        val ruta = Paths.get("documentos/binario.dat")
+        Files.createDirectories(ruta.parent)
+
+        // Escritura binaria
+        val fos = FileOutputStream(ruta.toFile())
+        val out = DataOutputStream(fos)
+        out.writeInt(42)         // int (4 bytes)
+        out.writeDouble(3.1416)  // double (8 bytes)
+        out.writeUTF("K")       // char (2 bytes)
+        out.close()
+        fos.close()
+
+        println("✅ Fichero binario escrito con DataOutputStream (sin lambda).")
+
+        // Lectura binaria
+        val fis = FileInputStream(ruta.toFile())
+        val input = DataInputStream(fis)
+        val entero = input.readInt()
+        val decimal = input.readDouble()
+        val caracter = input.readUTF()
+        input.close()
+        fis.close()
+
+        println("📄 Contenido leído:")
+        println("  Int: $entero")
+        println("  Double: $decimal")
+        println("  Char: $caracter")
+    }
+</code></pre>
+<!--
+
+**FileChannel**{.azul}
+
+Es un canal de E/S que permite leer, escribir, moverse a posiciones específicas en un archivo y trabajar directamente con buffers (ByteBuffer). Es parte del paquete **java.nio**, diseñado para operaciones más rápidas y flexibles que las clases tradicionales como FileInputStream de **java.io**.
+
+
+| Tipo de fichero           | Lectura                             | Escritura                            | Comentario                                               |
+|---------------------------|--------------------------------------|---------------------------------------|----------------------------------------------------------|
+| Binario estructurado   | `FileChannel.read(ByteBuffer)`      | `FileChannel.write(ByteBuffer)`       | Usa `FileChannel` para secuencial o aleatorio
+
+
+        val canal = FileChannel.open(Paths.get("archivo.txt"), StandardOpenOption.READ)
+
+**Métodos de FileChanel para binarios estructurados **{.verde}
+
+| Método                    | Descripción                                                                 |
+|---------------------------|------------------------------------------------------------------------------|
+| read(ByteBuffer)        | Lee datos desde el canal al buffer.                                         |
+| write(ByteBuffer)       | Escribe datos del buffer al canal.                                          |
+| position() / position(n) | Obtiene o establece la posición del cursor de lectura/escritura.        |
+| size()                  | Tamaño total del archivo.                                                   |
+| truncate(long)          | Corta el archivo al tamaño indicado.                                        |
+| force(true)             | Fuerza a que los cambios se escriban en disco (útil para persistencia).     |
+| map(...)                | Mapea el archivo a memoria (memoria mapeada, muy eficiente).                |
+| close()                 | Cierra el canal.                                                            |
+                                        |
+
+
+**ByteBuffer**{.azul}
+
+Se utiliza para leer y escribir datos binarios con control total sobre el formato y la posición, siendo ideal para archivos binarios estructurados, protocolos de red, y sistemas de bajo nivel.
+
+
+**Métodos de creación**{.verde}
+
+| Método                           | Descripción                                                                 |
+|----------------------------------|-----------------------------------------------------------------------------|
+| allocate(capacidad)| Crea un buffer con capacidad fija en memoria (no compartida).              |
+| wrap(byteArray)    | Crea un buffer que envuelve un array de bytes existente (memoria compartida). |
+| wrap(byteArray, offset, length) | Crea un buffer desde una porción del array existente.            |
+
+---
+
+**Métodos de escritura (`put`)**{.verde}
+
+| Método                        | Descripción                                      |
+|-------------------------------|--------------------------------------------------|
+| put(byte)                   | Escribe un byte en la posición actual.          |
+| putInt(int)                 | Escribe un valor `int`.                         |
+| putDouble(double)           | Escribe un valor `double`.                      |
+| putFloat(float)             | Escribe un valor `float`.                       |
+| putChar(char)               | Escribe un carácter (`char`, 2 bytes).          |
+| putShort(short)             | Escribe un valor `short`.                       |
+| putLong(long)               | Escribe un valor `long`.                        |
+| put(byte[], offset, length)` | Escribe una porción de un array de bytes.       |
+
+---
+
+**Métodos de lectura (`get`)**{.verde}
+
+| Método                        | Descripción                                      |
+|-------------------------------|--------------------------------------------------|
+| get()                       | Lee un byte desde la posición actual.           |
+| getInt()                    | Lee un valor `int`.                             |
+| getDouble()                 | Lee un valor `double`.                          |
+| getFloat()                  | Lee un valor `float`.                           |
+| getChar()                   | Lee un carácter (`char`).                       |
+| getShort()                  | Lee un valor `short`.                           |
+| getLong()                   | Lee un valor `long`.                            |
+| get(byte[], offset, length)` | Lee una porción del buffer a un array.          |
+
+---
+
+**Métodos de control del buffer**{.verde}
+
+| Método           | Descripción                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| position()     | Devuelve la posición actual del cursor.                                     |
+| position(int)  | Establece la posición del cursor.                                           |
+| limit()        | Devuelve el límite del buffer.                                              |
+| limit(int)     | Establece un nuevo límite.                                                  |
+| capacity()     | Devuelve la capacidad total del buffer.                                     |
+| clear()        | Limpia el buffer: posición a 0, límite al máximo (sin borrar contenido).    |
+| flip()         | Prepara el buffer para lectura después de escribir.                         |
+| rewind()       | Posición a 0 para releer desde el inicio.                                   |
+| remaining    | Indica cuántos elementos quedan por procesar.                               |
+| hasRemaining() | `true` si aún queda contenido por leer o escribir.                          |
+
+
+🖥️ **Ejemplo_binario_estructurado_FileChanel.kt**: Lectura y escritura en ficheros binarios (con tipos primitivos).
+
+        import java.nio.ByteBuffer
+        import java.nio.channels.FileChannel
+        import java.nio.file.Paths
+        import java.nio.file.StandardOpenOption.*
+
+        fun main() {
+            val ruta = Paths.get("documentos/binario.dat")
+
+            // Escritura binaria
+            FileChannel.open(ruta, WRITE, CREATE, TRUNCATE_EXISTING).use { canal ->
+                val buffer = ByteBuffer.allocate(20)
+                buffer.putInt(42)            // int (4 bytes)
+                buffer.putDouble(3.1416)     // double (8 bytes)
+                buffer.putChar('K')          // char (2 bytes)
+                buffer.flip()               // prepara el buffer para ser leído
+                canal.write(buffer)
+            }
+            println("Fichero binario escrito.")
+
+            // Lectura binaria
+            FileChannel.open(ruta, READ).use { canal ->
+                val buffer = ByteBuffer.allocate(20)
+                canal.read(buffer)
+                buffer.flip()
+                val entero = buffer.int
+                val decimal = buffer.double
+                val caracter = buffer.char
+                println("Contenido leído:\n  Int: $entero\n  Double: $decimal\n  Char: $caracter")
+            }
+        }
+!!!Note "Nota"
+    Siempre que quieras leer datos que acabas de escribir en un buffer utliza **flip()**. Sin flip(), la posición estaría al final y no podrías leer nada útil.
+
+
+ -->
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ficheros_img/" class="btn btn-neutral float-left" title="🔹Ficheros de imagen"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Acceso_aleatorio/" class="btn btn-neutral float-right" title="🔹Ficheros de acceso aleatorio">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ficheros_img/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Acceso_aleatorio/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
