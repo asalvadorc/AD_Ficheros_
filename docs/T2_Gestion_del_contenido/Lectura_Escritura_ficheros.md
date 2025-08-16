@@ -12,6 +12,8 @@ Un fichero es una unidad de almacenamiento que permite guardar datos en el disco
 
 Los siguientes ejemplos utilizan las [Clases y métodos](http://127.0.0.1:8000/AD_T2_Gesti_del_contingut_de_fitxers/Introduccion/#clases-y-metodos-para-la-lectura-y-escritura) apropiadas para estos tipos de archivos.
 
+
+
 **Lectura y escritura de un archivo de texto**{.azul}
 
 
@@ -21,7 +23,10 @@ Los siguientes ejemplos utilizan las [Clases y métodos](http://127.0.0.1:8000/A
 |                           | `Files.newBufferedReader(Path)`     | `Files.newBufferedWriter(Path)`       | Más eficiente para archivos grandes                      |
 |                           | `Files.readString(Path)` (Java 11+) | `Files.writeString(Path, String)`     | Lectura/escritura completa como bloque                  |
 
-       
+!!!warning "Ejemplos"
+    Los siguientes ejemplos se incluirán en el paquete **contenido** del proyecto **Ficheros**.
+
+
 🖥️ **Ejemplo_Lect_esc_ficheroTexto.kt**: lectura y escritura en ficheros de texto (UTF-8)
 
         import java.nio.file.Files
@@ -29,18 +34,9 @@ Los siguientes ejemplos utilizan las [Clases y métodos](http://127.0.0.1:8000/A
         import java.nio.charset.StandardCharsets
 
         fun main() {
-
-                //Escritura en fichero de texto
-
-                //writeString
-                val texto = "Hola, mundo desde Kotlin"
-                Files.writeString(Paths.get("documentos/saludo.txt"), texto)
-
-
-                //write
                 val ruta = Paths.get("documentos/texto.txt")
 
-                
+                //Escritura en fichero de texto
                 val lineasParaGuardar = listOf(
                         "Primera línea",
                         "Segunda línea",
@@ -48,11 +44,6 @@ Los siguientes ejemplos utilizan las [Clases y métodos](http://127.0.0.1:8000/A
                 )
                 Files.write(ruta, lineasParaGuardar, StandardCharsets.UTF_8)
                 println("Fichero de texto escrito.")
-
-                //newBuffered
-                Files.newBufferedWriter(Paths.get("documentos/log.txt")).use { writer ->
-                writer.write("Log iniciado...\n")
-                writer.write("Proceso completado.\n")
 
                 //Lectura del fichero de texto
 
@@ -67,7 +58,7 @@ Los siguientes ejemplos utilizan las [Clases y métodos](http://127.0.0.1:8000/A
                 val contenido = Files.readString(ruta)
                 println("Contenido leído con readString:")
                 println(contenido)
-                
+
                 //newBufferedReader
                 Files.newBufferedReader(ruta).use { reader ->
                         println("Contenido leído con newBufferedReader:")

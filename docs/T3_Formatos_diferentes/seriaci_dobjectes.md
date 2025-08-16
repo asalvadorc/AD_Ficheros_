@@ -46,6 +46,9 @@ misma clase que la que se guardó. De lo contrario, se lanzaría una
 excepción de tipos **ClassCastExeception**. Además, es necesario que la aplicación disponga del código compilado de la clase; si no fuera así, la excepción lanzada sería
 **ClassNotFoundException**.
 
+!!!warning "Ejemplos"
+    Los siguientes ejemplos se incluirán en el paquete **formato** del proyecto **Ficheros**.
+
 Los pasos para serializar un objeto java (kotlin) son los siguientes:
 
 🖥️ 1. **Persona.kt**: Crear una clase serializable

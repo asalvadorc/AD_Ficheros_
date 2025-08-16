@@ -28,29 +28,24 @@ markdown_extensions:
   - md_in_html
 
 nav:
-- Introducción: 
-  - RA_CE.md
-  - IntelliJ: Idea.md
-  - Kotlin: Kotlin.md  
+
+- RA_CE.md
 - Sistema de ficheros:
-  - 🔹 Ficheros: AD_T1_Sistema_de_fitxers/ficheros.md
-  - 🔹 Acceso al sistema de ficheros. Java.nio: AD_T1_Sistema_de_fitxers/NIO_AccesoFicheros.md
-  - 🔹 Ejemplo completo: AD_T1_Sistema_de_fitxers/exercicis.md
+  - 🔹 Ficheros: T1_Sistema_de_ficheros/ficheros.md
+  - 🔹 Acceso al sistema de ficheros. Java.nio: T1_Sistema_de_ficheros/NIO_AccesoFicheros.md
+  - 🔹 Ejemplo completo: T1_Sistema_de_ficheros/exercicis.md
 - Manejo de ficheros:
-    - 🔹Formas de acceso a un fichero: AD_T2_Gesti_del_contingut_de_fitxers/Formas_acceso.md
-    - 🔹Clases y métodos sobre ficheros. Java.nio: AD_T2_Gesti_del_contingut_de_fitxers/clases.md
+    - 🔹Formas de acceso a un fichero: T2_Gestion_del_contenido/Formas_acceso.md
+    - 🔹Clases y métodos sobre ficheros. Java.nio: T2_Gestion_del_contenido/clases.md
     - 🔹Lectura y escritura de ficheros: 
-      - 🔹Ficheros de texto y binarios: AD_T2_Gesti_del_contingut_de_fitxers/Lectura_Escritura_ficheros.md
-      - 🔹Ficheros de imagen: AD_T2_Gesti_del_contingut_de_fitxers/ficheros_img.md
-      - 🔹Ficheros binarios estructurados: AD_T2_Gesti_del_contingut_de_fitxers/binarios_estucturados.md  
-      - 🔹Ficheros de acceso aleatorio: AD_T2_Gesti_del_contingut_de_fitxers/Acceso_aleatorio.md
+      - 🔹Ficheros de texto y binarios: T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md
+      - 🔹Ficheros de imagen: T2_Gestion_del_contenido/ficheros_img.md
+      - 🔹Ficheros binarios estructurados: T2_Gestion_del_contenido/binarios_estucturados.md  
+      - 🔹Ficheros de acceso aleatorio: T2_Gestion_del_contenido/Acceso_aleatorio.md
 - Ficheros con formatos diferentes:
-    - 🔹Introducción: AD_T3_Fitxers_de_diferents_formats/intro.md
-    - 🔹Serialización de Objetos: AD_T3_Fitxers_de_diferents_formats/seriaci_dobjectes.md
-    - 🔹Ficheros de intercambio: AD_T3_Fitxers_de_diferents_formats/ficheros_intercambio.md    
-    - 🔹Conversión entre formatos diferentes: AD_T3_Fitxers_de_diferents_formats/Conversion.md
-    # - Exercicis: AD_T3_Fitxers_de_diferents_formats/exercicis.md
-    # - Programación de componentes: Componentes.md    
-# - Resumen: 
-  #  - Tipos de ficheros: Resumen_tipos.md    
+    - 🔹Introducción: T3_Formatos_diferentes/intro.md
+    - 🔹Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
+    - 🔹Ficheros de intercambio: T3_Formatos_diferentes/ficheros_intercambio.md    
+    - 🔹Conversión entre formatos diferentes: T3_Formatos_diferentes/Conversion.md
+   
        

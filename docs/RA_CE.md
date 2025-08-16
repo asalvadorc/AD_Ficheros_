@@ -1,4 +1,4 @@
-# 🗂️ Tabla resumen: Contenidos vs Criterios de Evaluación
+# 🗂️ Contenidos vs Criterios de Evaluación
 
 | Nº | Contenido Didáctico                                      | Criterios de Evaluación Relacionados      |
 |----|-----------------------------------------------------------|-------------------------------------------|

@@ -15,6 +15,19 @@ La clase **java.nio.file.Files** es el otro punto de entrada a la librería de f
     - **Path**: Representa rutas a archivos o directorios
     - **Files**: Permite operaciones sobre archivos usando Path
 
+
+!!!warning "Ejemplos"
+    Los siguientes ejemplos los crearemos en un proyecto nuevo, llamado **Ficheros**.
+
+    En este proyecto crearemos tres paquetes (**sistema**, **contenido** y **formatos**) para organizar los diferentes ejemplos.
+
+    ![Ref](new_project.png)|![Ref](paquetes.png)
+
+    
+    
+!!!warning "Ejemplos"
+    Los siguientes ejemplo se incluirán en el paquete **sistema**.  
+
 ### 🔹Paths
 
 La clase **Paths** es una clase de utilidad que proporciona métodos estáticos para crear objetos **Path**, que luego puedes usar con métodos de **Files**.

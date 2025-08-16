@@ -18,6 +18,9 @@
 
 ## 🔹 Ejemplos de Conversión
 
+!!!warning "Ejemplos"
+    Los siguientes ejemplos tamién se incluirán en el proyecto **Ficheros_Gradle**.
+
 En los siguientes ejemplos trabajaremos con tres archivos en diferentes formatos: **CSV**, **XML** y **JSON**. Estos archivos contienen información similar, representada con distinta estructura y sintaxis según el formato y los utilizaremos como base para realizar ejercicios de conversión entre formatos, análisis de estructura y lectura/escritura desde aplicaciones en Kotlin o Java.
 
 A continuación, se muestran los contenidos de los archivos que usaremos:

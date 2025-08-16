@@ -23,6 +23,11 @@ TOML/INI|	Archivos de configuración estructurada.|	Soportado por librerías ext
 - YAML / TOML: en archivos de configuración de aplicaciones.
 - PROTOBUF / AVRO: en comunicaciones eficientes, microservicios, Big Data.
 
+!!!warning "Ejemplos"
+    Los siguientes ejemplos se incluirán en un proyecto nuevo llamado **Ficheros_Gradle**.
+
+    ![Ref](new_project_gradle.png)|![Ref](ejemplos_intercambio.png)
+
 
 ## 🔹Dependencias Gradle
 

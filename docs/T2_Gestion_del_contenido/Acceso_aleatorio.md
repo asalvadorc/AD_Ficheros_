@@ -98,6 +98,10 @@ Se utiliza para indicar si el archivo se va a: Leer (READ), Escribir (WRITE), Cr
             StandardOpenOption.CREATE
             )
 
+
+!!!warning "Ejemplos"
+    Los siguientes ejemplos se incluirán en el paquete **contenido** del proyecto **Ficheros**.      
+
 🖥️ **Ejemplo_acceso_posicion.kt**: realiza una operación básica de lectura y escritura de archivo de texto usando FileChannel y ByteBuffer. 
 
         // Importamos las clases necesarias

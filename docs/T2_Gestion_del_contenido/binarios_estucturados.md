@@ -29,6 +29,10 @@ En contextos donde se requiera rendimiento avanzado o acceso aleatorio, puede us
 |                    | `readByte()`                     | Byte                   | Lee un byte                                               |
 |                    | `readShort()`                    | Entero corto           | Lee un short                                              |
 
+
+!!!warning "Ejemplos"
+    Los siguientes ejemplos se incluirán en el paquete **contenido** del proyecto **Ficheros**.
+
 🖥️ **Ejemplo_binario_estructurado.kt**: Lectura y escritura en ficheros binarios (con tipos primitivos).
 
         import java.io.DataInputStream

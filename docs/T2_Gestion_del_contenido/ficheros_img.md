@@ -21,7 +21,8 @@ En la plataforma Java (y por tanto en Kotlin), **el manejo de imágenes** se hac
 | Imagen                 | `ImageIO.read(Path/File)`           | `ImageIO.write(BufferedImage, ...)`   | Usa `javax.imageio.ImageIO`                             |
 
 
-
+!!!warning "Ejemplos"
+    Los siguientes ejemplos se incluirán en el paquete **contenido** del proyecto **Ficheros**. 
 
 🖥️ **Ejemplo_generar_imagen.kt:** genera una imagen de ejemplo.
 
