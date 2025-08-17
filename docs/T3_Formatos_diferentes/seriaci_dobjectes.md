@@ -47,7 +47,9 @@ excepción de tipos **ClassCastExeception**. Además, es necesario que la aplica
 **ClassNotFoundException**.
 
 !!!warning "Ejemplos"
-    Los siguientes ejemplos se incluirán en el paquete **formato** del proyecto **Ficheros**.
+    Los siguientes ejemplos se incluirán en el paquete **formatos** del proyecto **Ficheros**.
+
+    ![Ref](paquetes.png)
 
 Los pasos para serializar un objeto java (kotlin) son los siguientes:
 

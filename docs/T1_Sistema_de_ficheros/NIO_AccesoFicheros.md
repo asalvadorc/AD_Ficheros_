@@ -1,4 +1,14 @@
-## Acceso al sistema de ficheros. Java.nio 
+# Acceso al sistema de ficheros. Java.nio 
+
+
+!!!warning "Ejemplos"
+    Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos un proyecto llamado **Ficheros**.
+
+    Dentro de este proyecto crearemos tres paquetes (**sistema**, **contenido** y **formatos**) para organizar los diferentes ejemplos, que en cada tema se indicará claramente dónde deben ubicarse.
+
+    ![Ref](new_project.png)|![Ref](paquetes.png)
+
+
 
 Durante muchos años se ha utilizado la librería **java.io** para trabajar con ficheros en el mundo Java. Se trata de un **API** muy potente y flexible que nos permite realizar casi cualquier tipo de operación. Sin embargo es una API complicada de entender. **Java.nio** (New IO) es una nueva API disponible desde Java7 que nos permite mejorar el rendimiento, así como simplificar el manejo de muchas operaciones. 
 
@@ -16,19 +26,11 @@ La clase **java.nio.file.Files** es el otro punto de entrada a la librería de f
     - **Files**: Permite operaciones sobre archivos usando Path
 
 
-!!!warning "Ejemplos"
-    Los siguientes ejemplos los crearemos en un proyecto nuevo, llamado **Ficheros**.
-
-    En este proyecto crearemos tres paquetes (**sistema**, **contenido** y **formatos**) para organizar los diferentes ejemplos.
-
-    ![Ref](new_project.png)|![Ref](paquetes.png)
-
     
-    
-!!!warning "Ejemplos"
-    Los siguientes ejemplo se incluirán en el paquete **sistema**.  
+!!!Warning "Ejemplos"
+    Los siguientes ejemplo se incluirán en el paquete **sistema** dentro del proyectos **Ficheros**.  
 
-### 🔹Paths
+## 🔹Paths
 
 La clase **Paths** es una clase de utilidad que proporciona métodos estáticos para crear objetos **Path**, que luego puedes usar con métodos de **Files**.
 
@@ -69,7 +71,7 @@ La clase **Paths** es una clase de utilidad que proporciona métodos estáticos 
         }
 
 
-### 🔹Path
+## 🔹Path
 
 La clase **Path** Se utiliza junto con la clase **Files** para realizar operaciones como lectura, escritura, copia, o eliminación de archivos.  
 La forma mas sencilla de construir un objeto que cumpla la interfaz **Path** es a partir de la clase **java.nio.file.Paths**, que tiene métodos estáticos que retornan objetos Path a partir de una representación tipo String del path deseado.  
@@ -134,7 +136,7 @@ Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
         
 
 
-### 🔹Files
+## 🔹Files
 
 La clase **Files** es el otro punto de entrada a la librería de ficheros de Java. Es la que nos permite manejar ficheros reales del disco desde Java.  
 Esta clase tiene métodos estáticos para el manejo de ficheros, los métodos de la clase **Files** trabajan sobre objetos **Path**.  
@@ -397,7 +399,7 @@ El siguiente ejemplo recorre la estructura home en tu sistema, indicando los per
 
 
 
-### 🔹FileSystem
+## 🔹FileSystem
 
 En la biblioteca **java.nio** podemos encontrar otras clases que complementan y amplían lo que se puede hacer con **java.nio.file.Path**.
 
@@ -450,7 +452,7 @@ Pero usando FileSystems.getDefault() puedes:
         }
 
 
-### 🔹BasicFileAttributes  
+## 🔹BasicFileAttributes  
 
 BasicFileAttributes permite obtener **información detallada sobre archivos y directorios**, como fecha de creación, tamaño, etc.
 
@@ -481,7 +483,7 @@ BasicFileAttributes permite obtener **información detallada sobre archivos y di
         }
     }
 
-### 🔹FileStore
+## 🔹FileStore
 
 FileStore permite obtener **información sobre el sistema de archivos**, como el espacio disponible.
 

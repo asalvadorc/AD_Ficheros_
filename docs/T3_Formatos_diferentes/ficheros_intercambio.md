@@ -24,8 +24,8 @@ TOML/INI|	Archivos de configuración estructurada.|	Soportado por librerías ext
 - PROTOBUF / AVRO: en comunicaciones eficientes, microservicios, Big Data.
 
 !!!warning "Ejemplos"
-    Los siguientes ejemplos se incluirán en un proyecto nuevo llamado **Ficheros_Gradle**.
-
+    Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos un proyecto llamado **Ficheros_Gradle**.
+    
     ![Ref](new_project_gradle.png)|![Ref](ejemplos_intercambio.png)
 
 

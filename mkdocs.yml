@@ -37,11 +37,11 @@ nav:
 - Manejo de ficheros:
     - 🔹Formas de acceso a un fichero: T2_Gestion_del_contenido/Formas_acceso.md
     - 🔹Clases y métodos sobre ficheros. Java.nio: T2_Gestion_del_contenido/clases.md
-    - 🔹Lectura y escritura de ficheros: 
-      - 🔹Ficheros de texto y binarios: T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md
-      - 🔹Ficheros de imagen: T2_Gestion_del_contenido/ficheros_img.md
-      - 🔹Ficheros binarios estructurados: T2_Gestion_del_contenido/binarios_estucturados.md  
-      - 🔹Ficheros de acceso aleatorio: T2_Gestion_del_contenido/Acceso_aleatorio.md
+    - 🔹Lectura y escritura de ficheros: T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md
+      #- 🔹Ficheros de texto y binarios: T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md
+      #- 🔹Ficheros de imagen: T2_Gestion_del_contenido/ficheros_img.md
+      #- 🔹Ficheros binarios estructurados: T2_Gestion_del_contenido/binarios_estucturados.md  
+      #- 🔹Ficheros de acceso aleatorio: T2_Gestion_del_contenido/Acceso_aleatorio.md
 - Ficheros con formatos diferentes:
     - 🔹Introducción: T3_Formatos_diferentes/intro.md
     - 🔹Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
