@@ -1,4 +1,4 @@
-site_name: AD - Accés a Dades - Ficheros
+site_name: AD - Acceso a Datos - Ficheros
 
 extra_css:
   - css/extra.css
@@ -12,12 +12,9 @@ theme:
     - navigation.tabs
     - copy-to-clipboard
     - content.code.copy
-  #highlightjs: true
   logo: assets/logocaminas.png
     
 
-#extra_javascript:
-#  - js/extra.js
 
 
 markdown_extensions:
@@ -38,10 +35,6 @@ nav:
     - 🔹Formas de acceso a un fichero: T2_Gestion_del_contenido/Formas_acceso.md
     - 🔹Clases y métodos sobre ficheros. Java.nio: T2_Gestion_del_contenido/clases.md
     - 🔹Lectura y escritura de ficheros: T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md
-      #- 🔹Ficheros de texto y binarios: T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md
-      #- 🔹Ficheros de imagen: T2_Gestion_del_contenido/ficheros_img.md
-      #- 🔹Ficheros binarios estructurados: T2_Gestion_del_contenido/binarios_estucturados.md  
-      #- 🔹Ficheros de acceso aleatorio: T2_Gestion_del_contenido/Acceso_aleatorio.md
 - Ficheros con formatos diferentes:
     - 🔹Introducción: T3_Formatos_diferentes/intro.md
     - 🔹Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
