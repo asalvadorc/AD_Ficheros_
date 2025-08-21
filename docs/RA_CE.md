@@ -1,4 +1,8 @@
-# 🗂️ Contenidos vs Criterios de Evaluación
+
+# R1. Desarrolla aplicaciones que gestionan información almacenada en ficheros identificando el campo de aplicación de los mismos y utilizando clases específicas.
+
+
+**Contenidos vs Criterios de Evaluación**{.azul}
 
 | Nº | Contenido Didáctico                                      | Criterios de Evaluación Relacionados      |
 |----|-----------------------------------------------------------|-------------------------------------------|
@@ -12,7 +16,7 @@
 | 8  | Pruebas y documentación de aplicaciones                   | g) Pruebas y documentación                |
 
 
-# 🎓 Rúbrica de Evaluación - Acceso y gestión de ficheros en Kotlin
+**Rúbrica de Evaluación - Acceso y gestión de ficheros en Kotlin**{.azul}
 
 | Criterio de Evaluación                          | Indicador de logro                                                 | Nivel Excelente (10)                      | Nivel Satisfactorio (7)               | Nivel Básico (5)                         | Nivel Insuficiente (0-4)                    |
 |--------------------------------------------------|----------------------------------------------------------------------|-------------------------------------------|--------------------------------------|----------------------------------------|-----------------------------------------------|
