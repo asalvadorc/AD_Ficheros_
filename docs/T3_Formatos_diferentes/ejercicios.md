@@ -43,7 +43,7 @@ Implementa funciones para **leer** cada uno de los ficheros anteriores y mostrar
 
 ---
 
-## 📚 Requisitos técnicos
+## 🛠️ Requisitos técnicos
 
 * Utiliza `Path`, `Files`, `StandardOpenOption` y otras clases de `java.nio.file`.
 * Mantén el código limpio, estructurado y bien comentado.

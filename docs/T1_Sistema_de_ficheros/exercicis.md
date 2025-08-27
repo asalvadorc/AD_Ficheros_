@@ -73,7 +73,7 @@ El programa debe:
 ---
 
 
-## 📊 Rúbrica de evaluación
+## ✅ Rúbrica de evaluación
 
 
 | Criterio                         | Puntuación máxima |
