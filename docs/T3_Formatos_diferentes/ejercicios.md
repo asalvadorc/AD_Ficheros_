@@ -10,30 +10,30 @@ Se pide crear un programa que trabaje con una ficha de usuario (`Ficha`: nombre,
 
 **🔧 Parte 1: Guardar**{.azul}
 
-Crea un objeto `Ficha` como el siguiente:
+Crea un objeto **Ficha** como el siguiente:
 
-```kotlin
-val ficha = Ficha(
-    nombre = "Ana",
-    edad = 30,
-    biografia = "Ingeniera de software apasionada por la IA y la educación.",
-    preferencias = Preferencias(
-        lenguaje = "Kotlin",
-        editor = "IntelliJ",
-        tema = "oscuro"
-    )
-)
-```
 
-Implementa funciones que guarden la información de este objeto en los siguientes formatos, dentro de una carpeta con su nombre (ej. `fichas/ficha_ana`):
+        val ficha = Ficha(
+            nombre = "Ana",
+            edad = 30,
+            biografia = "Ingeniera de software apasionada por la IA y la educación.",
+            preferencias = Preferencias(
+                lenguaje = "Kotlin",
+                editor = "IntelliJ",
+                tema = "oscuro"
+            )
+        )
+
+
+Implementa funciones que guarden la información de este objeto en los siguientes formatos, dentro de una carpeta con su nombre (ej. **fichas/ficha_ana**):
 
 1. `biografia.txt` – como texto plano.
-2. `general.csv` – en formato CSV manual (sin librerías externas).
+2. `general.csv` – en formato CSV.
 3. `notas.dat` – binario simple (solo la biografía como bytes).
 4. `registro.bin` – binario estructurado (nombre, edad, biografía).
 5. `preferencias.json` – en JSON (solo las preferencias).
-6. `ficha.xml` – como XML completo usando Jackson.
-7. `ficha.obj` – como objeto serializado (`ObjectOutputStream`).
+6. `ficha.xml` – como XML completo.
+7. `ficha.obj` – como objeto.
 
 ---
 
@@ -46,8 +46,6 @@ Implementa funciones para **leer** cada uno de los ficheros anteriores y mostrar
 ## 📚 Requisitos técnicos
 
 * Utiliza `Path`, `Files`, `StandardOpenOption` y otras clases de `java.nio.file`.
-* Utiliza `ObjectOutputStream` / `ObjectInputStream` para la serialización binaria de objetos.
-* Utiliza `jacksonObjectMapper` y `XmlMapper` para los formatos JSON y XML respectivamente.
 * Mantén el código limpio, estructurado y bien comentado.
 * Todos los archivos deben almacenarse dentro de `fichas/ficha_<nombre>`.
 

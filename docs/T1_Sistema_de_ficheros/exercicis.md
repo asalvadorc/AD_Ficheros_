@@ -3,7 +3,7 @@
 
 ## 📋 Enunciado
 
-Desarrollar un programa en **Kotlin** que permita **explorar y manipular el contenido del directorio personal del usuario (home)** utilizando la API de `java.nio.file`. El ejercicio tiene como finalidad practicar:
+Desarrollar un programa en **Kotlin** que permita **explorar y manipular el contenido del directorio personal del usuario (home)** utilizando la API de `java.nio.file`.
 
 El programa debe:
 
@@ -21,18 +21,17 @@ El programa debe:
 
 3. Mostrar información sobre el **sistema de archivos**:
 
-   * Tipo del sistema (`FileSystem`)
-   * Espacio total y libre en bytes (`FileStore`)
+   * Tipo del sistema
+   * Espacio total y libre en bytes
 
 4. Presentar un **menú interactivo** con las siguientes opciones:
 
-   ```
-   📋 Menú de acciones:
-   1. Crear un directorio en el home
-   2. Eliminar un directorio del home
-   3. Ver contenido recursivo de un directorio
-   0. Salir
-   ```
+!!!Tip "📋 Menú de acciones:"   
+         1- Crear un directorio en el home
+         2- Eliminar un directorio del home
+         3- Ver contenido recursivo de un directorio
+         0- Salir
+      
 
 ---
 
@@ -76,14 +75,17 @@ El programa debe:
 
 ## 📊 Rúbrica de evaluación
 
-| Criterio                             | Excelente (2) | Bien (1) | Insuficiente (0) |
-| ------------------------------------ | ------------- | -------- | ---------------- |
-| Exploración y atributos del home     |               |          |                  |
-| Menú funcional y navegación clara    |               |          |                  |
-| Creación de directorios              |               |          |                  |
-| Eliminación de directorios           |               |          |                  |
-| Recorrido recursivo completo         |               |          |                  |
-| Control de errores                   |               |          |                  |
-| Claridad y organización del código   |               |          |                  |
-| Comentarios y estilo del código      |               |          |                  |
+
+| Criterio                         | Puntuación máxima |
+|----------------------------------|-------------------|
+| Exploración y atributos del home | 1 |
+| Menú funcional y navegación clara| 2 |
+| Creación de directorios          | 1 |
+| Eliminación de directorios       | 1 |
+| Recorrido recursivo completo     | 2 |
+| Control de errores               | 1 |
+| Claridad y organización del código | 1 |
+| Comentarios y estilo del código  | 1 |
+| **Total**                        | **10** |
+
 

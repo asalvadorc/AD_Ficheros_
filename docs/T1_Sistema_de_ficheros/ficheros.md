@@ -13,17 +13,6 @@ A los datos que se guardan en ficheros se llaman datos persistentes, porque pers
 - **Permisos de acceso**: Se pueden configurar para permitir o restringir la lectura, escritura o ejecución a determinados usuarios o programas.
 
 
-        +--------------------+
-        |   📄 fichero.txt   |
-        +--------------------+
-        | Nombre: fichero    |
-        | Extensión: .txt    |
-        | Tamaño: 2 KB       |
-        | Ubicación: /docs   |
-        | Contenido:         |
-        | "Hola mundo..."    |
-        +--------------------+
-
 **Tipos de ficheros**{.azul}  
 
 - **Ficheros de texto**: Contienen datos en formato legible por humanos (.txt, .csv, .json, .xml).

@@ -15,7 +15,7 @@
 | 7  | Gestión de excepciones (`try-catch`, `use`)               | f) Gestión de errores y validaciones      |
 | 8  | Pruebas y documentación de aplicaciones                   | g) Pruebas y documentación                |
 
-
+<!--
 **Rúbrica de Evaluación - Acceso y gestión de ficheros en Kotlin**{.azul}
 
 | Criterio de Evaluación                          | Indicador de logro                                                 | Nivel Excelente (10)                      | Nivel Satisfactorio (7)               | Nivel Básico (5)                         | Nivel Insuficiente (0-4)                    |
@@ -27,3 +27,4 @@
 | **e)** Realiza conversiones entre formatos       | Convierte objetos entre distintos formatos                          | Maneja conversión JSON/XML/binario sin errores | Convierte objetos simples           | Solo realiza una conversión parcial       | No realiza ninguna conversión               |
 | **f)** Gestiona excepciones                      | Maneja errores de E/S y serialización con `try-catch`, `use`       | Captura excepciones concretas y previene errores | Usa `try-catch` básico               | Manejo limitado o incorrecto              | No gestiona errores ni valida               |
 | **g)** Prueba y documenta la aplicación         | Documenta, prueba y explica su funcionamiento                       | Incluye pruebas, comentarios claros y ejemplos | Comenta funciones y prueba básica   | Documentación o pruebas escasas            | No documenta ni prueba su código             |
+-->

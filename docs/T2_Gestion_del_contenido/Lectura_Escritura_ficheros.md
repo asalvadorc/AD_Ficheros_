@@ -1,15 +1,11 @@
 # 🔹Lectura y escritura de ficheros
 
-En cualquier aplicación real, tarde o temprano, necesitaremos guardar información de forma permanente. Una de las formas más comunes y sencillas de hacerlo es a través de ficheros.
-
-Un fichero es una unidad de almacenamiento que permite guardar datos en el disco, ya sea para leerlos más tarde o para compartirlos con otros programas. Puede contener texto, imágenes, configuraciones, datos binarios, etc.
-
-En este tema aprenderemos a trabajar con ambos tipos desde Kotlin, utilizando las [Clases y métodos](clases.md#Clases y métodos sobre ficheros. Java.nio) que proporciona la API de Java y, en casos más complejos, algunas librerías externas cuando sea necesario.
-
 !!!warning "Ejemplos"
-    Los siguientes ejemplos se incluirán en el paquete **contenido** dentro del proyecto **Ficheros**.
+    Los ejemplos de esta parte se incluirán en el paquete **contenido**, dentro de nuestro proyecto **Ficheros**.  
+    También será neceario crear las carpetas **documentos** y **documentos2** para guardar los archivos generados.
 
     ![Ref](paquetes.png)
+    
 
 ## 🔹Ficheros de texto y binarios
 
@@ -191,7 +187,12 @@ En la plataforma Java (y por tanto en Kotlin), **el manejo de imágenes** se hac
     }
 
 
-🖥️ **Ejemplo_img_penyagolosa.kt:** Invierte los colores de una imagen (penyagolosa.png)
+🖥️ **Ejemplo_img_penyagolosa.kt:** Invierte los colores de una imagen.  
+Copia la imagen penyagolosa.png en la capreta documentos
+
+imagen a copiar (penyagolosa.png)|imagen con los colores invertidos
+---------------|---------------------------------
+![ref](penyagolosa.png)|![ref](penyagolosa_modificada.png)|
 
     import java.awt.Color
     import java.awt.image.BufferedImage
@@ -237,7 +238,7 @@ En la plataforma Java (y por tanto en Kotlin), **el manejo de imágenes** se hac
 Aunque **java.nio.file** es la API moderna para trabajar con rutas y archivos, las clases **DataOutputStream** y **DataInputStream** de **java.io** siguen siendo la opción más adecuada para escribir y leer **binario estructurado**.
 Son más simples, seguras, portables y claras para representar estructuras secuenciales como registros.
 
-En contextos donde se requiera rendimiento avanzado o acceso aleatorio, puede usarse **FileChannel** y **ByteBuffer**, aunque su complejidad las hace menos recomendables para estructuras simples o tareas educativas.
+En contextos donde se requiera rendimiento avanzado o acceso aleatorio, puede usarse **FileChannel** y **ByteBuffer**, aunque su complejidad las hace menos recomendables.
 
 **Clases y método de  DataInputStream y DataOutputStream**{.verde}
 
@@ -307,9 +308,9 @@ En contextos donde se requiera rendimiento avanzado o acceso aleatorio, puede us
 
 ## 🔹Ficheros de acceso aleatorio
 
-Hasta el momento todos los accesos que hemos hecho a los archivos, tanto binarios como de carácter, han sido secuenciales. Esto significa que siempre empezamos por el principio del archivo hasta que llegamos a la información que queremos, o en la mayor parte de los casos hasta el final de archivo.
+Hasta el momento todos los accesos que hemos hecho a los archivos, tanto binarios como de texto, han sido secuenciales. Esto significa que siempre empezamos por el principio del archivo hasta que llegamos a la información que queremos, o en la mayor parte de los casos hasta el final de archivo.
 
-Pero, ¿y si queremos únicamente una determinada información? Afortunadamente hay otra forma de acceder, otro tipo de acceso. Se llama acceso directo o aleatorio, porque permitirá ir directamente a una posición determinada del archivo.
+Pero, ¿y si queremos únicamente una determinada información? Afortunadamente hay otra forma de acceder, otro tipo de acceso. Se llama acceso **directo o aleatorio**, porque permitirá ir directamente a una posición determinada del archivo.
 
 Cuando se necesita mayor control, eficiencia y rendimiento en el acceso a ficheros, especialmente en operaciones binarias o de acceso aleatorio, el enfoque tradicional con la clase **RandomAccessFile** de **Java.io** puede quedarse corto. Para estos casos, Java ofrece una solución moderna a través del paquete **java.nio.file** combinado con **FileChannel** y **ByteBuffer**. 
 
@@ -396,7 +397,7 @@ ByteBuffer se utiliza en archivos de acceso aleatorio porque permite leer y escr
 
 Se utiliza para indicar cómo debe abrirse o crearse un archivo al trabajar con **FileChannel** o Files.newOutputStream, Files.newByteChannel, etc.
 
-Se utiliza para indicar si el archivo se va a: Leer (READ), Escribir (WRITE), Crear (CREATE),sobrescribir (TRUNCATE_EXISTING), Añadir al final (APPEND).
+Se utiliza para indicar si el archivo se va a: **Leer (READ)**, **Escribir (WRITE)**, **Crear (CREATE)**, **sobrescribir (TRUNCATE_EXISTING)**, **Añadir al final (APPEND)**.
 
 
         val canal = FileChannel.open(
@@ -407,7 +408,7 @@ Se utiliza para indicar si el archivo se va a: Leer (READ), Escribir (WRITE), Cr
 
       
 
-🖥️ **Ejemplo_acceso_posicion.kt**: realiza una operación básica de lectura y escritura de archivo de texto usando FileChannel y ByteBuffer. 
+🖥️ **Ejemplo_acceso_posicion.kt**: realiza una operación básica de lectura y escritura de archivo de texto usando **FileChannel** y **ByteBuffer**. 
 
         // Importamos las clases necesarias
         import java.nio.ByteBuffer                      // Para gestionar buffers de bytes
@@ -451,7 +452,7 @@ Se utiliza para indicar si el archivo se va a: Leer (READ), Escribir (WRITE), Cr
 
 
 
-🖥️ **Ejemplo_acceso_aleatorio.kt** : acceso directo a posiciones en un archivo con FileChannel y ByteBuffer
+🖥️ **Ejemplo_acceso_aleatorio.kt** : acceso directo a posiciones en un archivo con **FileChannel** y **ByteBuffer**.
 
         import java.nio.ByteBuffer
         import java.nio.channels.FileChannel

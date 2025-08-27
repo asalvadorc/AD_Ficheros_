@@ -21,10 +21,9 @@
 !!!warning "Ejemplos"
     Los siguientes ejemplos tamién se incluirán en el proyecto **Ficheros_Gradle**.
 
-En los siguientes ejemplos trabajaremos con tres archivos en diferentes formatos: **CSV**, **XML** y **JSON**. Estos archivos contienen información similar, representada con distinta estructura y sintaxis según el formato y los utilizaremos como base para realizar ejercicios de conversión entre formatos, análisis de estructura y lectura/escritura desde aplicaciones en Kotlin o Java.
+En los siguientes ejemplos trabajaremos con tres archivos en diferentes formatos: **CSV**, **XML** y **JSON**. Estos archivos contienen información similar, representada con distinta estructura y sintaxis según el formato. Los utilizaremos como base para realizar ejercicios de conversión entre formatos.
 
-A continuación, se muestran los contenidos de los archivos que usaremos:
-
+Contenido de los archivos:
 
 
 | **alumnos.csv** | **persona.xml** | **persona.json** |
@@ -34,7 +33,9 @@ A continuación, se muestran los contenidos de los archivos que usaremos:
 
 ### **CSV a JSON**{.azul}
 
-🖥️ **Ejemplo_convertir_csv_a_json.kt** - En estos ejemplos utilizamos **Jackson** pero se podría también utilizar **Kotlinx.serialization**.
+En estos ejemplos utilizamos **Jackson**, pero se podría  utilizar también **Kotlinx.serialization**.
+
+🖥️ **Ejemplo_convertir_csv_a_json.kt**
 
         import com.opencsv.CSVReaderBuilder
         import com.opencsv.CSVParserBuilder
@@ -165,6 +166,9 @@ A continuación, se muestran los contenidos de los archivos que usaremos:
 
 ### **JSON a XML**{.azul}
 
+En estos ejemplos utilizamos **Jackson**.
+
+
 🖥️ Ejemplo_convertir_json_a_xml.kt
 
         import com.fasterxml.jackson.databind.ObjectMapper
@@ -217,6 +221,8 @@ A continuación, se muestran los contenidos de los archivos que usaremos:
 
 
 ### **JSON a Binario estructurado**{.azul}
+
+En estos ejemplos utilizamos **kotlinx.serialization**.
 
 🖥️ **Ejemplo_convertir_json_a_binario.kt**
 

@@ -47,7 +47,7 @@ excepción de tipos **ClassCastExeception**. Además, es necesario que la aplica
 **ClassNotFoundException**.
 
 !!!warning "Ejemplos"
-    Los siguientes ejemplos se incluirán en el paquete **formatos** del proyecto **Ficheros**.
+    Los ejemplos de esta parte se incluirán en el paquete **formatos**, dentro de nuestro proyecto **Ficheros**. 
 
     ![Ref](paquetes.png)
 

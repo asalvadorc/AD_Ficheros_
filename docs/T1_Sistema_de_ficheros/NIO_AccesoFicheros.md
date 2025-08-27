@@ -1,10 +1,10 @@
 # Acceso al sistema de ficheros. Java.nio 
 
 
-!!!warning "Ejemplos"
-    Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos un proyecto llamado **Ficheros**.
+!!!warning "Proyecto Ficheros"
+    Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos en **IntelliJ** un proyecto llamado **Ficheros**.
 
-    Dentro de este proyecto crearemos tres paquetes (**sistema**, **contenido** y **formatos**) para organizar los diferentes ejemplos, que en cada tema se indicará claramente dónde deben ubicarse.
+    Dentro de este proyecto crearemos tres paquetes (**sistema**, **contenido** y **formatos**) para organizar los diferentes ejemplos, que en cada ocasión se indicará en que paquete deben ubicarse.
 
     ![Ref](new_project.png)|![Ref](paquetes.png)
 
@@ -28,7 +28,7 @@ La clase **java.nio.file.Files** es el otro punto de entrada a la librería de f
 
     
 !!!Warning "Ejemplos"
-    Los siguientes ejemplo se incluirán en el paquete **sistema** dentro del proyectos **Ficheros**.  
+    Los siguientes ejemplos se incluirán en el paquete **sistema** dentro del proyecto **Ficheros**.  
 
 ## 🔹Paths
 
@@ -79,27 +79,22 @@ Por supuesto, no es necesario que los ficheros existan de verdad en el disco dur
 
 Un objeto Path puede representarse de dos formas:
 
-**Ruta absoluta**
-    
-    - val path = Paths.get("/home/usuario/archivo.txt")
-**Ruta relativa**
-    
-    - val path = Paths.get("documentos/ejemplo.txt")
-    println(path.toAbsolutePath())
+- **Ruta absoluta**   
+
+        val path = Paths.get("/home/usuario/archivo.txt")   
+
+- **Ruta relativa**   
+     
+        val path = Paths.get("documentos/ejemplo.txt")
+        println(path.toAbsolutePath())
 
 
  
 Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
 
-- Recuperar partes de una ruta
-- Eliminar redundancias de una ruta
-- Convertir una ruta
-- Unir dos rutas
-- Crear una ruta relativa a otra dada
-- Comparar dos rutas
-  
 
-|Método     |Métodos principales|
+
+|Método     |Operaciones|
 |-----------|---------------|
 |startsWith(Path other)|	Comprueba si la ruta empieza con otra ruta dada.|
 |endsWith(Path other)|	Comprueba si la ruta termina con otra ruta dada.|
@@ -147,21 +142,16 @@ Esta clase tiene métodos estáticos para el manejo de ficheros, los métodos de
 
 Las **operaciones** y **métodos** principales a realizar con Files son:
 
-  - Verificación de existencia y accesibilidad
-  - Borrar un archivo o directorio
-  - Copiar un archivo o directorio
-  - Mover un archivo o directorio
 
-
-|Método     |Métodos principales|
-|-----------|---------------|
-|Verificación|	exists(), isDirectory(), isRegularFile(), isReadable()|
-|Crear|	createFile(), createDirectory(), createDirectories()|
-|Eliminar|	delete(), deleteIfExists()|
-|Mover|	move(origen, destino)|
-|Copiar|	copy(origen, destino)|
-|Listar|	list(), walk()|
-|Atributos|	size(), getLastModifiedTime(), getOwner(), getAttribute()|
+|Método     |Operaciones
+|-----------|---------------
+|exists(), isDirectory(), isRegularFile(), isReadable()|Verificación
+|createFile(), createDirectory(), createDirectories()|Crear
+|delete(), deleteIfExists()|Eliminar
+|move(origen, destino)|Mover
+|copy(origen, destino)|Copiar
+|list(), walk()|Listar
+|size(), getLastModifiedTime(), getOwner(), getAttribute()|Atributos
 
 
 🖥️ **Ejemplo_permisos.kt**: existencia y comprobación de permisos
@@ -221,6 +211,7 @@ Las **operaciones** y **métodos** principales a realizar con Files son:
 
         }
 
+**Gestión de errores y validaciones**{.azul}
 
 El método  **delete(Path)** borra el fichero o directorio o lanza una excepción si el borrado falla. El siguiente ejemplo muestra como capturar y gestionar las excepciones que pueden producirse en el borrado. Si el fichero o directorio no existe, la excepción que se produce es  **NoSuchFileException**. Los sucesivos **cath** permiten determinar por  que ha fallado el borrado:
 
@@ -242,7 +233,7 @@ El método  **delete(Path)** borra el fichero o directorio o lanza una excepció
             }
 
 
-!!!Note ""
+!!!Warning ""
     El metodo **deleteIfExists(Path)** tambien borra el fichero o directorio, pero no lanza ningun error en caso de que el fichero o directorio no exista.
 
 

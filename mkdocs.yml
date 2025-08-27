@@ -5,6 +5,9 @@ extra_css:
   - img/favicon.ico 
   - css/copy-button.css
 
+extra_javascript:
+  - js/copy-button.js  
+
 theme: 
   name: readthedocs
   features:
@@ -15,8 +18,7 @@ theme:
     - content.code.copy
   logo: assets/logocaminas.png
     
-extra_javascript:
-  - js/copy-button.js
+
 
 markdown_extensions:
   - admonition
