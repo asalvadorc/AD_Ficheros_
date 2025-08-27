@@ -1,5 +1,5 @@
 
-# R1. Desarrolla aplicaciones que gestionan información almacenada en ficheros identificando el campo de aplicación de los mismos y utilizando clases específicas.
+# RA1. Desarrolla aplicaciones que gestionan información almacenada en ficheros identificando el campo de aplicación de los mismos y utilizando clases específicas.
 
 
 **Contenidos vs Criterios de Evaluación**{.azul}

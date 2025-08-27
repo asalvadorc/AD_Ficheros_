@@ -93,25 +93,23 @@ En el fichero **build.gradle.kts** se incluirán los plugins y dependencias nece
 
 El formato CSV es un archivo de texto donde los valores están separados por comas u otro delimitador (como punto y coma), muy usado para intercambiar datos entre hojas de cálculo, sistemas contables, etc.
 
-La lectura y escrituara de un archivo CSV se puede hacer de dos maneras:
+La lectura y escrituara de un archivo CSV se puede hacer de tres formas:
 
-1. Sin utilizar librerías y mediante la lectura línea a línea + split().
-2. Con la librería OpenCSV.
-3. Con la librería Kotlin-CSV.
-
-
-**Ejemplo de lectura y escritura de un archivo CSV sin librerias y con la librería OpenCSV**{.azul}
-
-contenido del archivo CSV:
-
-        Lucía;9
-        Carlos;8
-        Elena;10
+1. **Sin utilizar librerías** y mediante la lectura línea a línea + split().
+2. Con la librería **OpenCSV**.
+3. Con la librería **Kotlin-CSV**.
 
 
+En los siguientes ejemplos vemos como leer y escribir un archivo CSV de estas tres formas:  
 
+!!!Tip "Contenido del archivo CSV"
+    Lucía;9  
+    Carlos;8  
+    Elena;10  
 
-🖥️ 1- **Ejemplo_CSV_lect_esc.kt**: Sin librerias.
+🖥️ **1- Sin librerías**{.azul}
+
+**Ejemplo_CSV_lect_esc.kt**
 
         import java.nio.file.Files
         import java.nio.file.Paths
@@ -150,17 +148,40 @@ contenido del archivo CSV:
 
 
 
-🖥️ 2- **Ejempo_OpenCSV_lect_esc.kt**: Con OpenCSV
+🖥️ **2- Con OpenCSV**{.azul}
 
-| Método de OpenCSV                         | ¿Qué hace?                                                     | Ejemplo básico                                                         |
-|-------------------------------------------|------------------------------------------------------------------|------------------------------------------------------------------------|
-| `CSVReader(FileReader)`                   | Crea un lector de líneas CSV.                                   | `val reader = CSVReader(FileReader("archivo.csv"))`                   |
-| `readAll()`                               | Lee todo el contenido como `List<Array<String>>`.               | `val filas = reader.readAll()`                                        |
-| `readNext()`                              | Lee una fila (línea) del CSV como `Array<String>`.              | `val fila = reader.readNext()`                                        |
-| `CSVWriter(FileWriter)`                   | Crea un escritor CSV.                                           | `val writer = CSVWriter(FileWriter("salida.csv"))`                    |
-| `writeNext(Array<String>)`                | Escribe una línea al CSV.                                       | `writer.writeNext(arrayOf("Mario", "35"))`                            |
-|
+!!!Note "Nota"
+    **OpenCSV** fue desarrollado antes de que **java.nio.file.Path** se introdujera en Java 7, y sus métodos aún usan la API antigua **(java.io.*)**, como FileReader y FileWriter.
 
+**Lectura con OpenCSV**{.verde}
+
+| Clase / Método          | ¿Qué hace?                                                              | Ejemplo básico                                         |
+| ----------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------ |
+| `CSVReader(FileReader)` | Crea un lector de archivos CSV.                                         | `val reader = CSVReader(FileReader("archivo.csv"))`    |
+| `readAll()`             | Lee todo el contenido como `List<Array<String>>`.                       | `val filas = reader.readAll()`                         |
+| `readNext()`            | Lee una fila como `Array<String>`.                                      | `val fila = reader.readNext()`                         |
+| `close()`               | Cierra el lector.                                                       | `reader.close()`                                       |
+| `CSVReaderBuilder(...)` | Permite configurar el lector: separador, comillas, salto de línea, etc. | `CSVReaderBuilder(FileReader(...)).withSeparator(';')` |
+| `withSkipLines(n)`      | Omite las primeras `n` líneas (útil para saltar cabeceras).             | `withSkipLines(1)`                                     |
+| `build()`               | Construye el lector configurado.                                        | `build()`                                              |
+
+**Escritura con OpenCSV**{.verde}
+
+
+| Clase / Método                  | ¿Qué hace?                                                          | Ejemplo básico                                         |
+| ------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------ |
+| `CSVWriter(FileWriter)`         | Crea un escritor CSV básico.                                        | `val writer = CSVWriter(FileWriter("archivo.csv"))`    |
+| `writeNext(Array<String>)`      | Escribe una línea al CSV.                                           | `writer.writeNext(arrayOf("Ana", "30"))`               |
+| `writeAll(List<Array<String>>)` | Escribe múltiples filas al CSV.                                     | `writer.writeAll(listaFilas)`                          |
+| `flush()`                       | Fuerza la escritura del buffer.                                     | `writer.flush()`                                       |
+| `close()`                       | Cierra el escritor.                                                 | `writer.close()`                                       |
+| `CSVWriterBuilder(...)`         | Permite configurar el escritor: delimitador, comillas, escape, etc. | `CSVWriterBuilder(FileWriter(...)).withSeparator(';')` |
+| `withQuoteChar(c)`              | Define el carácter de comillas (por defecto es `"`).                | `withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)`          |
+| `withEscapeChar(c)`             | Define el carácter de escape (por defecto `\`).                     | `withEscapeChar('\\')`                                 |
+| `withLineEnd(e)`                | Define el carácter de fin de línea.                                 | `withLineEnd("\n")`                                    |
+| `build()`                       | Construye el escritor configurado.                                  | `build()`                                              |
+
+**Ejempo_OpenCSV_lect_esc.kt**
 
         import com.opencsv.CSVReaderBuilder
         import com.opencsv.CSVWriterBuilder
@@ -170,6 +191,8 @@ contenido del archivo CSV:
         import java.nio.file.Paths
 
         fun main() {
+
+            //Convierte el Path en un File, ya que FileWriter acepta File.
             val ruta = Paths.get("documentos/alumnosOpenCSV.csv").toFile()
 
             // 1. Escribir el archivo CSV con punto y coma como separador
@@ -210,14 +233,17 @@ contenido del archivo CSV:
 !!!Note "Nota"
     El archivo CSV generado sin librerías es un archivo de texto plano con el separador **;**, pero sin comillas y sin escape. En cambio, el fichero CSV generado con OpenCSV sigue el estantar CSV (RFC 4180) que incluye encerrar los campos entre comillas dobles, si el campo contiene el separador (como **;** o **,**).
 
+🖥️ **3- Con Kotlin-CSV**{.azul}
 
-🖥️ 3- **Ejempo_KotlinCSV_lect_esc.kt**: Con Kotlin-CSV
-
+!!!Note "Nota"
+    la librería **kotlin-csv** también utiliza **java.io.File** para muchas de sus operaciones principales, aunque de una forma un poco más moderna y flexible que **OpenCSV**.
 
 
 Tradicionalmente, en entornos Java se ha utilizado la librería OpenCSV para leer y escribir este tipo de archivos, debido a su potencia y versatilidad.
 
 Sin embargo, cuando desarrollamos en Kotlin, existen alternativas más modernas y adaptadas al lenguaje. Una de ellas es kotlin-csv, una librería ligera y expresiva diseñada específicamente para aprovechar las ventajas de Kotlin, como las expresiones lambda, la sintaxis DSL y el trabajo con secuencias (sequences) y corrutinas.   
+
+Las funciones **csvWriter** y **csvReader**, proporcionadas por la librería kotlin-csv, están diseñadas para hacer más fácil y legible la lectura y escritura de archivos CSV en Kotlin.
 
 | Tipo        | Método                        | Ejemplo mínimo |
 |-------------|-------------------------------|----------------|
@@ -231,6 +257,7 @@ Sin embargo, cuando desarrollamos en Kotlin, existen alternativas más modernas 
 
 
 
+**Ejempo_KotlinCSV_lect_esc.kt**
 
         import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
         import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
@@ -314,7 +341,7 @@ En Kotlin, existen varias librerías que permiten trabajar con ficheros JSON de 
 
 
 
-Cuando trabajamos con ficheros JSON en Kotlin, existen dos formas de acceder a los datos: tratarlos como texto plano o estructuras genéricas, o convertirlos directamente en objetos Kotlin. Aunque la primera opción es posible y útil en ciertos casos, trabajar sin conversión implica mayor esfuerzo manual, riesgo de errores en los nombres de claves y ausencia de validación de tipos. En cambio, **kotlinx.serialization** ofrece una solución nativa, segura y eficaz que permite mapear directamente estructuras JSON en clases de datos (data class) mediante la anotación **@Serializable**.
+Cuando trabajamos con ficheros JSON en Kotlin, existen dos formas de acceder a los datos: tratarlos como texto plano o estructuras genéricas, o convertirlos directamente en objetos Kotlin. Aunque la primera opción es posible y útil en ciertos casos, trabajar sin conversión implica mayor esfuerzo manual, riesgo de errores en los nombres de claves y ausencia de validación de tipos. En cambio, **kotlinx.serialization** ofrece una solución nativa, segura y eficaz que permite mapear directamente estructuras JSON en clases de datos (data class) mediante la anotación **@Serializable**. Del mismo modo, la librería **Jackson** también permite trabajar directamente con objetos, facilitando tanto la serialización como la deserialización de datos estructurados.
 
 Esto proporciona importantes **ventajas**:  
 
@@ -760,8 +787,7 @@ La mejor forma de trabajar con XML en **Kotlin** es utlizar la librería **DOM**
 
 ### 🔹JDOM2
 
-JDOM2 es una librería Java (Kotlin) que permite leer, crear, modificar y guardar archivos XML de forma sencilla y orientada a objetos.
-
+**JDOM2** es una librería ligera y fácil de usar para trabajar con **XML** de forma manual y controlada, ideal cuando no necesitas convertir directamente a objetos, sino manipular el contenido de manera estructurada.
 
 
 Clase|	¿Para qué sirve?

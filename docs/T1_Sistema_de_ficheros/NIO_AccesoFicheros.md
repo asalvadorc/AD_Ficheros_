@@ -37,8 +37,8 @@ La clase **Paths** es una clase de utilidad que proporciona métodos estáticos 
      
 |Método     |Descripción|
 |-----------|-----------|
-|- get(String first, String... mor e)|	Crea un objeto Path a partir de una o más cadenas.|
-|- get(URI uri)|	Crea un Path desde un URI que debe ser del esquema file:///.  |      
+| **get(String first, String... )**|	Crea un objeto Path a partir de una o más cadenas.|
+| **get(URI uri)**|	Crea un Path desde un URI que debe ser del esquema file:///.  |      
 
 !!!Note ""
     El uso de **Paths.get(...)** en Java (o Kotlin) no implica que el archivo o directorio exista. Este método simplemente crea una instancia de Path que representa una ruta en el sistema de archivos, pero no accede al disco ni verifica su existencia.
@@ -77,10 +77,12 @@ La clase **Path** Se utiliza junto con la clase **Files** para realizar operacio
 La forma mas sencilla de construir un objeto que cumpla la interfaz **Path** es a partir de la clase **java.nio.file.Paths**, que tiene métodos estáticos que retornan objetos Path a partir de una representación tipo String del path deseado.  
 Por supuesto, no es necesario que los ficheros existan de verdad en el disco duro para que se puedan crear los objetos Path correspondientes.
 
-Un objeto Path puede representar una ruta **absoluta**:
+Un objeto Path puede representarse de dos formas:
+
+**Ruta absoluta**
     
     - val path = Paths.get("/home/usuario/archivo.txt")
-o **relativa**:
+**Ruta relativa**
     
     - val path = Paths.get("documentos/ejemplo.txt")
     println(path.toAbsolutePath())
@@ -106,6 +108,8 @@ Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
 |iterator()|	Permite recorrer los directorios y subdirectorios.|
 |toString()|	Devuelve la representación de la ruta como un String.|
 |toAbsolutePath()|	Devuelve la ruta absoluta de este Path.|
+|resolve()|Une dos partes de una ruta de forma correcta sin preocuparte de las barras /|
+|toFile()|Convierte un objeto Path (de java.nio.file.Path) a un objeto File (de la clase antigua java.io.File)|
 
 🖥️ **Ejemplo_Path.kt**
 
@@ -514,7 +518,44 @@ Método	|Descripción|
     Funciona en Windows y Linux, aunque Files.getFileStore(Paths.get("/")) podría requerir ajustes en Windows para seleccionar una unidad específica (C:\, D:\, etc.).    
 
 
+**EjemploCompleto_File.kt** :El siguiente ejemplo utiliza todas estas funciones para mostrar información sobre el sistema de ficheros.
 
-        
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
-CompartirIgual 2.5](http://creativecommons.org/licenses/by-nc-sa/2.5/)
+        import java.io.File
+        import java.nio.file.*
+        import java.nio.file.attribute.BasicFileAttributes
+        import java.nio.file.FileStore
+        import java.nio.file.FileSystems
+
+        fun main() {
+            println(" Raíces del sistema:")
+            File.listRoots().forEach { raiz ->
+                println("- ${raiz.absolutePath}")
+            }
+
+            println("\n Sistemas de archivos detectados:")
+            val fileSystem: FileSystem = FileSystems.getDefault()
+            fileSystem.fileStores.forEach { store: FileStore ->
+                println("Unidad: ${store.name()} (${store.type()})")
+                println("Total: ${store.totalSpace / 1024 / 1024} MB")
+                println("Libre: ${store.usableSpace / 1024 / 1024} MB")
+            }
+
+            // Usamos Path y Files para analizar un fichero concreto
+            val path: Path = Paths.get("datos.txt")
+
+            // Si el fichero existe, mostramos sus atributos
+            if (Files.exists(path)) {
+                println("\n Atributos del fichero '${path.fileName}':")
+                val attrs: BasicFileAttributes = Files.readAttributes(path, BasicFileAttributes::class.java)
+
+                println("Creación: ${attrs.creationTime()}")
+                println("Último acceso: ${attrs.lastAccessTime()}")
+                println("Última modificación: ${attrs.lastModifiedTime()}")
+                println("Tamaño: ${attrs.size()} bytes")
+                println("¿Es directorio?: ${attrs.isDirectory}")
+                println("¿Es archivo normal?: ${attrs.isRegularFile}")
+            } else {
+                println("\n El fichero 'datos.txt' no existe en la raíz del proyecto.")
+            }
+        }
+                    
