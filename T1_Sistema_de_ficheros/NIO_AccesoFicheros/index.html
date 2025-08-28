@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹 Acceso al sistema de ficheros. Java.nio - AD - Acceso a Datos - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+        <link href="../../css/copy-button.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39 Acceso al sistema de ficheros. Java.nio";
+        var mkdocs_page_input_path = "T1_Sistema_de_ficheros/NIO_AccesoFicheros.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">RA y CE</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">🔹 Acceso al sistema de ficheros. Java.nio</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#paths">🔹Paths</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#path">🔹Path</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#files">🔹Files</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#filesystem">🔹FileSystem</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#basicfileattributes">🔹BasicFileAttributes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#filestore">🔹FileStore</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis/">📝 Ejercicio obligatorio</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/Lectura_Escritura_ficheros/">🔹Lectura y escritura de ficheros</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros con formatos diferentes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/intro/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/ejercicios/">📝 Ejercicio obligatorio</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Resumen/">Resumen</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Acceso a Datos - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Sistema de ficheros</li>
+      <li class="breadcrumb-item active">🔹 Acceso al sistema de ficheros. Java.nio</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="acceso-al-sistema-de-ficheros-javanio">Acceso al sistema de ficheros. Java.nio</h1>
+<div class="admonition warning">
+<p class="admonition-title">Proyecto Ficheros</p>
+<p>Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos en <strong>IntelliJ</strong> un proyecto llamado <strong>Ficheros</strong>.</p>
+<p>Dentro de este proyecto crearemos tres paquetes (<strong>sistema</strong>, <strong>contenido</strong> y <strong>formatos</strong>) para organizar los diferentes ejemplos, que en cada ocasión se indicará en que paquete deben ubicarse.</p>
+<p><img alt="Ref" src="../new_project.png" />|<img alt="Ref" src="../paquetes.png" /></p>
+</div>
+<p>Durante muchos años se ha utilizado la librería <strong>java.io</strong> para trabajar con ficheros en el mundo Java. Se trata de un <strong>API</strong> muy potente y flexible que nos permite realizar casi cualquier tipo de operación. Sin embargo es una API complicada de entender. <strong>Java.nio</strong> (New IO) es una nueva API disponible desde Java7 que nos permite mejorar el rendimiento, así como simplificar el manejo de muchas operaciones. </p>
+<p><strong>Java.nio</strong> define interfaces y clases para que la máquina virtual Java tenga acceso a archivos, atributos de archivos y sistemas de archivos. Aunque dicho API comprende numerosas clases, solo existen unas pocas de ellas que sirven de puntos de entrada al API, lo que simplifica considerablemente su manejo.</p>
+<p>La interfaz <strong>java.nio.file.Path</strong> representa un path, y las clases que implementen esta interfaz puede utilizarse para localizar ficheros en el sistema de ficheros. Nos permite manejar rutas al estilo GNU/Linux y rutas al estilo Windows dependiendo del SO en el que estemos trabajando.</p>
+<p>La clase <strong>java.nio.file.Files</strong> es el otro punto de entrada a la librería de ficheros de Java. Es la que nos permite manejar ficheros reales del disco desde Java.</p>
+<div class="admonition tip">
+<p class="admonition-title">Clases para la gesitón de ficheros</p>
+<ul>
+<li><strong>Paths</strong>: Crea objetos Path desde cadenas de texto</li>
+<li><strong>Path</strong>: Representa rutas a archivos o directorios</li>
+<li><strong>Files</strong>: Permite operaciones sobre archivos usando Path</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Ejemplos</p>
+<p>Los siguientes ejemplos se incluirán en el paquete <strong>sistema</strong> dentro del proyecto <strong>Ficheros</strong>.  </p>
+</div>
+<h2 id="paths">🔹Paths</h2>
+<p>La clase <strong>Paths</strong> es una clase de utilidad que proporciona métodos estáticos para crear objetos <strong>Path</strong>, que luego puedes usar con métodos de <strong>Files</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>get(String first, String... )</strong></td>
+<td>Crea un objeto Path a partir de una o más cadenas.</td>
+</tr>
+<tr>
+<td><strong>get(URI uri)</strong></td>
+<td>Crea un Path desde un URI que debe ser del esquema file:///.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p>El uso de <strong>Paths.get(...)</strong> en Java (o Kotlin) no implica que el archivo o directorio exista. Este método simplemente crea una instancia de Path que representa una ruta en el sistema de archivos, pero no accede al disco ni verifica su existencia.</p>
+</div>
+<p>🖥️ <strong>Ejemplo_get.kt</strong></p>
+<pre><code>    import java.nio.file.Path
+    import java.nio.file.Paths
+
+    fun main() {
+        val path1: Path = Paths.get("documentos", "archivo.txt")
+        val path2: Path = Paths.get("C:", "usuarios", "nombre", "archivo.txt")
+
+        println("Ruta 1: $path1")
+        println("Ruta 2: $path2")
+    }
+</code></pre>
+<p>🖥️ <strong>Ejemplo_uri.kt</strong></p>
+<pre><code>    import java.net.URI
+    import java.nio.file.Path
+    import java.nio.file.Paths
+
+    fun main() {
+        val uri = URI("file:///C:/usuarios/nombre/archivo.txt")
+        val path: Path = Paths.get(uri)
+
+        println("Ruta a partir de URI: $path")
+    }
+</code></pre>
+<h2 id="path">🔹Path</h2>
+<p>La clase <strong>Path</strong> Se utiliza junto con la clase <strong>Files</strong> para realizar operaciones como lectura, escritura, copia, o eliminación de archivos.<br />
+La forma mas sencilla de construir un objeto que cumpla la interfaz <strong>Path</strong> es a partir de la clase <strong>java.nio.file.Paths</strong>, que tiene métodos estáticos que retornan objetos Path a partir de una representación tipo String del path deseado.<br />
+Por supuesto, no es necesario que los ficheros existan de verdad en el disco duro para que se puedan crear los objetos Path correspondientes.</p>
+<p>Un objeto Path puede representarse de dos formas:</p>
+<ul>
+<li>
+<p><strong>Ruta absoluta</strong>   </p>
+<pre><code>val path = Paths.get("/home/usuario/archivo.txt")
+</code></pre>
+</li>
+<li>
+<p><strong>Ruta relativa</strong>   </p>
+<pre><code>val path = Paths.get("documentos/ejemplo.txt")
+println(path.toAbsolutePath())
+</code></pre>
+</li>
+</ul>
+<p>Las <strong>operaciones</strong> y <strong>métodos</strong> principales que se pueden hacer con Path son:</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Operaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>startsWith(Path other)</td>
+<td>Comprueba si la ruta empieza con otra ruta dada.</td>
+</tr>
+<tr>
+<td>endsWith(Path other)</td>
+<td>Comprueba si la ruta termina con otra ruta dada.</td>
+</tr>
+<tr>
+<td>getParent()</td>
+<td>Devuelve el Path padre (directorio superior).</td>
+</tr>
+<tr>
+<td>getRoot()</td>
+<td>Devuelve el componente raíz del Path (por ejemplo, / o C:).</td>
+</tr>
+<tr>
+<td>iterator()</td>
+<td>Permite recorrer los directorios y subdirectorios.</td>
+</tr>
+<tr>
+<td>toString()</td>
+<td>Devuelve la representación de la ruta como un String.</td>
+</tr>
+<tr>
+<td>toAbsolutePath()</td>
+<td>Devuelve la ruta absoluta de este Path.</td>
+</tr>
+<tr>
+<td>resolve()</td>
+<td>Une dos partes de una ruta de forma correcta sin preocuparte de las barras /</td>
+</tr>
+<tr>
+<td>toFile()</td>
+<td>Convierte un objeto Path (de java.nio.file.Path) a un objeto File (de la clase antigua java.io.File)</td>
+</tr>
+</tbody>
+</table>
+<p>🖥️ <strong>Ejemplo_Path.kt</strong></p>
+<pre><code>    import java.nio.file.Path
+    import java.nio.file.Paths
+
+    fun main() {
+        val path: Path = Paths.get("documentos/ejemplo.txt")
+
+        println("toString(): ${path}")
+        println("toAbsolutePath(): ${path.toAbsolutePath()}")
+        println("getFileName(): ${path.fileName}")
+        println("getParent(): ${path.parent}")
+        println("getRoot(): ${path.root}")
+
+        val otroPath: Path = Paths.get("imagenes/foto.png")
+        println("resolve(): ${path.resolve(otroPath)}")
+
+        val relativo: Path = path.relativize(Paths.get("documentos/otroArchivo.txt"))
+        println("relativize(): $relativo")
+
+        val rutaNormalizada: Path = Paths.get("carpeta/../archivo.txt").normalize()
+        println("normalize(): $rutaNormalizada")
+
+        println("startsWith(\"documentos\"): ${path.startsWith("documentos")}")
+        println("endsWith(\"ejemplo.txt\"): ${path.endsWith("ejemplo.txt")}")
+    }
+</code></pre>
+<h2 id="files">🔹Files</h2>
+<p>La clase <strong>Files</strong> es el otro punto de entrada a la librería de ficheros de Java. Es la que nos permite manejar ficheros reales del disco desde Java.<br />
+Esta clase tiene métodos estáticos para el manejo de ficheros, los métodos de la clase <strong>Files</strong> trabajan sobre objetos <strong>Path</strong>.  </p>
+<p>Las <strong>operaciones</strong> y <strong>métodos</strong> principales a realizar con Files son:</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Operaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exists(), isDirectory(), isRegularFile(), isReadable()</td>
+<td>Verificación</td>
+</tr>
+<tr>
+<td>createFile(), createDirectory(), createDirectories()</td>
+<td>Crear</td>
+</tr>
+<tr>
+<td>delete(), deleteIfExists()</td>
+<td>Eliminar</td>
+</tr>
+<tr>
+<td>move(origen, destino)</td>
+<td>Mover</td>
+</tr>
+<tr>
+<td>copy(origen, destino)</td>
+<td>Copiar</td>
+</tr>
+<tr>
+<td>list(), walk()</td>
+<td>Listar</td>
+</tr>
+<tr>
+<td>size(), getLastModifiedTime(), getOwner(), getAttribute()</td>
+<td>Atributos</td>
+</tr>
+</tbody>
+</table>
+<p>🖥️ <strong>Ejemplo_permisos.kt</strong>: existencia y comprobación de permisos</p>
+<pre><code>    import java.nio.file.Path
+    import java.nio.file.Paths
+    import java.nio.file.Files
+
+    fun main() {
+        val path: Path = Paths.get("documentos/ejemplo.txt")
+
+        println("path = $path")
+        println("exists = ${Files.exists(path)}")
+        println("readable = ${Files.isReadable(path)}")
+        println("writable = ${Files.isWritable(path)}")
+        println("executable = ${Files.isExecutable(path)}")
+    }
+</code></pre>
+<p>🖥️ <strong>Ejemplo_creardirectorio.kt</strong>: crear un directorio</p>
+<pre><code>    import java.nio.file.Path
+    import java.nio.file.Paths
+    import java.nio.file.Files
+    import java.nio.file.FileAlreadyExistsException
+    import java.io.IOException
+
+    fun main() {
+        val path: Path = Paths.get("documentos")
+
+        try {
+            val newDir = Files.createDirectory(path)
+            println("Directorio creado en: $newDir")
+        } catch (e: FileAlreadyExistsException) {
+            println("El directorio ya existe: $path")
+        } catch (e: IOException) {
+            println("Error de entrada/salida: ${e.message}")
+            e.printStackTrace()
+        }
+    }
+</code></pre>
+<p>🖥️ <strong>Ejemplo_borrardirectorio.kt</strong>: elimina un directorio</p>
+<pre><code>    import java.nio.file.Files
+    import java.nio.file.Path
+    import java.nio.file.Paths
+
+    fun main() {
+        val directorio: Path = Paths.get("c:/mi_directorio")
+
+        // Si ya existe, lo eliminamos
+        if (Files.exists(directorio)) {
+            println("El directorio ya existe. Borrándolo...")
+            Files.delete(directorio)
+        }
+
+    }
+</code></pre>
+<p><strong class="azul">Gestión de errores y validaciones</strong></p>
+<p>El método  <strong>delete(Path)</strong> borra el fichero o directorio o lanza una excepción si el borrado falla. El siguiente ejemplo muestra como capturar y gestionar las excepciones que pueden producirse en el borrado. Si el fichero o directorio no existe, la excepción que se produce es  <strong>NoSuchFileException</strong>. Los sucesivos <strong>cath</strong> permiten determinar por  que ha fallado el borrado:</p>
+<pre><code>    import java.nio.file.*
+    import java.io.IOException
+
+        fun main() {
+            val path = Paths.get("c:/mi_directorio")
+            try {
+                Files.delete(path)
+            } catch (e: NoSuchFileException) {
+                System.err.printf("%s: no such file or directory%n", path)
+            } catch (e: DirectoryNotEmptyException) {
+                System.err.printf("%s not empty%n", path)
+            } catch (e: IOException) {
+                // Problemas de permisos u otros errores de E/S
+                System.err.println("Error: ${e.message}")
+            }
+        }
+</code></pre>
+<div class="admonition warning">
+<p>El metodo <strong>deleteIfExists(Path)</strong> tambien borra el fichero o directorio, pero no lanza ningun error en caso de que el fichero o directorio no exista.</p>
+</div>
+<p>🖥️ <strong>Ejemplo_copiardirectorio.kt</strong>: copiar directorios</p>
+<p>Se puede copiar un archivo o directorio usando el método copy(Path, Path, CopyOption...). La copia falla si el archivo de destino existe, a menos que se especifique la opción REPLACE_EXISTING. </p>
+<p>Se puede copiar directorios aunque, los archivos dentro del directorio no se copian, por lo que el nuevo directorio está vacío incluso cuando el directorio original contiene archivos.</p>
+<pre><code>   import java.io.IOException
+    import java.nio.file.FileAlreadyExistsException
+    import java.nio.file.Files
+    import java.nio.file.Path
+    import java.nio.file.Paths
+    // import java.nio.file.StandardCopyOption  // si se desea sobrescribir
+
+    fun main() {
+        val sourcePath: Path = Paths.get("documentos")
+        val destinationPath: Path = Paths.get("documentos/destino")
+
+        try {
+            Files.copy(sourcePath, destinationPath)
+            // Para sobrescribir si ya existe, descomenta la siguiente línea:
+            // Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING)
+
+            println("Copia realizada con éxito.")
+        } catch (e: FileAlreadyExistsException) {
+            println("El fichero o directorio ya existe en el destino.")
+        } catch (e: IOException) {
+            println("Error al copiar: ${e.message}")
+            e.printStackTrace()
+        }
+    }
+</code></pre>
+<p>🖥️ <strong>Ejemplo_copiarficheros.kt</strong>: copiar ficheros</p>
+<pre><code>    import java.io.IOException
+    import java.nio.file.FileAlreadyExistsException
+    import java.nio.file.Files
+    import java.nio.file.Path
+    import java.nio.file.Paths
+    import java.nio.file.StandardCopyOption
+
+    fun main() {
+        val sourcePath: Path = Paths.get("documentos/ejemplo.txt")
+        val destinationPath: Path = Paths.get("documentos/ejemplo_copia.txt")
+
+        try {
+            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING)
+            println("Archivo copiado correctamente a: $destinationPath")
+        } catch (e: FileAlreadyExistsException) {
+            println("El archivo destino ya existe.")
+        } catch (e: IOException) {
+            println(" Error al copiar el archivo: ${e.message}")
+            e.printStackTrace()
+        }
+    }
+</code></pre>
+<p>🖥️ <strong>Ejemplo_moverficheros.kt</strong>: mover ficheros y directorios cambiando el nombre.</p>
+<pre><code>    import java.io.IOException
+    import java.nio.file.FileAlreadyExistsException
+    import java.nio.file.Files
+    import java.nio.file.Path
+    import java.nio.file.Paths
+    import java.nio.file.StandardCopyOption
+
+    fun main() {
+        val sourcePath: Path = Paths.get("documentos/ejemplo.txt")
+        val destinationPath: Path = Paths.get("documentos2/ejemplo2.txt")
+
+        try {
+            Files.move(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING)
+            println("Archivo movido/renombrado correctamente a: $destinationPath")
+        } catch (e: FileAlreadyExistsException) {
+            println("El archivo destino ya existe.")
+        } catch (e: IOException) {
+            println("Error al mover el archivo: ${e.message}")
+            e.printStackTrace()
+        }
+    }
+</code></pre>
+<p>El siguiente ejemplo recorre la estructura home en tu sistema, indicando los permisos de cada archivo y directorio: </p>
+<p>🖥️ <strong>Ejemplo_SistemaFicheros.kt</strong></p>
+<pre><code>    import java.nio.file.*
+    import java.nio.file.attribute.BasicFileAttributes
+    import java.util.Scanner
+
+    fun main() {
+        val scanner = Scanner(System.`in`)
+        var currentPath: Path = Paths.get(System.getProperty("user.home"))
+
+        while (true) {
+            println("\n Directorio actual: $currentPath")
+            try {
+                val paths = Files.list(currentPath).toList()
+                paths.forEachIndexed { index, path -&gt;
+                    val attrs = Files.readAttributes(path, BasicFileAttributes::class.java)
+                    val tipo = when {
+                        attrs.isDirectory -&gt; "[DIR]"
+                        attrs.isRegularFile -&gt; "[FILE]"
+                        else -&gt; "[OTRO]"
+                    }
+
+                    val permisos = listOfNotNull(
+                        if (Files.isReadable(path)) "r" else null,
+                        if (Files.isWritable(path)) "w" else null,
+                        if (Files.isExecutable(path)) "x" else null
+                    ).joinToString("")
+
+                    val size = if (attrs.isRegularFile) "${attrs.size()} bytes" else ""
+
+                    println("$index. $tipo ${path.fileName} [$permisos] $size")
+                }
+
+                println("\nOpciones:")
+                println(" - Número: acceder a subdirectorio")
+                println(" - `..`: subir al directorio padre")
+                println(" - `salir`: finalizar el programa")
+                print("Opción: ")
+
+                when (val input = scanner.nextLine()) {
+                    "salir" -&gt; {
+                        println("Saliendo del explorador.")
+                        return
+                    }
+                    ".." -&gt; {
+                        currentPath = currentPath.parent ?: currentPath
+                    }
+                    else -&gt; {
+                        val index = input.toIntOrNull()
+                        if (index != null &amp;&amp; index in paths.indices) {
+                            val selected = paths[index]
+                            if (Files.isDirectory(selected)) {
+                                currentPath = selected
+                            } else {
+                                println("No es un directorio.")
+                            }
+                        } else {
+                            println("Entrada no válida.")
+                        }
+                    }
+                }
+
+            } catch (e: Exception) {
+                println("Error al acceder al directorio: ${e.message}")
+            }
+        }
+    }
+</code></pre>
+<h2 id="filesystem">🔹FileSystem</h2>
+<p>En la biblioteca <strong>java.nio</strong> podemos encontrar otras clases que complementan y amplían lo que se puede hacer con <strong>java.nio.file.Path</strong>.</p>
+<p>El concepto de <strong>FileSystem</strong> define un <strong>sistema de ficheros completo</strong>. Mientras que por otro lado el concepto de <strong>Path</strong> hace referencia a un <strong>directorio, fichero o link</strong> que tengamos dentro de nuestro sistema de ficheros. </p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getSeparator()</td>
+<td>Devuelve el separador de nombres de ruta (por ejemplo, / o \ ).</td>
+</tr>
+<tr>
+<td>getRootDirectories()</td>
+<td>Devuelve un iterable con los directorios raíz del sistema de archivos.</td>
+</tr>
+<tr>
+<td>getFileStores()</td>
+<td>Devuelve un iterable con las particiones o volúmenes montados.</td>
+</tr>
+<tr>
+<td>getPath(...)</td>
+<td>Crea una instancia de Path a partir de una cadena de texto.</td>
+</tr>
+<tr>
+<td>provider()</td>
+<td>Devuelve el proveedor de sistema de archivos asociado (por ejemplo, UnixFileSystemProvider).</td>
+</tr>
+<tr>
+<td>getDefault()</td>
+<td>Devuelve el sistema de ficheros por defecto del entorno en ejecución.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Esto:</p>
+<pre><code>val fileSystem = FileSystems.getDefault()
+val path = fileSystem.getPath("C:\\Users\\alumno\\documento.txt")
+</code></pre>
+<p>Es equivalente a usar:</p>
+<pre><code>val path = Paths.get("C:\\Users\\alumno\\documento.txt")
+</code></pre>
+<p>Pero usando FileSystems.getDefault() puedes:</p>
+<ul>
+<li>
+<p>Cambiar de sistema de ficheros si lo necesitas (por ejemplo, ZIP o virtuales).</p>
+</li>
+<li>
+<p>Obtener características del sistema.</p>
+</li>
+</ul>
+<p>🖥️ <strong>Ejemplo_FileSystem.kt</strong>: obtener el nombre de un fichero así como la carpeta padre en la que se encuentra ubicado.</p>
+<pre><code>    import java.nio.file.FileSystems
+    import java.nio.file.Path
+
+    fun main() {
+        val sistemaFicheros = FileSystems.getDefault()
+        val rutaFichero: Path = sistemaFicheros.getPath("documentos/destino/ejemplo3.txt")
+
+        println(rutaFichero.fileName)
+        println(rutaFichero.parent.fileName)
+
+        val rutaDirectorio: Path = sistemaFicheros.getPath("documentos/destino")
+        val it = rutaDirectorio.iterator()
+
+        while (it.hasNext()) {
+            println(it.next().fileName)
+        }
+    }
+</code></pre>
+<h2 id="basicfileattributes">🔹BasicFileAttributes</h2>
+<p>BasicFileAttributes permite obtener <strong>información detallada sobre archivos y directorios</strong>, como fecha de creación, tamaño, etc.</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>creationTime()</td>
+<td>Devuelve la fecha de creación.</td>
+</tr>
+<tr>
+<td>lastModifiedTime()</td>
+<td>Última modificación del archivo.</td>
+</tr>
+<tr>
+<td>size()</td>
+<td>Tamaño en bytes.</td>
+</tr>
+<tr>
+<td>isDirectory()</td>
+<td>Verifica si es un directorio.</td>
+</tr>
+<tr>
+<td>isRegularFile()</td>
+<td>Verifica si es un archivo normal.</td>
+</tr>
+</tbody>
+</table>
+<p>🖥️ <strong>Ejemplo_BasicFileAttributes.kt</strong>:  leer los atributos básicos de un archivo o directorio.</p>
+<pre><code>import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.attribute.BasicFileAttributes
+
+fun main() {
+    val path = Paths.get("documentos")
+
+    if (Files.exists(path)) {
+        val attr = Files.readAttributes(path, BasicFileAttributes::class.java)
+        println("Creación: ${attr.creationTime()}")
+        println("Último acceso: ${attr.lastAccessTime()}")
+        println("Es un directorio: ${attr.isDirectory}")
+        println("Tamaño del archivo: ${attr.size()} bytes")
+    }
+}
+</code></pre>
+<h2 id="filestore">🔹FileStore</h2>
+<p>FileStore permite obtener <strong>información sobre el sistema de archivos</strong>, como el espacio disponible.</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name()</td>
+<td>Nombre del volumen</td>
+</tr>
+<tr>
+<td>type()</td>
+<td>Tipo de sistema de archivos</td>
+</tr>
+<tr>
+<td>getTotalSpace()</td>
+<td>Espacio total</td>
+</tr>
+<tr>
+<td>getUsableSpace()</td>
+<td>Espacio disponible para el usuario</td>
+</tr>
+<tr>
+<td>supportsFileAttributeView()</td>
+<td>Si soporta atributos como POSIX o DOS</td>
+</tr>
+</tbody>
+</table>
+<p>🖥️ <strong>Ejemplo_FileStore.kt</strong>: obtener información del almacenamiento físico.</p>
+<pre><code>import java.nio.file.FileStore
+import java.nio.file.Files
+import java.nio.file.Paths
+
+fun main() {
+    val path = Paths.get("/")
+    val fileStore: FileStore = Files.getFileStore(path)
+
+    println("Sistema de archivos: ${fileStore.type()}")
+    println("Espacio total: ${fileStore.totalSpace / (1024 * 1024)} MB")
+    println("Espacio disponible: ${fileStore.usableSpace / (1024 * 1024)} MB")
+}
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Funciona en Windows y Linux, aunque Files.getFileStore(Paths.get("/")) podría requerir ajustes en Windows para seleccionar una unidad específica (C:\, D:\, etc.).    </p>
+</div>
+<p><strong>EjemploCompleto_File.kt</strong> :El siguiente ejemplo utiliza todas estas funciones para mostrar información sobre el sistema de ficheros.</p>
+<pre><code>    import java.io.File
+    import java.nio.file.*
+    import java.nio.file.attribute.BasicFileAttributes
+    import java.nio.file.FileStore
+    import java.nio.file.FileSystems
+
+    fun main() {
+        println(" Raíces del sistema:")
+        File.listRoots().forEach { raiz -&gt;
+            println("- ${raiz.absolutePath}")
+        }
+
+        println("\n Sistemas de archivos detectados:")
+        val fileSystem: FileSystem = FileSystems.getDefault()
+        fileSystem.fileStores.forEach { store: FileStore -&gt;
+            println("Unidad: ${store.name()} (${store.type()})")
+            println("Total: ${store.totalSpace / 1024 / 1024} MB")
+            println("Libre: ${store.usableSpace / 1024 / 1024} MB")
+        }
+
+        // Usamos Path y Files para analizar un fichero concreto
+        val path: Path = Paths.get("datos.txt")
+
+        // Si el fichero existe, mostramos sus atributos
+        if (Files.exists(path)) {
+            println("\n Atributos del fichero '${path.fileName}':")
+            val attrs: BasicFileAttributes = Files.readAttributes(path, BasicFileAttributes::class.java)
+
+            println("Creación: ${attrs.creationTime()}")
+            println("Último acceso: ${attrs.lastAccessTime()}")
+            println("Última modificación: ${attrs.lastModifiedTime()}")
+            println("Tamaño: ${attrs.size()} bytes")
+            println("¿Es directorio?: ${attrs.isDirectory}")
+            println("¿Es archivo normal?: ${attrs.isRegularFile}")
+        } else {
+            println("\n El fichero 'datos.txt' no existe en la raíz del proyecto.")
+        }
+    }
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ficheros/" class="btn btn-neutral float-left" title="🔹 Ficheros"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exercicis/" class="btn btn-neutral float-right" title="📝 Ejercicio obligatorio">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ficheros/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../exercicis/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-button.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
