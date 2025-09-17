@@ -1,4 +1,4 @@
-# 📝 Ejercicio: Conversión y recuperación de una ficha en múltiples formatos
+# 📝 Ejercicio 2: Conversión y recuperación de una ficha en múltiples formatos
 
 
 
@@ -63,7 +63,7 @@ Implementa funciones para **leer** cada uno de los ficheros anteriores y mostrar
 | Se genera correctamente el archivo `JSON` con Jackson                 | 1      |
 | Se genera correctamente el archivo `XML` con Jackson                  | 1      |
 | Se genera correctamente el archivo serializado (`.obj`)               | 1      |
-| Se implementan correctamente las funciones de lectura y visualización | 2      |
+| Se implementan correctamente las funciones de lectura y visualización | 1      |
 | Código estructurado, funcional y con buen estilo                      | 1      |
 | **Total**                                                             | **10** |
 

@@ -1,4 +1,4 @@
-# 📝 Ejercicio: Explorador interactivo del directorio personal
+# 📝 Ejercicio 1: Explorador interactivo del directorio personal
 
 
 ## 📋 Enunciado
