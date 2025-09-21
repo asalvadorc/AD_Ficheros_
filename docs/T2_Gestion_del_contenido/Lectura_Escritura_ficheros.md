@@ -16,7 +16,7 @@ En el desarrollo de software, los ficheros de texto y los ficheros binarios son 
 - **Ficheros binarios**: son ficheros que contienen cualquier tipo de información (texto, imágenes, vídeos, ficheros…) codificada como bytes. En general, requiere de programas especiales para mostrar la información que contienen.
 
 
-**Lectura y escritura de un archivo de texto**{.azul}
+**📄Lectura y escritura de un archivo de texto**{.azul} 
 
 
 | Tipo de fichero           | Lectura                             | Escritura                            | Comentario                                               |
@@ -67,7 +67,7 @@ En el desarrollo de software, los ficheros de texto y los ficheros binarios son 
                 }
         }
 
-**Lectura y escritura de un archivo binario**{.azul}
+**🧩 Lectura y escritura de un archivo binario**{.azul} 
 
 | Tipo de fichero           | Lectura                             | Escritura                            | Comentario                                               |
 |---------------------------|--------------------------------------|---------------------------------------|----------------------------------------------------------|
@@ -188,7 +188,8 @@ En la plataforma Java (y por tanto en Kotlin), **el manejo de imágenes** se hac
 
 
 🖥️ **Ejemplo_img_penyagolosa.kt:** Invierte los colores de una imagen.  
-Copia la imagen penyagolosa.png en la capreta documentos
+
+Copia la imagen penyagolosa.png en la capreta **documentos**
 
 imagen a copiar (penyagolosa.png)|imagen con los colores invertidos
 ---------------|---------------------------------
@@ -281,13 +282,11 @@ En contextos donde se requiera rendimiento avanzado o acceso aleatorio, puede us
             Files.createDirectories(ruta.parent)
 
             // Escritura binaria
-            val fos = FileOutputStream(ruta.toFile())
-            val out = DataOutputStream(fos)
+            val out= DataOutputStream(Files.newOutputStream(ruta)).use { out -> //devuelve OutputStream
             out.writeInt(42)         // int (4 bytes)
             out.writeDouble(3.1416)  // double (8 bytes)
             out.writeUTF("K")       // char (2 bytes)
-            out.close()
-            fos.close()
+            }
 
             println("✅ Fichero binario escrito con DataOutputStream (sin lambda).")
 

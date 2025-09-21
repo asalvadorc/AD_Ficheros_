@@ -469,6 +469,14 @@ Pero usando FileSystems.getDefault() puedes:
 
 BasicFileAttributes permite obtener **información detallada sobre archivos y directorios**, como fecha de creación, tamaño, etc.
 
+Para poder utilizar un objeto de tipo **BasicFileAttributes**, primero es necesario llamar al método **readAttributes**:
+
+!!!Note ""
+        val attr = Files.readAttributes(path, BasicFileAttributes::class.java)
+
+    - Este método pertenece a la clase **Files** y se encarga de leer los atributos asociados al archivo o directorio indicado por **path**.
+    - **BasicFileAttributes::class.java:** indica que queremos obtener los atributos básicos definidos en esa clase.
+    - El resultado (**attr**) es un objeto del tipo BasicFileAttributes.
 
 | Método             | Descripción                                      | Devuelve                |
 |--------------------|--------------------------------------------------|--------------------------|
@@ -501,6 +509,12 @@ BasicFileAttributes permite obtener **información detallada sobre archivos y di
 ## 🔹FileStore
 
 FileStore permite obtener **información sobre el sistema de archivos**, como el espacio disponible.
+
+No se puede instanciar un FileStore directamente. Para usarlo, necesitamos obtenerlo desde un Path (archivo o directorio)
+
+        val Store = Files.getFileStore(path)
+
+
 
 | Método                          | Descripción                                                       | Devuelve       |
 |---------------------------------|-------------------------------------------------------------------|----------------|

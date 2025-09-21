@@ -726,7 +726,7 @@ Dependencia Gradle:
 
         //lectura de persona.json
         fun leerJson() {
-            val mapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+            val mapper = jacksonObjectMapper()
             val archivo = File("documentos/persona.json")
 
             val persona = mapper.readValue(archivo, Persona::class.java)
@@ -735,7 +735,7 @@ Dependencia Gradle:
 
         //escritura de persona.json
         fun escribirJson() {
-            val mapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+             val mapper = jacksonObjectMapper()
 
             val persona = Persona("Mario", 35)
             val archivo = File("documentos/persona_generada_jackson.json")
