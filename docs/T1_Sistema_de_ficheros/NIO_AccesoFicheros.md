@@ -94,17 +94,17 @@ Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
 
 
 
-| **Método**                  | **Tipo devuelto**         | **Descripción**                                                                 |
-|----------------------------|---------------------------|---------------------------------------------------------------------------------|
-| `startsWith(Path other)`   | `Boolean`                 | Devuelve `true` si el path empieza por el path dado.                           |
-| `endsWith(Path other)`     | `Boolean`                 | Devuelve `true` si el path termina con el path dado.                           |
-| `getParent()`              | `Path?`                   | Devuelve el path padre (superior) o `null` si no tiene.                        |
-| `getRoot()`                | `Path?`                   | Devuelve el componente raíz (`/`, `C:\`, etc.) o `null` si no existe.          |
-| `iterator()`               | `Iterator<Path>`          | Permite iterar sobre cada parte del path (carpetas y nombre final).            |
-| `toString()`               | `String`                  | Devuelve el path como texto.                                                   |
-| `toAbsolutePath()`         | `Path`                    | Devuelve el path completo desde la raíz del sistema.                           |
-| `resolve(Path|String)`     | `Path`                    | Une dos partes de un path de forma correcta, manejando barras automáticamente. |
-| `toFile()`                 | `java.io.File`            | Convierte el `Path` en un `File` de la API tradicional de Java (`java.io`).    |
+| **Método**                | **Qué devuelve**          | **Descripción**                                                                 |
+|-------------------------- |---------------------------|---------------------------------------------------------------------------------|
+| .startsWith(Path other)   | `Boolean`                 | Devuelve `true` si el path empieza por el path dado.                           |
+| .endsWith(Path other)     | `Boolean`                 | Devuelve `true` si el path termina con el path dado.                           |
+| .getParent()              | `Path?`                   | Devuelve el path padre (superior) o `null` si no tiene.                        |
+| .getRoot()                | `Path?`                   | Devuelve el componente raíz (`/`, `C:\`, etc.) o `null` si no existe.          |
+| .iterator()               | `Iterator<Path>`          | Permite iterar sobre cada parte del path (carpetas y nombre final).            |
+| .toString()               | `String`                  | Devuelve el path como texto.                                                   |
+| .toAbsolutePath()         | `Path`                    | Devuelve el path completo desde la raíz del sistema.                           |
+| .resolve(Path|String)     | `Path`                    | Une dos partes de un path de forma correcta, manejando barras automáticamente. |
+| .toFile()                 | `java.io.File`            | Convierte el `Path` en un `File` de la API tradicional de Java (`java.io`).    |
 
 
 🖥️ **Ejemplo_Path.kt**
@@ -148,27 +148,27 @@ Las **operaciones** y **métodos** principales a realizar con Files son:
 
 
 
-| Método                                 | Tipo de retorno        | Descripción breve                                      |
-|----------------------------------------|------------------------|--------------------------------------------------------|
-| `Files.list(Path)`                     | `Stream<Path>`         | Lista contenido directo (no recursivo) del directorio. |
-| `Files.walk(Path)`                     | `Stream<Path>`         | Recorre directorios de forma recursiva.                |
-| `Files.find(...)`                      | `Stream<Path>`         | Busca elementos que cumplan una condición.             |
-| `Files.lines(Path)`                    | `Stream<String>`       | Devuelve las líneas de un archivo de texto.            |
-| `Files.exists(Path)`                   | `Boolean`              | Verifica si el archivo existe.                         |
-| `Files.isDirectory(Path)`              | `Boolean`              | Verifica si es un directorio.                          |
-| `Files.isRegularFile(Path)`            | `Boolean`              | Verifica si es un archivo normal.                      |
-| `Files.isReadable(Path)`               | `Boolean`              | Verifica si se puede leer.                             |
-| `Files.createFile(Path)`               | `Path`                 | Crea un archivo vacío.                                 |
-| `Files.createDirectory(Path)`          | `Path`                 | Crea un directorio.                                    |
-| `Files.createDirectories(Path)`        | `Path`                 | Crea directorios y subdirectorios necesarios.          |
-| `Files.delete(Path)`                   | `void`                 | Elimina un archivo o directorio.                       |
-| `Files.deleteIfExists(Path)`           | `Boolean`              | Elimina si existe.                                     |
-| `Files.move(Path, Path)`               | `Path`                 | Mueve un archivo o directorio.                         |
-| `Files.copy(Path, Path)`               | `Path`                 | Copia un archivo o directorio.                         |
-| `Files.size(Path)`                     | `Long`                 | Tamaño del archivo.                                    |
-| `Files.getLastModifiedTime(Path)`      | `FileTime`             | Última modificación.                                   |
-| `Files.getOwner(Path)`                 | `UserPrincipal`        | Devuelve el propietario.                               |
-| `Files.getAttribute(Path, String)`     | `Object`               | Devuelve un atributo específico.                       |
+| Método                            | Qué devuelve           | Descripción                                            |
+|-----------------------------------|------------------------|--------------------------------------------------------|
+| list(Path)                        | `Stream<Path>`         | Lista contenido directo (no recursivo) del directorio. |
+| .walk(Path)                       | `Stream<Path>`         | Recorre directorios de forma recursiva.                |
+| .find(...  )                      | `Stream<Path>`         | Busca elementos que cumplan una condición.             |
+| .lines(Path)                      | `Stream<String>`       | Devuelve las líneas de un archivo de texto.            |
+| .exists(Path)                     | `Boolean`              | Verifica si el archivo existe.                         |
+| .isDirectory(Path)                | `Boolean`              | Verifica si es un directorio.                          |
+| .isRegularFile(Path)              | `Boolean`              | Verifica si es un archivo normal.                      |
+| .isReadable(Path)                 | `Boolean`              | Verifica si se puede leer.                             |
+| .createFile(Path)                 | `Path`                 | Crea un archivo vacío.                                 |
+| .createDirectory(Path)            | `Path`                 | Crea un directorio.                                    |
+| .createDirectories(Path)          | `Path`                 | Crea directorios y subdirectorios necesarios.          |
+| .delete(Path)                     | `void`                 | Elimina un archivo o directorio.                       |
+| .deleteIfExists(Path)             | `Boolean`              | Elimina si existe.                                     |
+| .move(Path, Path)                 | `Path`                 | Mueve un archivo o directorio.                         |
+| .copy(Path, Path)                 | `Path`                 | Copia un archivo o directorio.                         |
+| .size(Path)                       | `Long`                 | Tamaño del archivo.                                    |
+| .getLastModifiedTime(Path)        | `FileTime`             | Última modificación.                                   |
+| .getOwner(Path)                   | `UserPrincipal`        | Devuelve el propietario.                               |
+| .getAttribute(Path, String)       | `Object`               | Devuelve un atributo específico.                       |
 
 
 
@@ -418,14 +418,14 @@ En la biblioteca **java.nio** podemos encontrar otras clases que complementan y 
 
 El concepto de **FileSystem** define un **sistema de ficheros completo**. Mientras que por otro lado el concepto de **Path** hace referencia a un **directorio, fichero o link** que tengamos dentro de nuestro sistema de ficheros. 
 
-| Método                 | Descripción                                                                 |
-|------------------------|------------------------------------------------------------------------------|
-| getSeparator()       | Devuelve el separador de nombres de ruta (por ejemplo, / o \ \).         |
-| getRootDirectories() | Devuelve un iterable con los directorios raíz del sistema de archivos.     |
-| getFileStores()      | Devuelve un iterable con las particiones o volúmenes montados.             |
-| getPath(...)         | Crea una instancia de Path a partir de una cadena de texto.              |
-| provider()           | Devuelve el proveedor de sistema de archivos asociado (por ejemplo, UnixFileSystemProvider). |
-| getDefault()          | Devuelve el sistema de ficheros por defecto del entorno en ejecución.|
+| Método                  | Qué devuelve          | Descripción                                                                 |
+|-------------------------|-----------------------|------------------------------------------------------------------------------|
+| .getDefault()           | `FileSystem`          | Devuelve el sistema de ficheros por defecto del entorno en ejecución.       |
+| .getSeparator()         | `String`              | Devuelve el separador de nombres de ruta (por ejemplo, `/` o `\`).          |
+| .getRootDirectories()   | `Iterable<Path>`      | Devuelve los directorios raíz del sistema (ej: `/`, `C:\`).                 |
+| .getFileStores()        | `Iterable<FileStore>` | Devuelve las particiones o volúmenes montados en el sistema.                |
+| .getPath(...)           | `Path`                | Crea una instancia de `Path` a partir de cadenas de texto.                  |
+| .provider()             | `FileSystemProvider`  | Devuelve el proveedor del sistema de archivos (ej. `UnixFileSystemProvider`).|
 
 ---
 
