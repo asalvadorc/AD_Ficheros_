@@ -470,13 +470,15 @@ Pero usando FileSystems.getDefault() puedes:
 BasicFileAttributes permite obtener **información detallada sobre archivos y directorios**, como fecha de creación, tamaño, etc.
 
 
-|Método	|Descripción|
-|--------|-----------|
-|creationTime()	|Devuelve la fecha de creación.|
-|lastModifiedTime()	|Última modificación del archivo.|
-|size()	|Tamaño en bytes.|
-|isDirectory()	|Verifica si es un directorio.|
-|isRegularFile()	|Verifica si es un archivo normal.|
+| Método             | Descripción                                      | Devuelve                |
+|--------------------|--------------------------------------------------|--------------------------|
+| creationTime()     | Devuelve la fecha de creación del archivo.       | `FileTime`              |
+| lastModifiedTime() | Devuelve la última fecha de modificación.        | `FileTime`              |
+| size()             | Devuelve el tamaño del archivo en bytes.         | `Long`                  |
+| isDirectory()      | Verifica si el `Path` representa un directorio.  | `Boolean`               |
+| isRegularFile()    | Verifica si es un archivo regular (no directorio). | `Boolean`             |
+
+
 
 🖥️ **Ejemplo_BasicFileAttributes.kt**:  leer los atributos básicos de un archivo o directorio.
 
@@ -500,13 +502,14 @@ BasicFileAttributes permite obtener **información detallada sobre archivos y di
 
 FileStore permite obtener **información sobre el sistema de archivos**, como el espacio disponible.
 
-Método	|Descripción|
-|--------|-----------|
-|name()|	Nombre del volumen|
-|type()|	Tipo de sistema de archivos|
-|getTotalSpace()|	Espacio total|
-|getUsableSpace()|	Espacio disponible para el usuario|
-|supportsFileAttributeView()|	Si soporta atributos como POSIX o DOS|
+| Método                          | Descripción                                                       | Devuelve       |
+|---------------------------------|-------------------------------------------------------------------|----------------|
+| name()                          | Nombre del volumen o unidad lógica.                              | `String`       |
+| type()                          | Tipo de sistema de archivos (por ejemplo, `ext4`, `NTFS`, etc.). | `String`       |
+| getTotalSpace()                 | Espacio total disponible en el volumen (en bytes).               | `Long`         |
+| getUsableSpace()                | Espacio disponible para el usuario (en bytes).                   | `Long`         |
+| supportsFileAttributeView(...) | Verifica si el volumen soporta ciertos atributos como POSIX o DOS. | `Boolean`    |
+
 
 🖥️ **Ejemplo_FileStore.kt**: obtener información del almacenamiento físico.
 
