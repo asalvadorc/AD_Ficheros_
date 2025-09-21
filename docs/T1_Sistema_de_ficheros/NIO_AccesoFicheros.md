@@ -94,17 +94,18 @@ Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
 
 
 
-|Método     |Operaciones|
-|-----------|---------------|
-|startsWith(Path other)|	Comprueba si la ruta empieza con otra ruta dada.|
-|endsWith(Path other)|	Comprueba si la ruta termina con otra ruta dada.|
-|getParent()|	Devuelve el Path padre (directorio superior).|
-|getRoot()|	Devuelve el componente raíz del Path (por ejemplo, / o C:\).|
-|iterator()|	Permite recorrer los directorios y subdirectorios.|
-|toString()|	Devuelve la representación de la ruta como un String.|
-|toAbsolutePath()|	Devuelve la ruta absoluta de este Path.|
-|resolve()|Une dos partes de una ruta de forma correcta sin preocuparte de las barras /|
-|toFile()|Convierte un objeto Path (de java.nio.file.Path) a un objeto File (de la clase antigua java.io.File)|
+| **Método**                  | **Tipo devuelto**         | **Descripción**                                                                 |
+|----------------------------|---------------------------|---------------------------------------------------------------------------------|
+| `startsWith(Path other)`   | `Boolean`                 | Devuelve `true` si el path empieza por el path dado.                           |
+| `endsWith(Path other)`     | `Boolean`                 | Devuelve `true` si el path termina con el path dado.                           |
+| `getParent()`              | `Path?`                   | Devuelve el path padre (superior) o `null` si no tiene.                        |
+| `getRoot()`                | `Path?`                   | Devuelve el componente raíz (`/`, `C:\`, etc.) o `null` si no existe.          |
+| `iterator()`               | `Iterator<Path>`          | Permite iterar sobre cada parte del path (carpetas y nombre final).            |
+| `toString()`               | `String`                  | Devuelve el path como texto.                                                   |
+| `toAbsolutePath()`         | `Path`                    | Devuelve el path completo desde la raíz del sistema.                           |
+| `resolve(Path|String)`     | `Path`                    | Une dos partes de un path de forma correcta, manejando barras automáticamente. |
+| `toFile()`                 | `java.io.File`            | Convierte el `Path` en un `File` de la API tradicional de Java (`java.io`).    |
+
 
 🖥️ **Ejemplo_Path.kt**
 
@@ -140,7 +141,7 @@ Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
 La clase **Files** es el otro punto de entrada a la librería de ficheros de Java. Es la que nos permite manejar ficheros reales del disco desde Java.  
 Esta clase tiene métodos estáticos para el manejo de ficheros, los métodos de la clase **Files** trabajan sobre objetos **Path**. Muchos de estos métodos devuelven **streams**, lo que permite procesar archivos y directorios de forma eficiente y elegante. 
 
-En Java (y también en Kotlin cuando se usa interoperabilidad con Java), un **Stream** es una secuencia de elementos que permite realizar operaciones funcionales (como map, filter, forEach, etc.) sobre datos de forma eficiente y fluida, sin necesidad de estructuras intermedias ni bucles explícitos. Algunos método de **Files** utilizan o devuelven **Streams**.
+En Java (y también en Kotlin), un **Stream** es una secuencia de elementos que permite realizar operaciones funcionales (como map, filter, forEach, etc.) sobre datos de forma eficiente y fluida, sin necesidad de estructuras intermedias ni bucles explícitos. Algunos método de **Files** utilizan o devuelven **Streams**.
 
 
 Las **operaciones** y **métodos** principales a realizar con Files son:
