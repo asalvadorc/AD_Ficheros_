@@ -138,20 +138,37 @@ Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
 ## 🔹Files
 
 La clase **Files** es el otro punto de entrada a la librería de ficheros de Java. Es la que nos permite manejar ficheros reales del disco desde Java.  
-Esta clase tiene métodos estáticos para el manejo de ficheros, los métodos de la clase **Files** trabajan sobre objetos **Path**.  
+Esta clase tiene métodos estáticos para el manejo de ficheros, los métodos de la clase **Files** trabajan sobre objetos **Path**. Muchos de estos métodos devuelven **streams**, lo que permite procesar archivos y directorios de forma eficiente y elegante. 
+
+En Java (y también en Kotlin cuando se usa interoperabilidad con Java), un **Stream** es una secuencia de elementos que permite realizar operaciones funcionales (como map, filter, forEach, etc.) sobre datos de forma eficiente y fluida, sin necesidad de estructuras intermedias ni bucles explícitos. Algunos método de **Files** utilizan o devuelven **Streams**.
+
 
 Las **operaciones** y **métodos** principales a realizar con Files son:
 
 
-|Método     |Operaciones
-|-----------|---------------
-|exists(), isDirectory(), isRegularFile(), isReadable()|Verificación
-|createFile(), createDirectory(), createDirectories()|Crear
-|delete(), deleteIfExists()|Eliminar
-|move(origen, destino)|Mover
-|copy(origen, destino)|Copiar
-|list(), walk()|Listar
-|size(), getLastModifiedTime(), getOwner(), getAttribute()|Atributos
+
+| Método                                 | Tipo de retorno        | Descripción breve                                      |
+|----------------------------------------|------------------------|--------------------------------------------------------|
+| `Files.list(Path)`                     | `Stream<Path>`         | Lista contenido directo (no recursivo) del directorio. |
+| `Files.walk(Path)`                     | `Stream<Path>`         | Recorre directorios de forma recursiva.                |
+| `Files.find(...)`                      | `Stream<Path>`         | Busca elementos que cumplan una condición.             |
+| `Files.lines(Path)`                    | `Stream<String>`       | Devuelve las líneas de un archivo de texto.            |
+| `Files.exists(Path)`                   | `Boolean`              | Verifica si el archivo existe.                         |
+| `Files.isDirectory(Path)`              | `Boolean`              | Verifica si es un directorio.                          |
+| `Files.isRegularFile(Path)`            | `Boolean`              | Verifica si es un archivo normal.                      |
+| `Files.isReadable(Path)`               | `Boolean`              | Verifica si se puede leer.                             |
+| `Files.createFile(Path)`               | `Path`                 | Crea un archivo vacío.                                 |
+| `Files.createDirectory(Path)`          | `Path`                 | Crea un directorio.                                    |
+| `Files.createDirectories(Path)`        | `Path`                 | Crea directorios y subdirectorios necesarios.          |
+| `Files.delete(Path)`                   | `void`                 | Elimina un archivo o directorio.                       |
+| `Files.deleteIfExists(Path)`           | `Boolean`              | Elimina si existe.                                     |
+| `Files.move(Path, Path)`               | `Path`                 | Mueve un archivo o directorio.                         |
+| `Files.copy(Path, Path)`               | `Path`                 | Copia un archivo o directorio.                         |
+| `Files.size(Path)`                     | `Long`                 | Tamaño del archivo.                                    |
+| `Files.getLastModifiedTime(Path)`      | `FileTime`             | Última modificación.                                   |
+| `Files.getOwner(Path)`                 | `UserPrincipal`        | Devuelve el propietario.                               |
+| `Files.getAttribute(Path, String)`     | `Object`               | Devuelve un atributo específico.                       |
+
 
 
 🖥️ **Ejemplo_permisos.kt**: existencia y comprobación de permisos
