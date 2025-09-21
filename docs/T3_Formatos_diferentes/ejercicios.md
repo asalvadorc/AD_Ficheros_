@@ -83,7 +83,9 @@ Implementa funciones para **leer** cada uno de los ficheros anteriores y mostrar
     Tema: oscuro
 
     🟨 Objeto:
-    Ficha(nombre=Ana, edad=30, biografia=Ingeniera de software apasionada por la IA y la educación., preferencias=Preferencias(lenguaje=Kotlin, editor=IntelliJ, tema=oscuro))
+    Ficha(nombre=Ana, edad=30, biografia=Ingeniera de software apasionada por la IA y la educación., 
+    
+    preferencias=Preferencias(lenguaje=Kotlin, editor=IntelliJ, tema=oscuro))
 
 ```        
 
