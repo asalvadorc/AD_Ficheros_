@@ -51,6 +51,42 @@ Implementa funciones para **leer** cada uno de los ficheros anteriores y mostrar
 
 ---
 
+📤 **Ejemplo de salida esperada**
+
+```
+    📄 Biografía:
+    Ingeniera de software apasionada por la IA y la educación.
+
+    📄 Ficha CSV:
+    Ana, 30, Ingeniera de software apasionada por la IA y la educación., Kotlin, IntelliJ, oscuro
+
+    📦 Binario simple:
+    Ingeniera de software apasionada por la IA y la educación.
+
+    📦 Binario estructurado:
+    Nombre: Ana
+    Edad: 30
+    Biografía: Ingeniera de software apasionada por la IA y la educación.
+
+    🟨 JSON (preferencias):
+    lenguaje → Kotlin
+    editor → IntelliJ
+    tema → oscuro
+
+    📘 Ficha XML:
+    Nombre: Ana
+    Edad: 30
+    Biografía: Ingeniera de software apasionada por la IA y la educación.
+    Preferencias:
+    Lenguaje: Kotlin
+    Editor: IntelliJ
+    Tema: oscuro
+
+    🟨 Objeto:
+    Ficha(nombre=Ana, edad=30, biografia=Ingeniera de software apasionada por la IA y la educación., preferencias=Preferencias(lenguaje=Kotlin, editor=IntelliJ, tema=oscuro))
+
+```        
+
 ## ✅ Rúbrica de evaluación
 
 | Criterio                                                              | Puntos |
