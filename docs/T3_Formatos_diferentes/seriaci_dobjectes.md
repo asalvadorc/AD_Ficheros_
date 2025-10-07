@@ -61,41 +61,40 @@ Los pasos para serializar un objeto java (kotlin) son los siguientes:
 
 🖥️ 2. **Ejemplo_guardar_persona.kt**: Serializar un objeto a un archivo 
 
-        import java.io.FileOutputStream
         import java.io.ObjectOutputStream
-        import java.io.Serializable
+        import java.nio.file.Files
+        import java.nio.file.Paths
 
 
         fun main() {
-            val persona = Persona("Ana", 30)
 
-            val fos = FileOutputStream("documentos/persona.obj")
-            val oos = ObjectOutputStream(fos)
+            val persona = Persona("Alicia", 30)
 
-            oos.writeObject(persona)
+            val path = Paths.get("documentos/persona.obj")
+            val objectOut = ObjectOutputStream(Files.newOutputStream(path))
+            objectOut.writeObject(persona)
+            objectOut.close()
 
-            oos.close()
-            fos.close()
+   
 
             println("Objeto serializado correctamente.")
         }
+           
 
 
 🖥️ 3. **Ejemplo_leer_persona.kt**: Deserializar un objeto desde un archivo
 
-        import java.io.FileInputStream
         import java.io.ObjectInputStream
-        import java.io.Serializable
+        import java.nio.file.Paths
+        import java.nio.file.Files
             
         fun main() {
-            val fis = FileInputStream("documentos/persona.obj")
-            val ois = ObjectInputStream(fis)
+            val path = Paths.get("documentos/persona.obj")
+            val objectIn = ObjectInputStream(Files.newInputStream(path))
+            val persona= objectIn.readObject() as Persona
+            objectIn.close()
 
-            val persona = ois.readObject() as Persona
-
-            ois.close()
-            fis.close()
-
+            
             println("Objeto deserializado:")
             println("Nombre: ${persona.nombre}, Edad: ${persona.edad}")
         }
