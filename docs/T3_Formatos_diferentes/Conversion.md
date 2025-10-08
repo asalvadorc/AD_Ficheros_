@@ -41,11 +41,12 @@ Contenido de los archivos:
 | nombre;nota<br>Lucía;9<br>Carlos;8<br>Elena;10 | &lt;Persona&gt;<br>&nbsp;&nbsp;&lt;nombre&gt;Lucía&lt;/nombre&gt;<br>&nbsp;&nbsp;&lt;edad&gt;28&lt;/edad&gt;<br>&lt;/Persona&gt; | {<br>&nbsp;&nbsp;"nombre" : "Lucía",<br>&nbsp;&nbsp;"edad" : 28<br>} |
 
 
-### **CSV a JSON y vicersa**{.azul}
+### **CSV <-> JSON**{.azul}
 
-En estos ejemplos utilizamos **Jackson**, pero se podría  utilizar también **Kotlinx.serialization**.
+En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar también **Kotlinx.serialization**.
 
-El intermediario es la lista de objetos alumnos (de tipo Alumno), que actúa como paso intermedio entre el CSV y el JSON
+!!!Note ""
+    El intermediario entre el CSV y el JSON es **la lista de objetos alumnos** (de tipo Alumno)
 
 🖥️ **Ejemplo_convertir_csv_a_json.kt**
 
@@ -141,8 +142,6 @@ El intermediario es la lista de objetos alumnos (de tipo Alumno), que actúa com
 -->
 
 
-En este segundo ejemplo, el intermediario como objeto vuelve a aparecer —pero en sentido inverso—, ahora los objetos Alumno se crean al leer el JSON y se usan para generar el CSV.
-
 🖥️ **Ejemplo_convertir_json_a_csv.kt**        
 
         import com.fasterxml.jackson.databind.ObjectMapper
@@ -182,9 +181,10 @@ En este segundo ejemplo, el intermediario como objeto vuelve a aparecer —pero 
 
 
 
-### **JSON a XML y viceversa**{.azul}
+### **JSON <-> XML**{.azul}
 
-En estos ejemplos utilizamos **Jackson**, en ambas conversiones, y por lo tanto también utiliza un objeto intermediario, aunque de forma más implícita.
+!!!Note ""
+    En estos ejemplos utilizamos **Jackson**, en ambas conversiones, y por lo tanto también utiliza un objeto intermediario (**persona**), aunque de forma más implícita.
 
 🖥️ Ejemplo_convertir_json_a_xml.kt
 
@@ -237,11 +237,12 @@ En estos ejemplos utilizamos **Jackson**, en ambas conversiones, y por lo tanto 
     }
 
 
-### **JSON a Binario estructurado y viceversa**{.azul}
+### **JSON <-> Binario estructurado**{.azul}
 
 En estos ejemplos utilizamos **kotlinx.serialization**.
 
-En estos ejemplos, el objeto persona (instancia de la clase Persona) es el intermediario entre el archivo JSON y el archivo binario.
+!!!Note ""
+    El objeto **persona** (instancia de la clase Persona) es el intermediario entre el archivo JSON y el archivo binario.
 
 🖥️ **Ejemplo_convertir_json_a_binario.kt**
 
