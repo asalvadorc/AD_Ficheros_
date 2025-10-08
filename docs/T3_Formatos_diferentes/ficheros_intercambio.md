@@ -2,30 +2,21 @@
 
 En el desarrollo de aplicaciones, es habitual trabajar con datos almacenados o transmitidos en distintos formatos de ficheros. La conversión entre estos formatos permite intercambiar información entre sistemas heterogéneos, integrarse con APIs, facilitar la persistencia de datos o adaptarse a requisitos específicos. 
 
+**¿Cuándo utilizar cada uno de ellos?**
 
-Los formatos más comunes con los que se trabaja incluyen:
+- **JSON** y **XML**: para APIs REST, configuración, exportación de datos.
+- **CSV**: para importar/exportar datos desde hojas de cálculo.
 
-Formato|	Descripción|	Soporte en Kotlin
--------|---------------|----------------------
-JSON|	Formato de texto ligero para intercambio de datos estructurados.|	kotlinx.serialization, Gson, Jackson
-XML|	Formato estructurado y extensible muy usado en sistemas legados.|	JAXB (via Java), kotlinx-serialization-xml, Simple XML
-CSV|	Formato simple de texto para datos tabulares (separados por comas).|	Librerías como OpenCSV, Kotlin CSV
-YAML|	Formato legible para humanos, útil para configuración.|	jackson-dataformat-yaml, SnakeYAML
-PROTOBUF|	Formato binario eficiente para transmisión entre sistemas.|	kotlinx.serialization-protobuf, Protobuf oficial de Google
-AVRO|	Formato binario usado en Big Data (Apache Avro).|	A través de librerías Java
-TOML/INI|	Archivos de configuración estructurada.|	Soportado por librerías externas
+Estos formatos no solo permiten guardar la información de forma más organizada y legible, sino que requieren utilizar **librerías específicas** para leer y escribir.  
 
 
-**¿Cuándo utilizar cada uno de ellos?**{.azul}
+En los siguientes apartados veremos cómo trabajar con cada uno de estos formatos, qué librerías se utilizan en Kotlin para manipularlos, y cómo adaptar nuestras clases y funciones para poder persistir y recuperar objetos fácilmente desde cada tipo de fichero.
 
-- JSON y XML: para APIs REST, configuración, exportación de datos.
-- CSV: para importar/exportar datos desde hojas de cálculo.
-- YAML / TOML: en archivos de configuración de aplicaciones.
-- PROTOBUF / AVRO: en comunicaciones eficientes, microservicios, Big Data.
+
 
 !!!warning "Ejemplos"
     Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos un proyecto llamado **Ficheros_Gradle**, en el que incluiremos **Gradle** como herramienta de construcción. Los ejemplos los iremos creando directamente en la carpeta **src/main/Kotlin**.   
-    Crearemo también la carpeta **documentos**, donde iremos dejando los ficheros geneados en los distintos ejemplo.
+    Crearemo también la carpeta **documentos**, donde iremos dejando los ficheros geneados en los distintos ejemplos.
     
     ![Ref](new_project_gradle.png)|![Ref](ejemplos_intercambio.png)
 
@@ -351,7 +342,7 @@ Esto proporciona importantes **ventajas**:
 
 ### 🔹 kotlinx.serialization
 
-kotlinx.serialization es la librería oficial de serialización de Kotlin, desarrollada por JetBrains, que permite convertir objetos Kotlin a y desde diferentes formatos como JSON, ProtoBuf, CBOR, XML (experimental), entre otros.
+**kotlinx.serialization** es la librería oficial de serialización de Kotlin, desarrollada por JetBrains, que permite convertir objetos Kotlin a y desde diferentes formatos como JSON, ProtoBuf, CBOR, XML (experimental), entre otros.
 
 
 Como ya vimos en el apartado anterior, **la serialización** es el proceso de convertir los datos utilizados por una aplicación a un formato que pueda transferirse por red o almacenarse en una base de datos o archivo. A su vez, la deserialización es el proceso inverso: leer datos de una fuente externa y convertirlos en un objeto de tiempo de ejecución.
@@ -488,7 +479,9 @@ deserializar llamamos a **Json.decodeFromString()**.
 2- Crea la clase **Persona.kt** con la misma estructura del archivo **persona.json**. Este es el objeto en Java que se corresponde con el archivo json y que se utiliza en la serialización.
 
 
-        @kotlinx.serialization.Serializable
+        import kotlinx.serialization.Serializable
+
+        @Serializable
         data class Persona(val nombre: String, val edad: Int)
 
 
@@ -571,7 +564,7 @@ __
         }
 
 
-**JSON sin depender de una clase serializable**{.azul}
+**JSON sin depender de una clase de datos**{.azul}
 
 🖥️ **Ejemplo_JSONObject_esc.kt**
 
@@ -583,24 +576,24 @@ Cuando queremos construir el JSON "a mano", sin depender de la serialización au
         import java.nio.file.Files
         import java.nio.file.Paths
 
+       
         fun main() {
-            val ruta = Paths.get("documentos/persona_nueva_Object.json")
-            val persona = Persona("Mario", 35)
+            val ruta = Paths.get("documentos/persona_nueva.json")
 
             try {
-                // Crear el JSON manualmente con buildJsonObject
+                // Construir el JSON manualmente
                 val jsonObject = buildJsonObject {
-                    put("nombre", persona.nombre)
-                    put("edad", persona.edad)
+                    put("nombre", "Mario")
+                    put("edad", 35)
                 }
 
-                val json = Json { prettyPrint = true }
-                val jsonString = json.encodeToString(JsonObject.serializer(), jsonObject)
+                // Convertirlo a String con formato bonito
+                val jsonString = Json { prettyPrint = true }.encodeToString(JsonObject.serializer(), jsonObject)
 
                 // Crear carpeta si no existe
                 Files.createDirectories(ruta.parent)
 
-                // Escribir JSON en archivo
+                // Escribir JSON en el archivo
                 Files.writeString(ruta, jsonString)
 
                 println("Archivo JSON creado en: ${ruta.toAbsolutePath()}")
@@ -612,6 +605,7 @@ Cuando queremos construir el JSON "a mano", sin depender de la serialización au
                 println("Error inesperado: ${e.message}")
             }
         }
+
 
 
 🖥️ **Ejemplo_JSONObject_lect.kt**
@@ -661,6 +655,9 @@ De la misma manera que en la escritura, si queremos leer un JSON directamente si
 **kotlinx.serialization** es la librería oficial de serialización de Kotlin, pero **Jackson** es la librería más usada en Java para JSON. Muchos frameworks Java lo usan por defecto (Spring Boot, Micronaut, Quarkus, etc.). Conocerlo permite trabajar con APIs externas, backends y entornos mixtos (Java + Kotlin). 
 
 Mientras que **kotlinx.serialization** está centrado en JSON y formatos binarios (CBOR, ProtoBuf...), **Jackson** también soporta XML, YAML, CSV de forma unificada, además, si necesitas convertir entre formatos (XML ↔ JSON), Jackson es ideal, por lo que es importante cononcer ambas librerías para entender los proyectos Kotlin puros y modernos (kotlinx.serialization) y también los proyectos reales empresariales con Jackson.
+
+!!!Note ""
+    Con la librería Jackson no es necesario anotar la clase con **@Serializable**, a diferencia de lo que ocurre con **kotlinx.serialization**.
 
 
 **Clases esenciales para trabajar con JSON usando Jackson**{.verde}
@@ -891,12 +888,14 @@ XMLOutputter|	Convierte el árbol de elementos en texto XML.
 
 **Ejemplo que convierte el archivo alumnos.xml en un objeto y viceversa**{.azul}:
 
-JDOM2 no realiza serialización automática de objetos Kotlin, se necesita mapear manualmente entre objetos (data class) y elementos XML.
 
+JDOM2 no realiza serialización automática de objetos Kotlin, se necesita mapear manualmente entre objetos (data class) y elementos XML.
+Convertir los datos del XML en objetos permite trabajar con ellos de forma estructurada, segura y reutilizable, haciendo el código más claro, potente y fácil de mantener.
 
 - Primero crearemos la clase Alumnos:
 
         data class Alumno(val nombre: String, val nota: Int)
+
 
 
 🖥️ **Ejemplo_XML_a_Objeto.kt**: Leemos el archivo alumnos.xml creado en el ejemplo anterior y lo convertimos a objeto.
@@ -906,7 +905,9 @@ JDOM2 no realiza serialización automática de objetos Kotlin, se necesita mapea
 
 
         fun main() {
-            val alumnos = mutableListOf<Alumno>()
+
+            //Crea una lista mutable de tipo Alumno.
+            val alumnos = mutableListOf<Alumno>() 
 
             val archivo = File("documentos/alumnos.xml")
             val builder = SAXBuilder()
@@ -915,10 +916,11 @@ JDOM2 no realiza serialización automática de objetos Kotlin, se necesita mapea
 
             val listaAlumnos = raiz.getChildren("alumno")
 
+            //Por cada nodo <alumno> del XML, crea un objeto Alumno con sus atributos.
             for (elemento in listaAlumnos) {
                 val nombre = elemento.getChildText("nombre")
                 val nota = elemento.getChildText("nota").toIntOrNull() ?: 0
-                alumnos.add(Alumno(nombre, nota))
+                alumnos.add(Alumno(nombre, nota)) 
             }
 
             // Mostrar los objetos
@@ -966,7 +968,6 @@ JDOM2 no realiza serialización automática de objetos Kotlin, se necesita mapea
         }
 
 
-
 ### 🔹Jackson (XML)
 
 JDOM2 no realiza serialización automática de objetos Kotlin, pero se puede recurrir a librerías como **Jackson** o **kotlinx.serialization**.
@@ -1003,6 +1004,21 @@ Utilizaremos, por tanto, la librería **Jackson** para realizar la serializació
         }
 
 🖥️ **Ejemplo_XML_Jackson.kt**
+
+
+Siguiendo con el ejemplo **alumnos.xml**:
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <alumnos>
+            <alumno>
+                <nombre>Ana</nombre>
+                <nota>9</nota>
+            </alumno>
+            <alumno>
+                <nombre>Pedro</nombre>
+                <nota>7</nota>
+            </alumno>
+        </alumnos>
 
 Creamos la clase contenedora **ListaAlumnos**, que actúa como puente entre el XML y Kotlin. Esta clase da nombre al nodo raiz (alumnos) y explica como mapear los elementos repetidos (alumno)
         

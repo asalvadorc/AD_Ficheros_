@@ -1,5 +1,15 @@
 # 🔹 Conversión entre formatos de ficheros en Kotlin/Java
 
+
+Cada formato (CSV, JSON, XML, binario) organiza la información de forma distinta:
+
+- CSV → datos planos por filas/columnas
+- JSON → datos jerárquicos
+- XML → etiquetas anidadas
+- Binario → datos codificados
+
+En los ficheros con formatos distintos, si pasas todo a objetos (por ejemplo, Alumno(nombre, nota)), trabajas con una estructura única en memoria, y solo cambias cómo se leen o se escriben los datos según el formato.
+
 | Conversión                     | Herramientas recomendadas                                   | Proceso resumido                                                                 |
 |-------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------------------|
 | **CSV → JSON**                | OpenCSV + kotlinx.serialization / Jackson                           | Leer CSV → mapear a objetos → serializar con `Json.encodeToString`              |
@@ -31,11 +41,14 @@ Contenido de los archivos:
 | nombre;nota<br>Lucía;9<br>Carlos;8<br>Elena;10 | &lt;Persona&gt;<br>&nbsp;&nbsp;&lt;nombre&gt;Lucía&lt;/nombre&gt;<br>&nbsp;&nbsp;&lt;edad&gt;28&lt;/edad&gt;<br>&lt;/Persona&gt; | {<br>&nbsp;&nbsp;"nombre" : "Lucía",<br>&nbsp;&nbsp;"edad" : 28<br>} |
 
 
-### **CSV a JSON**{.azul}
+### **CSV a JSON y vicersa**{.azul}
 
 En estos ejemplos utilizamos **Jackson**, pero se podría  utilizar también **Kotlinx.serialization**.
 
+El intermediario es la lista de objetos alumnos (de tipo Alumno), que actúa como paso intermedio entre el CSV y el JSON
+
 🖥️ **Ejemplo_convertir_csv_a_json.kt**
+
 
         import com.opencsv.CSVReaderBuilder
         import com.opencsv.CSVParserBuilder
@@ -56,12 +69,16 @@ En estos ejemplos utilizamos **Jackson**, pero se podría  utilizar también **K
                 .build()
 
             val registros = reader.readAll()
+            //lista alumnos para guardar los objetos Alumno
             val alumnos = mutableListOf<Alumno>()
 
             for (campos in registros) {
                 val nombre = campos[0]
                 val nota = campos[1].toInt()
+
+                //  Cada línea del CSV se transforma en un objeto
                 val alumno = Alumno(nombre, nota)
+                //Todos los objetos se guardan en la lista alumnos
                 alumnos.add(alumno)
             }
 
@@ -123,7 +140,8 @@ En estos ejemplos utilizamos **Jackson**, pero se podría  utilizar también **K
 
 -->
 
-### **JSON a CSV**{.azul}
+
+En este segundo ejemplo, el intermediario como objeto vuelve a aparecer —pero en sentido inverso—, ahora los objetos Alumno se crean al leer el JSON y se usan para generar el CSV.
 
 🖥️ **Ejemplo_convertir_json_a_csv.kt**        
 
@@ -151,7 +169,7 @@ En estos ejemplos utilizamos **Jackson**, pero se podría  utilizar también **K
             // Escribir cabecera
             writer.writeNext(arrayOf("nombre", "nota"))
 
-            // Escribir cada alumno (sin usar lambda)
+            // Escribir cada alumno
             for (alumno in alumnos) {
                 val fila = arrayOf(alumno.nombre, alumno.nota.toString())
                 writer.writeNext(fila)
@@ -164,10 +182,9 @@ En estos ejemplos utilizamos **Jackson**, pero se podría  utilizar también **K
 
 
 
-### **JSON a XML**{.azul}
+### **JSON a XML y viceversa**{.azul}
 
-En estos ejemplos utilizamos **Jackson**.
-
+En estos ejemplos utilizamos **Jackson**, en ambas conversiones, y por lo tanto también utiliza un objeto intermediario, aunque de forma más implícita.
 
 🖥️ Ejemplo_convertir_json_a_xml.kt
 
@@ -180,6 +197,7 @@ En estos ejemplos utilizamos **Jackson**.
             val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
             val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
 
+            //El objeto persona actúa como intermediario
             val persona = jsonMapper.readValue(File(jsonPath), Persona::class.java)
             xmlMapper.writerWithDefaultPrettyPrinter().writeValue(File(xmlPath), persona)
 
@@ -191,8 +209,6 @@ En estos ejemplos utilizamos **Jackson**.
             convertirJsonAXml("documentos/persona.json", "documentos/persona_generada.xml")
 
         }
-
-### **XML a JSON**{.azul}
 
 🖥️ **Ejemplo_convertir_xml_a_json.kt**
 
@@ -207,6 +223,7 @@ En estos ejemplos utilizamos **Jackson**.
         val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
         val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
 
+         //El objeto persona actúa como intermediario
         val persona = xmlMapper.readValue(File(xmlPath), Persona::class.java)
         jsonMapper.writerWithDefaultPrettyPrinter().writeValue(File(jsonPath), persona)
 
@@ -220,9 +237,11 @@ En estos ejemplos utilizamos **Jackson**.
     }
 
 
-### **JSON a Binario estructurado**{.azul}
+### **JSON a Binario estructurado y viceversa**{.azul}
 
 En estos ejemplos utilizamos **kotlinx.serialization**.
+
+En estos ejemplos, el objeto persona (instancia de la clase Persona) es el intermediario entre el archivo JSON y el archivo binario.
 
 🖥️ **Ejemplo_convertir_json_a_binario.kt**
 
@@ -272,8 +291,7 @@ Leer el binario estructurado:
         }
 
 
-
-### **Binario estructurado a JSON**{.azul}
+🖥️ **Ejemplo_convertir_binario_a_json.kt**
 
         import kotlinx.serialization.encodeToString
         import kotlinx.serialization.json.Json
