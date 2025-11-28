@@ -487,17 +487,42 @@ deserializar llamamos a **Json.decodeFromString()**.
 
 
 
-🖥️ **Ejemplo_JSON_lect.kt**
+🖥️ **Ejemplo_JSON_KSerialization.kt**
 
+        import kotlinx.serialization.encodeToString
         import kotlinx.serialization.json.*
-        import kotlinx.serialization.decodeFromString
         import java.nio.file.Files
         import java.nio.file.Paths
         import java.io.IOException
         import java.nio.file.Files.readString
 
+        fun escribirJSON() {
 
-        fun main() {
+            val ruta = Paths.get("documentos/persona_nueva.json")
+            val persona = Persona("Mario", 35)
+            try {
+
+                // Convertir a String con formato bonito
+                val jsonString = Json { prettyPrint = true }.encodeToString(persona)
+
+                // Crear carpeta si no existe
+                Files.createDirectories(ruta.parent)
+
+                // Escribir JSON en archivo
+                Files.writeString(ruta, jsonString)
+
+                println("Archivo JSON creado en: ${ruta.toAbsolutePath()}")
+                println("Contenido:\n$jsonString")
+
+            } catch (e: IOException) {
+                println("⚠️ Error de entrada/salida: ${e.message}")
+            } catch (e: Exception) {
+                println("⚠️ Error inesperado: ${e.message}")
+            }
+        }
+
+
+        fun leerJSON(){
             val rutaEntrada = Paths.get("documentos/persona.json")
 
             // --- Lectura segura ---
@@ -519,48 +544,10 @@ deserializar llamamos a **Json.decodeFromString()**.
 
 
 
-
-🖥️ **Ejemplo_JSON_esc.kt**
-
-
-El programa siguiente crea el fichero **persona_nueva.json**  con el siguiente contenido:    
-
-        {
-        "nombre": "Mario",
-        "edad": 35
-        }        
-__
-
-
-        import kotlinx.serialization.json.*
-        import kotlinx.serialization.encodeToString
-        import java.io.IOException
-        import java.nio.file.Files
-        import java.nio.file.Paths
-
-
         fun main() {
-            val ruta = Paths.get("documentos/persona_nueva.json")
-            val persona=Persona("Mario", 35)
-            try {
-            
-                // Convertir a String con formato bonito
-                val jsonString = Json { prettyPrint = true }.encodeToString(persona)
+            escribirJSON()
+            leerJSON()
 
-                // Crear carpeta si no existe
-                Files.createDirectories(ruta.parent)
-
-                // Escribir JSON en archivo
-                Files.writeString(ruta, jsonString)
-
-                println("Archivo JSON creado en: ${ruta.toAbsolutePath()}")
-                println("Contenido:\n$jsonString")
-
-            } catch (e: IOException) {
-                println("Error de entrada/salida: ${e.message}")
-            } catch (e: Exception) {
-                println("Error inesperado: ${e.message}")
-            }
         }
 
 
