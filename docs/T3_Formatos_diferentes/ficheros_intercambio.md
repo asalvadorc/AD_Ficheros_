@@ -733,6 +733,61 @@ Dependencia Gradle:
             leerJson()
             escribirJson()
         }
+  
+
+!!!Note "Fichero JSON compuesto por una lista de elementos"
+    Si el fichero **JSON** contiene un *array* (`[...]`), es decir, una **lista de objetos**, entonces debemos indicar explícitamente que queremos leer un `List<T>`.  
+    Para ello se utiliza **TypeReference<`List<T>`>**, porque Java y Kotlin pierden los tipos genéricos en tiempo de ejecución.  
+
+**Ejemplo de lectura y escritura de un array (lista) de elementos con Jackson**{.azul}         
+
+🖥️ **Ejemplo_listaJSON_jackson.kt**
+
+        import com.fasterxml.jackson.core.type.TypeReference
+        import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+        import java.io.File
+
+
+        fun escribirListaJson() {
+
+            val mapper = jacksonObjectMapper()
+
+            val personas = listOf(
+                Persona("Lucía", 28),
+                Persona("Pepe", 30),
+                Persona("Ana", 50),
+                Persona("Juan", 12)
+            )
+            val archivo = File("documentos/lista_personas_jackson.json")
+
+            mapper.writerWithDefaultPrettyPrinter().writeValue(archivo, personas)
+
+            println("JSON generado correctamente en: ${archivo.absolutePath}")
+        }
+
+        fun leerListaJson() {
+
+            val mapper = jacksonObjectMapper()
+            val archivo = File("documentos/lista_personas_jackson.json")
+
+            //lista de objetos Persona
+            val lista=mapper.readValue(archivo, object : TypeReference<List<Persona>>() {})
+
+
+            for (p in lista) {
+                println("${p.nombre} tiene ${p.edad} años.")
+            }
+
+        }
+
+        fun main() {
+            escribirListaJson()
+            leerListaJson()
+        }
+
+
+
+
 
 
 ## 🔹Ficheros XML
