@@ -1,5 +1,8 @@
 # 🔹 Conversión entre formatos de ficheros en Kotlin/Java
 
+!!!Tip "Importante"
+    Para convertir un fichero de un formato a otro, primero debo deserializarlo o interpretarlo convirtiéndolo a objetos en memoria, y después generar el nuevo formato a partir de esos objetos. El proceso correcto es siempre:  
+    **Formato de entrada → Objeto → Formato de salida.**
 
 Cada formato (CSV, JSON, XML, binario) organiza la información de forma distinta:
 
