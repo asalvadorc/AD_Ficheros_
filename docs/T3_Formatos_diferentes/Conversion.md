@@ -189,55 +189,114 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 !!!Note ""
     En estos ejemplos utilizamos **Jackson**, en ambas conversiones, y por lo tanto también utiliza un objeto intermediario (**persona**), aunque de forma más implícita.
 
-🖥️ Ejemplo_convertir_json_a_xml.kt
+🖥️ **Ejemplo_convertir_json_a_xml.kt**
 
         import com.fasterxml.jackson.databind.ObjectMapper
         import com.fasterxml.jackson.dataformat.xml.XmlMapper
         import com.fasterxml.jackson.module.kotlin.KotlinModule
+        import com.fasterxml.jackson.module.kotlin.readValue
         import java.io.File
 
         fun convertirJsonAXml(jsonPath: String, xmlPath: String) {
             val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
             val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
 
-            //El objeto persona actúa como intermediario
-            val persona = jsonMapper.readValue(File(jsonPath), Persona::class.java)
+            val persona = jsonMapper.readValue<Persona>(File(jsonPath))
             xmlMapper.writerWithDefaultPrettyPrinter().writeValue(File(xmlPath), persona)
 
             println("Conversión JSON → XML completada")
         }
 
-
         fun main() {
-            convertirJsonAXml("documentos/persona.json", "documentos/persona_generada.xml")
+            convertirJsonAXml("documentos/persona.json", "documentos/persona_convertida.xml")
 
         }
+
+!!!Note "Fichero JSON compuesto por una lista de elementos"
+    Si el fichero **JSON** contiene un *array* (`[...]`), es decir, una **lista de objetos**, entonces debemos indicar explícitamente que queremos leer un `List<Objeto>`.  
+
+🖥️ **Ejemplo_convertir_listajson_a_xml.kt**
+
+        import com.fasterxml.jackson.databind.ObjectMapper
+        import com.fasterxml.jackson.dataformat.xml.XmlMapper
+        import com.fasterxml.jackson.module.kotlin.KotlinModule
+        import com.fasterxml.jackson.module.kotlin.readValue
+        import java.io.File
+
+        fun convertirListaJsonAXml(jsonPath: String, xmlPath: String) {
+            val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+            val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
+
+
+            // Lista de objetos Persona
+            val personas: List<Persona> = jsonMapper.readValue(File(jsonPath))
+            xmlMapper.writerWithDefaultPrettyPrinter().writeValue(File(xmlPath), personas)
+
+            println("Conversión JSON → XML completada")
+        }
+
+        fun main() {
+            
+            convertirListaJsonAXml("documentos/lista_personas_jackson.json", "documentos/lista_personas_jackson.xml")
+
+
+        }
+
 
 🖥️ **Ejemplo_convertir_xml_a_json.kt**
 
 
+        import com.fasterxml.jackson.databind.ObjectMapper
+        import com.fasterxml.jackson.dataformat.xml.XmlMapper
+        import com.fasterxml.jackson.module.kotlin.KotlinModule
+        import com.fasterxml.jackson.module.kotlin.readValue
+        import java.io.File
 
-    import com.fasterxml.jackson.databind.ObjectMapper
-    import com.fasterxml.jackson.dataformat.xml.XmlMapper
-    import com.fasterxml.jackson.module.kotlin.KotlinModule
-    import java.io.File
+        fun convertirXmlAJson(xmlPath: String, jsonPath: String) {
+            val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
+            val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
 
-    fun convertirXmlAJson(xmlPath: String, jsonPath: String) {
-        val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
-        val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+            val persona = xmlMapper.readValue<Persona>(File(xmlPath))
+            jsonMapper.writerWithDefaultPrettyPrinter().writeValue(File(jsonPath), persona)
 
-         //El objeto persona actúa como intermediario
-        val persona = xmlMapper.readValue(File(xmlPath), Persona::class.java)
-        jsonMapper.writerWithDefaultPrettyPrinter().writeValue(File(jsonPath), persona)
+            println("Conversión XML → JSON completada")
+        }
 
-        println("Conversión XML → JSON completada")
-    }
+        fun main() {
+
+            convertirXmlAJson("documentos/persona.xml", "documentos/persona_convertida.json")
+        }
 
 
-    fun main() {
-        
-        convertirXmlAJson("documentos/persona.xml", "documentos/persona_generada.json")
-    }
+!!!Note "Fichero XML compuesto por una lista de elementos"
+    Si el fichero **XML** contiene una **lista de objetos**, entonces debemos indicar explícitamente que queremos leer un `List<Objeto>`.  
+
+
+
+🖥️ **Ejemplo_convertir_listaxml_a_json.kt**
+
+        import com.fasterxml.jackson.databind.ObjectMapper
+        import com.fasterxml.jackson.dataformat.xml.XmlMapper
+        import com.fasterxml.jackson.module.kotlin.KotlinModule
+        import com.fasterxml.jackson.module.kotlin.readValue
+        import java.io.File
+
+        fun convertirListaXmlAJson(xmlPath: String, jsonPath: String) {
+            val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
+            val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+
+            //Lista de objetos Persona
+            val personas: List<Persona> = xmlMapper.readValue(File(xmlPath))
+            jsonMapper.writerWithDefaultPrettyPrinter().writeValue(File(jsonPath), personas)
+
+            println("Conversión XML → JSON completada")
+        }
+
+        fun main() {
+
+            convertirListaXmlAJson("documentos/lista_personas_jackson.xml", "documentos/lista_personas_convertida.json")
+        }
+
 
 
 ### **JSON <-> Binario estructurado**{.azul}
@@ -249,13 +308,14 @@ En estos ejemplos utilizamos **kotlinx.serialization**.
 
 🖥️ **Ejemplo_convertir_json_a_binario.kt**
 
-        import kotlinx.serialization.decodeFromString
         import kotlinx.serialization.json.Json
         import java.io.DataOutputStream
         import java.io.File
         import java.io.FileOutputStream
         import java.nio.file.Files
         import java.nio.file.Paths
+        import java.io.DataInputStream
+        import java.io.FileInputStream
 
         fun main() {
             val rutaJson = "documentos/persona.json"
@@ -274,25 +334,118 @@ En estos ejemplos utilizamos **kotlinx.serialization**.
             salida.writeInt(persona.edad)    // Guarda entero (4 bytes)
             salida.close()
 
-            println("✅ Persona guardada como binario estructurado en: $rutaBin")
-        }
+            println("✅ .Persona guardada como binario estructurado en: $rutaBin")
 
-    
-       
-Leer el binario estructurado:
-
-        import java.io.DataInputStream
-        import java.io.FileInputStream
-
-        fun leerBinario(ruta: String) {
-            val entrada = DataInputStream(FileInputStream(ruta))
+            //Leer el binario estructurado
+            val entrada = DataInputStream(FileInputStream(rutaBin))
             val nombre = entrada.readUTF()
             val edad = entrada.readInt()
             entrada.close()
 
             println("📄 Persona leída del binario:")
             println("Nombre: $nombre, Edad: $edad")
+
         }
+
+!!!Note "Fichero JSON compuesto por una lista de elementos"
+    Si el fichero **JSON** contiene un *array* (`[...]`), es decir, una **lista de objetos**, necesitas iterar sobre la lista al escribir y al leer.
+
+🖥️ **Ejemplo_convertir_listajson_a_binario.kt**        
+
+        import kotlinx.serialization.json.Json
+        import java.io.DataOutputStream
+        import java.io.File
+        import java.io.FileOutputStream
+        import java.nio.file.Files
+        import java.nio.file.Paths
+        import java.io.DataInputStream
+        import java.io.FileInputStream
+
+        fun main() {
+            val rutaJson = "documentos/lista_personas_jackson.json"
+            val rutaBin = "documentos/lista_personas.dat"
+
+            // Leer JSON
+            val contenido = File(rutaJson).readText()
+            val personas = Json.decodeFromString<List<Persona>>(contenido)
+
+            // Crear carpeta si no existe
+            Files.createDirectories(Paths.get(rutaBin).parent)
+
+            // Escribir como binario estructurado
+            val salida = DataOutputStream(FileOutputStream(rutaBin))
+            salida.writeInt(personas.size) // Guardar el tamaño de la lista
+            for (persona in personas) {
+                salida.writeUTF(persona.nombre)
+                salida.writeInt(persona.edad)
+            }
+            salida.close()
+
+            println("✅ Lista de personas guardada como binario estructurado en: $rutaBin")
+
+            // Leer el binario estructurado
+            val entrada = DataInputStream(FileInputStream(rutaBin))
+            val cantidad = entrada.readInt() // Leer el tamaño de la lista
+            for (i in 0 until cantidad) {
+                val nombre = entrada.readUTF()
+                val edad = entrada.readInt()
+
+                println("Nombre: $nombre, Edad: $edad")
+            }
+            entrada.close()
+        }
+
+!!!Note ""
+    El mismo ejermplo pero utilizando la libreía **Jackson** en lugar de Kotlinx.serialization
+
+🖥️ **Ejemplo_convertir_listajson_a_binario_Jackson.kt**         
+
+        import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+        import com.fasterxml.jackson.module.kotlin.readValue
+        import java.io.DataOutputStream
+        import java.io.File
+        import java.io.FileOutputStream
+        import java.nio.file.Files
+        import java.nio.file.Paths
+        import java.io.DataInputStream
+        import java.io.FileInputStream
+
+        fun main() {
+            val rutaJson = "documentos/lista_personas_jackson.json"
+            val rutaBin = "documentos/lista_personas.dat"
+
+            // Leer JSON con Jackson
+            val mapper = jacksonObjectMapper()
+            val personas: List<Persona> = mapper.readValue(File(rutaJson))
+
+            // Crear carpeta si no existe
+            Files.createDirectories(Paths.get(rutaBin).parent)
+
+            // Escribir como binario estructurado
+            val salida = DataOutputStream(FileOutputStream(rutaBin))
+            salida.writeInt(personas.size) // Guardar el tamaño de la lista
+            for (persona in personas) {
+                salida.writeUTF(persona.nombre)
+                salida.writeInt(persona.edad)
+            }
+            salida.close()
+
+            println("✅ Lista de personas guardada como binario estructurado en: $rutaBin")
+
+            // Leer el binario estructurado
+            val entrada = DataInputStream(FileInputStream(rutaBin))
+            val cantidad = entrada.readInt() // Leer el tamaño de la lista
+            for (i in 0 until cantidad) {
+                val nombre = entrada.readUTF()
+                val edad = entrada.readInt()
+
+                println("Nombre: $nombre, Edad: $edad")
+            }
+            entrada.close()
+        }
+
+
+
 
 
 🖥️ **Ejemplo_convertir_binario_a_json.kt**
@@ -332,6 +485,82 @@ Leer el binario estructurado:
         }
 
 
+!!!Note "Fichero Binario compuesto por una lista de objetos"
+    Si el fichero **Binario** contiene una **lista de objetos**, debes leer el tamaño de la lista y luego leer cada objeto uno por uno, construir la lista y convertirla a JSON.
 
-      
+🖥️ **Ejemplo_convertir_listabinario_a_json.kt**
 
+            import kotlinx.serialization.encodeToString
+            import kotlinx.serialization.json.Json
+            import java.io.DataInputStream
+            import java.io.File
+            import java.io.FileInputStream
+            import java.nio.file.Files
+            import java.nio.file.Paths
+
+            fun main() {
+                val rutaBin = "documentos/lista_personas.dat"
+                val rutaJson = "documentos/lista_personas_convertidaBinario.json"
+
+                // Leer binario estructurado
+                val entrada = DataInputStream(FileInputStream(rutaBin))
+                val cantidad = entrada.readInt() // Leer el tamaño de la lista
+                val personas = mutableListOf<Persona>()
+                for (i in 0 until cantidad) {
+                    val nombre = entrada.readUTF()
+                    val edad = entrada.readInt()
+                    personas.add(Persona(nombre, edad))
+                }
+                entrada.close()
+
+                // Convertir a JSON con pretty print
+                val json = Json { prettyPrint = true }.encodeToString(personas)
+
+                // Crear carpeta si no existe
+                Files.createDirectories(Paths.get(rutaJson).parent)
+
+                // Escribir JSON en archivo
+                File(rutaJson).writeText(json)
+
+                println("✅ Lista de personas convertida a JSON:")
+                println(json)
+            }
+
+!!!Note ""
+    El mismo ejermplo pero utilizando la libreía **Jackson** en lugar de Kotlinx.serialization
+
+
+🖥️ **Ejemplo_convertir_listabinario_a_json_Jackson.kt**
+
+        import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+        import java.io.DataInputStream
+        import java.io.File
+        import java.io.FileInputStream
+        import java.nio.file.Files
+        import java.nio.file.Paths
+
+        fun main() {
+            val rutaBin = "documentos/lista_personas.dat"
+            val rutaJson = "documentos/lista_personas_convertidaBinario.json"
+
+            // Leer binario estructurado
+            val entrada = DataInputStream(FileInputStream(rutaBin))
+            val cantidad = entrada.readInt() // Leer el tamaño de la lista
+            val personas = mutableListOf<Persona>()
+            for (i in 0 until cantidad) {
+                val nombre = entrada.readUTF()
+                val edad = entrada.readInt()
+                personas.add(Persona(nombre, edad))
+            }
+            entrada.close()
+
+            // Convertir a JSON con pretty print usando Jackson
+            val mapper = jacksonObjectMapper()
+            mapper.writerWithDefaultPrettyPrinter().writeValue(File(rutaJson), personas)
+
+            // Crear carpeta si no existe
+            Files.createDirectories(Paths.get(rutaJson).parent)
+
+            println("✅ Lista de personas convertida a JSON con Jackson:")
+            println(mapper.writeValueAsString(personas))
+        }

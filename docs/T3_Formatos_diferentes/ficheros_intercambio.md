@@ -702,24 +702,23 @@ Dependencia Gradle:
 🖥️ **Ejemplo_JSON_jackson.kt**
 
         
-        import com.fasterxml.jackson.databind.ObjectMapper
-        import com.fasterxml.jackson.module.kotlin.KotlinModule
+        import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+        import com.fasterxml.jackson.module.kotlin.readValue
         import java.io.File
 
-        
 
-        //lectura de persona.json
         fun leerJson() {
+
             val mapper = jacksonObjectMapper()
             val archivo = File("documentos/persona.json")
 
-            val persona = mapper.readValue(archivo, Persona::class.java)
+            val persona = mapper.readValue<Persona>(archivo)
             println("Lectura correcta: ${persona.nombre} tiene ${persona.edad} años.")
         }
 
-        //escritura de persona.json
         fun escribirJson() {
-             val mapper = jacksonObjectMapper()
+
+            val mapper = jacksonObjectMapper()
 
             val persona = Persona("Mario", 35)
             val archivo = File("documentos/persona_generada_jackson.json")
@@ -733,13 +732,29 @@ Dependencia Gradle:
             leerJson()
             escribirJson()
         }
-  
+
+**Ejemplo de lectura y escritura de un array (lista) de elementos con Jackson**{.azul}        
 
 !!!Note "Fichero JSON compuesto por una lista de elementos"
-    Si el fichero **JSON** contiene un *array* (`[...]`), es decir, una **lista de objetos**, entonces debemos indicar explícitamente que queremos leer un `List<T>`.  
-    Para ello se utiliza **TypeReference<`List<T>`>**, porque Java y Kotlin pierden los tipos genéricos en tiempo de ejecución.  
+    Si el fichero **JSON** contiene un *array* (`[...]`), es decir, una **lista de objetos**, entonces debemos indicar explícitamente que queremos leer un `List<Objeto>`.  
+   
+        [ 
+            {
+            "nombre" : "Lucía",
+            "edad" : 28
+            }, {
+            "nombre" : "Pepe",
+            "edad" : 30
+            }, {
+            "nombre" : "Ana",
+            "edad" : 50
+            }, {
+            "nombre" : "Juan",
+            "edad" : 12
+            } 
+        ]
 
-**Ejemplo de lectura y escritura de un array (lista) de elementos con Jackson**{.azul}         
+
 
 🖥️ **Ejemplo_listaJSON_jackson.kt**
 
@@ -771,7 +786,7 @@ Dependencia Gradle:
             val archivo = File("documentos/lista_personas_jackson.json")
 
             //lista de objetos Persona
-            val lista=mapper.readValue(archivo, object : TypeReference<List<Persona>>() {})
+            val lista=mapper.readValue<List<Persona>>(archivo)
 
 
             for (p in lista) {
