@@ -56,12 +56,11 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
         import com.opencsv.CSVReaderBuilder
         import com.opencsv.CSVParserBuilder
-        import com.fasterxml.jackson.databind.ObjectMapper
-        import com.fasterxml.jackson.module.kotlin.KotlinModule
+        import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
         import java.io.File
         import java.io.FileReader
 
-        data class Alumno(val nombre: String, val nota: Int)
+
 
         fun main() {
             val rutaCSV = "documentos/alumnos.csv"
@@ -88,99 +87,48 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
             reader.close()
 
-            val mapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+            
+            val mapper = jacksonObjectMapper()
             mapper.writerWithDefaultPrettyPrinter().writeValue(File(rutaJSON), alumnos)
 
             println("✅ Conversión CSV → JSON completada: $rutaJSON")
         }
-<!--
-🖥️ **Ejemplo_convertir_csv_a_json_kotlinx.kt** utilizando Kotlinx.serialization
-
-        import com.opencsv.CSVParserBuilder
-        import com.opencsv.CSVReaderBuilder
-        import kotlinx.serialization.*
-        import kotlinx.serialization.json.*
-        import java.io.File
-        import java.io.FileReader
-        import java.nio.file.Files
-        import java.nio.file.Paths
-
-        @Serializable
-        data class Alumno(val nombre: String, val nota: Int)
-
-        fun main() {
-            val rutaCSV = "documentos/alumnos.csv"
-            val rutaJSON = "documentos/alumnos.json"
-
-            val reader = CSVReaderBuilder(FileReader(rutaCSV))
-                .withCSVParser(CSVParserBuilder().withSeparator(';').build())
-                .withSkipLines(1) // saltar cabecera
-                .build()
-
-            val alumnos = mutableListOf<Alumno>()
-
-            var fila = reader.readNext()
-            while (fila != null) {
-                if (fila.size >= 2) {
-                    val nombre = fila[0]
-                    val nota = fila[1].toIntOrNull() ?: -1
-                    alumnos.add(Alumno(nombre, nota))
-                }
-                fila = reader.readNext()
-            }
-
-            reader.close()
-
-            // Serializar a JSON
-            val jsonString = Json { prettyPrint = true }.encodeToString(alumnos)
-
-            // Guardar el JSON
-            Files.createDirectories(Paths.get(rutaJSON).parent)
-            File(rutaJSON).writeText(jsonString)
-
-            println("✅ Conversión CSV → JSON completada: $rutaJSON")
-            println("📄 Contenido generado:\n$jsonString")
-        }
-
--->
 
 
 🖥️ **Ejemplo_convertir_json_a_csv.kt**        
 
-        import com.fasterxml.jackson.databind.ObjectMapper
-        import com.fasterxml.jackson.module.kotlin.KotlinModule
+        import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
         import com.fasterxml.jackson.module.kotlin.readValue
-        import com.opencsv.CSVWriterBuilder
-        import com.opencsv.ICSVWriter
+        import com.opencsv.CSVWriter
         import java.io.File
         import java.io.FileWriter
 
-        data class Alumno(val nombre: String, val nota: Int)
 
         fun main() {
-            val rutaJSON = "documentos/alumnos.json"
-            val rutaCSV = "documentos/alumnos_convertido.csv"
+            val rutaJson = "documentos/alumnos.json"
+            val rutaCsv = "documentos/alumnos_convertido.csv"
 
-            val mapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
-            val alumnos: List<Alumno> = mapper.readValue(File(rutaJSON))
+            // 1. Leer JSON
+            val mapper = jacksonObjectMapper()
+            val alumnos: List<Alumno> = mapper.readValue(File(rutaJson))
 
-            val writer = CSVWriterBuilder(FileWriter(rutaCSV))
-                .withSeparator(';')
-                .build()
+            // 2. Escribir CSV
+            val writer = CSVWriter(FileWriter(rutaCsv), ';', CSVWriter.NO_QUOTE_CHARACTER,
+                CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END)
 
-            // Escribir cabecera
+            // Cabecera
             writer.writeNext(arrayOf("nombre", "nota"))
 
-            // Escribir cada alumno
+            // Cuerpo
             for (alumno in alumnos) {
-                val fila = arrayOf(alumno.nombre, alumno.nota.toString())
-                writer.writeNext(fila)
+                writer.writeNext(arrayOf(alumno.nombre, alumno.nota.toString()))
             }
 
             writer.close()
 
-            println("✅ Conversión JSON → CSV completada: $rutaCSV")
+            println("✅ Conversión JSON → CSV completada: $rutaCsv")
         }
+
 
 
 
@@ -191,15 +139,16 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
 🖥️ **Ejemplo_convertir_json_a_xml.kt**
 
-        import com.fasterxml.jackson.databind.ObjectMapper
         import com.fasterxml.jackson.dataformat.xml.XmlMapper
-        import com.fasterxml.jackson.module.kotlin.KotlinModule
+        import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
         import com.fasterxml.jackson.module.kotlin.readValue
+        import com.fasterxml.jackson.module.kotlin.registerKotlinModule
         import java.io.File
 
         fun convertirJsonAXml(jsonPath: String, xmlPath: String) {
-            val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
-            val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
+            val xmlMapper = XmlMapper().registerKotlinModule()
+            val jsonMapper = jacksonObjectMapper()
+
 
             val persona = jsonMapper.readValue<Persona>(File(jsonPath))
             xmlMapper.writerWithDefaultPrettyPrinter().writeValue(File(xmlPath), persona)
@@ -210,6 +159,7 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
         fun main() {
             convertirJsonAXml("documentos/persona.json", "documentos/persona_convertida.xml")
 
+
         }
 
 !!!Note "Fichero JSON compuesto por una lista de elementos"
@@ -217,18 +167,19 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
 🖥️ **Ejemplo_convertir_listajson_a_xml.kt**
 
-        import com.fasterxml.jackson.databind.ObjectMapper
         import com.fasterxml.jackson.dataformat.xml.XmlMapper
-        import com.fasterxml.jackson.module.kotlin.KotlinModule
         import com.fasterxml.jackson.module.kotlin.readValue
         import java.io.File
+        import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+        import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+
 
         fun convertirListaJsonAXml(jsonPath: String, xmlPath: String) {
-            val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
-            val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
+            
+            val jsonMapper = jacksonObjectMapper()
+            val xmlMapper = XmlMapper().registerKotlinModule()
 
 
-            // Lista de objetos Persona
             val personas: List<Persona> = jsonMapper.readValue(File(jsonPath))
             xmlMapper.writerWithDefaultPrettyPrinter().writeValue(File(xmlPath), personas)
 
@@ -236,7 +187,7 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
         }
 
         fun main() {
-            
+
             convertirListaJsonAXml("documentos/lista_personas_jackson.json", "documentos/lista_personas_jackson.xml")
 
 
@@ -246,15 +197,16 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 🖥️ **Ejemplo_convertir_xml_a_json.kt**
 
 
-        import com.fasterxml.jackson.databind.ObjectMapper
-        import com.fasterxml.jackson.dataformat.xml.XmlMapper
-        import com.fasterxml.jackson.module.kotlin.KotlinModule
+       import com.fasterxml.jackson.dataformat.xml.XmlMapper
+        import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
         import com.fasterxml.jackson.module.kotlin.readValue
+        import com.fasterxml.jackson.module.kotlin.registerKotlinModule
         import java.io.File
 
         fun convertirXmlAJson(xmlPath: String, jsonPath: String) {
-            val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
-            val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+            val xmlMapper = XmlMapper().registerKotlinModule()
+            val jsonMapper = jacksonObjectMapper()
+
 
             val persona = xmlMapper.readValue<Persona>(File(xmlPath))
             jsonMapper.writerWithDefaultPrettyPrinter().writeValue(File(jsonPath), persona)
@@ -265,6 +217,7 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
         fun main() {
 
             convertirXmlAJson("documentos/persona.xml", "documentos/persona_convertida.json")
+
         }
 
 
@@ -275,17 +228,16 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
 🖥️ **Ejemplo_convertir_listaxml_a_json.kt**
 
-        import com.fasterxml.jackson.databind.ObjectMapper
         import com.fasterxml.jackson.dataformat.xml.XmlMapper
-        import com.fasterxml.jackson.module.kotlin.KotlinModule
+        import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
         import com.fasterxml.jackson.module.kotlin.readValue
+        import com.fasterxml.jackson.module.kotlin.registerKotlinModule
         import java.io.File
 
         fun convertirListaXmlAJson(xmlPath: String, jsonPath: String) {
-            val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
-            val jsonMapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
+            val jsonMapper = jacksonObjectMapper()
+            val xmlMapper = XmlMapper().registerKotlinModule()
 
-            //Lista de objetos Persona
             val personas: List<Persona> = xmlMapper.readValue(File(xmlPath))
             jsonMapper.writerWithDefaultPrettyPrinter().writeValue(File(jsonPath), personas)
 

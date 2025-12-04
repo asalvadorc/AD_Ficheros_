@@ -383,7 +383,7 @@ Son funciones generales que no están dentro del paquete .json, pero que se usan
 
 
 | Método de kotlinx.serialization         | ¿Qué hace?                                                   | Ejemplo básico                                                   |
-|----------------------------------------|---------------------------------------------------------------|------------------------------------------------------------------|
+|--------------------------------------------------------------|---------------------------------------------------------------|------------------------------------------------------------------|
 | `Json.encodeToString(objeto)`          | Convierte un objeto Kotlin a una cadena JSON.                | `Json.encodeToString(persona)`                                  |
 | `Json.encodeToString(serializer, obj)` | Igual que el anterior pero especificando el serializador.    | `Json.encodeToString(Persona.serializer(), persona)`            |
 | `Json.decodeFromString(json)`          | Convierte una cadena JSON a un objeto Kotlin.                | `Json.decodeFromString<Persona>(json)`                          |
@@ -461,12 +461,9 @@ deserializar llamamos a **Json.decodeFromString()**.
         └── src/
             └── main/
                 └── kotlin/
-                    └── ejemplos/
-                            └──Ejemplo_esc_JSON.kt 
-                                └── main()
-                            └──Ejemplo_lect_JSON.kt 
-                                └── main()    
-                            └── Persona.kt
+                    └── Ejemplos/
+                            └──Ejemplo_JSON_KSerialization.kt 
+                            └──Persona.kt
 
 
 1- Copia el siguiente fichero **persona.json** en la carpeta **documentos**:
@@ -553,18 +550,18 @@ deserializar llamamos a **Json.decodeFromString()**.
 
 **JSON sin depender de una clase de datos**{.azul}
 
-🖥️ **Ejemplo_JSONObject_esc.kt**
+🖥️ **Ejemplo_JSONObject.kt**
 
 Cuando queremos construir el JSON "a mano", sin depender de la serialización automática de la clase, utilizaremos el método **buildJsonObject**, la cual permite no tener una clase serializable y modificar campos dinámicamente.
 
 
-        import kotlinx.serialization.json.*
+       import kotlinx.serialization.json.*
         import java.io.IOException
         import java.nio.file.Files
         import java.nio.file.Paths
 
-       
-        fun main() {
+
+        fun escribirObjeto() {
             val ruta = Paths.get("documentos/persona_nueva.json")
 
             try {
@@ -593,17 +590,7 @@ Cuando queremos construir el JSON "a mano", sin depender de la serialización au
             }
         }
 
-
-
-🖥️ **Ejemplo_JSONObject_lect.kt**
-
-De la misma manera que en la escritura, si queremos leer un JSON directamente sin depender de la clase, y luego acceder a sus campos manualmente utilizaremos la clase **JsonObject** y accederemos a campos con **.get()** y **.jsonPrimitive**.
-
-        import kotlinx.serialization.json.*
-        import java.nio.file.Files
-        import java.nio.file.Paths
-
-        fun main() {
+        fun leerObjeto() {
             val ruta = Paths.get("documentos/persona_nueva.json")
 
             if (!Files.exists(ruta)) {
@@ -613,18 +600,11 @@ De la misma manera que en la escritura, si queremos leer un JSON directamente si
 
             try {
                 val contenido = Files.readString(ruta)
-
-                // ignore campos desconocidos
                 val json = Json { ignoreUnknownKeys = true }
-
-                //Convierte un String en un JsonElement
                 val jsonElement = json.parseToJsonElement(contenido)
-
-                //Lo convierte a objeto JSON (clave/valor)
                 val jsonObject = jsonElement.jsonObject
 
                 // Acceso a los campos manualmente
-                //content para String
                 val nombre = jsonObject["nombre"]?.jsonPrimitive?.content
                 val edad = jsonObject["edad"]?.jsonPrimitive?.int
 
@@ -635,6 +615,14 @@ De la misma manera que en la escritura, si queremos leer un JSON directamente si
                 println("Error al leer o procesar el archivo: ${e.message}")
             }
         }
+
+
+        fun main(){
+
+            escribirObjeto()
+            leerObjeto()
+        }
+
 
 
 ### 🔹Jackson (JSON)
@@ -758,8 +746,8 @@ Dependencia Gradle:
 
 🖥️ **Ejemplo_listaJSON_jackson.kt**
 
-        import com.fasterxml.jackson.core.type.TypeReference
         import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+        import com.fasterxml.jackson.module.kotlin.readValue
         import java.io.File
 
 
@@ -785,7 +773,6 @@ Dependencia Gradle:
             val mapper = jacksonObjectMapper()
             val archivo = File("documentos/lista_personas_jackson.json")
 
-            //lista de objetos Persona
             val lista=mapper.readValue<List<Persona>>(archivo)
 
 
@@ -799,9 +786,6 @@ Dependencia Gradle:
             escribirListaJson()
             leerListaJson()
         }
-
-
-
 
 
 
@@ -889,12 +873,16 @@ XMLOutputter|	Convierte el árbol de elementos en texto XML.
         </alumnos>
 
 
-🖥️ **Ejemplo_XML_lect.kt**: Lectura de alumnos.xml
+🖥️ **Ejemplo_XML_Dom.kt**: Lectura de alumnos.xml
 
         import org.jdom2.input.SAXBuilder
+        import org.jdom2.Document
+        import org.jdom2.Element
+        import org.jdom2.output.Format
+        import org.jdom2.output.XMLOutputter
         import java.io.File
 
-        fun main() {
+        fun lecturaXML_Dom() {
             val archivo = File("documentos/alumnos.xml")
             val builder = SAXBuilder()
             val documento = builder.build(archivo)
@@ -908,15 +896,8 @@ XMLOutputter|	Convierte el árbol de elementos en texto XML.
             }
         }
 
-🖥️ **Ejemplo_XML_esc.kt**: Escritura en alumnos_nuevo.xml
 
-        import org.jdom2.Document
-        import org.jdom2.Element
-        import org.jdom2.output.Format
-        import org.jdom2.output.XMLOutputter
-        import java.io.File
-
-        fun main() {
+        fun escrituraXML_Dom() {
             // Crear elementos
             val raiz = Element("alumnos.xml")
 
@@ -941,6 +922,10 @@ XMLOutputter|	Convierte el árbol de elementos en texto XML.
             println("Archivo XML creado con éxito.")
         }
 
+        fun main(){
+            lecturaXML_Dom()
+            escrituraXML_Dom()
+        }
 
 
 **Ejemplo que convierte el archivo alumnos.xml en un objeto y viceversa**{.azul}:
@@ -1083,10 +1068,10 @@ Creamos la clase contenedora **ListaAlumnos**, que actúa como puente entre el X
         import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
         import com.fasterxml.jackson.dataformat.xml.XmlMapper
         import com.fasterxml.jackson.module.kotlin.KotlinModule
+        import com.fasterxml.jackson.module.kotlin.readValue
+        import com.fasterxml.jackson.module.kotlin.registerKotlinModule
         import java.io.File
 
-
-        
         data class ListaAlumnos(
             @JacksonXmlElementWrapper(useWrapping = false) // No añade un <alumnoList>, usa directamente <alumno>
             @JacksonXmlProperty(localName = "alumno") // Cada elemento se llama <alumno>
@@ -1094,35 +1079,39 @@ Creamos la clase contenedora **ListaAlumnos**, que actúa como puente entre el X
         )
 
         fun leerXml() {
-        val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
-        val archivo = File("documentos/alumnos.xml")
+            val xmlMapper = XmlMapper().registerKotlinModule()
 
-        val lista = xmlMapper.readValue(archivo, ListaAlumnos::class.java)
+            val archivo = File("documentos/alumnos.xml")
 
-        println("Lectura correcta:")
-        lista.alumno.forEach {
-            println("${it.nombre} tiene un ${it.nota}")
+            //val lista = xmlMapper.readValue(archivo, ListaAlumnos::class.java)
+            val lista=xmlMapper.readValue<ListaAlumnos>(archivo)
+
+            println("Lectura correcta:")
+
+            lista.alumno.forEach {
+                println("${it.nombre} tiene un ${it.nota}")
+            }
         }
-    }
 
-    fun escribirXml() {
-        val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
+        fun escribirXml() {
+            val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
 
-        val lista = ListaAlumnos(
-            listOf(
-                Alumno("Ana", 9),
-                Alumno("Pedro", 7)
+            val lista = ListaAlumnos(
+                listOf(
+                    Alumno("Ana", 9),
+                    Alumno("Pedro", 7)
+                )
             )
-        )
 
-        val archivo = File("documentos/alumnos_generado_Jakcson.xml")
-        xmlMapper.writerWithDefaultPrettyPrinter().writeValue(archivo, lista)
+            val archivo = File("documentos/alumnos_generado_Jakcson.xml")
+            xmlMapper.writerWithDefaultPrettyPrinter().writeValue(archivo, lista)
 
-        println("XML escrito correctamente en: ${archivo.absolutePath}")
-    }
+            println("XML escrito correctamente en: ${archivo.absolutePath}")
+        }
 
-    fun main() {
-        leerXml()
-        escribirXml()
-    }
+        fun main() {
+            leerXml()
+            escribirXml()
+        }
+
 
