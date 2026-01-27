@@ -108,6 +108,7 @@ Si hay atributos que no quieres guardar, usa el modificador **@Transient**:
     ) : Serializable
 
 !!!Tip "Recomendación: serialVersionUID"
+    serialVersionUID se utiliza para garantizar la compatibilidad de una clase serializable durante la deserialización, evitando errores tanto cuando se realizan cambios en la definición de la clase como cuando el mismo código se ejecuta en distintos entornos o versiones de Java.
     En realidad, en el archivo se guarda, además del nombre del paquete y el nombre de la clase, el identificador de la clase: el **serialVersionUID**, para poder identificar unívocamente la clase. Esto nos puede dar problemas si intentamos compartir la información entre nosotros, ya que perfectamente puede generar UID diferentes. Para evitarlo, podríamos definir nosotros este serialVersionUID, y entonces no habrá problemas para compartir. Incluso serviría para poder compartir el archivo de objetos entre Kotlin y Java.
 
 
