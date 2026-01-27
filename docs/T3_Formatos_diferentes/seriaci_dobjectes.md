@@ -99,21 +99,24 @@ Los pasos para serializar un objeto java (kotlin) son los siguientes:
             println("Nombre: ${persona.nombre}, Edad: ${persona.edad}")
         }
 
+  
+    
 
-Si hay atributos que no quieres guardar, usa el modificador **@Transient**:
+!!!Tip "@Transient"
+    Si hay atributos que no quieres guardar, usa el modificador **@Transient**  
+    Los atributos marcados como **@Transient** no se serializan, por lo que al deserializar el objeto el campo aparece con su valor por defecto, siendo **null** en el caso de tipos objeto.  
 
-    class Usuario(
-        val nombre: String,
-        @Transient val clave: String
-    ) : Serializable
+        class Usuario(
+                    val nombre: String,
+                    @Transient val clave: String
+                ) : Serializable
+    
 
 !!!Tip "Recomendación: serialVersionUID"
-    serialVersionUID se utiliza para garantizar la compatibilidad de una clase serializable durante la deserialización, evitando errores tanto cuando se realizan cambios en la definición de la clase como cuando el mismo código se ejecuta en distintos entornos o versiones de Java.
-    En realidad, en el archivo se guarda, además del nombre del paquete y el nombre de la clase, el identificador de la clase: el **serialVersionUID**, para poder identificar unívocamente la clase. Esto nos puede dar problemas si intentamos compartir la información entre nosotros, ya que perfectamente puede generar UID diferentes. Para evitarlo, podríamos definir nosotros este serialVersionUID, y entonces no habrá problemas para compartir. Incluso serviría para poder compartir el archivo de objetos entre Kotlin y Java.
+    **serialVersionUID** garantiza la compatibilidad de una clase serializable durante la deserialización, evitando errores tanto cuando se modifica la definición de la clase como cuando el mismo código se ejecuta en distintos entornos o versiones de Java.  
+    Si no se define explícitamente, Java genera automáticamente un **serialVersionUID** que se guarda junto con el nombre del paquete y de la clase en el fichero serializado. Este identificador puede variar entre compilaciones, entornos o versiones de Java, lo que puede provocar errores al compartir los ficheros.  
+    Para evitarlo, es recomendable definir manualmente el **serialVersionUID**, asegurando la compatibilidad y permitiendo compartir objetos serializados incluso entre proyectos distintos o entre Java y Kotlin.
 
-
-Se recomienda declarar la constante **serialVersionUID** de tipo long
-para asegurar la compatibilidad de los objetos en distintos sistemas.
 
 La clase **persona.kt** quedaría así:
 
