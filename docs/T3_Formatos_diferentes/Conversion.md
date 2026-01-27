@@ -15,9 +15,9 @@ En los ficheros con formatos distintos, si pasas todo a objetos (por ejemplo, Al
 
 | Conversión                     | Herramientas recomendadas                                   | Proceso resumido                                                                 |
 |-------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------------------|
-| **CSV → JSON**                | OpenCSV + kotlinx.serialization / Jackson                           | Leer CSV → mapear a objetos → serializar con `Json.encodeToString`              |
-| **JSON → CSV**                | kotlinx.serialization / Jackson + OpenCSV                             | Deserializar JSON a objetos → escribir filas CSV                                |
-| **CSV → XML**                 | OpenCSV + DOM (`DocumentBuilderFactory`)                    | Leer CSV → construir documento XML nodo a nodo                                  |
+| **CSV → JSON**                | KotlinCSV / OpenCSV + kotlinx.serialization / Jackson                           | Leer CSV → mapear a objetos → serializar con `Json.encodeToString`              |
+| **JSON → CSV**                | kotlinx.serialization / Jackson + KotlinCSV / OpenCSV                             | Deserializar JSON a objetos → escribir filas CSV                                |
+| **CSV → XML**                 | KotlinCSV / OpenCSV + DOM (`DocumentBuilderFactory`)                    | Leer CSV → construir documento XML nodo a nodo                                  |
 | **JSON → XML**                | Jackson (`ObjectMapper`, `XmlMapper`)                        | Convertir JSON a objeto → serializar con `XmlMapper.writeValueAsString()`       |
 | **XML → JSON**                | Jackson (`XmlMapper`, `ObjectMapper`)                        | Leer XML como objeto → serializar como JSON                                     |
 | **Texto plano → JSON/XML**    | `Files.readLines()` + kotlinx.serialization o manual         | Interpretar el texto → mapear a estructura → serializar                         |
