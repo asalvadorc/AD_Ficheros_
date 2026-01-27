@@ -103,7 +103,7 @@ Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
 | .iterator()               | `Iterator<Path>`          | Permite iterar sobre cada parte del path (carpetas y nombre final).            |
 | .toString()               | `String`                  | Devuelve el path como texto.                                                   |
 | .toAbsolutePath()         | `Path`                    | Devuelve el path completo desde la raíz del sistema.                           |
-| .resolve(Path|String)     | `Path`                    | Une dos partes de un path de forma correcta, manejando barras automáticamente. |
+| .resolve(Path/String)     | `Path`                    | Une dos partes de un path de forma correcta, manejando barras automáticamente. |
 | .toFile()                 | `java.io.File`            | Convierte el `Path` en un `File` de la API tradicional de Java (`java.io`).    |
 
 
