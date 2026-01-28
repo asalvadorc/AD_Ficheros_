@@ -51,7 +51,7 @@ Contenido de los archivos:
 
 | **alumnos.csv** | **persona.xml** | **persona.json** |
 |-----------------|-----------------|------------------|
-| nombre;nota<br>Lucía;9<br>Carlos;8<br>Elena;10 | &lt;Persona&gt;<br>&nbsp;&nbsp;&lt;nombre&gt;Lucía&lt;/nombre&gt;<br>&nbsp;&nbsp;&lt;edad&gt;28&lt;/edad&gt;<br>&lt;/Persona&gt; | {<br>&nbsp;&nbsp;"nombre" : "Lucía",<br>&nbsp;&nbsp;"edad" : 28<br>} |
+| nombre;nota<br>Lucía;28<br>Carlos;8<br>Elena;10 | &lt;Persona&gt;<br>&nbsp;&nbsp;&lt;nombre&gt;Lucía&lt;/nombre&gt;<br>&nbsp;&nbsp;&lt;edad&gt;28&lt;/edad&gt;<br>&lt;/Persona&gt; | {<br>&nbsp;&nbsp;"nombre" : "Lucía",<br>&nbsp;&nbsp;"edad" : 28<br>} |
 
 
 ### **CSV <-> JSON**{.azul}
@@ -173,7 +173,23 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
         }
 
 !!!Note "Fichero JSON compuesto por una lista de elementos"
-    Si el fichero **JSON** contiene un *array* (`[...]`), es decir, una **lista de objetos**, entonces debemos indicar explícitamente que queremos leer un `List<Objeto>`.  
+    Si el fichero **JSON** contiene un *array* (`[...]`), es decir, una **lista de objetos**, entonces debemos indicar explícitamente que queremos leer un `List<Objeto>`. 
+
+    **lista_personas_jackson.json** 
+
+        [ {
+        "nombre" : "Lucía",
+        "edad" : 28
+        }, {
+        "nombre" : "Pepe",
+        "edad" : 30
+        }, {
+        "nombre" : "Ana",
+        "edad" : 50
+        }, {
+        "nombre" : "Juan",
+        "edad" : 12
+        } ]
 
 🖥️ **Ejemplo_convertir_listajson_a_xml.kt**
 
@@ -234,7 +250,26 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 !!!Note "Fichero XML compuesto por una lista de elementos"
     Si el fichero **XML** contiene una **lista de objetos**, entonces debemos indicar explícitamente que queremos leer un `List<Objeto>`.  
 
+    **lista_personas_jackson.xml**
 
+        <Personas>
+        <item>
+            <nombre>Lucía</nombre>
+            <edad>28</edad>
+        </item>
+        <item>
+            <nombre>Pepe</nombre>
+            <edad>30</edad>
+        </item>
+        <item>
+            <nombre>Ana</nombre>
+            <edad>50</edad>
+        </item>
+        <item>
+            <nombre>Juan</nombre>
+            <edad>12</edad>
+        </item>
+        </Personas>
 
 🖥️ **Ejemplo_convertir_listaxml_a_json.kt**
 
