@@ -252,7 +252,7 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
     **lista_personas_jackson.xml**
 
-        <Personas>
+        <ArrayList>
         <item>
             <nombre>Lucía</nombre>
             <edad>28</edad>
@@ -269,7 +269,7 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
             <nombre>Juan</nombre>
             <edad>12</edad>
         </item>
-        </Personas>
+        </ArrayList>
 
 🖥️ **Ejemplo_convertir_listaxml_a_json.kt**
 
@@ -294,7 +294,56 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
             convertirListaXmlAJson("documentos/lista_personas_jackson.xml", "documentos/lista_personas_convertida.json")
         }
 
+!!!Tip "Clase contenedora"
+    Cuando el XML contiene un nodo raíz que agrupa varios elementos, es conveniente utilizar una **clase contenedora auxiliar** para mapear correctamente la estructura del documento.
 
+    **lista_personas_jackson_nodo.xml**
+
+        <personas>
+            <persona>
+                <nombre>Ana</nombre>
+                <edad>30</edad>
+            </persona>
+            <persona>
+                <nombre>Carlos</nombre>
+                <edad>25</edad>
+            </persona>
+        </personas>
+
+🖥️ **Ejemplo_convertir_listaxml_a_json_nodo.kt**
+
+
+        import com.fasterxml.jackson.dataformat.xml.XmlMapper
+        import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+        import com.fasterxml.jackson.module.kotlin.readValue
+        import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+        import java.io.File
+        import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
+
+        //Clase contenedora auxiliar
+
+        data class ListaPersonas(
+            @JacksonXmlElementWrapper(useWrapping = false) //Sirve para evitar que Jackson cree una etiqueta XML adicional que envuelva una lista.
+            val persona: List<Persona>
+        )
+
+        fun convertirListaXmlAJsonNodo(xmlPath: String, jsonPath: String) {
+            val jsonMapper = jacksonObjectMapper()
+            val xmlMapper = XmlMapper().registerKotlinModule()
+
+            val lista: ListaPersonas = xmlMapper.readValue(File(xmlPath)) //Aquí utilizamos la clase contendora
+            val personas = lista.persona
+
+            jsonMapper.writerWithDefaultPrettyPrinter()
+                .writeValue(File(jsonPath), personas)
+
+            println("Conversión XML → JSON completada")
+        }
+
+        fun main() {
+
+            convertirListaXmlAJsonNodo("documentos/lista_personas_jackson_nodo.xml", "documentos/lista_personas_convertida_nodo.json")
+        }
 
 ### **JSON <-> Binario estructurado**{.azul}
 
