@@ -15,7 +15,7 @@ En los siguientes apartados veremos cómo trabajar con cada uno de estos formato
 
 
 !!!warning "Ejemplos"
-    Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos un proyecto llamado **Ficheros_Gradle**, en el que incluiremos **Gradle** como herramienta de construcción. Los ejemplos los iremos creando directamente en la carpeta **src/main/Kotlin**.   
+    Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos un proyecto llamado **Ficheros_Gradle**, en el que incluiremos **Gradle** como herramienta de construcción. Los ejemplos los iremos creando directamente en la carpeta **src/main/Kotlin/Ejemplos**.   
     Crearemo también la carpeta **documentos**, donde iremos dejando los ficheros geneados en los distintos ejemplos.
     
     ![Ref](new_project_gradle.png)|![Ref](ejemplos_intercambio.png)

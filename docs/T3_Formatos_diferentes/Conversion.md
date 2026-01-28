@@ -42,7 +42,7 @@ Las herramientas no destacadas en negrita son alternativas válidas, que pueden 
 ## 🔹 Ejemplos de Conversión
 
 !!!warning "Ejemplos"
-    Los siguientes ejemplos tamién se incluirán en el proyecto **Ficheros_Gradle**.
+    Los siguientes ejemplos también se incluirán en el proyecto **Ficheros_Gradle**.
 
 En los siguientes ejemplos trabajaremos con tres archivos en diferentes formatos: **CSV**, **XML** y **JSON**. Estos archivos contienen información similar, representada con distinta estructura y sintaxis según el formato. Los utilizaremos como base para realizar ejercicios de conversión entre formatos.
 
@@ -52,6 +52,16 @@ Contenido de los archivos:
 | **alumnos.csv** | **persona.xml** | **persona.json** |
 |-----------------|-----------------|------------------|
 | nombre;nota<br>Lucía;28<br>Carlos;8<br>Elena;10 | &lt;Persona&gt;<br>&nbsp;&nbsp;&lt;nombre&gt;Lucía&lt;/nombre&gt;<br>&nbsp;&nbsp;&lt;edad&gt;28&lt;/edad&gt;<br>&lt;/Persona&gt; | {<br>&nbsp;&nbsp;"nombre" : "Lucía",<br>&nbsp;&nbsp;"edad" : 28<br>} |
+
+!!!Tip "Data Class"
+    El uso de **data class** es recomendable cuando se trabaja con datos estructurados, como se vio en el apartado de ficheros de intercambio, o cuando se realizan transformaciones entre formatos, como se verá en este apartado.
+
+
+| Alumno | Persona |
+|--------|---------|
+| data class Alumno(<br>&nbsp;&nbsp;&nbsp;val nombre: String,<br>&nbsp;&nbsp;&nbsp;val nota: Int<br>) | data class Persona(<br>&nbsp;&nbsp;&nbsp;val nombre: String,<br>&nbsp;&nbsp;&nbsp;val edad: Int<br>) |
+
+📌 **Nota:** Estas clases ya las creamos en los ejemplos sobre ficheros de intercambio y las volveremos a utilizar en los siguientes ejemplos.
 
 
 ### **CSV <-> JSON**{.azul}
@@ -82,6 +92,7 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
                 .build()
 
             val registros = reader.readAll()
+
             //lista alumnos para guardar los objetos Alumno
             val alumnos = mutableListOf<Alumno>()
 
@@ -159,8 +170,10 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
             val xmlMapper = XmlMapper().registerKotlinModule()
             val jsonMapper = jacksonObjectMapper()
 
-
+            //Leer JSON y convertirlo a un objeto Persona
             val persona = jsonMapper.readValue<Persona>(File(jsonPath))
+
+            // Escribir el objeto Persona en formato XML
             xmlMapper.writerWithDefaultPrettyPrinter().writeValue(File(xmlPath), persona)
 
             println("Conversión JSON → XML completada")
@@ -177,19 +190,21 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
     **lista_personas_jackson.json** 
 
-        [ {
-        "nombre" : "Lucía",
-        "edad" : 28
-        }, {
-        "nombre" : "Pepe",
-        "edad" : 30
-        }, {
-        "nombre" : "Ana",
-        "edad" : 50
-        }, {
-        "nombre" : "Juan",
-        "edad" : 12
-        } ]
+        [ 
+            {
+            "nombre" : "Lucía",
+            "edad" : 28
+            }, {
+            "nombre" : "Pepe",
+            "edad" : 30
+            }, {
+            "nombre" : "Ana",
+            "edad" : 50
+            }, {
+            "nombre" : "Juan",
+            "edad" : 12
+            } 
+        ]
 
 🖥️ **Ejemplo_convertir_listajson_a_xml.kt**
 
@@ -205,8 +220,10 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
             val jsonMapper = jacksonObjectMapper()
             val xmlMapper = XmlMapper().registerKotlinModule()
 
-
+            // Leer JSON y convertirlo a lista de objetos Persona
             val personas: List<Persona> = jsonMapper.readValue(File(jsonPath))
+
+            // Escribir el XML
             xmlMapper.writerWithDefaultPrettyPrinter().writeValue(File(xmlPath), personas)
 
             println("Conversión JSON → XML completada")
@@ -216,8 +233,55 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
             convertirListaJsonAXml("documentos/lista_personas_jackson.json", "documentos/lista_personas_jackson.xml")
 
-
         }
+
+
+!!!Tip "Clase contenedora"
+    Cuando se convierte una lista de JSON a XML, es recomendable utilizar un **data class** para modelar los datos y una **clase contenedora auxiliar** para representar el nodo raíz del XML.  
+
+📌 Creamos la Clase contenedora **ListaPersonas** en el **paquete Ejemplos**, fuera de los programas, para poder reutilizarla:
+
+        import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
+
+        data class ListaPersonas(
+            @JacksonXmlElementWrapper(useWrapping = false)
+            val persona: List<Persona>
+        )        
+
+
+🖥️ **Ejemplo_convertir_listajson_a_xml_nodo.kt**
+
+        import com.fasterxml.jackson.dataformat.xml.XmlMapper
+        import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+        import com.fasterxml.jackson.module.kotlin.readValue
+        import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+        import java.io.File
+
+        fun convertirListaJsonAXml_nodo(jsonPath: String, xmlPath: String) {
+            val jsonMapper = jacksonObjectMapper()
+            val xmlMapper = XmlMapper().registerKotlinModule()
+
+            // Leer JSON y convertirlo a lista de objetos Persona
+            val personas: List<Persona> = jsonMapper.readValue(File(jsonPath))
+
+            // Envolver la lista en la clase contenedora para XML
+            val listaPersonas = ListaPersonas(personas)
+
+            // Escribir el XML
+            xmlMapper.writerWithDefaultPrettyPrinter()
+                .writeValue(File(xmlPath), listaPersonas)
+
+            println("✅ Conversión JSON → XML completada")
+        }
+
+        fun main() {
+            convertirListaJsonAXml_nodo(
+                "documentos/lista_personas_jackson.json",
+                "documentos/lista_personas_jackson_nodo.xml"
+            )
+        }
+
+
 
 
 🖥️ **Ejemplo_convertir_xml_a_json.kt**
@@ -310,6 +374,8 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
             </persona>
         </personas>
 
+📌 Utilizaremos la clase contenedora **ListapPersona** creada anteriormente.
+
 🖥️ **Ejemplo_convertir_listaxml_a_json_nodo.kt**
 
 
@@ -320,20 +386,19 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
         import java.io.File
         import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 
-        //Clase contenedora auxiliar
-
-        data class ListaPersonas(
-            @JacksonXmlElementWrapper(useWrapping = false) //Sirve para evitar que Jackson cree una etiqueta XML adicional que envuelva una lista.
-            val persona: List<Persona>
-        )
-
         fun convertirListaXmlAJsonNodo(xmlPath: String, jsonPath: String) {
             val jsonMapper = jacksonObjectMapper()
             val xmlMapper = XmlMapper().registerKotlinModule()
 
+            // Lee el XML y lo convierte a un objeto de tipo ListaPersonas
+            // Aquí utilizamos la clase contenedora para representar el nodo raíz del XML
             val lista: ListaPersonas = xmlMapper.readValue(File(xmlPath)) //Aquí utilizamos la clase contendora
+
+            // Extrae la lista de objetos Persona desde la clase contenedora
             val personas = lista.persona
 
+            // Escribe la lista de personas en formato JSON
+            // El JSON generado será un array de objetos
             jsonMapper.writerWithDefaultPrettyPrinter()
                 .writeValue(File(jsonPath), personas)
 
