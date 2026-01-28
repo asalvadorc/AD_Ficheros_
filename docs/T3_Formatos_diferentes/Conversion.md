@@ -11,23 +11,33 @@ Cada formato (CSV, JSON, XML, binario) organiza la información de forma distint
 - XML → etiquetas anidadas
 - Binario → datos codificados
 
-En los ficheros con formatos distintos, si pasas todo a objetos (por ejemplo, Alumno(nombre, nota)), trabajas con una estructura única en memoria, y solo cambias cómo se leen o se escriben los datos según el formato.
 
-| Conversión                     | Herramientas recomendadas                                   | Proceso resumido                                                                 |
-|-------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------------------|
-| **CSV → JSON**                | KotlinCSV / OpenCSV + kotlinx.serialization / Jackson                           | Leer CSV → mapear a objetos → serializar con `Json.encodeToString`              |
-| **JSON → CSV**                | kotlinx.serialization / Jackson + KotlinCSV / OpenCSV                             | Deserializar JSON a objetos → escribir filas CSV                                |
-| **CSV → XML**                 | KotlinCSV / OpenCSV + DOM (`DocumentBuilderFactory`)                    | Leer CSV → construir documento XML nodo a nodo                                  |
-| **JSON → XML**                | Jackson (`ObjectMapper`, `XmlMapper`)                        | Convertir JSON a objeto → serializar con `XmlMapper.writeValueAsString()`       |
-| **XML → JSON**                | Jackson (`XmlMapper`, `ObjectMapper`)                        | Leer XML como objeto → serializar como JSON                                     |
-| **Texto plano → JSON/XML**    | `Files.readLines()` + kotlinx.serialization o manual         | Interpretar el texto → mapear a estructura → serializar                         |
-| **JSON → binario estructurado**| kotlinx.serialization + `DataOutputStream`                  | Deserializar JSON → escribir datos con tipo fijo (enteros, strings, etc.)       |
-| **Binario estructurado → JSON**| `DataInputStream` o `ByteBuffer` + kotlinx.serialization    | Leer bytes → construir objetos → serializar a JSON                              |
-| **Texto → binario**           | `OutputStream`, `DataOutputStream`                          | Codificar texto (ej. UTF-8) o campos → guardar en binario                       |
-| **Binario → texto legible**   | `InputStream`, `ByteBuffer`, interpretación personalizada     | Leer bytes → convertir a texto interpretando la estructura                      |
-| **PNG → JPG (imagen)**        | `ImageIO.read()` + `ImageIO.write(..., "jpg", archivo)`     | Leer imagen → guardar con otro formato                                          |
-| **Imagen → binario base64**   | `ImageIO.read()` + `Base64.getEncoder().encodeToString()`    | Convertir imagen a bytes → codificarlos como texto                              |
-| **Imagen → texto (OCR)**      | Tesseract OCR + librería externa (`Tess4J`)                  | Procesar imagen → extraer texto con reconocimiento óptico de caracteres         |
+En la siguiente tabla se resumen las conversiones más habituales entre formatos de ficheros trabajadas en el módulo.
+Para cada conversión se indican varias herramientas posibles, pero las **opciones marcadas en negrita** representan la recomendación principal, ya que son las más sencillas.
+
+Las herramientas no destacadas en negrita son alternativas válidas, que pueden utilizarse en otros contextos o como ampliación, pero no son las más recomendadas como primera opción.
+
+
+| Conversión                       | Herramientas recomendadas                                                            | Proceso resumido                                                   |
+| -------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| CSV → JSON                       | **readAllLines + split** / KotlinCSV / OpenCSV + **Jackson** / kotlinx.serialization | Leer CSV → mapear a objetos → serializar a JSON                    |
+| JSON → CSV                       | **Jackson** / kotlinx.serialization + **KotlinCSV** / OpenCSV                        | Deserializar JSON a objetos → escribir filas CSV                   |
+| CSV → XML                        | **readAllLines + split** / KotlinCSV / OpenCSV + **Jackson (XmlMapper)**             | Leer CSV → mapear a objetos → serializar a XML                     |
+| XML → CSV                        | **Jackson (XmlMapper)** + **KotlinCSV** / OpenCSV                                    | Leer XML → mapear a objetos → escribir filas CSV                   |
+| JSON → XML                       | **Jackson (ObjectMapper, XmlMapper)**                                                | Convertir JSON a objeto → serializar a XML                         |
+| XML → JSON                       | **Jackson (XmlMapper, ObjectMapper)**                                                | Leer XML como objeto → serializar a JSON                           |
+| Texto → JSON / XML               | **Files.readAllLines()** + **Jackson** / kotlinx.serialization                       | Leer texto → interpretar líneas → mapear a estructura → serializar |
+| Texto → binario                  | **Files.readAllLines() / Files.readString() + Files.write()**                        | Leer texto → convertir a bytes (UTF-8) → guardar en binario        |
+| Texto → binario estructurado     | **Files.readAllLines() / Files.readString() + DataOutputStream**                     | Leer texto → escribir campos con tipo fijo                         |
+| Binario estructurado → JSON      | **DataInputStream + Jackson** / kotlinx.serialization                                | Leer datos binarios → construir objetos → serializar a JSON        |
+| JSON → binario estructurado      | **Jackson** / kotlinx.serialization + **DataOutputStream**                           | Deserializar JSON → escribir datos con tipo fijo                   |
+| Objeto → binario (serialización) | **ObjectOutputStream (Serializable)**                                                | Serializar objetos completos a binario                             |
+| Binario → objeto                 | **ObjectInputStream**                                                                | Deserializar objetos binarios                                      |
+| PNG → JPG (imagen)               | **ImageIO.read() + ImageIO.write()**                                                 | Leer imagen → guardar en otro formato                              |
+
+
+
+
 
 ## 🔹 Ejemplos de Conversión
 
