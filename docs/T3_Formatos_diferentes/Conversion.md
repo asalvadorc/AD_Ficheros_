@@ -54,7 +54,7 @@ Contenido de los archivos:
 | nombre;nota<br>Lucía;28<br>Carlos;8<br>Elena;10 | &lt;Persona&gt;<br>&nbsp;&nbsp;&lt;nombre&gt;Lucía&lt;/nombre&gt;<br>&nbsp;&nbsp;&lt;edad&gt;28&lt;/edad&gt;<br>&lt;/Persona&gt; | {<br>&nbsp;&nbsp;"nombre" : "Lucía",<br>&nbsp;&nbsp;"edad" : 28<br>} |
 
 !!!Tip "Data Class"
-    El uso de **data class** es recomendable cuando se trabaja con datos estructurados, como se vio en el apartado de ficheros de intercambio, o cuando se realizan transformaciones entre formatos, como se verá en este apartado.
+   Al trabajar con ficheros de intercambio como CSV, JSON o XML, es habitual encontrarnos con datos estructurados formados por distintos campos. Para poder manejar estos datos de forma cómoda y segura en Kotlin, es recomendable representarlos mediante **data class**, que permiten modelar la información con tipos y nombres claros. Una vez los datos están representados como objetos, el formato original del fichero deja de ser relevante. Esta idea será fundamental en el siguiente apartado, donde se utilizarán los data class como elemento intermedio para transformar la información entre distintos formatos de fichero, como CSV, JSON, XML o binario.
 
 
 | Alumno | Persona |
