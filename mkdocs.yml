@@ -38,7 +38,7 @@ nav:
     - 🔹Formas de acceso a un fichero: T2_Gestion_del_contenido/Formas_acceso.md
     - 🔹Clases y métodos sobre ficheros. Java.nio: T2_Gestion_del_contenido/clases.md
     - 🔹Lectura y escritura de ficheros: T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md
-- Ficheros con formatos diferentes:
+- Ficheros de diferentes formatos :
     - 🔹Introducción: T3_Formatos_diferentes/intro.md
     - 🔹Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
     - 🔹Ficheros de intercambio: T3_Formatos_diferentes/ficheros_intercambio.md    

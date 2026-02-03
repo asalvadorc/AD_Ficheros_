@@ -54,14 +54,29 @@ Contenido de los archivos:
 | nombre;nota<br>Lucía;28<br>Carlos;8<br>Elena;10 | &lt;Persona&gt;<br>&nbsp;&nbsp;&lt;nombre&gt;Lucía&lt;/nombre&gt;<br>&nbsp;&nbsp;&lt;edad&gt;28&lt;/edad&gt;<br>&lt;/Persona&gt; | {<br>&nbsp;&nbsp;"nombre" : "Lucía",<br>&nbsp;&nbsp;"edad" : 28<br>} |
 
 !!!Tip "Data Class"
-    Al trabajar con ficheros de intercambio como CSV, JSON o XML, es habitual encontrarnos con datos estructurados formados por distintos campos. Para poder manejar estos datos de forma cómoda y segura en Kotlin, es recomendable representarlos mediante **data class**, que permiten modelar la información con tipos y nombres claros. Una vez los datos están representados como objetos, el formato original del fichero deja de ser relevante. Esta idea será fundamental en el siguiente apartado, donde se utilizarán los data class como elemento intermedio para transformar la información entre distintos formatos de fichero, como CSV, JSON, XML o binario.
+    Al trabajar con ficheros de intercambio como CSV, JSON o XML, es habitual encontrarnos con datos estructurados formados por distintos campos. Para poder manejar estos datos de forma cómoda y segura en Kotlin, es recomendable representarlos mediante **data class**, que permiten modelar la información con tipos y nombres claros. Una vez los datos están representados como objetos, el formato original del fichero deja de ser relevante. Esta idea será fundamental en el siguiente apartado, donde se utilizarán los **data class** como elemento intermedio para transformar la información entre distintos formatos de fichero, como CSV, JSON, XML o binario.  
+    
+    📌 **Nota:** Las clases **Alumno** y **Persona** ya las creamos en los ejemplos sobre ficheros de intercambio y las volveremos a utilizar en los siguientes ejemplos.
+
+    **Alumno.kt** 
+
+        data class Alumno(
+                        val nombre: String,
+                        val nota: Int
+                    )    
+    **Persona.kt** 
+
+        @Serializable
+        data class Persona(
+            val nombre: String, val edad: Int
+            )   
 
 
 | Alumno | Persona |
 |--------|---------|
 | data class Alumno(<br>&nbsp;&nbsp;&nbsp;val nombre: String,<br>&nbsp;&nbsp;&nbsp;val nota: Int<br>) | data class Persona(<br>&nbsp;&nbsp;&nbsp;val nombre: String,<br>&nbsp;&nbsp;&nbsp;val edad: Int<br>) |
 
-📌 **Nota:** Estas clases ya las creamos en los ejemplos sobre ficheros de intercambio y las volveremos a utilizar en los siguientes ejemplos.
+
 
 
 ### **CSV <-> JSON**{.azul}
@@ -70,6 +85,11 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
 !!!Note ""
     El intermediario entre el CSV y el JSON es **la lista de objetos alumnos** (de tipo Alumno)
+
+
+**Alumno.kt**   (Clase ya creada)
+
+    
 
 🖥️ **Ejemplo_convertir_csv_a_json.kt**
 
@@ -127,7 +147,7 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
         fun main() {
             val rutaJson = "documentos/alumnos.json"
-            val rutaCsv = "documentos/alumnos_convertido.csv"
+            val rutaCsv = "documentos/alumnos.csv"
 
             // 1. Leer JSON
             val mapper = jacksonObjectMapper()
@@ -180,7 +200,7 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
         }
 
         fun main() {
-            convertirJsonAXml("documentos/persona.json", "documentos/persona_convertida.xml")
+            convertirJsonAXml("documentos/persona.json", "documentos/persona.xml")
 
 
         }
@@ -231,10 +251,33 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
         fun main() {
 
-            convertirListaJsonAXml("documentos/lista_personas_jackson.json", "documentos/lista_personas_jackson.xml")
+            convertirListaJsonAXml("documentos/lista_personas.json", "documentos/lista_personas.xml")
 
         }
 
+
+El contenido del fichero xml convertido sería el siguiente:
+
+        <ArrayList>
+        <item>
+            <nombre>Lucía</nombre>
+            <edad>28</edad>
+        </item>
+        <item>
+            <nombre>Pepe</nombre>
+            <edad>30</edad>
+        </item>
+        <item>
+            <nombre>Ana</nombre>
+            <edad>50</edad>
+        </item>
+        <item>
+            <nombre>Juan</nombre>
+            <edad>12</edad>
+        </item>
+        </ArrayList>
+
+⚠️ Esto no es correcto porque, aunque el XML se puede leer, cuando un XML representa una lista, siempre debe tener un elemento raíz con significado.
 
 !!!Tip "Clase contenedora"
     Cuando se convierte una lista de JSON a XML, es recomendable utilizar un **data class** para modelar los datos y una **clase contenedora auxiliar** para representar el nodo raíz del XML.  
@@ -276,13 +319,32 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
         fun main() {
             convertirListaJsonAXml_nodo(
-                "documentos/lista_personas_jackson.json",
-                "documentos/lista_personas_jackson_nodo.xml"
+                "documentos/lista_personas.json",
+                "documentos/lista_personas_nodo.xml"
             )
         }
 
 
+Ahora la conversión si que es correcta:
 
+        <ListaPersonas>
+        <persona>
+            <nombre>Lucía</nombre>
+            <edad>28</edad>
+        </persona>
+        <persona>
+            <nombre>Pepe</nombre>
+            <edad>30</edad>
+        </persona>
+        <persona>
+            <nombre>Ana</nombre>
+            <edad>50</edad>
+        </persona>
+        <persona>
+            <nombre>Juan</nombre>
+            <edad>12</edad>
+        </persona>
+        </ListaPersonas>
 
 🖥️ **Ejemplo_convertir_xml_a_json.kt**
 
@@ -306,7 +368,7 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
         fun main() {
 
-            convertirXmlAJson("documentos/persona.xml", "documentos/persona_convertida.json")
+            convertirXmlAJson("documentos/persona.xml", "documentos/persona.json")
 
         }
 
@@ -314,7 +376,7 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 !!!Note "Fichero XML compuesto por una lista de elementos"
     Si el fichero **XML** contiene una **lista de objetos**, entonces debemos indicar explícitamente que queremos leer un `List<Objeto>`.  
 
-    **lista_personas_jackson.xml**
+    **lista_personas.xml**
 
         <ArrayList>
         <item>
@@ -355,24 +417,33 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
         fun main() {
 
-            convertirListaXmlAJson("documentos/lista_personas_jackson.xml", "documentos/lista_personas_convertida.json")
+            convertirListaXmlAJson("documentos/lista_personas.xml", "documentos/lista_personas.json")
         }
 
 !!!Tip "Clase contenedora"
     Cuando el XML contiene un nodo raíz que agrupa varios elementos, es conveniente utilizar una **clase contenedora auxiliar** para mapear correctamente la estructura del documento.
 
-    **lista_personas_jackson_nodo.xml**
+    **lista_personas_nodo.xml**
 
-        <personas>
+        <ListaPersonas>
             <persona>
-                <nombre>Ana</nombre>
+                <nombre>Lucía</nombre>
+                <edad>28</edad>
+            </persona>
+            <persona>
+                <nombre>Pepe</nombre>
                 <edad>30</edad>
             </persona>
             <persona>
-                <nombre>Carlos</nombre>
-                <edad>25</edad>
+                <nombre>Ana</nombre>
+                <edad>50</edad>
             </persona>
-        </personas>
+            <persona>
+                <nombre>Juan</nombre>
+                <edad>12</edad>
+            </persona>
+            </ListaPersonas>
+
 
 📌 Utilizaremos la clase contenedora **ListapPersona** creada anteriormente.
 
@@ -407,7 +478,7 @@ En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar
 
         fun main() {
 
-            convertirListaXmlAJsonNodo("documentos/lista_personas_jackson_nodo.xml", "documentos/lista_personas_convertida_nodo.json")
+            convertirListaXmlAJsonNodo("documentos/lista_personas_nodo.xml", "documentos/lista_personas.json")
         }
 
 ### **JSON <-> Binario estructurado**{.azul}
@@ -473,7 +544,7 @@ En estos ejemplos utilizamos **kotlinx.serialization**.
         import java.io.FileInputStream
 
         fun main() {
-            val rutaJson = "documentos/lista_personas_jackson.json"
+            val rutaJson = "documentos/lista_personas.json"
             val rutaBin = "documentos/lista_personas.dat"
 
             // Leer JSON
@@ -522,7 +593,7 @@ En estos ejemplos utilizamos **kotlinx.serialization**.
         import java.io.FileInputStream
 
         fun main() {
-            val rutaJson = "documentos/lista_personas_jackson.json"
+            val rutaJson = "documentos/lista_personas.json"
             val rutaBin = "documentos/lista_personas.dat"
 
             // Leer JSON con Jackson
@@ -571,7 +642,7 @@ En estos ejemplos utilizamos **kotlinx.serialization**.
 
         fun main() {
             val rutaBin = "documentos/persona.dat"
-            val rutaJson = "documentos/persona_convertidaBinario.json"
+            val rutaJson = "documentos/persona.json"
 
             // Leer binario estructurado
             val entrada = DataInputStream(FileInputStream(rutaBin))
@@ -611,7 +682,7 @@ En estos ejemplos utilizamos **kotlinx.serialization**.
 
             fun main() {
                 val rutaBin = "documentos/lista_personas.dat"
-                val rutaJson = "documentos/lista_personas_convertidaBinario.json"
+                val rutaJson = "documentos/lista_personas.json"
 
                 // Leer binario estructurado
                 val entrada = DataInputStream(FileInputStream(rutaBin))
@@ -652,7 +723,7 @@ En estos ejemplos utilizamos **kotlinx.serialization**.
 
         fun main() {
             val rutaBin = "documentos/lista_personas.dat"
-            val rutaJson = "documentos/lista_personas_convertidaBinario.json"
+            val rutaJson = "documentos/lista_personas.json"
 
             // Leer binario estructurado
             val entrada = DataInputStream(FileInputStream(rutaBin))
