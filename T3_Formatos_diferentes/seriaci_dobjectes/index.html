@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹Serialización de Objetos - AD - Acceso a Datos - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+        <link href="../../css/copy-button.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39Serializaci\u00f3n de Objetos";
+        var mkdocs_page_input_path = "T3_Formatos_diferentes/seriaci_dobjectes.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">RA y CE</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/exercicis/">📝 Ejercicio obligatorio 1</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/Lectura_Escritura_ficheros/">🔹Lectura y escritura de ficheros</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros de diferentes formatos</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../intro/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">🔹Serialización de Objetos</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ejercicios/">📝 Ejercicio obligatorio 2</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Resumen/">Resumen</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Acceso a Datos - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Ficheros de diferentes formatos</li>
+      <li class="breadcrumb-item active">🔹Serialización de Objetos</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="3-serializacion-de-objetos">3.- Serialización de Objetos</h1>
+<p>La serialización de objetos en Java es el proceso de convertir un objeto java en una secuencia de bytes, con el fin de guardarlo en un archivo o base de datos.</p>
+<p>La deserialización es el proceso inverso: leer esos bytes y reconstruir el objeto.</p>
+<p>Para que un objeto pueda ser seriado es necesario que su clase y todo su
+contenido implementan la interfaz <strong>Serializable</strong>. Se trata de una
+interfaz sin métodos, porque el único objetivo de la interfaz es actuar de
+marcador para indicar en la máquina virtual qué clases se pueden seriar y
+cuáles no.</p>
+<p>Todas las clases equivalentes a los tipos básicos ya implementan serializable.
+También implementan esta interfaz la clase String y todos los contenedores y
+los objetos Array. La seriación de colecciones depende en último término de los
+elementos contenidos. Si éstos son seriables, la colección también lo será.</p>
+<p>En caso de que la clase del objeto que se intente seriar, o las de alguno de los
+objetos que contenga, no implementaran la interfaz Serializable, se
+lanzaría una excepción de tipos <strong>NotSerializableException</strong> , impidiendo
+el almacenamiento.</p>
+<div class="admonition note">
+<p><strong>Kotlin</strong> no proporciona ninguna librería adicional para serializar objetos java.  Utiliza exactamente el mismo sistema de serialización binaria de Java, ya que es 100% compatible.</p>
+</div>
+<p><strong class="verde">Clases y herramientas que se utilizan</strong></p>
+<table>
+<thead>
+<tr>
+<th>Herramienta</th>
+<th>Uso principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>java.io.Serializable</td>
+<td>Marca que un objeto es serializable</td>
+</tr>
+<tr>
+<td>ObjectOutputStream</td>
+<td>Serializa y escribe un objeto</td>
+</tr>
+<tr>
+<td>ObjectInputStream</td>
+<td>Lee un objeto serializado</td>
+</tr>
+<tr>
+<td>transient</td>
+<td>Excluye atributos de la serialización</td>
+</tr>
+<tr>
+<td>ReadObject</td>
+<td>Lee y reconstruye un objeto binario</td>
+</tr>
+<tr>
+<td>WriteObject</td>
+<td>Guarda un objeto como binario</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La serialización en java sigue necesitando usar las clases de <strong>java.io</strong> (ObjectOutputStream, ObjectInputStream) porque java.nio no proporciona soporte directo para serialización de objetos.<br />
+Con java.nio.file.Files y Paths puedes usar Files para escribir directamente un ByteArray generado con la serialización tradicional.</p>
+</div>
+<p>Los Streams <strong>ObjectInputStream</strong> y <strong>ObjectOutputStream</strong> añaden a cualquier otro Stream la capacidad de seriar cualquier objeto Serializable. El stream de salida dispondrá del método <strong>writeObject</strong> y el stream de entrada, el método de lectura <strong>readObject</strong>.</p>
+<p>El método <strong>readObject</strong> sólo permite recuperar instancias que sean de la
+misma clase que la que se guardó. De lo contrario, se lanzaría una
+excepción de tipos <strong>ClassCastExeception</strong>. Además, es necesario que la aplicación disponga del código compilado de la clase; si no fuera así, la excepción lanzada sería
+<strong>ClassNotFoundException</strong>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ejemplos</p>
+<p>Los ejemplos de esta parte se incluirán en el paquete <strong>formatos</strong>, dentro de nuestro proyecto <strong>Ficheros</strong>. </p>
+<p><img alt="Ref" src="../paquetes.png" /></p>
+</div>
+<p>Los pasos para serializar un objeto java (kotlin) son los siguientes:</p>
+<p>🖥️ 1. <strong>Persona.kt</strong>: Crear una clase serializable</p>
+<pre><code>    import java.io.Serializable
+
+    class Persona(val nombre: String, val edad: Int) : Serializable
+</code></pre>
+<p>🖥️ 2. <strong>Ejemplo_guardar_persona.kt</strong>: Serializar un objeto a un archivo </p>
+<pre><code>    import java.io.ObjectOutputStream
+    import java.nio.file.Files
+    import java.nio.file.Paths
+
+
+    fun main() {
+
+        val persona = Persona("Alicia", 30)
+
+        val path = Paths.get("documentos/persona.obj")
+        val objectOut = ObjectOutputStream(Files.newOutputStream(path))
+        objectOut.writeObject(persona)
+        objectOut.close()
+
+
+
+        println("Objeto serializado correctamente.")
+    }
+</code></pre>
+<p>🖥️ 3. <strong>Ejemplo_leer_persona.kt</strong>: Deserializar un objeto desde un archivo</p>
+<pre><code>    import java.io.ObjectInputStream
+    import java.nio.file.Paths
+    import java.nio.file.Files
+
+    fun main() {
+        val path = Paths.get("documentos/persona.obj")
+        val objectIn = ObjectInputStream(Files.newInputStream(path))
+        val persona= objectIn.readObject() as Persona
+        objectIn.close()
+
+
+        println("Objeto deserializado:")
+        println("Nombre: ${persona.nombre}, Edad: ${persona.edad}")
+    }
+</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">@Transient</p>
+<p>Si hay atributos que no quieres guardar, usa el modificador <strong>@Transient</strong><br />
+Los atributos marcados como <strong>@Transient</strong> no se serializan, por lo que al deserializar el objeto el campo aparece con su valor por defecto, siendo <strong>null</strong> en el caso de tipos objeto.  </p>
+<pre><code>class Usuario(
+            val nombre: String,
+            @Transient val clave: String
+        ) : Serializable
+</code></pre>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Recomendación: serialVersionUID</p>
+<p><strong>serialVersionUID</strong> garantiza la compatibilidad de una clase serializable durante la deserialización, evitando errores tanto cuando se modifica la definición de la clase como cuando el mismo código se ejecuta en distintos entornos o versiones de Java.<br />
+Si no se define explícitamente, Java genera automáticamente un <strong>serialVersionUID</strong> que se guarda junto con el nombre del paquete y de la clase en el fichero serializado. Este identificador puede variar entre compilaciones, entornos o versiones de Java, lo que puede provocar errores al compartir los ficheros.<br />
+Para evitarlo, es recomendable definir manualmente el <strong>serialVersionUID</strong>, asegurando la compatibilidad y permitiendo compartir objetos serializados incluso entre proyectos distintos o entre Java y Kotlin.</p>
+</div>
+<p>La clase <strong>persona.kt</strong> quedaría así:</p>
+<pre><code>  import java.io.Serializable
+
+  class Persona(val nombre: String, val edad: Int) : Serializable
+   {
+        companion object {
+            private const val serialVersionUID: Long = 1
+        }
+   }
+</code></pre>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/">Llicència Creative Commons Reconeixement NoComercial
+CompartirIgual 2.5</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../intro/" class="btn btn-neutral float-left" title="🔹Introducción"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ficheros_intercambio/" class="btn btn-neutral float-right" title="🔹Ficheros de intercambio">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ficheros_intercambio/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-button.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

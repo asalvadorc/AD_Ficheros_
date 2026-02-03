@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Programación Orientada a Componentes (POC) - AD - Acceso a Datos - Ficheros</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+        <link href="../img/favicon.ico" rel="stylesheet" />
+        <link href="../css/copy-button.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Programaci\u00f3n Orientada a Componentes (POC)";
+        var mkdocs_page_input_path = "Componentes.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../RA_CE/">RA y CE</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../T1_Sistema_de_ficheros/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T1_Sistema_de_ficheros/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T1_Sistema_de_ficheros/exercicis/">📝 Ejercicio obligatorio 1</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../T2_Gestion_del_contenido/Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T2_Gestion_del_contenido/clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T2_Gestion_del_contenido/Lectura_Escritura_ficheros/">🔹Lectura y escritura de ficheros</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros de diferentes formatos</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../T3_Formatos_diferentes/intro/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T3_Formatos_diferentes/seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T3_Formatos_diferentes/ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T3_Formatos_diferentes/Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T3_Formatos_diferentes/ejercicios/">📝 Ejercicio obligatorio 2</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Resumen/">Resumen</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">AD - Acceso a Datos - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Programación Orientada a Componentes (POC)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="programacion-orientada-a-componentes-poc">Programación Orientada a Componentes (POC)</h1>
+<p>La programación orientada a componentes (POC) es un paradigma que se centra en el diseño y construcción de aplicaciones mediante componentes reutilizables e independientes, que encapsulan tanto datos como lógica de negocio y se comunican entre sí a través de interfaces bien definidas.</p>
+<p>Se trata de clases o módulos que encapsulan la lectura, escritura, conversión o gestión de datos en distintos formatos como CSV, JSON o XML.</p>
+<p>En el contexto de la gesión de ficheros, un componente puede ser una clase con una única responsabilidad clara y una interfaz definida. Por ejemplo:</p>
+<ul>
+<li>LectorCSV: componente que sabe leer archivos .csv</li>
+<li>EscritorJSON: componente que convierte objetos a JSON y los guarda</li>
+<li>RepositorioAlumnos: componente que encapsula acceso a datos almacenados en un fichero, sea cual sea el formato</li>
+</ul>
+<p>Ejemplo 1: Componente RepositorioAlumnosCSV</p>
+<p>Encapsula acceso a datos de alumnos en un archivo CSV</p>
+<pre><code>    data class Alumno(val nombre: String, val nota: Int)
+
+    class RepositorioAlumnosCSV(private val fichero: String) {
+
+        fun cargar(): List&lt;Alumno&gt; {
+            return File(fichero).readLines().mapNotNull { linea -&gt;
+                val partes = linea.split(";")
+                if (partes.size == 2) Alumno(partes[0], partes[1].toInt()) else null
+            }
+        }
+
+        fun guardar(alumnos: List&lt;Alumno&gt;) {
+            File(fichero).printWriter().use { writer -&gt;
+                alumnos.forEach { writer.println("${it.nombre};${it.nota}") }
+            }
+        }
+    }
+</code></pre>
+<p><strong>Componente reutilizable para cualquier lista de alumnos CSV.</strong></p>
+<p>Ejemplo 2: Componente GestorJSON</p>
+<p>Leer y escribir objetos Kotlin desde/hacia ficheros .json con kotlinx.serialization</p>
+<pre><code>    import kotlinx.serialization.*
+    import kotlinx.serialization.json.*
+    import java.io.File
+
+    @Serializable
+    data class Producto(val nombre: String, val precio: Double)
+
+    class GestorJSON&lt;T&gt;(private val serializer: KSerializer&lt;T&gt;) {
+
+        fun leer(path: String): T {
+            val contenido = File(path).readText()
+            return Json.decodeFromString(serializer, contenido)
+        }
+
+        fun guardar(objeto: T, path: String) {
+            val json = Json.encodeToString(serializer, objeto)
+            File(path).writeText(json)
+        }
+    }
+
+
+val gestor = GestorJSON(Producto.serializer())
+gestor.guardar(Producto("Teclado", 29.99), "producto.json")
+</code></pre>
+<p>Ejemplo 3: Componente ConversorCSVaJSON</p>
+<p>Transformar ficheros CSV a JSON (ideal como utilitario o servicio)</p>
+<pre><code>import kotlinx.serialization.*
+import kotlinx.serialization.json.*
+import java.io.File
+
+@Serializable
+data class Alumno(val nombre: String, val nota: Int)
+
+    class ConversorCSVaJSON {
+
+        fun convertir(csvPath: String, jsonPath: String) {
+            val alumnos = File(csvPath).readLines().mapNotNull {
+                val partes = it.split(";")
+                if (partes.size == 2) Alumno(partes[0], partes[1].toInt()) else null
+            }
+            val json = Json.encodeToString(alumnos)
+            File(jsonPath).writeText(json)
+        }
+    }
+</code></pre>
+<p>Ejemplo 4: Componente de persistencia XML</p>
+<p>Guardar una lista de objetos en un archivo XML (usando JDOM2)</p>
+<pre><code>    import org.jdom2.*
+    import org.jdom2.output.XMLOutputter
+    import org.jdom2.output.Format
+    import java.io.File
+
+    data class Alumno(val nombre: String, val nota: Int)
+
+    class EscritorXML {
+
+        fun guardar(alumnos: List&lt;Alumno&gt;, path: String) {
+            val raiz = Element("alumnos")
+            alumnos.forEach {
+                val alumnoElem = Element("alumno")
+                alumnoElem.addContent(Element("nombre").setText(it.nombre))
+                alumnoElem.addContent(Element("nota").setText(it.nota.toString()))
+                raiz.addContent(alumnoElem)
+            }
+
+            val doc = Document(raiz)
+            XMLOutputter().apply {
+                format = Format.getPrettyFormat()
+                output(doc, File(path).outputStream())
+            }
+        }
+    }
+</code></pre>
+<p>Supongamos una aplicación que:</p>
+<ul>
+<li>Lee alumnos desde un CSV</li>
+<li>Les aplica una transformación (por ejemplo, sumar +1 a todas las notas)</li>
+<li>Guarda los resultados en JSON<pre><code>fun main() {
+    val repoCSV = RepositorioAlumnosCSV("alumnos.csv")
+    val alumnos = repoCSV.cargar().map { it.copy(nota = it.nota + 1) }
+
+    val gestorJSON = GestorJSON(ListSerializer(Alumno.serializer()))
+    gestorJSON.guardar(alumnos, "alumnos.json")
+}
+</code></pre>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../js/copy-button.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

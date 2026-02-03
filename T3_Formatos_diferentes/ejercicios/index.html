@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>📝 Ejercicio obligatorio 2 - AD - Acceso a Datos - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+        <link href="../../css/copy-button.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udcdd Ejercicio obligatorio 2";
+        var mkdocs_page_input_path = "T3_Formatos_diferentes/ejercicios.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">RA y CE</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/exercicis/">📝 Ejercicio obligatorio 1</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/Lectura_Escritura_ficheros/">🔹Lectura y escritura de ficheros</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros de diferentes formatos</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../intro/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">📝 Ejercicio obligatorio 2</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#enunciado">📋 Enunciado</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#requisitos-tecnicos">🛠️ Requisitos técnicos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rubrica-de-evaluacion">✅ Rúbrica de evaluación</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Resumen/">Resumen</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Acceso a Datos - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Ficheros de diferentes formatos</li>
+      <li class="breadcrumb-item active">📝 Ejercicio obligatorio 2</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ejercicio-2-conversion-y-recuperacion-de-una-ficha-en-multiples-formatos">📝 Ejercicio 2: Conversión y recuperación de una ficha en múltiples formatos</h1>
+<h2 id="enunciado">📋 Enunciado</h2>
+<p>Se pide crear un programa que trabaje con una ficha de usuario (<code>Ficha</code>: nombre, edad, biografía y preferencias). La información de esta ficha se deberá guardar en <strong>varios formatos distintos</strong> y, posteriormente, leerse y mostrarse por consola.</p>
+<hr />
+<p><strong class="azul">🔧 Parte 1: Guardar</strong></p>
+<p>Crea un objeto <strong>Ficha</strong> como el siguiente:</p>
+<pre><code>    val ficha = Ficha(
+        nombre = "Ana",
+        edad = 30,
+        biografia = "Ingeniera de software apasionada por la IA y la educación.",
+        preferencias = Preferencias(
+            lenguaje = "Kotlin",
+            editor = "IntelliJ",
+            tema = "oscuro"
+        )
+    )
+</code></pre>
+<p>Implementa funciones que guarden la información de este objeto en los siguientes formatos, dentro de una carpeta con su nombre (ej. <strong>fichas/ficha_ana</strong>):</p>
+<ol>
+<li><code>biografia.txt</code> – como texto plano.</li>
+<li><code>general.csv</code> – en formato CSV.</li>
+<li><code>notas.dat</code> – binario simple (solo la biografía como bytes).</li>
+<li><code>registro.bin</code> – binario estructurado (nombre, edad, biografía).</li>
+<li><code>preferencias.json</code> – en JSON (solo las preferencias).</li>
+<li><code>ficha.xml</code> – como XML completo.</li>
+<li><code>ficha.obj</code> – como objeto.</li>
+</ol>
+<hr />
+<p><strong class="azul">📥 Parte 2: Leer</strong></p>
+<p>Implementa funciones para <strong>leer</strong> cada uno de los ficheros anteriores y mostrar la información por consola, asegurándote de que los datos son correctos y se han conservado adecuadamente en todos los formatos.</p>
+<hr />
+<h2 id="requisitos-tecnicos">🛠️ Requisitos técnicos</h2>
+<ul>
+<li>Utiliza <code>Path</code>, <code>Files</code>, <code>StandardOpenOption</code> y otras clases de <code>java.nio.file</code>.</li>
+<li>Mantén el código limpio, estructurado y bien comentado.</li>
+<li>Todos los archivos deben almacenarse dentro de <code>fichas/ficha_&lt;nombre&gt;</code>.</li>
+</ul>
+<hr />
+<p>📤 <strong>Ejemplo de salida esperada</strong></p>
+<pre><code>    📄 Biografía:
+    Ingeniera de software apasionada por la IA y la educación.
+
+    📄 Ficha CSV:
+    Ana, 30, Ingeniera de software apasionada por la IA y la educación., Kotlin, IntelliJ, oscuro
+
+    📦 Binario simple:
+    Ingeniera de software apasionada por la IA y la educación.
+
+    📦 Binario estructurado:
+    Nombre: Ana
+    Edad: 30
+    Biografía: Ingeniera de software apasionada por la IA y la educación.
+
+    🟨 JSON (preferencias):
+    lenguaje → Kotlin
+    editor → IntelliJ
+    tema → oscuro
+
+    📘 Ficha XML:
+    Nombre: Ana
+    Edad: 30
+    Biografía: Ingeniera de software apasionada por la IA y la educación.
+    Preferencias:
+    Lenguaje: Kotlin
+    Editor: IntelliJ
+    Tema: oscuro
+
+    🟨 Objeto:
+    Ficha(nombre=Ana, edad=30, biografia=Ingeniera de software apasionada por la IA y la educación., 
+
+    preferencias=Preferencias(lenguaje=Kotlin, editor=IntelliJ, tema=oscuro))
+
+</code></pre>
+<h2 id="rubrica-de-evaluacion">✅ Rúbrica de evaluación</h2>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>Puntos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Se crea correctamente la estructura de carpetas</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Se genera correctamente el archivo de biografía (<code>.txt</code>)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Se genera correctamente el archivo <code>CSV</code> manual</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Se genera correctamente el binario simple (<code>.dat</code>)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Se genera correctamente el binario estructurado (<code>.bin</code>)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Se genera correctamente el archivo <code>JSON</code> con Jackson</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Se genera correctamente el archivo <code>XML</code> con Jackson</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Se genera correctamente el archivo serializado (<code>.obj</code>)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Se implementan correctamente las funciones de lectura y visualización</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Código estructurado, funcional y con buen estilo</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>10</strong></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Conversion/" class="btn btn-neutral float-left" title="🔹Conversión entre formatos diferentes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../Resumen/" class="btn btn-neutral float-right" title="Resumen">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Conversion/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../Resumen/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-button.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

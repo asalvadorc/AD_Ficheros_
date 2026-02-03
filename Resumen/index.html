@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Resumen - AD - Acceso a Datos - Ficheros</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+        <link href="../img/favicon.ico" rel="stylesheet" />
+        <link href="../css/copy-button.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Resumen";
+        var mkdocs_page_input_path = "Resumen.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../RA_CE/">RA y CE</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../T1_Sistema_de_ficheros/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T1_Sistema_de_ficheros/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T1_Sistema_de_ficheros/exercicis/">📝 Ejercicio obligatorio 1</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../T2_Gestion_del_contenido/Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T2_Gestion_del_contenido/clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T2_Gestion_del_contenido/Lectura_Escritura_ficheros/">🔹Lectura y escritura de ficheros</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros de diferentes formatos</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../T3_Formatos_diferentes/intro/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T3_Formatos_diferentes/seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T3_Formatos_diferentes/ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T3_Formatos_diferentes/Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T3_Formatos_diferentes/ejercicios/">📝 Ejercicio obligatorio 2</a>
+                  </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Resumen</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#tipos-de-ficheros-y-metodos-de-acceso">📁 Tipos de ficheros y métodos de acceso</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#serializacion-de-objetos">💾 Serialización de objetos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#conversion-de-formatos">🔁 Conversión de formatos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metodos-de-opencsv-csv">⚙️ Métodos de OpenCSV (CSV)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metodos-de-kotlinxserialization">🧰 Métodos de kotlinx.serialization</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metodos-de-jackson">🧩 Métodos de Jackson</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#clases-utiles-para-xml-con-jdom">📚 Clases útiles para XML con JDOM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#recomendaciones-segun-situacion">🧠 Recomendaciones según situación</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">AD - Acceso a Datos - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Resumen</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="guia-resumen-lectura-y-escritura-de-distintos-formatos-de-ficheros-en-kotlin">📘 Guía resumen: Lectura y escritura de distintos formatos de ficheros en Kotlin</h1>
+<h2 id="tipos-de-ficheros-y-metodos-de-acceso">📁 Tipos de ficheros y métodos de acceso</h2>
+<table>
+<thead>
+<tr>
+<th>Tipo de fichero</th>
+<th>Lectura</th>
+<th>Escritura</th>
+<th>Comentario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Texto (líneas)</strong></td>
+<td><code>Files.readAllLines</code></td>
+<td><code>Files.write(Path, List&lt;String&gt;)</code></td>
+<td>Carga todo en memoria</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Files.newBufferedReader</code></td>
+<td><code>Files.newBufferedWriter</code></td>
+<td>Más eficiente para archivos grandes</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Files.readString</code> (Java 11+)</td>
+<td><code>Files.writeString</code></td>
+<td>Lectura/escritura completa como bloque</td>
+</tr>
+<tr>
+<td><strong>Binario</strong></td>
+<td><code>Files.readAllBytes</code></td>
+<td><code>Files.write(Path, ByteArray)</code></td>
+<td>Lee y escribe bytes puros</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Files.newInputStream</code></td>
+<td><code>Files.newOutputStream</code></td>
+<td>Flujo de bytes directo</td>
+</tr>
+<tr>
+<td><strong>Binario estructurado</strong></td>
+<td><code>FileChannel.read(ByteBuffer)</code></td>
+<td><code>FileChannel.write(ByteBuffer)</code></td>
+<td>Acceso secuencial o aleatorio con <code>ByteBuffer</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SeekableByteChannel.read(...)</code></td>
+<td><code>SeekableByteChannel.write(...)</code></td>
+<td>Más flexible (se puede posicionar)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ByteBuffer.get*()</code></td>
+<td><code>ByteBuffer.put*()</code></td>
+<td>Tipos primitivos</td>
+</tr>
+<tr>
+<td><strong>Acceso aleatorio</strong></td>
+<td><code>FileChannel.position(offset)</code></td>
+<td><code>FileChannel.position(offset)</code></td>
+<td>Permite saltar a posiciones concretas</td>
+</tr>
+<tr>
+<td><strong>Imagen</strong></td>
+<td><code>ImageIO.read(Path/File)</code></td>
+<td><code>ImageIO.write(BufferedImage, ...)</code></td>
+<td>Usa <code>javax.imageio.ImageIO</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="serializacion-de-objetos">💾 Serialización de objetos</h2>
+<table>
+<thead>
+<tr>
+<th>Herramienta</th>
+<th>Uso principal</th>
+<th>Notas clave</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Serializable</code> (Java)</td>
+<td>Marca una clase como serializable</td>
+<td>Necesario para <code>ObjectOutputStream</code></td>
+</tr>
+<tr>
+<td><code>ObjectOutputStream</code></td>
+<td>Serializa y guarda un objeto</td>
+<td>Solo con clases <code>Serializable</code></td>
+</tr>
+<tr>
+<td><code>ObjectInputStream</code></td>
+<td>Lee un objeto serializado</td>
+<td>Funciona solo con objetos serializados en Java</td>
+</tr>
+<tr>
+<td><code>transient</code></td>
+<td>Evita serializar ciertos atributos</td>
+<td>Útil para datos temporales o sensibles</td>
+</tr>
+<tr>
+<td><code>writeObject/readObject</code></td>
+<td>Métodos opcionales para personalizar</td>
+<td>Control sobre la serialización binaria</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="conversion-de-formatos">🔁 Conversión de formatos</h2>
+<table>
+<thead>
+<tr>
+<th>Formato</th>
+<th>Librería</th>
+<th>Uso principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSV</td>
+<td>OpenCSV, Kotlin-CSV</td>
+<td>Lectura y escritura de archivos CSV</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td><code>kotlinx.serialization</code></td>
+<td>Ligero, multiplataforma, integrado con Kotlin</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>Jackson</td>
+<td>Muy usado en backend Java y con Spring Boot</td>
+</tr>
+<tr>
+<td>XML</td>
+<td>DOM API (<code>javax.xml</code>)</td>
+<td>Bajo nivel, control manual de nodos y estructura</td>
+</tr>
+<tr>
+<td>XML</td>
+<td>Jackson</td>
+<td>Conversión directa entre objetos y XML con anotaciones</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="metodos-de-opencsv-csv">⚙️ Métodos de <code>OpenCSV</code> (CSV)</h2>
+<p><strong class="verde">Lectura con OpenCSV</strong></p>
+<table>
+<thead>
+<tr>
+<th>Clase / Método</th>
+<th>¿Qué hace?</th>
+<th>Ejemplo básico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CSVReader(FileReader)</code></td>
+<td>Crea un lector de archivos CSV.</td>
+<td><code>val reader = CSVReader(FileReader("archivo.csv"))</code></td>
+</tr>
+<tr>
+<td><code>readAll()</code></td>
+<td>Lee todo el contenido como <code>List&lt;Array&lt;String&gt;&gt;</code>.</td>
+<td><code>val filas = reader.readAll()</code></td>
+</tr>
+<tr>
+<td><code>readNext()</code></td>
+<td>Lee una fila como <code>Array&lt;String&gt;</code>.</td>
+<td><code>val fila = reader.readNext()</code></td>
+</tr>
+<tr>
+<td><code>close()</code></td>
+<td>Cierra el lector.</td>
+<td><code>reader.close()</code></td>
+</tr>
+<tr>
+<td><code>CSVReaderBuilder(...)</code></td>
+<td>Permite configurar el lector: separador, comillas, salto de línea, etc.</td>
+<td><code>CSVReaderBuilder(FileReader(...)).withSeparator(';')</code></td>
+</tr>
+<tr>
+<td><code>withSkipLines(n)</code></td>
+<td>Omite las primeras <code>n</code> líneas (útil para saltar cabeceras).</td>
+<td><code>withSkipLines(1)</code></td>
+</tr>
+<tr>
+<td><code>build()</code></td>
+<td>Construye el lector configurado.</td>
+<td><code>build()</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong class="verde">Escritura con OpenCSV</strong></p>
+<table>
+<thead>
+<tr>
+<th>Clase / Método</th>
+<th>¿Qué hace?</th>
+<th>Ejemplo básico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CSVWriter(FileWriter)</code></td>
+<td>Crea un escritor CSV básico.</td>
+<td><code>val writer = CSVWriter(FileWriter("archivo.csv"))</code></td>
+</tr>
+<tr>
+<td><code>writeNext(Array&lt;String&gt;)</code></td>
+<td>Escribe una línea al CSV.</td>
+<td><code>writer.writeNext(arrayOf("Ana", "30"))</code></td>
+</tr>
+<tr>
+<td><code>writeAll(List&lt;Array&lt;String&gt;&gt;)</code></td>
+<td>Escribe múltiples filas al CSV.</td>
+<td><code>writer.writeAll(listaFilas)</code></td>
+</tr>
+<tr>
+<td><code>flush()</code></td>
+<td>Fuerza la escritura del buffer.</td>
+<td><code>writer.flush()</code></td>
+</tr>
+<tr>
+<td><code>close()</code></td>
+<td>Cierra el escritor.</td>
+<td><code>writer.close()</code></td>
+</tr>
+<tr>
+<td><code>CSVWriterBuilder(...)</code></td>
+<td>Permite configurar el escritor: delimitador, comillas, escape, etc.</td>
+<td><code>CSVWriterBuilder(FileWriter(...)).withSeparator(';')</code></td>
+</tr>
+<tr>
+<td><code>withQuoteChar(c)</code></td>
+<td>Define el carácter de comillas (por defecto es <code>"</code>).</td>
+<td><code>withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)</code></td>
+</tr>
+<tr>
+<td><code>withEscapeChar(c)</code></td>
+<td>Define el carácter de escape (por defecto <code>\</code>).</td>
+<td><code>withEscapeChar('\\')</code></td>
+</tr>
+<tr>
+<td><code>withLineEnd(e)</code></td>
+<td>Define el carácter de fin de línea.</td>
+<td><code>withLineEnd("\n")</code></td>
+</tr>
+<tr>
+<td><code>build()</code></td>
+<td>Construye el escritor configurado.</td>
+<td><code>build()</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="metodos-de-kotlinxserialization">🧰 Métodos de <code>kotlinx.serialization</code></h2>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>¿Qué hace?</th>
+<th>Ejemplo básico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Json.encodeToString(obj)</code></td>
+<td>Objeto → JSON como <code>String</code></td>
+<td><code>Json.encodeToString(persona)</code></td>
+</tr>
+<tr>
+<td><code>Json.decodeFromString&lt;T&gt;(json)</code></td>
+<td>JSON como <code>String</code> → Objeto Kotlin</td>
+<td><code>Json.decodeFromString&lt;Persona&gt;(json)</code></td>
+</tr>
+<tr>
+<td><code>Json.encodeToJsonElement(obj)</code></td>
+<td>Objeto → <code>JsonElement</code> (estructura de árbol)</td>
+<td><code>val elem = Json.encodeToJsonElement(persona)</code></td>
+</tr>
+<tr>
+<td><code>Json.decodeFromJsonElement(elem)</code></td>
+<td><code>JsonElement</code> → Objeto Kotlin</td>
+<td><code>val persona = Json.decodeFromJsonElement&lt;Persona&gt;(elem)</code></td>
+</tr>
+<tr>
+<td><code>Json.parseToJsonElement(string)</code></td>
+<td>Cadena JSON → árbol <code>JsonElement</code> sin mapear</td>
+<td><code>val elem = Json.parseToJsonElement(json)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="metodos-de-jackson">🧩 Métodos de Jackson</h2>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>¿Qué hace?</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>readValue(String, Class)</code></td>
+<td>JSON → objeto</td>
+<td><code>mapper.readValue(json, Persona::class.java)</code></td>
+</tr>
+<tr>
+<td><code>readValue(File, Class)</code></td>
+<td>Archivo JSON → objeto</td>
+<td><code>mapper.readValue(File("persona.json"), ...)</code></td>
+</tr>
+<tr>
+<td><code>readTree(String)</code></td>
+<td>JSON → <code>JsonNode</code> (sin mapeo a clase)</td>
+<td><code>val node = mapper.readTree(json)</code></td>
+</tr>
+<tr>
+<td><code>writeValue(File, Object)</code></td>
+<td>Objeto → archivo JSON</td>
+<td><code>mapper.writeValue(File("salida.json"), persona)</code></td>
+</tr>
+<tr>
+<td><code>writeValueAsString(Object)</code></td>
+<td>Objeto → cadena JSON</td>
+<td><code>val json = mapper.writeValueAsString(persona)</code></td>
+</tr>
+<tr>
+<td><code>writeValueAsBytes(Object)</code></td>
+<td>Objeto → bytes JSON</td>
+<td><code>val bytes = mapper.writeValueAsBytes(persona)</code></td>
+</tr>
+<tr>
+<td><code>writerWithDefaultPrettyPrinter()</code></td>
+<td>Formatea JSON de salida</td>
+<td><code>.writerWithDefaultPrettyPrinter().writeValue(...)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="clases-utiles-para-xml-con-jdom">📚 Clases útiles para XML con JDOM</h2>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SAXBuilder</code></td>
+<td>Lee y convierte un archivo XML en <code>Document</code></td>
+</tr>
+<tr>
+<td><code>Document</code></td>
+<td>Representa todo el documento XML</td>
+</tr>
+<tr>
+<td><code>Element</code></td>
+<td>Representa una etiqueta o nodo XML</td>
+</tr>
+<tr>
+<td><code>Attribute</code></td>
+<td>Atributo de un <code>Element</code></td>
+</tr>
+<tr>
+<td><code>XMLOutputter</code></td>
+<td>Convierte el documento XML a texto</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="recomendaciones-segun-situacion">🧠 Recomendaciones según situación</h2>
+<table>
+<thead>
+<tr>
+<th>Situación</th>
+<th>Mejor opción</th>
+<th>Motivo principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Solo necesitas JSON</td>
+<td><code>kotlinx.serialization</code></td>
+<td>Ligero, rápido, oficial para Kotlin</td>
+</tr>
+<tr>
+<td>Necesitas JSON + XML (complejo)</td>
+<td>Jackson</td>
+<td>Más completo y flexible para ambos formatos</td>
+</tr>
+<tr>
+<td>Proyecto en Java o Spring Boot</td>
+<td>Jackson</td>
+<td>Integración fluida</td>
+</tr>
+<tr>
+<td>Proyecto Multiplataforma Kotlin</td>
+<td><code>kotlinx.serialization</code></td>
+<td>Compatible con JS, JVM y Native</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../T3_Formatos_diferentes/ejercicios/" class="btn btn-neutral float-left" title="📝 Ejercicio obligatorio 2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../T3_Formatos_diferentes/ejercicios/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../js/copy-button.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

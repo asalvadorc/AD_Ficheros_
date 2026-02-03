@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹Ficheros de intercambio - AD - Acceso a Datos - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+        <link href="../../css/copy-button.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39Ficheros de intercambio";
+        var mkdocs_page_input_path = "T3_Formatos_diferentes/ficheros_intercambio.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">RA y CE</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/exercicis/">📝 Ejercicio obligatorio 1</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/Lectura_Escritura_ficheros/">🔹Lectura y escritura de ficheros</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros de diferentes formatos</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../intro/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">🔹Ficheros de intercambio</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#data-class">🔹Data Class</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dependencias-gradle">🔹Dependencias Gradle</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ficheros-csv">🔹Ficheros CSV</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ficheros-json">🔹Ficheros JSON</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#kotlinxserialization">🔹 kotlinx.serialization</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#jackson-json">🔹Jackson (JSON)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ficheros-xml">🔹Ficheros XML</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#jdom2">🔹JDOM2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#jackson-xml">🔹Jackson (XML)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#clase-contenedora">Clase Contenedora</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ejercicios/">📝 Ejercicio obligatorio 2</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Resumen/">Resumen</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Acceso a Datos - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Ficheros de diferentes formatos</li>
+      <li class="breadcrumb-item active">🔹Ficheros de intercambio</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ficheros-de-intercambio">Ficheros de intercambio</h1>
+<p>En el desarrollo de aplicaciones, es habitual trabajar con datos almacenados o transmitidos en distintos formatos de ficheros. La conversión entre estos formatos permite intercambiar información entre sistemas heterogéneos, integrarse con APIs, facilitar la persistencia de datos o adaptarse a requisitos específicos. </p>
+<p><strong>¿Cuándo utilizar cada uno de ellos?</strong></p>
+<ul>
+<li><strong>JSON</strong> y <strong>XML</strong>: para APIs REST, configuración, exportación de datos.</li>
+<li><strong>CSV</strong>: para importar/exportar datos desde hojas de cálculo.</li>
+</ul>
+<p>Estos formatos no solo permiten guardar la información de forma más organizada y legible, sino que requieren utilizar <strong>librerías específicas</strong> para leer y escribir.  </p>
+<p>En los siguientes apartados veremos cómo trabajar con cada uno de estos formatos, qué librerías se utilizan en Kotlin para manipularlos, y cómo adaptar nuestras clases y funciones para poder persistir y recuperar objetos fácilmente desde cada tipo de fichero.</p>
+<h2 id="data-class">🔹Data Class</h2>
+<p>Aunque este tipo de ficheros están formados por texto, los programas no deberían trabajar directamente con texto, sino con datos estructurados.</p>
+<p>Por este motivo, toda la lectura y escritura de ficheros de intercambio se realizará <strong>mediante objetos</strong>, y no manipulando directamente cadenas de texto.
+Cuando leemos un fichero CSV, JSON o XML leemos texto pero, el objetivo final es obtener información con significado. Para representar correctamente esa información dentro del programa, utilizaremos <strong>data class</strong>, que nos permiten modelar los datos de forma clara y segura.</p>
+<p>Define qué información tiene un objeto y de qué tipo es cada dato: El data class de una línea CSV se repreentaría así:</p>
+<table>
+<thead>
+<tr>
+<th>CSV</th>
+<th>Data Class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nombre;nota<br>Lucía;28</td>
+<td>data class Alumno(<br>&nbsp;&nbsp;&nbsp;val nombre: String,<br>&nbsp;&nbsp;&nbsp;val nota: Int<br>)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Ejemplos</p>
+<p>Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos un proyecto llamado <strong>Ficheros_Gradle</strong>, en el que incluiremos <strong>Gradle</strong> como herramienta de construcción. Los ejemplos los iremos creando directamente en la carpeta <strong>src/main/Kotlin</strong>. <br />
+Crearemo también la carpeta <strong>documentos</strong>, donde iremos dejando los ficheros geneados en los distintos ejemplos.</p>
+<p><img alt="Ref" src="../new_project_gradle.png" />|<img alt="Ref" src="../ejemplos_intercambio.png" /></p>
+</div>
+<h2 id="dependencias-gradle">🔹Dependencias Gradle</h2>
+<p>En este apartado vamos a desarrollar una aplicación en Kotlin que gestione la lectura y escritura de datos utilizando distintos formatos de archivo estructurado: CSV, JSON y XML.</p>
+<p>Para facilitar <strong>el uso de librerías externas</strong> que nos ayuden a trabajar con estos formatos, vamos a utilizar <strong>Gradle</strong> como herramienta de construcción del proyecto. Gradle nos permitirá:</p>
+<ul>
+<li>Gestionar las dependencias necesarias.</li>
+<li>Automatizar el proceso de compilación y ejecución.</li>
+<li>Organizar el proyecto de forma profesional y escalable.</li>
+</ul>
+<p><strong>Dependencias que utilizaremos</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Formato</th>
+<th>Librería</th>
+<th>Propósito principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSV</td>
+<td>OpenCSV, Kotlin-CSV</td>
+<td>Lectura y escritura de archivos separados por comas o punto y coma</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>kotlinx.serialization</td>
+<td>Conversión entre objetos Kotlin y texto JSON (ligero, multiplataforma, oficial)</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>Jackson</td>
+<td>Conversión entre objetos Java/Kotlin y JSON (muy usado en backend Java)</td>
+</tr>
+<tr>
+<td>XML</td>
+<td>javax.xml (DOM API)</td>
+<td>Construcción y manipulación manual de documentos XML (bajo nivel, detallado)</td>
+</tr>
+<tr>
+<td>XML</td>
+<td>Jackson</td>
+<td>Conversión directa entre objetos y XML (usando anotaciones, más sencillo)</td>
+</tr>
+</tbody>
+</table>
+<p>En el fichero <strong>build.gradle.kts</strong> se incluirán los plugins y dependencias necesarias:</p>
+<pre><code>    plugins {
+        kotlin("jvm") version "2.0.20"
+        kotlin("plugin.serialization") version "2.0.20"
+        application
+    }
+
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        // Kotlin estándar
+        implementation(kotlin("stdlib"))
+
+        // Serialización JSON
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+        // OpenCSV para CSV
+        implementation("com.opencsv:opencsv:5.9")
+
+        //Kotlin-CSV
+        implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.9.1")
+
+
+        // librería JDOM2
+        implementation("org.jdom:jdom2:2.0.6")
+
+        // librerias jackson
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
+        implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.17.0")
+
+    }
+</code></pre>
+<h2 id="ficheros-csv">🔹Ficheros CSV</h2>
+<p>El formato CSV es un archivo de texto donde los valores están separados por comas u otro delimitador (como punto y coma), muy usado para intercambiar datos entre hojas de cálculo, sistemas contables, etc.</p>
+<p>La lectura y escrituara de un archivo CSV se puede hacer de tres formas:</p>
+<ol>
+<li><strong>Sin utilizar librerías</strong> y mediante la lectura línea a línea + split().</li>
+<li>Con la librería <strong>OpenCSV</strong>.</li>
+<li>Con la librería <strong>Kotlin-CSV</strong>.</li>
+</ol>
+<p>En este bloque de contenidos vamos a trabajar con distintos programas de ejemplo y en todos estos casos, los datos representan siempre el mismo tipo de información: alumnos.</p>
+<div class="admonition tip">
+<p class="admonition-title">Alumnos.csv</p>
+<p>nombre:nota
+Lucía;9<br />
+Carlos;8<br />
+Elena;10  </p>
+</div>
+<p>La <strong>data class Alumno</strong> correspondiente será:</p>
+<pre><code>    data class Alumno(
+        val nombre: String,
+        val nota: Int
+    )
+</code></pre>
+<p>📌 Esta clase la crearemos fuera fuera de los programas de ejemplo para poder reutilizarla desde cualquier otro main. </p>
+<p>🖥️ <strong class="azul">1- Sin librerías: lectura línea a línea + split()</strong></p>
+<p><strong>Ejemplo_CSV_lect_esc.kt</strong></p>
+<pre><code>    import java.nio.file.Files
+    import java.nio.file.Paths
+    import java.nio.file.StandardOpenOption
+
+
+    fun main() {
+        val ruta = Paths.get("documentos/alumnos.csv")
+
+        // 1. Crear contenido CSV (con cabecera)
+        val lineas = listOf(
+            "nombre;nota",     // cabecera
+            "Lucía;9",
+            "Carlos;8",
+            "Elena;10"
+        )
+
+        // 2. Escribir el archivo
+        Files.write(
+            ruta,
+            lineas,
+            StandardOpenOption.CREATE,
+            StandardOpenOption.TRUNCATE_EXISTING
+        )
+
+        println("Archivo CSV creado: ${ruta.toAbsolutePath()}")
+
+        // 3. Leer el archivo y convertir a objetos Alumno
+        val lineasLeidas = Files.readAllLines(ruta)
+        val alumnos = mutableListOf&lt;Alumno&gt;()
+
+        for (i in lineasLeidas.indices) {
+
+            // Saltamos la cabecera (línea 0)
+            if (i == 0) continue
+
+            val linea = lineasLeidas[i]
+            val partes = linea.split(";")
+
+            if (partes.size == 2) {
+                val nombre = partes[0]
+                val nota = partes[1].toInt()
+
+                val alumno = Alumno(nombre, nota)
+                alumnos.add(alumno)
+            } else {
+                println("Línea mal formada: $linea")
+            }
+        }
+
+        // 4. Usar los objetos
+        println("\nListado de alumnos:")
+        for (alumno in alumnos) {
+            println("Alumno: ${alumno.nombre}, Nota: ${alumno.nota}")
+        }
+    }
+</code></pre>
+<p>🖥️ <strong class="azul">2- Con OpenCSV</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p><strong>OpenCSV</strong> fue desarrollado antes de que <strong>java.nio.file.Path</strong> se introdujera en Java 7, y sus métodos aún usan la API antigua <strong>(java.io.*)</strong>, como FileReader y FileWriter.</p>
+</div>
+<p><strong class="verde">Lectura con OpenCSV</strong></p>
+<table>
+<thead>
+<tr>
+<th>Clase / Método</th>
+<th>¿Qué hace?</th>
+<th>Ejemplo básico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CSVReader(FileReader)</code></td>
+<td>Crea un lector de archivos CSV.</td>
+<td><code>val reader = CSVReader(FileReader("archivo.csv"))</code></td>
+</tr>
+<tr>
+<td><code>readAll()</code></td>
+<td>Lee todo el contenido como <code>List&lt;Array&lt;String&gt;&gt;</code>.</td>
+<td><code>val filas = reader.readAll()</code></td>
+</tr>
+<tr>
+<td><code>readNext()</code></td>
+<td>Lee una fila como <code>Array&lt;String&gt;</code>.</td>
+<td><code>val fila = reader.readNext()</code></td>
+</tr>
+<tr>
+<td><code>close()</code></td>
+<td>Cierra el lector.</td>
+<td><code>reader.close()</code></td>
+</tr>
+<tr>
+<td><code>CSVReaderBuilder(...)</code></td>
+<td>Permite configurar el lector: separador, comillas, salto de línea, etc.</td>
+<td><code>CSVReaderBuilder(FileReader(...)).withSeparator(';')</code></td>
+</tr>
+<tr>
+<td><code>withSkipLines(n)</code></td>
+<td>Omite las primeras <code>n</code> líneas (útil para saltar cabeceras).</td>
+<td><code>withSkipLines(1)</code></td>
+</tr>
+<tr>
+<td><code>build()</code></td>
+<td>Construye el lector configurado.</td>
+<td><code>build()</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong class="verde">Escritura con OpenCSV</strong></p>
+<table>
+<thead>
+<tr>
+<th>Clase / Método</th>
+<th>¿Qué hace?</th>
+<th>Ejemplo básico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CSVWriter(FileWriter)</code></td>
+<td>Crea un escritor CSV básico.</td>
+<td><code>val writer = CSVWriter(FileWriter("archivo.csv"))</code></td>
+</tr>
+<tr>
+<td><code>writeNext(Array&lt;String&gt;)</code></td>
+<td>Escribe una línea al CSV.</td>
+<td><code>writer.writeNext(arrayOf("Ana", "30"))</code></td>
+</tr>
+<tr>
+<td><code>writeAll(List&lt;Array&lt;String&gt;&gt;)</code></td>
+<td>Escribe múltiples filas al CSV.</td>
+<td><code>writer.writeAll(listaFilas)</code></td>
+</tr>
+<tr>
+<td><code>flush()</code></td>
+<td>Fuerza la escritura del buffer.</td>
+<td><code>writer.flush()</code></td>
+</tr>
+<tr>
+<td><code>close()</code></td>
+<td>Cierra el escritor.</td>
+<td><code>writer.close()</code></td>
+</tr>
+<tr>
+<td><code>CSVWriterBuilder(...)</code></td>
+<td>Permite configurar el escritor: delimitador, comillas, escape, etc.</td>
+<td><code>CSVWriterBuilder(FileWriter(...)).withSeparator(';')</code></td>
+</tr>
+<tr>
+<td><code>withQuoteChar(c)</code></td>
+<td>Define el carácter de comillas (por defecto es <code>"</code>).</td>
+<td><code>withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)</code></td>
+</tr>
+<tr>
+<td><code>withEscapeChar(c)</code></td>
+<td>Define el carácter de escape (por defecto <code>\</code>).</td>
+<td><code>withEscapeChar('\\')</code></td>
+</tr>
+<tr>
+<td><code>withLineEnd(e)</code></td>
+<td>Define el carácter de fin de línea.</td>
+<td><code>withLineEnd("\n")</code></td>
+</tr>
+<tr>
+<td><code>build()</code></td>
+<td>Construye el escritor configurado.</td>
+<td><code>build()</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p><strong>CSVReader</strong> y <strong>CSVWriter</strong> son clases Java, pensadas originalmente para Java, aunque se pueden usar desde Kotlin.</p>
+</div>
+<p><strong>Ejempo_OpenCSV_lect_esc.kt</strong></p>
+<pre><code>    import com.opencsv.CSVReader
+    import com.opencsv.CSVWriter
+    import java.io.FileReader
+    import java.io.FileWriter
+    import java.nio.file.Paths
+
+
+    fun main() {
+        val ruta = Paths.get("documentos/alumnos.csv").toString()
+
+        // 1. Escribir el archivo CSV (con cabecera)
+        CSVWriter(FileWriter(ruta)).use { writer -&gt;
+            writer.writeNext(arrayOf("nombre", "nota"))   //cabecera
+            writer.writeNext(arrayOf("Lucía", "9"))
+            writer.writeNext(arrayOf("Carlos", "8"))
+            writer.writeNext(arrayOf("Elena", "10"))
+        }
+
+        println("Archivo CSV creado: $ruta")
+
+        // 2. Leer el archivo CSV y convertir a objetos Alumno
+        val alumnos = mutableListOf&lt;Alumno&gt;()
+
+        CSVReader(FileReader(ruta)).use { reader -&gt;
+            val filas = reader.readAll()
+
+            for (i in filas.indices) {
+
+                // Saltamos la cabecera
+                if (i == 0) continue
+
+                val fila = filas[i]
+
+                if (fila.size == 2) {
+                    val nombre = fila[0]
+                    val nota = fila[1].toInt()
+
+                    alumnos.add(Alumno(nombre, nota))
+                } else {
+                    println("Línea mal formada: ${fila.joinToString(";")}")
+                }
+            }
+        }
+
+        // 3. Usar los objetos
+        println("\nListado de alumnos:")
+        for (alumno in alumnos) {
+            println("Alumno: ${alumno.nombre}, Nota: ${alumno.nota}")
+        }
+    }
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El archivo CSV generado sin librerías es un archivo de texto plano con el separador <strong>;</strong>, pero sin comillas y sin escape. En cambio, el fichero CSV generado con OpenCSV sigue el estantar CSV (RFC 4180) que incluye encerrar los campos entre comillas dobles, si el campo contiene el separador (como <strong>;</strong> o <strong>,</strong>).</p>
+</div>
+<p>🖥️ <strong class="azul">3- Con Kotlin-CSV</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>la librería <strong>kotlin-csv</strong> también utiliza <strong>java.io.File</strong> para muchas de sus operaciones principales, aunque de una forma un poco más moderna y flexible que <strong>OpenCSV</strong>.</p>
+</div>
+<p>Tradicionalmente, en entornos Java se ha utilizado la librería OpenCSV para leer y escribir este tipo de archivos, debido a su potencia y versatilidad, sin embargo, cuando desarrollamos en Kotlin, existen alternativas más modernas y adaptadas al lenguaje. Una de ellas es kotlin-csv, una librería ligera y expresiva diseñada específicamente para aprovechar las ventajas de Kotlin, como las expresiones lambda, la sintaxis DSL y el trabajo con secuencias (sequences) y corrutinas.   </p>
+<div class="admonition tip">
+<p><strong>csvWriter</strong> y <strong>csvReader</strong> no son clases, sino funciones DSL propias de Kotlin</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Método</th>
+<th>Ejemplo mínimo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lectura</strong></td>
+<td><code>readAll(File)</code></td>
+<td><code>val filas = csvReader().readAll(File("alumnos.csv"))</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>readAllWithHeader(File)</code></td>
+<td><code>val datos = csvReader().readAllWithHeader(File("alumnos.csv"))</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>open { readAllAsSequence() }</code></td>
+<td><code>csvReader().open("alumnos.csv") { readAllAsSequence().forEach { println(it) } }</code></td>
+</tr>
+<tr>
+<td><strong>Escritura</strong></td>
+<td><code>writeAll(data, File)</code></td>
+<td><code>csvWriter().writeAll(listOf(listOf("Lucía", "9")), File("salida.csv"))</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeRow(row, File)</code></td>
+<td><code>csvWriter().writeRow(listOf("Carlos", "8"), File("salida.csv"))</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeAllWithHeader(data, File)</code></td>
+<td><code>csvWriter().writeAllWithHeader(listOf(mapOf("nombre" to "Elena", "nota" to "10")), File("salida.csv"))</code></td>
+</tr>
+<tr>
+<td><strong>Configuración</strong></td>
+<td><code>delimiter</code>, <code>quoteChar</code>, etc.</td>
+<td><code>csvReader { delimiter = ';' }</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejempo_KotlinCSV_lect_esc.kt</strong></p>
+<pre><code>    import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
+    import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
+    import java.io.File
+    import java.nio.file.Paths
+
+
+
+    fun main() {
+        val ruta = Paths.get("documentos/alumnos.csv").toString()
+
+        // Escribir con cabecera
+        csvWriter().open(ruta) {
+            writeRow(listOf("nombre", "nota"))  //cabecera
+            writeRow(listOf("Lucía", "9"))
+            writeRow(listOf("Carlos", "8"))
+            writeRow(listOf("Elena", "10"))
+        }
+
+        // Leer con cabecera (como Map)
+        val filas: List&lt;Map&lt;String, String&gt;&gt; = csvReader().readAllWithHeader(File(ruta))
+
+        val alumnos = filas.mapNotNull { fila -&gt;
+            val nombre = fila["nombre"]
+            val notaStr = fila["nota"]
+            if (nombre != null &amp;&amp; notaStr != null) Alumno(nombre, notaStr.toInt()) else null
+        }
+
+        println("Listado de alumnos:")
+        alumnos.forEach { println("Alumno: ${it.nombre}, Nota: ${it.nota}") }
+    }
+</code></pre>
+<h2 id="ficheros-json">🔹Ficheros JSON</h2>
+<p>En muchas aplicaciones modernas, los datos deben almacenarse o intercambiarse en formato JSON (JavaScript Object Notation), un formato ligero y legible ampliamente utilizado en APIs, configuraciones, bases de datos NoSQL y almacenamiento persistente.</p>
+<p><strong class="azul">Estructura</strong></p>
+<p>La estructura de los ficheros <strong>JSON</strong> (JavaScript Object Notation) se basa en una sintaxis sencilla y legible para representar datos estructurados. <strong>JSON</strong> está formado por <strong>pares clave-valor</strong> y/o listas ordenadas de valores.<br />
+<strong>Ejemplo</strong>: Información sobre un alumno.</p>
+<pre><code>        "alumno": {
+            "nombre": "María",
+            "edad": 20,
+            "activo": true,
+            "notas": [8.5, 9.2, 7.8],
+            "direccion": {
+            "calle": "Av. del Sol",
+            "ciudad": "Valencia",
+            "codigoPostal": 46001}
+            }
+</code></pre>
+<p><strong class="azul">Elementos principales</strong></p>
+<ul>
+<li><strong>Objeto:</strong>   Conjunto de pares clave-valor, delimitado por {}: "alumno"</li>
+<li><strong>Array:</strong>    Lista ordenada de valores, delimitada por []: "notas"</li>
+<li><strong>Clave:</strong>    Siempre entre comillas dobles: "nombre"</li>
+<li><strong>Valor:</strong>    Puede ser: string, número, booleano, null, objeto o array:  "María", "Valencia", 20, true, etc.</li>
+</ul>
+<p><strong class="azul">Librerías</strong></p>
+<p>En <strong>Kotlin</strong>, existen varias librerías que permiten trabajar con ficheros JSON de forma sencilla:</p>
+<table>
+<thead>
+<tr>
+<th>Librería</th>
+<th>Lenguaje base</th>
+<th>Uso recomendado</th>
+<th>Multiplataforma</th>
+<th>Notas destacadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kotlinx.serialization</code></td>
+<td>Kotlin</td>
+<td>Kotlin puro y Kotlin Multiplatform</td>
+<td>✅ Sí</td>
+<td>Ligera, rápida y con soporte oficial de JetBrains</td>
+</tr>
+<tr>
+<td><code>Jackson</code></td>
+<td>Java</td>
+<td>Proyectos Java/Kotlin con Spring Boot</td>
+<td>❌ No</td>
+<td>Muy flexible y poderosa</td>
+</tr>
+<tr>
+<td><code>Gson</code></td>
+<td>Java</td>
+<td>Aplicaciones Android o proyectos simples</td>
+<td>❌ No</td>
+<td>Fácil de usar, pero más lenta y menos segura</td>
+</tr>
+<tr>
+<td><code>org.json</code></td>
+<td>Java</td>
+<td>Scripts rápidos o aprendizaje</td>
+<td>❌ No</td>
+<td>Acceso directo a claves sin clases de datos</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando trabajamos con ficheros <strong>JSON en Kotlin</strong>, existen dos formas de acceder a los datos, tratarlos como texto plano o estructuras genéricas, o convertirlos directamente en objetos Kotlin. Aunque la primera opción es posible y útil en ciertos casos, trabajar sin conversión implica mayor esfuerzo manual, riesgo de errores en los nombres de claves y ausencia de validación de tipos. Las librerías <strong>kotlinx.serialization</strong> y <strong>Jackson</strong> nos permiten convertir los ficheros JSON a objetos y viceversa.</p>
+<p>Esto proporciona importantes <strong>ventajas</strong>:  </p>
+<p>✔️ Validación automática de la estructura del JSON.<br />
+✔️ Conversión directa entre JSON y objetos Kotlin.<br />
+✔️ Código más limpio y mantenible.<br />
+✔️ Mayor seguridad de tipos, detectando errores en tiempo de compilación.  </p>
+<h3 id="kotlinxserialization">🔹 kotlinx.serialization</h3>
+<p><strong>kotlinx.serialization</strong> es la librería oficial de serialización de Kotlin, desarrollada por JetBrains, que permite convertir objetos Kotlin a y desde diferentes formatos como JSON, ProtoBuf, CBOR, XML (experimental), entre otros.</p>
+<p>Como ya vimos en el apartado anterior, <strong>la serialización</strong> es el proceso de convertir los datos utilizados por una aplicación a un formato que pueda transferirse por red o almacenarse en una base de datos o archivo. A su vez, la deserialización es el proceso inverso: leer datos de una fuente externa y convertirlos en un objeto de tiempo de ejecución.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Todas las bibliotecas de serialización de Kotlin pertenecen al grupo <strong>org.jetbrains.kotlinx:grupo</strong>. Sus nombres empiezan con <em>kotlinx-serialization-</em> y tienen sufijos que reflejan el formato de serialización: <strong>org.jetbrains.kotlinx:kotlinx-serialization-json</strong></p>
+</div>
+<p><strong class="verde">Clases y funciones clave de kotlinx.serialization.json</strong></p>
+<table>
+<thead>
+<tr>
+<th>Clase / Función</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Json</code></td>
+<td>Clase</td>
+<td>Punto de entrada principal para serializar y deserializar en JSON</td>
+</tr>
+<tr>
+<td><code>JsonObject</code></td>
+<td>Clase</td>
+<td>Representa un objeto JSON <code>{}</code> como un <code>Map&lt;String, JsonElement&gt;</code></td>
+</tr>
+<tr>
+<td><code>JsonArray</code></td>
+<td>Clase</td>
+<td>Representa un array JSON <code>[]</code>, como una lista de <code>JsonElement</code></td>
+</tr>
+<tr>
+<td><code>JsonElement</code></td>
+<td>Clase</td>
+<td>Superclase abstracta para cualquier valor JSON</td>
+</tr>
+<tr>
+<td><code>JsonPrimitive</code></td>
+<td>Clase</td>
+<td>Representa valores primitivos JSON (string, número, booleano, null)</td>
+</tr>
+<tr>
+<td><code>JsonNull</code></td>
+<td>Objeto</td>
+<td>Representa el valor <code>null</code> en JSON</td>
+</tr>
+<tr>
+<td><code>JsonLiteral</code></td>
+<td>Clase</td>
+<td>Subtipo de <code>JsonPrimitive</code> que representa valores literales (string/num)</td>
+</tr>
+<tr>
+<td><code>JsonObjectBuilder</code></td>
+<td>Clase DSL</td>
+<td>Permite construir objetos JSON usando <code>buildJsonObject { ... }</code></td>
+</tr>
+<tr>
+<td><code>JsonArrayBuilder</code></td>
+<td>Clase DSL</td>
+<td>Permite construir arrays JSON usando <code>buildJsonArray { ... }</code></td>
+</tr>
+<tr>
+<td><code>buildJsonObject { ... }</code></td>
+<td>Función</td>
+<td>Crea un <code>JsonObject</code> de forma declarativa</td>
+</tr>
+<tr>
+<td><code>buildJsonArray { ... }</code></td>
+<td>Función</td>
+<td>Crea un <code>JsonArray</code> de forma declarativa</td>
+</tr>
+<tr>
+<td><code>parseToJsonElement(...)</code></td>
+<td>Función</td>
+<td>Convierte un <code>String</code> en <code>JsonElement</code> (analiza el JSON sin clase)</td>
+</tr>
+<tr>
+<td><code>encodeToJsonElement(...)</code></td>
+<td>Función</td>
+<td>Convierte un objeto Kotlin en <code>JsonElement</code> usando un <code>Json</code></td>
+</tr>
+<tr>
+<td><code>decodeFromJsonElement(...)</code></td>
+<td>Función</td>
+<td>Convierte un <code>JsonElement</code> a un objeto Kotlin</td>
+</tr>
+<tr>
+<td><code>jsonPrimitive</code></td>
+<td>Propiedad</td>
+<td>Accede al valor primitivo dentro de un <code>JsonElement</code></td>
+</tr>
+<tr>
+<td><code>jsonObject</code></td>
+<td>Propiedad</td>
+<td>Convierte un <code>JsonElement</code> a <code>JsonObject</code> (si es compatible)</td>
+</tr>
+<tr>
+<td><code>jsonArray</code></td>
+<td>Propiedad</td>
+<td>Convierte un <code>JsonElement</code> a <code>JsonArray</code> (si es compatible)</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="verde">Métodos principales de kotlinx.serialization</strong></p>
+<p>Son funciones generales que no están dentro del paquete .json, pero que se usan muy a menudo en la serialización en Kotlin.</p>
+<table>
+<thead>
+<tr>
+<th>Método de kotlinx.serialization</th>
+<th>¿Qué hace?</th>
+<th>Ejemplo básico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Json.encodeToString(objeto)</code></td>
+<td>Convierte un objeto Kotlin a una cadena JSON.</td>
+<td><code>Json.encodeToString(persona)</code></td>
+</tr>
+<tr>
+<td><code>Json.encodeToString(serializer, obj)</code></td>
+<td>Igual que el anterior pero especificando el serializador.</td>
+<td><code>Json.encodeToString(Persona.serializer(), persona)</code></td>
+</tr>
+<tr>
+<td><code>Json.decodeFromString(json)</code></td>
+<td>Convierte una cadena JSON a un objeto Kotlin.</td>
+<td><code>Json.decodeFromString&lt;Persona&gt;(json)</code></td>
+</tr>
+<tr>
+<td><code>Json.decodeFromString(serializer, s)</code></td>
+<td>Igual que el anterior pero con el serializador explícito.</td>
+<td><code>Json.decodeFromString(Persona.serializer(), json)</code></td>
+</tr>
+<tr>
+<td><code>Json.encodeToJsonElement(objeto)</code></td>
+<td>Convierte un objeto a un árbol <code>JsonElement</code>.</td>
+<td><code>val elem = Json.encodeToJsonElement(persona)</code></td>
+</tr>
+<tr>
+<td><code>Json.decodeFromJsonElement(elem)</code></td>
+<td>Convierte un <code>JsonElement</code> a objeto Kotlin.</td>
+<td><code>val persona = Json.decodeFromJsonElement&lt;Persona&gt;(elem)</code></td>
+</tr>
+<tr>
+<td><code>Json.parseToJsonElement(string)</code></td>
+<td>Parsea una cadena JSON a un árbol <code>JsonElement</code> sin mapear.</td>
+<td><code>val elem = Json.parseToJsonElement(json)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">Requisitos para usar kotlinx.serialization en Gradle (JSON)</strong></p>
+<ul>
+<li>Activar el plugin de Kotlin serialization en <strong>build.gradle.kts</strong><pre><code>plugins {
+    kotlin("jvm") version "2.0.20"
+    kotlin("plugin.serialization") version "2.0.20"
+    application
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+}
+</code></pre>
+</li>
+</ul>
+<p>⚠️ Asegúrate de usar una versión compatible con tu Kotlin. Por ejemplo, 1.6.3 funciona bien con Kotlin 2.0.20.        </p>
+<ul>
+<li>Anota tus clases con <strong>@Serializable</strong><pre><code>import kotlinx.serialization.Serializable
+
+@Serializable
+data class Objeto(val clave1: String, val clave2: Int)
+</code></pre>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En Kotlin, las <strong>data class</strong> están diseñadas para modelar datos puros. La palabra clave <strong>data</strong> no es obligatoria para la serialización, pero se usa por buena práctica y para obtener funcionalidades adicionales que son muy útiles, especialmente cuando trabajas con objetos de datos, como toString(), equals(), hashCode(), copy()..     </p>
+</div>
+<ul>
+<li>Utiliza el objeto Json para <strong>serializar/deserializar</strong>      </li>
+</ul>
+<p>Para serializar una instancia de esta clase llamamos a <strong>Json.encodeToString()</strong> y para
+deserializar llamamos a <strong>Json.decodeFromString()</strong>.</p>
+<pre><code>    import kotlinx.serialization.json.Json
+    import kotlinx.serialization.encodeToString
+    import kotlinx.serialization.decodeFromString
+
+    fun main() {
+        val obj = Objeto("María", 22)
+
+        val json = Json.encodeToString(obj)
+        println("JSON: $json")
+
+        val obj = Json.decodeFromString&lt;Objeto&gt;(json)
+        println("Objeto: $obj")
+    }
+</code></pre>
+<p>También puedes serializar <strong>colecciones de objetos</strong>, como listas, en una sola llamada:</p>
+<pre><code>    val dataList = listOf(Objeto("María", 22), Objeto("Carlos", 30), Objeto("Ana", 18))
+    val jsonList = Json.encodeToString(dataList)
+</code></pre>
+<p>El resultado sería:</p>
+<pre><code>[
+    {"nombre":"Lucía","edad":28},
+    {"nombre":"Carlos","edad":30},
+    {"nombre":"Elena","edad":18}
+]
+</code></pre>
+<p><strong class="azul">Ejemplo de lectura y escritura de un archivo json</strong></p>
+<p><strong>Estructura del proyecto:</strong></p>
+<pre><code>    Ficheros_Gradle/            
+    ├── documentos/
+    |       └──persona.json
+    └── src/
+        └── main/
+            └── kotlin/
+                └── Ejemplos/
+                        └──Ejemplo_JSON_KSerialization.kt 
+                        └──Persona.kt
+</code></pre>
+<p>1- El fichero json que vamos a generar será el que tenga el siguiente contenido. Es un objeto JSON que contiene dos atributos, nombre y edad, representando una persona.:</p>
+<pre><code>    {
+    "nombre": "Lucía",
+    "edad": 28
+    }
+</code></pre>
+<p>2- Crea la <strong>Data Class</strong> <strong>Persona.kt</strong> con la misma estructura del archivo fuera del programa de ejemplo para poder reutilizarla desde cualquier otro main.<br />
+Anota la clase como <strong>serializable</strong>.   </p>
+<pre><code>    import kotlinx.serialization.Serializable
+
+    @Serializable
+    data class Persona(val nombre: String, val edad: Int)
+</code></pre>
+<p>🖥️ <strong>Ejemplo_JSON_KSerialization.kt</strong></p>
+<pre><code>    import kotlinx.serialization.encodeToString
+    import kotlinx.serialization.json.*
+    import java.nio.file.Files
+    import java.nio.file.Paths
+    import java.io.IOException
+    import java.nio.file.Files.readString
+
+    fun escribirJSON() {
+
+        val ruta = Paths.get("documentos/persona.json")
+        val persona = Persona("Lucía", 28)
+        try {
+
+            // Convertir a String con formato bonito
+            val jsonString = Json { prettyPrint = true }.encodeToString(persona)
+
+            // Crear carpeta si no existe
+            Files.createDirectories(ruta.parent)
+
+            // Escribir JSON en archivo
+            Files.writeString(ruta, jsonString)
+
+            println("Archivo JSON creado en: ${ruta.toAbsolutePath()}")
+            println("Contenido:\n$jsonString")
+
+        } catch (e: IOException) {
+            println("⚠️ Error de entrada/salida: ${e.message}")
+        } catch (e: Exception) {
+            println("⚠️ Error inesperado: ${e.message}")
+        }
+    }
+
+
+    fun leerJSON(){
+        val rutaEntrada = Paths.get("documentos/persona.json")
+
+        // --- Lectura segura ---
+        try {
+            if (!Files.exists(rutaEntrada)) {
+                println("El archivo no existe: $rutaEntrada")
+                return
+            }
+
+            val contenidoJson = readString(rutaEntrada)
+            val persona = Json.decodeFromString&lt;Persona&gt;(contenidoJson)
+            println("Lectura correcta: $persona")
+
+
+        } catch (e: IOException) {
+            println("Error de E/S: ${e.message}")
+        }
+    }
+
+
+
+    fun main() {
+        escribirJSON()
+        leerJSON()
+
+    }
+</code></pre>
+<!--
+**JSON sin depender de una clase de datos**{.azul}
+
+🖥️ **Ejemplo_JSONObject.kt**
+
+Cuando queremos construir el JSON "a mano", sin depender de la serialización automática de la clase, utilizaremos el método **buildJsonObject**, la cual permite no tener una clase serializable y modificar campos dinámicamente.
+
+
+       import kotlinx.serialization.json.*
+        import java.io.IOException
+        import java.nio.file.Files
+        import java.nio.file.Paths
+
+
+        fun escribirObjeto() {
+            val ruta = Paths.get("documentos/persona_nueva.json")
+
+            try {
+                // Construir el JSON manualmente
+                val jsonObject = buildJsonObject {
+                    put("nombre", "Mario")
+                    put("edad", 35)
+                }
+
+                // Convertirlo a String con formato bonito
+                val jsonString = Json { prettyPrint = true }.encodeToString(JsonObject.serializer(), jsonObject)
+
+                // Crear carpeta si no existe
+                Files.createDirectories(ruta.parent)
+
+                // Escribir JSON en el archivo
+                Files.writeString(ruta, jsonString)
+
+                println("Archivo JSON creado en: ${ruta.toAbsolutePath()}")
+                println("Contenido:\n$jsonString")
+
+            } catch (e: IOException) {
+                println("Error de entrada/salida: ${e.message}")
+            } catch (e: Exception) {
+                println("Error inesperado: ${e.message}")
+            }
+        }
+
+        fun leerObjeto() {
+            val ruta = Paths.get("documentos/persona_nueva.json")
+
+            if (!Files.exists(ruta)) {
+                println("El archivo no existe.")
+                return
+            }
+
+            try {
+                val contenido = Files.readString(ruta)
+                val json = Json { ignoreUnknownKeys = true }
+                val jsonElement = json.parseToJsonElement(contenido)
+                val jsonObject = jsonElement.jsonObject
+
+                // Acceso a los campos manualmente
+                val nombre = jsonObject["nombre"]?.jsonPrimitive?.content
+                val edad = jsonObject["edad"]?.jsonPrimitive?.int
+
+                println("Nombre leído manualmente: $nombre")
+                println("Edad leída manualmente: $edad")
+
+            } catch (e: Exception) {
+                println("Error al leer o procesar el archivo: ${e.message}")
+            }
+        }
+
+
+        fun main(){
+
+            escribirObjeto()
+            leerObjeto()
+        }
+
+-->
+
+<h3 id="jackson-json">🔹Jackson (JSON)</h3>
+<p><strong>Jackson</strong> es la librería más usada en Java para JSON. Muchos frameworks Java lo usan por defecto (Spring Boot, Micronaut, Quarkus, etc.). Conocerlo permite trabajar con APIs externas, backends y entornos mixtos (Java + Kotlin). </p>
+<p>Mientras que <strong>kotlinx.serialization</strong> está centrado en JSON y formatos binarios (CBOR, ProtoBuf...), <strong>Jackson</strong> también soporta XML, YAML, CSV de forma unificada, además, si necesitas convertir entre formatos (XML ↔ JSON), Jackson es ideal, por lo que es importante cononcer ambas librerías para entender los proyectos Kotlin puros y modernos (kotlinx.serialization) y también los proyectos reales empresariales con Jackson.</p>
+<p><strong class="verde">Clases esenciales para trabajar con JSON usando Jackson</strong></p>
+<table>
+<thead>
+<tr>
+<th>Clase / interfaz</th>
+<th>Para qué sirve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectMapper</td>
+<td>La clase principal para leer y escribir JSON</td>
+</tr>
+<tr>
+<td>File (de java.io)</td>
+<td>Representa el archivo físico JSON</td>
+</tr>
+<tr>
+<td>Tu data class en Kotlin</td>
+<td>Define la estructura del objeto a leer o escribir</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Método Jackson</th>
+<th>¿Qué hace?</th>
+<th>Ejemplo básico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>readValue(String, Class)</code></td>
+<td>Convierte una cadena JSON a un objeto Kotlin o Java.</td>
+<td><code>mapper.readValue(json, Persona::class.java)</code></td>
+</tr>
+<tr>
+<td><code>readValue(File, Class)</code></td>
+<td>Convierte un archivo JSON a un objeto.</td>
+<td><code>mapper.readValue(File("persona.json"), Persona::class.java)</code></td>
+</tr>
+<tr>
+<td><code>readTree(String)</code></td>
+<td>Lee un JSON como árbol (<code>JsonNode</code>) sin mapear a clase.</td>
+<td><code>val node = mapper.readTree(json)</code></td>
+</tr>
+<tr>
+<td><code>writeValue(File, Object)</code></td>
+<td>Escribe un objeto como JSON en un archivo.</td>
+<td><code>mapper.writeValue(File("salida.json"), persona)</code></td>
+</tr>
+<tr>
+<td><code>writeValueAsString(Object)</code></td>
+<td>Convierte un objeto en una cadena JSON.</td>
+<td><code>val json = mapper.writeValueAsString(persona)</code></td>
+</tr>
+<tr>
+<td><code>writeValueAsBytes(Object)</code></td>
+<td>Convierte un objeto en un array de bytes JSON.</td>
+<td><code>val bytes = mapper.writeValueAsBytes(persona)</code></td>
+</tr>
+<tr>
+<td><code>writerWithDefaultPrettyPrinter()</code></td>
+<td>Devuelve un escritor que formatea (indentado) el JSON.</td>
+<td><code>mapper.writerWithDefaultPrettyPrinter().writeValue(...)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong class="verde">Anotaciones en Jackson</strong></p>
+<p>Las anotaciones en Jackson (como @JsonIgnoreProperties, @JsonProperty, etc.) no siempre son necesarias, pero se usan para resolver problemas comunes al serializar o deserializar objetos. </p>
+<table>
+<thead>
+<tr>
+<th>Caso</th>
+<th>¿Anotación necesaria?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JSON coincide exactamente con la data class</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td>JSON tiene campos extra</td>
+<td>✅ Sí (@JsonIgnoreProperties)</td>
+</tr>
+<tr>
+<td>Nombres distintos en JSON</td>
+<td>✅ Sí (@JsonProperty)</td>
+</tr>
+<tr>
+<td>Quieres ocultar campos</td>
+<td>✅ Sí (@JsonIgnore)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Anotación</th>
+<th>¿Para qué sirve?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@JsonProperty("x")</td>
+<td>Mapear nombres distintos entre JSON y la clase</td>
+</tr>
+<tr>
+<td>@JsonIgnore</td>
+<td>Excluir una propiedad al serializar/deserializar</td>
+</tr>
+<tr>
+<td>@JsonIgnoreProperties(ignoreUnknown = true)</td>
+<td>Evitar errores por campos JSON no mapeados</td>
+</tr>
+<tr>
+<td>@JsonInclude(...)</td>
+<td>Excluir valores nulos o vacíos en el JSON</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">Ejemplo de lectura y escritura con Jackson</strong></p>
+<p>Dependencia Gradle:</p>
+<pre><code>    dependencies {
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
+    }
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>⚠️ Con la librería Jackson no es obligatorio usar la anotación <strong>@Serializable</strong>.
+Jackson puede trabajar directamente con clases normales de Kotlin.</p>
+<p>En este caso, seguiremos utilizando la <strong>data class Persona</strong>, que ya está anotada con <strong>@Serializable</strong> porque se usa también en ejemplos con <strong>kotlinx.serialization</strong>.<br />
+👉 Esta anotación no afecta a Jackson ni provoca errores, por lo que la misma clase se puede reutilizar sin problemas en ambos casos.</p>
+<pre><code> import kotlinx.serialization.Serializable
+
+    @Serializable
+    data class Persona(val nombre: String, val edad: Int)
+</code></pre>
+</div>
+<p>🖥️ <strong>Ejemplo_JSON_jackson.kt</strong></p>
+<pre><code>    import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+    import com.fasterxml.jackson.module.kotlin.readValue
+    import java.io.File
+
+
+
+
+    fun escribirJson() {
+
+        val mapper = jacksonObjectMapper()
+
+        val persona = Persona("Mario", 35)
+        val archivo = File("documentos/persona.json")
+
+        mapper.writerWithDefaultPrettyPrinter().writeValue(archivo, persona)
+
+        println("JSON generado correctamente en: ${archivo.absolutePath}")
+    }
+    fun leerJson() {
+
+        val mapper = jacksonObjectMapper()
+        val archivo = File("documentos/persona.json")
+
+        val persona = mapper.readValue&lt;Persona&gt;(archivo)
+        println("Lectura correcta: ${persona.nombre} tiene ${persona.edad} años.")
+    }
+
+
+    fun main() {
+        escribirJson()
+        leerJson()
+    }
+</code></pre>
+<p><strong class="azul">Ejemplo de lectura y escritura de un array (lista) de elementos con Jackson</strong>        </p>
+<div class="admonition note">
+<p class="admonition-title">Fichero JSON compuesto por una lista de elementos</p>
+<p>Si el fichero <strong>JSON</strong> contiene un <em>array</em> (<code>[...]</code>), es decir, una <strong>lista de objetos</strong>, entonces debemos indicar explícitamente que queremos leer un <code>List&lt;Objeto&gt;</code>.  </p>
+<pre><code>[ 
+    {
+    "nombre" : "Lucía",
+    "edad" : 28
+    }, {
+    "nombre" : "Pepe",
+    "edad" : 30
+    }, {
+    "nombre" : "Ana",
+    "edad" : 50
+    }, {
+    "nombre" : "Juan",
+    "edad" : 12
+    } 
+]
+</code></pre>
+</div>
+<p>🖥️ <strong>Ejemplo_listaJSON_jackson.kt</strong></p>
+<pre><code>    import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+    import com.fasterxml.jackson.module.kotlin.readValue
+    import java.io.File
+
+
+    fun escribirListaJson() {
+
+        val mapper = jacksonObjectMapper()
+
+        val personas = listOf(
+            Persona("Lucía", 28),
+            Persona("Pepe", 30),
+            Persona("Ana", 50),
+            Persona("Juan", 12)
+        )
+        val archivo = File("documentos/lista_personas.json")
+
+        mapper.writerWithDefaultPrettyPrinter().writeValue(archivo, personas)
+
+        println("JSON generado correctamente en: ${archivo.absolutePath}")
+    }
+
+    fun leerListaJson() {
+
+        val mapper = jacksonObjectMapper()
+        val archivo = File("documentos/lista_personas.json")
+
+        val lista=mapper.readValue&lt;List&lt;Persona&gt;&gt;(archivo)
+
+
+        for (p in lista) {
+            println("${p.nombre} tiene ${p.edad} años.")
+        }
+
+    }
+
+    fun main() {
+        escribirListaJson()
+        leerListaJson()
+    }
+</code></pre>
+<h2 id="ficheros-xml">🔹Ficheros XML</h2>
+<p>Un fichero <strong>XML</strong> (eXtensible Markup Language) es un formato de texto estructurado diseñado para almacenar y transportar datos de forma legible tanto para humanos como para máquinas.</p>
+<p>Tiene una estructura jerárquica basada en etiquetas, similar al HTML, pero orientada al contenido de datos, no a la presentación. <strong>XML</strong> permite guardar objetos o estructuras de datos en un archivo de texto legible.</p>
+<p><strong class="azul">Estructura</strong></p>
+<?xml version="1.0" encoding="UTF-8"?>
+<pre><code>&lt;raiz&gt;                             &lt;!-- Elemento raíz obligatorio --&gt;
+    &lt;elemento&gt;
+        &lt;subelemento&gt;valor&lt;/subelemento&gt;
+    &lt;/elemento&gt;
+    &lt;otroElemento atributo="valor" /&gt;
+&lt;/raiz&gt;
+</code></pre>
+<p>La mejor forma de trabajar con XML en <strong>Kotlin</strong> es utlizar la librería <strong>DOM</strong> (Document Object Model) o <strong>JDOM2</strong>, que permiten crear, leer y modificar fácilmente estructuras XML.</p>
+<ul>
+<li>DOM   -&gt; Estándar Java, sin dependencias. Requiere muchas líneas de código para hacer algo relativamente simple. </li>
+<li>JDOM2 -&gt;  API más amigable para desarrolladores.  Requiere añadir una librería externa.</li>
+</ul>
+<h3 id="jdom2">🔹JDOM2</h3>
+<p><strong>JDOM2</strong> es una librería ligera y fácil de usar para trabajar con <strong>XML</strong> de forma manual y controlada, ideal cuando no necesitas solo convertir directamente a objetos, sino manipular el contenido de manera estructurada.</p>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th>¿Para qué sirve?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAXBuilder</td>
+<td>Analiza (parsea) un archivo XML y devuelve un Document.</td>
+</tr>
+<tr>
+<td>Document</td>
+<td>Representa todo el documento XML.</td>
+</tr>
+<tr>
+<td>Element</td>
+<td>Representa una etiqueta (nodo) del XML.</td>
+</tr>
+<tr>
+<td>Attribute</td>
+<td>Representa un atributo dentro de una etiqueta.</td>
+</tr>
+<tr>
+<td>XMLOutputter</td>
+<td>Convierte el árbol de elementos en texto XML.</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="verde">Métodos comunes de JDOM2 para manipular XML</strong></p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Clase</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Element(String name)</code></td>
+<td><code>Element</code></td>
+<td>Crea un nuevo elemento XML con el nombre especificado</td>
+</tr>
+<tr>
+<td><code>addContent(Element child)</code></td>
+<td><code>Element</code></td>
+<td>Añade un elemento hijo al elemento actual</td>
+</tr>
+<tr>
+<td><code>addContent(String text)</code></td>
+<td><code>Element</code></td>
+<td>Añade texto al contenido del elemento</td>
+</tr>
+<tr>
+<td><code>setText(String text)</code></td>
+<td><code>Element</code></td>
+<td>Establece el texto del elemento</td>
+</tr>
+<tr>
+<td><code>getText()</code></td>
+<td><code>Element</code></td>
+<td>Obtiene el texto del elemento</td>
+</tr>
+<tr>
+<td><code>getChild(String name)</code></td>
+<td><code>Element</code></td>
+<td>Obtiene el primer hijo con ese nombre</td>
+</tr>
+<tr>
+<td><code>getChildren(String name)</code></td>
+<td><code>Element</code></td>
+<td>Obtiene todos los hijos con ese nombre</td>
+</tr>
+<tr>
+<td><code>getChildren()</code></td>
+<td><code>Element</code></td>
+<td>Obtiene todos los hijos del elemento</td>
+</tr>
+<tr>
+<td><code>setAttribute(String, String)</code></td>
+<td><code>Element</code></td>
+<td>Establece un atributo del elemento</td>
+</tr>
+<tr>
+<td><code>getAttributeValue(String)</code></td>
+<td><code>Element</code></td>
+<td>Obtiene el valor de un atributo</td>
+</tr>
+<tr>
+<td><code>Document(Element root)</code></td>
+<td><code>Document</code></td>
+<td>Crea un documento XML con el elemento raíz dado</td>
+</tr>
+<tr>
+<td><code>getRootElement()</code></td>
+<td><code>Document</code></td>
+<td>Obtiene el elemento raíz del documento</td>
+</tr>
+<tr>
+<td><code>SAXBuilder().build(File)</code></td>
+<td><code>SAXBuilder</code></td>
+<td>Carga un documento XML desde un archivo</td>
+</tr>
+<tr>
+<td><code>XMLOutputter().output(Document, OutputStream)</code></td>
+<td><code>XMLOutputter</code></td>
+<td>Escribe el documento XML en una salida (archivo, consola, etc.)</td>
+</tr>
+<tr>
+<td><code>setFormat(Format.prettyFormat())</code></td>
+<td><code>XMLOutputter</code></td>
+<td>Establece un formato bonito con sangrías</td>
+</tr>
+</tbody>
+</table>
+<!--
+**Ejemplo de lectura y escritura de un archivo xml con JDOM2**{.azul}:
+
+- Dependencias en **build.gradle.kts**
+
+        dependencies {
+            implementation("org.jdom:jdom2:2.0.6")
+        }
+
+- Guarda el siguiente fichero **alumnos.xml** en la carpeta **documentos**:
+
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <alumnos>
+            <alumno>
+                <nombre>Ana</nombre>
+                <nota>9</nota>
+            </alumno>
+            <alumno>
+                <nombre>Pedro</nombre>
+                <nota>7</nota>
+            </alumno>
+        </alumnos>
+
+
+🖥️ **Ejemplo_XML_Dom.kt**: Lectura de alumnos.xml
+
+        import org.jdom2.input.SAXBuilder
+        import org.jdom2.Document
+        import org.jdom2.Element
+        import org.jdom2.output.Format
+        import org.jdom2.output.XMLOutputter
+        import java.io.File
+
+        fun lecturaXML_Dom() {
+            val archivo = File("documentos/alumnos.xml")
+            val builder = SAXBuilder()
+            val documento = builder.build(archivo)
+            val raiz = documento.rootElement
+            val listaAlumnos = raiz.getChildren("alumno")
+
+            for (alumno in listaAlumnos) {
+                val nombre = alumno.getChildText("nombre")
+                val nota = alumno.getChildText("nota")
+                println("Alumno: $nombre, Nota: $nota")
+            }
+        }
+
+
+        fun escrituraXML_Dom() {
+            // Crear elementos
+            val raiz = Element("alumnos.xml")
+
+            val alumno1 = Element("alumno")
+            alumno1.addContent(Element("nombre").setText("Lucía"))
+            alumno1.addContent(Element("nota").setText("8"))
+
+            val alumno2 = Element("alumno")
+            alumno2.addContent(Element("nombre").setText("Carlos"))
+            alumno2.addContent(Element("nota").setText("6"))
+
+            // Añadir alumnos a la raíz
+            raiz.addContent(alumno1)
+            raiz.addContent(alumno2)
+
+            // Crear documento y escribirlo
+            val documento = Document(raiz)
+            val salida = XMLOutputter()
+            salida.format = Format.getPrettyFormat()
+            salida.output(documento, File("documentos/alumnos_nuevo.xml").outputStream())
+
+            println("Archivo XML creado con éxito.")
+        }
+
+        fun main(){
+            lecturaXML_Dom()
+            escrituraXML_Dom()
+        }
+
+-->
+
+<!-- **Ejemplo que convierte el archivo alumnos.xml en un objeto y viceversa**{.azul}:-->
+
+<p>JDOM2 no realiza serialización automática de objetos Kotlin, se necesita mapear manualmente entre objetos (data class) y elementos XML. A continuación lo veremos con un ejemplo:</p>
+<p><strong class="azul">Ejemplo de lectura y escritura de un archivo xml con JDOM2</strong>:</p>
+<p>Vamos a generar el siguiente archivo XML utilizando dos ejemplos, uno se encargará de crear el documento XML, y otro de leer su contenido desde el fichero generado.</p>
+<pre><code>    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;alumnos&gt;
+    &lt;alumno&gt;
+        &lt;nombre&gt;Lucía&lt;/nombre&gt;
+        &lt;nota&gt;8&lt;/nota&gt;
+    &lt;/alumno&gt;
+    &lt;alumno&gt;
+        &lt;nombre&gt;Carlos&lt;/nombre&gt;
+        &lt;nota&gt;6&lt;/nota&gt;
+    &lt;/alumno&gt;
+    &lt;alumno&gt;
+        &lt;nombre&gt;Elena&lt;/nombre&gt;
+        &lt;nota&gt;10&lt;/nota&gt;
+    &lt;/alumno&gt;
+    &lt;/alumnos&gt;
+</code></pre>
+<ul>
+<li>
+<p>Dependencias en <strong>build.gradle.kts</strong></p>
+<pre><code>dependencies {
+    implementation("org.jdom:jdom2:2.0.6")
+}
+</code></pre>
+</li>
+<li>
+<p>Reutilizamos la <strong>clase Alumno</strong> creada en los ejemplos anteriores:</p>
+<pre><code>data class Alumno(val nombre: String, val nota: Int)
+</code></pre>
+</li>
+</ul>
+<p>🖥️ <strong>Ejemplo_Objeto_a_XML.kt</strong>: Leemos el objeto Alumno y lo convertimos en fichero xml (alumnos.xml).</p>
+<pre><code>    import org.jdom2.Document
+    import org.jdom2.Element
+    import org.jdom2.output.Format
+    import org.jdom2.output.XMLOutputter
+    import java.io.File
+
+
+    fun main() {
+        // Lista de alumnos
+        val alumnos = listOf(
+            Alumno("Lucía", 8),
+            Alumno("Carlos", 6),
+            Alumno("Elena", 10)
+        )
+
+        // Crear elemento raíz &lt;alumnos&gt;
+        val raiz = Element("alumnos")
+
+        // Añadir cada alumno como &lt;alumno&gt;
+        for (alumno in alumnos) {
+            val alumnoElement = Element("alumno")
+            alumnoElement.addContent(Element("nombre").setText(alumno.nombre))
+            alumnoElement.addContent(Element("nota").setText(alumno.nota.toString()))
+            raiz.addContent(alumnoElement)
+        }
+
+        // Crear el documento XML
+        val documento = Document(raiz)
+
+        // Escribir en archivo con formato bonito
+        val salida = XMLOutputter()
+        salida.format = Format.getPrettyFormat()
+        salida.output(documento, File("documentos/alumnos.xml").outputStream())
+
+        println("Archivo XML creado con éxito.")
+    }
+</code></pre>
+<p>🖥️ <strong>Ejemplo_XML_a_Objeto.kt</strong>: Leemos el archivo alumnos.xml y lo convertimos a objeto.</p>
+<pre><code>    import org.jdom2.input.SAXBuilder
+    import java.io.File
+
+
+    fun main() {
+
+        //Crea una lista mutable de tipo Alumno.
+        val alumnos = mutableListOf&lt;Alumno&gt;()
+
+        val archivo = File("documentos/alumnos.xml")
+        val builder = SAXBuilder()
+        val documento = builder.build(archivo)
+        val raiz = documento.rootElement
+
+        val listaAlumnos = raiz.getChildren("alumno")
+
+        //Por cada nodo &lt;alumno&gt; del XML, crea un objeto Alumno con sus atributos.
+        for (elemento in listaAlumnos) {
+            val nombre = elemento.getChildText("nombre")
+            val nota = elemento.getChildText("nota").toIntOrNull() ?: 0
+            alumnos.add(Alumno(nombre, nota)) 
+        }
+
+        // Mostrar los objetos
+        alumnos.forEach { println(it) }
+    }
+</code></pre>
+<h3 id="jackson-xml">🔹Jackson (XML)</h3>
+<p>JDOM2 no realiza serialización automática de objetos Kotlin, pero se puede recurrir a librerías como <strong>Jackson</strong> o <strong>kotlinx.serialization</strong>.</p>
+<p>A diferencia de la librería <strong>kotlinx.serialization-josn</strong>, para ficheros <strong>JSON</strong>, que es es la librería oficial de serialización de Kotlin, la librería <strong>kotlinx.serialization-xml</strong>, para ficheros <strong>XML</strong>, no es oficial (aún experimental) y está mantenidad por terceros, por lo que no es una buena elección.</p>
+<p>Utilizaremos, por tanto, la librería <strong>Jackson</strong> para realizar la serialización automática de objetos Kotlin, la cual también permite soporte completo para XML y JSON, es decier, puede serializar y deserializar ambos formatos usando las mismas clases.</p>
+<p><strong class="verde">Métodos comunes de Jackson para XML (XmlMapper)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Clase</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>readValue(File, Class&lt;T&gt;)</code></td>
+<td><code>XmlMapper</code></td>
+<td>Lee un archivo XML y lo convierte en un objeto Kotlin/Java</td>
+</tr>
+<tr>
+<td><code>readValue(String, Class&lt;T&gt;)</code></td>
+<td><code>XmlMapper</code></td>
+<td>Lee un String XML y lo convierte en un objeto</td>
+</tr>
+<tr>
+<td><code>writeValue(File, Object)</code></td>
+<td><code>XmlMapper</code></td>
+<td>Escribe un objeto como XML en un archivo</td>
+</tr>
+<tr>
+<td><code>writeValueAsString(Object)</code></td>
+<td><code>XmlMapper</code></td>
+<td>Convierte un objeto en una cadena XML</td>
+</tr>
+<tr>
+<td><code>writeValueAsBytes(Object)</code></td>
+<td><code>XmlMapper</code></td>
+<td>Convierte un objeto en un array de bytes XML</td>
+</tr>
+<tr>
+<td><code>registerModule(Module)</code></td>
+<td><code>ObjectMapper</code> / <code>XmlMapper</code></td>
+<td>Registra un módulo como <code>KotlinModule</code> o <code>JavaTimeModule</code></td>
+</tr>
+<tr>
+<td><code>enable(SerializationFeature)</code></td>
+<td><code>XmlMapper</code></td>
+<td>Activa una opción de serialización (por ejemplo, indentado)</td>
+</tr>
+<tr>
+<td><code>disable(DeserializationFeature)</code></td>
+<td><code>XmlMapper</code></td>
+<td>Desactiva una opción de deserialización</td>
+</tr>
+<tr>
+<td><code>configure(MapperFeature, boolean)</code></td>
+<td><code>XmlMapper</code></td>
+<td>Configura opciones generales del mapeo</td>
+</tr>
+<tr>
+<td><code>setDefaultPrettyPrinter(...)</code></td>
+<td><code>XmlMapper</code></td>
+<td>Establece un formateador personalizado</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">Ejemplo de lectura y escritura del fichero alumnos.xml  con Jackson XML</strong></p>
+<ul>
+<li>Dependencias en <strong>build.gradle.kts</strong>:<pre><code>dependencies {
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.17.0")
+}
+</code></pre>
+</li>
+</ul>
+<p>Siguiendo con el ejemplo <strong>alumnos.xml</strong>:</p>
+<pre><code>    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;alumnos&gt;
+    &lt;alumno&gt;
+        &lt;nombre&gt;Lucía&lt;/nombre&gt;
+        &lt;nota&gt;8&lt;/nota&gt;
+    &lt;/alumno&gt;
+    &lt;alumno&gt;
+        &lt;nombre&gt;Carlos&lt;/nombre&gt;
+        &lt;nota&gt;6&lt;/nota&gt;
+    &lt;/alumno&gt;
+    &lt;alumno&gt;
+        &lt;nombre&gt;Elena&lt;/nombre&gt;
+        &lt;nota&gt;10&lt;/nota&gt;
+    &lt;/alumno&gt;
+    &lt;/alumnos&gt;
+</code></pre>
+<h4 id="clase-contenedora">Clase Contenedora</h4>
+<p>En XML siempre hay un único elemento raíz. Jackson necesita una clase que represente ese nodo raíz.
+En nuestro ejemplo ese elemento raíz es: <code>&lt;alumnos&gt;</code></p>
+<p>Creamos la clase contenedora <strong>ListaAlumnos</strong>, que actúa como puente entre el XML y Kotlin. Esta clase da nombre al nodo raiz <code>&lt;alumnos&gt;</code> y explica como mapear los elementos repetidos <code>&lt;alumno&gt;</code>.</p>
+<pre><code>data class ListaAlumnos(
+            @JacksonXmlElementWrapper(useWrapping = false) // No añade un &lt;alumnoList&gt;, usa directamente &lt;alumno&gt;
+            @JacksonXmlProperty(localName = "alumno") // Cada elemento se llama &lt;alumno&gt;
+            val alumno: List&lt;Alumno&gt; = emptyList()
+        )
+</code></pre>
+<p>🖥️ <strong>Ejemplo_XML_Jackson.kt</strong></p>
+<pre><code>    import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
+    import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+    import com.fasterxml.jackson.dataformat.xml.XmlMapper
+    import com.fasterxml.jackson.module.kotlin.KotlinModule
+    import com.fasterxml.jackson.module.kotlin.readValue
+    import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+    import java.io.File
+
+    fun escribirXml() {
+        val xmlMapper = XmlMapper().registerModule(KotlinModule.Builder().build())
+
+        val lista = ListaAlumnos(
+            listOf(
+                Alumno("Lucía", 8),
+                Alumno("Carlos", 6),
+                Alumno("María", 10)
+            )
+        )
+
+        val archivo = File("documentos/alumnos.xml")
+        xmlMapper.writerWithDefaultPrettyPrinter().writeValue(archivo, lista)
+
+        println("XML escrito correctamente en: ${archivo.absolutePath}")
+    }
+
+
+    fun leerXml() {
+        val xmlMapper = XmlMapper().registerKotlinModule()
+
+        val archivo = File("documentos/alumnos.xml")
+
+        //val lista = xmlMapper.readValue(archivo, ListaAlumnos::class.java)
+        val lista=xmlMapper.readValue&lt;ListaAlumnos&gt;(archivo)
+
+        println("Lectura correcta:")
+
+        lista.alumno.forEach {
+            println("${it.nombre} tiene un ${it.nota}")
+        }
+    }
+
+
+
+    fun main() {   
+        escribirXml()
+        leerXml()
+    }
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../seriaci_dobjectes/" class="btn btn-neutral float-left" title="🔹Serialización de Objetos"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Conversion/" class="btn btn-neutral float-right" title="🔹Conversión entre formatos diferentes">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../seriaci_dobjectes/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Conversion/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-button.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

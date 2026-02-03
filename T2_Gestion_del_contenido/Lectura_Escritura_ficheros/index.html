@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹Lectura y escritura de ficheros - AD - Acceso a Datos - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+        <link href="../../css/copy-button.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39Lectura y escritura de ficheros";
+        var mkdocs_page_input_path = "T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">RA y CE</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/exercicis/">📝 Ejercicio obligatorio 1</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">🔹Lectura y escritura de ficheros</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#ficheros-de-texto-y-binarios">🔹Ficheros de texto y binarios</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ficheros-de-imagen">🔹Ficheros de imagen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ficheros-binarios-estructurados">🔹Ficheros binarios estructurados</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ficheros-de-acceso-aleatorio">🔹Ficheros de acceso aleatorio</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros de diferentes formatos</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/intro/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/ejercicios/">📝 Ejercicio obligatorio 2</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Resumen/">Resumen</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Acceso a Datos - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Manejo de ficheros</li>
+      <li class="breadcrumb-item active">🔹Lectura y escritura de ficheros</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="lectura-y-escritura-de-ficheros">🔹Lectura y escritura de ficheros</h1>
+<div class="admonition warning">
+<p class="admonition-title">Ejemplos</p>
+<p>Los ejemplos de esta parte se incluirán en el paquete <strong>contenido</strong>, dentro de nuestro proyecto <strong>Ficheros</strong>.<br />
+También será neceario crear las carpetas <strong>documentos</strong> y <strong>documentos2</strong> para guardar los archivos generados.</p>
+<p><img alt="Ref" src="../paquetes.png" /></p>
+</div>
+<h2 id="ficheros-de-texto-y-binarios">🔹Ficheros de texto y binarios</h2>
+<p>En el desarrollo de software, los ficheros de texto y los ficheros binarios son los dos tipos de archivos más comunes y utilizados para almacenar y gestionar información.</p>
+<ul>
+<li>
+<p><strong>Ficheros de texto</strong>: contienen únicamente caracteres. Su contenido se puede leer y escribir con cualquier editor de texto, como .txt, .csv, .json, .xml, etc.</p>
+</li>
+<li>
+<p><strong>Ficheros binarios</strong>: son ficheros que contienen cualquier tipo de información (texto, imágenes, vídeos, ficheros…) codificada como bytes. En general, requiere de programas especiales para mostrar la información que contienen.</p>
+</li>
+</ul>
+<p><strong class="azul">📄Lectura y escritura de un archivo de texto</strong> </p>
+<table>
+<thead>
+<tr>
+<th>Tipo de fichero</th>
+<th>Lectura</th>
+<th>Escritura</th>
+<th>Comentario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Texto (líneas)</td>
+<td><code>Files.readAllLines(Path)</code></td>
+<td><code>Files.write(Path, List&lt;String&gt;)</code></td>
+<td>Carga todo en memoria</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Files.newBufferedReader(Path)</code></td>
+<td><code>Files.newBufferedWriter(Path)</code></td>
+<td>Más eficiente para archivos grandes</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Files.readString(Path)</code> (Java 11+)</td>
+<td><code>Files.writeString(Path, String)</code></td>
+<td>Lectura/escritura completa como bloque</td>
+</tr>
+</tbody>
+</table>
+<p>🖥️ <strong>Ejemplo_Lect_esc_ficheroTexto.kt</strong>: lectura y escritura en ficheros de texto (UTF-8)</p>
+<pre><code>    import java.nio.file.Files
+    import java.nio.file.Paths
+    import java.nio.charset.StandardCharsets
+
+    fun main() {
+            val ruta = Paths.get("documentos/texto.txt")
+
+            //Escritura en fichero de texto
+            val lineasParaGuardar = listOf(
+                    "Primera línea",
+                    "Segunda línea",
+                    "¡Hola desde Kotlin!"
+            )
+            Files.write(ruta, lineasParaGuardar, StandardCharsets.UTF_8)
+            println("Fichero de texto escrito.")
+
+            //Lectura del fichero de texto
+
+            //readAllLines
+            val lineasLeidas = Files.readAllLines(ruta)
+            println("Contenido leído con readAllLines:")
+            for (lineas in lineasLeidas) {
+                    println(lineas)
+            }
+
+            //readString
+            val contenido = Files.readString(ruta)
+            println("Contenido leído con readString:")
+            println(contenido)
+
+            //newBufferedReader
+            Files.newBufferedReader(ruta).use { reader -&gt;
+                    println("Contenido leído con newBufferedReader:")
+                    reader.lineSequence().forEach { println(it) }
+            }
+    }
+</code></pre>
+<p><strong class="azul">🧩 Lectura y escritura de un archivo binario</strong> </p>
+<table>
+<thead>
+<tr>
+<th>Tipo de fichero</th>
+<th>Lectura</th>
+<th>Escritura</th>
+<th>Comentario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Binario</td>
+<td><code>Files.readAllBytes(Path)</code></td>
+<td><code>Files.write(Path, ByteArray)</code></td>
+<td>Lee y escribe bytes puros</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Files.newInputStream(Path)</code></td>
+<td><code>Files.newOutputStream(Path)</code></td>
+<td>Flujo de bytes directo</td>
+</tr>
+</tbody>
+</table>
+<p>🖥️ <strong>Ejemplo_Lect_esc_ficheroBinario.kt</strong>: lectura y escritura en ficheros binario</p>
+<pre><code>    import java.nio.file.Files
+    import java.nio.file.Paths
+
+
+    fun main() {
+            val ruta = Paths.get("documentos/datos.bin")
+
+            //Escritura en fichero binario
+            val datos = byteArrayOf(1, 2, 3, 4, 5)
+            Files.write(ruta, datos)
+            println("Archivo binario creado: ${ruta.toAbsolutePath()}")
+
+
+            val bytes = Files.readAllBytes(ruta)
+
+            println("Contenido leído (byte a byte):")
+            for (b in bytes) {
+                    print("$b ")
+            }
+     }
+</code></pre>
+<h2 id="ficheros-de-imagen">🔹Ficheros de imagen</h2>
+<p>Los ficheros de imagen contienen datos que representan gráficamente una imagen visual (fotografías, ilustraciones, iconos, etc.). A diferencia de los ficheros de texto o binarios crudos, estos archivos tienen estructura interna que depende del formato (como .png, .jpg, .bmp, etc.).</p>
+<p>📦 Formatos más comunes</p>
+<ul>
+<li><strong>.jpg</strong>: Comprimido con pérdida, ideal para fotos</li>
+<li><strong>.png</strong>: Comprimido sin pérdida, soporta transparencia</li>
+<li><strong>.bmp</strong>: Sin compresión, ocupa más espacio</li>
+<li><strong>.gif</strong>: Admite animaciones simples, limitada a 256 colores</li>
+</ul>
+<p>En la plataforma Java (y por tanto en Kotlin), <strong>el manejo de imágenes</strong> se hace generalmente usando:</p>
+<ul>
+<li><strong>ImageIO</strong>: para leer y escribir imágenes</li>
+<li><strong>BufferedImage</strong>: para acceder y modificar píxeles</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Tipo de fichero</th>
+<th>Lectura</th>
+<th>Escritura</th>
+<th>Comentario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imagen</td>
+<td><code>ImageIO.read(Path/File)</code></td>
+<td><code>ImageIO.write(BufferedImage, ...)</code></td>
+<td>Usa <code>javax.imageio.ImageIO</code></td>
+</tr>
+</tbody>
+</table>
+<p>🖥️ <strong>Ejemplo_generar_imagen.kt:</strong> genera una imagen de ejemplo.</p>
+<pre><code>import java.awt.Color
+import java.awt.image.BufferedImage
+import java.io.File
+import javax.imageio.ImageIO
+
+fun main() {
+    val ancho = 200
+    val alto = 100
+    val imagen = BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB)
+
+    // Rellenar la imagen con colores
+    for (x in 0 until ancho) {
+        for (y in 0 until alto) {
+            val rojo = (x * 255) / ancho
+            val verde = (y * 255) / alto
+            val azul = 128
+            val color = Color(rojo, verde, azul)
+            imagen.setRGB(x, y, color.rgb)
+        }
+    }
+
+    // Guardar la imagen
+    val archivo = File("documentos/imagen_generada.png")
+    ImageIO.write(imagen, "png", archivo)
+    println("✅ Imagen generada correctamente: ${archivo.absolutePath}")
+}
+</code></pre>
+<p>🖥️ <strong>Ejemplo_invertircolores_imagen.kt:</strong> invierte los colores de la imagen generada en el ejemplo atenerior.</p>
+<pre><code>import java.awt.Color
+import java.awt.image.BufferedImage
+import java.io.File
+import javax.imageio.ImageIO
+
+fun main() {
+    val archivoEntrada = File("documentos/imagen_generada.png")
+    val archivoSalida = File("documentos/imagen_salida.png")
+
+    // Leer imagen original
+    val imagen: BufferedImage = ImageIO.read(archivoEntrada)
+
+    // Recorrer todos los píxeles
+    for (x in 0 until imagen.width) {
+        for (y in 0 until imagen.height) {
+            val colorOriginal = Color(imagen.getRGB(x, y))
+            val colorInvertido = Color(
+                255 - colorOriginal.red,
+                255 - colorOriginal.green,
+                255 - colorOriginal.blue
+            )
+            imagen.setRGB(x, y, colorInvertido.rgb)
+        }
+    }
+
+    // Guardar imagen modificada
+    ImageIO.write(imagen, "png", archivoSalida)
+    println("✅ Imagen guardada como ${archivoSalida.name}")
+}
+</code></pre>
+<p>🖥️ <strong>Ejemplo_img_penyagolosa.kt:</strong> Invierte los colores de una imagen.  </p>
+<p>Copia la imagen penyagolosa.png en la capreta <strong>documentos</strong></p>
+<table>
+<thead>
+<tr>
+<th>imagen a copiar (penyagolosa.png)</th>
+<th>imagen con los colores invertidos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="ref" src="../penyagolosa.png" /></td>
+<td><img alt="ref" src="../penyagolosa_modificada.png" /></td>
+</tr>
+</tbody>
+</table>
+<pre><code>import java.awt.Color
+import java.awt.image.BufferedImage
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.StandardCopyOption
+import javax.imageio.ImageIO
+
+fun main() {
+    val originalPath = Path.of("documentos/penyagolosa.png")
+    val copiaPath = Path.of("documentos/penyagolosa_copia.png")
+    val modificadaPath = Path.of("documentos/penyagolosa_modificada.png")
+
+    // 1. Comprobar si la imagen existe
+    if (!Files.exists(originalPath)) {
+        println("No se encuentra la imagen original: $originalPath")
+        return
+    }
+
+    // 2. Copiar la imagen con java.nio
+    Files.copy(originalPath, copiaPath, StandardCopyOption.REPLACE_EXISTING)
+    println("Imagen copiada a: $copiaPath")
+
+    // 3. Leer la imagen como BufferedImage
+    val imagen: BufferedImage = ImageIO.read(copiaPath.toFile())
+
+    // 4. Invertir colores
+    for (x in 0 until imagen.width) {
+        for (y in 0 until imagen.height) {
+            val color = Color(imagen.getRGB(x, y))
+            val invertido = Color(255 - color.red, 255 - color.green, 255 - color.blue)
+            imagen.setRGB(x, y, invertido.rgb)
+        }
+    }
+
+    // 5. Guardar la imagen modificada
+    ImageIO.write(imagen, "png", modificadaPath.toFile())
+    println("Imagen modificada guardada como: $modificadaPath")
+}
+</code></pre>
+<h2 id="ficheros-binarios-estructurados">🔹Ficheros binarios estructurados</h2>
+<p>Aunque <strong>java.nio.file</strong> es la API moderna para trabajar con rutas y archivos, las clases <strong>DataOutputStream</strong> y <strong>DataInputStream</strong> de <strong>java.io</strong> siguen siendo la opción más adecuada para escribir y leer <strong>binario estructurado</strong>.
+Son más simples, seguras, portables y claras para representar estructuras secuenciales como registros.</p>
+<p>En contextos donde se requiera rendimiento avanzado o acceso aleatorio, puede usarse <strong>FileChannel</strong> y <strong>ByteBuffer</strong>, aunque su complejidad las hace menos recomendables.</p>
+<p><strong class="verde">Clases y método de  DataInputStream y DataOutputStream</strong></p>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th>Método</th>
+<th>Tipo de dato</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DataOutputStream</td>
+<td><code>writeInt(int)</code></td>
+<td>Entero (4 bytes)</td>
+<td>Escribe un entero con signo</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeDouble(double)</code></td>
+<td>Decimal (8 bytes)</td>
+<td>Escribe un número en coma flotante</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeFloat(float)</code></td>
+<td>Decimal (4 bytes)</td>
+<td>Escribe un número float</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeLong(long)</code></td>
+<td>Entero largo (8 bytes)</td>
+<td>Escribe un long</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeBoolean(boolean)</code></td>
+<td>Booleano (1 byte)</td>
+<td>Escribe un valor verdadero/falso</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeChar(char)</code></td>
+<td>Carácter (2 bytes)</td>
+<td>Escribe un carácter Unicode</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeUTF(String)</code></td>
+<td>Cadena UTF-8</td>
+<td>Escribe una cadena precedida por su longitud en 2 bytes</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeByte(int)</code></td>
+<td>Byte (1 byte)</td>
+<td>Escribe un solo byte</td>
+</tr>
+<tr>
+<td></td>
+<td><code>writeShort(int)</code></td>
+<td>Entero corto (2 bytes)</td>
+<td>Escribe un short</td>
+</tr>
+<tr>
+<td>DataInputStream</td>
+<td><code>readInt()</code></td>
+<td>Entero</td>
+<td>Lee un entero con signo</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readDouble()</code></td>
+<td>Decimal</td>
+<td>Lee un número double</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readFloat()</code></td>
+<td>Decimal</td>
+<td>Lee un número float</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readLong()</code></td>
+<td>Entero largo</td>
+<td>Lee un long</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readBoolean()</code></td>
+<td>Booleano</td>
+<td>Lee un valor verdadero/falso</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readChar()</code></td>
+<td>Carácter</td>
+<td>Lee un carácter Unicode</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readUTF()</code></td>
+<td>Cadena UTF-8</td>
+<td>Lee una cadena UTF-8</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readByte()</code></td>
+<td>Byte</td>
+<td>Lee un byte</td>
+</tr>
+<tr>
+<td></td>
+<td><code>readShort()</code></td>
+<td>Entero corto</td>
+<td>Lee un short</td>
+</tr>
+</tbody>
+</table>
+<p>🖥️ <strong>Ejemplo_binario_estructurado.kt</strong>: Lectura y escritura en ficheros binarios (con tipos primitivos).</p>
+<pre><code>    import java.io.DataInputStream
+    import java.io.DataOutputStream
+    import java.io.FileInputStream
+    import java.io.FileOutputStream
+    import java.nio.file.Files
+    import java.nio.file.Paths
+
+    fun main() {
+        val ruta = Paths.get("documentos/binario.dat")
+        Files.createDirectories(ruta.parent)
+
+        // Escritura binaria
+        val out= DataOutputStream(Files.newOutputStream(ruta)).use { out -&gt; //devuelve OutputStream
+        out.writeInt(42)         // int (4 bytes)
+        out.writeDouble(3.1416)  // double (8 bytes)
+        out.writeUTF("K")       // char (2 bytes)
+        }
+
+        println("✅ Fichero binario escrito con DataOutputStream (sin lambda).")
+
+        // Lectura binaria
+        val fis = FileInputStream(ruta.toFile())
+        val input = DataInputStream(fis)
+        val entero = input.readInt()
+        val decimal = input.readDouble()
+        val caracter = input.readUTF()
+        input.close()
+        fis.close()
+
+        println("📄 Contenido leído:")
+        println("  Int: $entero")
+        println("  Double: $decimal")
+        println("  Char: $caracter")
+    }
+</code></pre>
+<h2 id="ficheros-de-acceso-aleatorio">🔹Ficheros de acceso aleatorio</h2>
+<p>Hasta el momento todos los accesos que hemos hecho a los archivos, tanto binarios como de texto, han sido secuenciales. Esto significa que siempre empezamos por el principio del archivo hasta que llegamos a la información que queremos, o en la mayor parte de los casos hasta el final de archivo.</p>
+<p>Pero, ¿y si queremos únicamente una determinada información? Afortunadamente hay otra forma de acceder, otro tipo de acceso. Se llama acceso <strong>directo o aleatorio</strong>, porque permitirá ir directamente a una posición determinada del archivo.</p>
+<p>Cuando se necesita mayor control, eficiencia y rendimiento en el acceso a ficheros, especialmente en operaciones binarias o de acceso aleatorio, el enfoque tradicional con la clase <strong>RandomAccessFile</strong> de <strong>Java.io</strong> puede quedarse corto. Para estos casos, Java ofrece una solución moderna a través del paquete <strong>java.nio.file</strong> combinado con <strong>FileChannel</strong> y <strong>ByteBuffer</strong>. </p>
+<p>Las clases <strong>FileChannel</strong>, <strong>ByteBuffer</strong> y <strong>StandardOpenOption</strong> forman parte de la API <strong>java.nio</strong> y se utilizan juntas para realizar lectura y escritura de archivos <strong>binarios</strong> y en el <strong>acceso aleatorio a ficheros</strong>.</p>
+<p><strong class="azul">FileChannel</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tipo de fichero</th>
+<th>Lectura</th>
+<th>Escritura</th>
+<th>Comentario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acceso aleatorio</td>
+<td><code>FileChannel.position(offset)</code></td>
+<td><code>FileChannel.position(offset)</code></td>
+<td>Permite saltar a cualquier posición del fichero</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="verde">Métodos habituales de FileChannel para el acceso aleatorio a ficheros</strong></p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Función principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>position()</td>
+<td>Devuelve la posición actual del puntero en el archivo</td>
+</tr>
+<tr>
+<td>position(long)</td>
+<td>Establece una posición exacta para lectura/escritura</td>
+</tr>
+<tr>
+<td>truncate(long)</td>
+<td>Recorta o amplía el tamaño del archivo</td>
+</tr>
+<tr>
+<td>size()</td>
+<td>Devuelve el tamaño total actual del archivo</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">ByteBuffer</strong></p>
+<p>ByteBuffer se utiliza en archivos de acceso aleatorio porque permite leer y escribir bloques binarios de datos en posiciones específicas del archivo de forma eficiente y controlada.</p>
+<p><strong class="verde">Métodos de creación</strong></p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>allocate(capacidad)</td>
+<td>Crea un buffer con capacidad fija en memoria (no compartida).</td>
+</tr>
+<tr>
+<td>wrap(byteArray)</td>
+<td>Crea un buffer que envuelve un array de bytes existente (memoria compartida).</td>
+</tr>
+<tr>
+<td>wrap(byteArray, offset, length)</td>
+<td>Crea un buffer desde una porción del array existente.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong class="verde">Métodos de escritura (<code>put</code>)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>put(byte)</td>
+<td>Escribe un byte en la posición actual.</td>
+</tr>
+<tr>
+<td>putInt(int)</td>
+<td>Escribe un valor <code>int</code>.</td>
+</tr>
+<tr>
+<td>putDouble(double)</td>
+<td>Escribe un valor <code>double</code>.</td>
+</tr>
+<tr>
+<td>putFloat(float)</td>
+<td>Escribe un valor <code>float</code>.</td>
+</tr>
+<tr>
+<td>putChar(char)</td>
+<td>Escribe un carácter (<code>char</code>, 2 bytes).</td>
+</tr>
+<tr>
+<td>putShort(short)</td>
+<td>Escribe un valor <code>short</code>.</td>
+</tr>
+<tr>
+<td>putLong(long)</td>
+<td>Escribe un valor <code>long</code>.</td>
+</tr>
+<tr>
+<td>put(byte[], offset, length)`</td>
+<td>Escribe una porción de un array de bytes.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong class="verde">Métodos de lectura (<code>get</code>)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>get()</td>
+<td>Lee un byte desde la posición actual.</td>
+</tr>
+<tr>
+<td>getInt()</td>
+<td>Lee un valor <code>int</code>.</td>
+</tr>
+<tr>
+<td>getDouble()</td>
+<td>Lee un valor <code>double</code>.</td>
+</tr>
+<tr>
+<td>getFloat()</td>
+<td>Lee un valor <code>float</code>.</td>
+</tr>
+<tr>
+<td>getChar()</td>
+<td>Lee un carácter (<code>char</code>).</td>
+</tr>
+<tr>
+<td>getShort()</td>
+<td>Lee un valor <code>short</code>.</td>
+</tr>
+<tr>
+<td>getLong()</td>
+<td>Lee un valor <code>long</code>.</td>
+</tr>
+<tr>
+<td>get(byte[], offset, length)`</td>
+<td>Lee una porción del buffer a un array.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong class="verde">Métodos de control del buffer</strong></p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>position()</td>
+<td>Devuelve la posición actual del cursor.</td>
+</tr>
+<tr>
+<td>position(int)</td>
+<td>Establece la posición del cursor.</td>
+</tr>
+<tr>
+<td>limit()</td>
+<td>Devuelve el límite del buffer.</td>
+</tr>
+<tr>
+<td>limit(int)</td>
+<td>Establece un nuevo límite.</td>
+</tr>
+<tr>
+<td>capacity()</td>
+<td>Devuelve la capacidad total del buffer.</td>
+</tr>
+<tr>
+<td>clear()</td>
+<td>Limpia el buffer: posición a 0, límite al máximo (sin borrar contenido).</td>
+</tr>
+<tr>
+<td>flip()</td>
+<td>Prepara el buffer para lectura después de escribir.</td>
+</tr>
+<tr>
+<td>rewind()</td>
+<td>Posición a 0 para releer desde el inicio.</td>
+</tr>
+<tr>
+<td>remaining</td>
+<td>Indica cuántos elementos quedan por procesar.</td>
+</tr>
+<tr>
+<td>hasRemaining()</td>
+<td><code>true</code> si aún queda contenido por leer o escribir.</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">StandardOpenOption</strong></p>
+<p>Se utiliza para indicar cómo debe abrirse o crearse un archivo al trabajar con <strong>FileChannel</strong> o Files.newOutputStream, Files.newByteChannel, etc.</p>
+<p>Se utiliza para indicar si el archivo se va a: <strong>Leer (READ)</strong>, <strong>Escribir (WRITE)</strong>, <strong>Crear (CREATE)</strong>, <strong>sobrescribir (TRUNCATE_EXISTING)</strong>, <strong>Añadir al final (APPEND)</strong>.</p>
+<pre><code>    val canal = FileChannel.open(
+        Paths.get("archivo.txt"),
+        StandardOpenOption.WRITE,
+        StandardOpenOption.CREATE
+        )
+</code></pre>
+<p>🖥️ <strong>Ejemplo_acceso_posicion.kt</strong>: realiza una operación básica de lectura y escritura de archivo de texto usando <strong>FileChannel</strong> y <strong>ByteBuffer</strong>. </p>
+<pre><code>    // Importamos las clases necesarias
+    import java.nio.ByteBuffer                      // Para gestionar buffers de bytes
+    import java.nio.channels.FileChannel            // Para acceder al archivo como canal
+    import java.nio.file.Paths                      // Para crear la ruta del archivo
+    import java.nio.file.StandardOpenOption.*       // Para usar opciones como READ, WRITE, CREATE
+
+    fun main() {
+        // Creamos una ruta al archivo datos.txt
+        val path = Paths.get("documentos/datos.txt")
+
+        // Abrimos el canal con permisos de lectura, escritura y creación
+        FileChannel.open(path, READ, WRITE, CREATE).use { canal -&gt;
+
+            // Creamos un buffer con el texto a escribir convertido a bytes
+            val buffer = ByteBuffer.wrap("Hola desde Kotlin\n".toByteArray())
+
+            // Establecemos la posición del canal al principio del archivo
+            canal.position(0)
+
+            // Escribimos el contenido del buffer en el archivo
+            canal.write(buffer)
+
+            // Creamos un nuevo buffer vacío para leer hasta 1024 bytes
+            val bufferLectura = ByteBuffer.allocate(1024)
+
+            // Volvemos al principio del archivo para leer desde el inicio
+            canal.position(0)
+
+            // Leemos desde el archivo al buffer
+            canal.read(bufferLectura)
+
+            // Cambiamos el buffer de modo escritura a modo lectura
+            bufferLectura.flip()
+
+            // Convertimos el contenido leído a cadena y lo mostramos
+            println(String(bufferLectura.array(), 0, bufferLectura.limit()))
+        } // El canal se cierra automáticamente gracias a `use`
+    }
+</code></pre>
+<p>🖥️ <strong>Ejemplo_acceso_aleatorio.kt</strong> : acceso directo a posiciones en un archivo con <strong>FileChannel</strong> y <strong>ByteBuffer</strong>.</p>
+<pre><code>    import java.nio.ByteBuffer
+    import java.nio.channels.FileChannel
+    import java.nio.file.Paths
+    import java.nio.file.StandardOpenOption.*
+
+    fun main() {
+        val path = Paths.get("documentos/datos.txt")
+
+        // Abrimos el canal con permisos de lectura y escritura
+        FileChannel.open(path, READ, WRITE, CREATE).use { canal -&gt;
+
+            // Escribimos "Inicio\n" en la posición 0 del archivo
+            canal.position(0)
+            val inicio = ByteBuffer.wrap("Inicio\n".toByteArray())
+            canal.write(inicio)
+
+            // Escribimos "Texto en posición 20\n" en la posición 20 del archivo
+            canal.position(20)
+            val texto = ByteBuffer.wrap("Texto en posición 20\n".toByteArray())
+            canal.write(texto)
+
+            // Leemos el contenido completo desde el inicio (posición 0)
+            val bufferLectura = ByteBuffer.allocate(1024)
+            canal.position(0)
+            canal.read(bufferLectura)
+
+            // Preparamos el buffer para lectura e imprimimos el contenido
+            bufferLectura.flip()
+            val contenido = String(bufferLectura.array(), 0, bufferLectura.limit())
+            println("Contenido leído del archivo:\n$contenido")
+        }
+    }
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../clases/" class="btn btn-neutral float-left" title="🔹Clases y métodos sobre ficheros. Java.nio"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../T3_Formatos_diferentes/intro/" class="btn btn-neutral float-right" title="🔹Introducción">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../clases/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../T3_Formatos_diferentes/intro/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-button.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

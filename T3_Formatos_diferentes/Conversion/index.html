@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹Conversión entre formatos diferentes - AD - Acceso a Datos - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+        <link href="../../css/copy-button.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39Conversi\u00f3n entre formatos diferentes";
+        var mkdocs_page_input_path = "T3_Formatos_diferentes/Conversion.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">RA y CE</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/exercicis/">📝 Ejercicio obligatorio 1</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/Lectura_Escritura_ficheros/">🔹Lectura y escritura de ficheros</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros de diferentes formatos</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../intro/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">🔹Conversión entre formatos diferentes</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#ejemplos-de-conversion">🔹 Ejemplos de Conversión</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#csv-json">CSV &lt;-&gt; JSON</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#json-xml">JSON &lt;-&gt; XML</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#json-binario-estructurado">JSON &lt;-&gt; Binario estructurado</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ejercicios/">📝 Ejercicio obligatorio 2</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Resumen/">Resumen</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Acceso a Datos - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Ficheros de diferentes formatos</li>
+      <li class="breadcrumb-item active">🔹Conversión entre formatos diferentes</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="conversion-entre-formatos-de-ficheros-en-kotlinjava">🔹 Conversión entre formatos de ficheros en Kotlin/Java</h1>
+<div class="admonition tip">
+<p class="admonition-title">Importante</p>
+<p>Para convertir un fichero de un formato a otro, primero debo deserializarlo o interpretarlo convirtiéndolo a objetos en memoria, y después generar el nuevo formato a partir de esos objetos. El proceso correcto es siempre:<br />
+<strong>Formato de entrada → Objeto → Formato de salida.</strong></p>
+</div>
+<p>Cada formato (CSV, JSON, XML, binario) organiza la información de forma distinta:</p>
+<ul>
+<li>CSV → datos planos por filas/columnas</li>
+<li>JSON → datos jerárquicos</li>
+<li>XML → etiquetas anidadas</li>
+<li>Binario → datos codificados</li>
+</ul>
+<p>En la siguiente tabla se resumen las conversiones más habituales entre formatos de ficheros trabajadas en el módulo.
+Para cada conversión se indican varias herramientas posibles, pero las <strong>opciones marcadas en negrita</strong> representan la recomendación principal, ya que son las más sencillas.</p>
+<p>Las herramientas no destacadas en negrita son alternativas válidas, que pueden utilizarse en otros contextos o como ampliación, pero no son las más recomendadas como primera opción.</p>
+<table>
+<thead>
+<tr>
+<th>Conversión</th>
+<th>Herramientas recomendadas</th>
+<th>Proceso resumido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSV → JSON</td>
+<td><strong>readAllLines + split</strong> / KotlinCSV / OpenCSV + <strong>Jackson</strong> / kotlinx.serialization</td>
+<td>Leer CSV → mapear a objetos → serializar a JSON</td>
+</tr>
+<tr>
+<td>JSON → CSV</td>
+<td><strong>Jackson</strong> / kotlinx.serialization + <strong>KotlinCSV</strong> / OpenCSV</td>
+<td>Deserializar JSON a objetos → escribir filas CSV</td>
+</tr>
+<tr>
+<td>CSV → XML</td>
+<td><strong>readAllLines + split</strong> / KotlinCSV / OpenCSV + <strong>Jackson (XmlMapper)</strong></td>
+<td>Leer CSV → mapear a objetos → serializar a XML</td>
+</tr>
+<tr>
+<td>XML → CSV</td>
+<td><strong>Jackson (XmlMapper)</strong> + <strong>KotlinCSV</strong> / OpenCSV</td>
+<td>Leer XML → mapear a objetos → escribir filas CSV</td>
+</tr>
+<tr>
+<td>JSON → XML</td>
+<td><strong>Jackson (ObjectMapper, XmlMapper)</strong></td>
+<td>Convertir JSON a objeto → serializar a XML</td>
+</tr>
+<tr>
+<td>XML → JSON</td>
+<td><strong>Jackson (XmlMapper, ObjectMapper)</strong></td>
+<td>Leer XML como objeto → serializar a JSON</td>
+</tr>
+<tr>
+<td>Texto → JSON / XML</td>
+<td><strong>Files.readAllLines()</strong> + <strong>Jackson</strong> / kotlinx.serialization</td>
+<td>Leer texto → interpretar líneas → mapear a estructura → serializar</td>
+</tr>
+<tr>
+<td>Texto → binario</td>
+<td><strong>Files.readAllLines() / Files.readString() + Files.write()</strong></td>
+<td>Leer texto → convertir a bytes (UTF-8) → guardar en binario</td>
+</tr>
+<tr>
+<td>Texto → binario estructurado</td>
+<td><strong>Files.readAllLines() / Files.readString() + DataOutputStream</strong></td>
+<td>Leer texto → escribir campos con tipo fijo</td>
+</tr>
+<tr>
+<td>Binario estructurado → JSON</td>
+<td><strong>DataInputStream + Jackson</strong> / kotlinx.serialization</td>
+<td>Leer datos binarios → construir objetos → serializar a JSON</td>
+</tr>
+<tr>
+<td>JSON → binario estructurado</td>
+<td><strong>Jackson</strong> / kotlinx.serialization + <strong>DataOutputStream</strong></td>
+<td>Deserializar JSON → escribir datos con tipo fijo</td>
+</tr>
+<tr>
+<td>Objeto → binario (serialización)</td>
+<td><strong>ObjectOutputStream (Serializable)</strong></td>
+<td>Serializar objetos completos a binario</td>
+</tr>
+<tr>
+<td>Binario → objeto</td>
+<td><strong>ObjectInputStream</strong></td>
+<td>Deserializar objetos binarios</td>
+</tr>
+<tr>
+<td>PNG → JPG (imagen)</td>
+<td><strong>ImageIO.read() + ImageIO.write()</strong></td>
+<td>Leer imagen → guardar en otro formato</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ejemplos-de-conversion">🔹 Ejemplos de Conversión</h2>
+<div class="admonition warning">
+<p class="admonition-title">Ejemplos</p>
+<p>Los siguientes ejemplos también se incluirán en el proyecto <strong>Ficheros_Gradle</strong>.</p>
+</div>
+<p>En los siguientes ejemplos trabajaremos con tres archivos en diferentes formatos: <strong>CSV</strong>, <strong>XML</strong> y <strong>JSON</strong>. Estos archivos contienen información similar, representada con distinta estructura y sintaxis según el formato. Los utilizaremos como base para realizar ejercicios de conversión entre formatos.</p>
+<p>Contenido de los archivos:</p>
+<table>
+<thead>
+<tr>
+<th><strong>alumnos.csv</strong></th>
+<th><strong>persona.xml</strong></th>
+<th><strong>persona.json</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nombre;nota<br>Lucía;28<br>Carlos;8<br>Elena;10</td>
+<td>&lt;Persona&gt;<br>&nbsp;&nbsp;&lt;nombre&gt;Lucía&lt;/nombre&gt;<br>&nbsp;&nbsp;&lt;edad&gt;28&lt;/edad&gt;<br>&lt;/Persona&gt;</td>
+<td>{<br>&nbsp;&nbsp;"nombre" : "Lucía",<br>&nbsp;&nbsp;"edad" : 28<br>}</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Data Class</p>
+<p>Al trabajar con ficheros de intercambio como CSV, JSON o XML, es habitual encontrarnos con datos estructurados formados por distintos campos. Para poder manejar estos datos de forma cómoda y segura en Kotlin, es recomendable representarlos mediante <strong>data class</strong>, que permiten modelar la información con tipos y nombres claros. Una vez los datos están representados como objetos, el formato original del fichero deja de ser relevante. Esta idea será fundamental en el siguiente apartado, donde se utilizarán los <strong>data class</strong> como elemento intermedio para transformar la información entre distintos formatos de fichero, como CSV, JSON, XML o binario.  </p>
+<p>📌 <strong>Nota:</strong> Las clases <strong>Alumno</strong> y <strong>Persona</strong> ya las creamos en los ejemplos sobre ficheros de intercambio y las volveremos a utilizar en los siguientes ejemplos.</p>
+<p><strong>Alumno.kt</strong> </p>
+<pre><code>data class Alumno(
+                val nombre: String,
+                val nota: Int
+            )
+</code></pre>
+<p><strong>Persona.kt</strong> </p>
+<pre><code>@Serializable
+data class Persona(
+    val nombre: String, val edad: Int
+    )
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Alumno</th>
+<th>Persona</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data class Alumno(<br>&nbsp;&nbsp;&nbsp;val nombre: String,<br>&nbsp;&nbsp;&nbsp;val nota: Int<br>)</td>
+<td>data class Persona(<br>&nbsp;&nbsp;&nbsp;val nombre: String,<br>&nbsp;&nbsp;&nbsp;val edad: Int<br>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="csv-json"><strong class="azul">CSV &lt;-&gt; JSON</strong></h3>
+<p>En estos ejemplos utilizamos la librería <strong>Jackson</strong>, pero se podría  utilizar también <strong>Kotlinx.serialization</strong>.</p>
+<div class="admonition note">
+<p>El intermediario entre el CSV y el JSON es <strong>la lista de objetos alumnos</strong> (de tipo Alumno)</p>
+</div>
+<p><strong>Alumno.kt</strong>   (Clase ya creada)</p>
+<p>🖥️ <strong>Ejemplo_convertir_csv_a_json.kt</strong></p>
+<pre><code>    import com.opencsv.CSVReaderBuilder
+    import com.opencsv.CSVParserBuilder
+    import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+    import java.io.File
+    import java.io.FileReader
+
+
+
+    fun main() {
+        val rutaCSV = "documentos/alumnos.csv"
+        val rutaJSON = "documentos/alumnos.json"
+
+        val reader = CSVReaderBuilder(FileReader(rutaCSV))
+            .withCSVParser(CSVParserBuilder().withSeparator(';').build())
+            .withSkipLines(1)
+            .build()
+
+        val registros = reader.readAll()
+
+        //lista alumnos para guardar los objetos Alumno
+        val alumnos = mutableListOf&lt;Alumno&gt;()
+
+        for (campos in registros) {
+            val nombre = campos[0]
+            val nota = campos[1].toInt()
+
+            //  Cada línea del CSV se transforma en un objeto
+            val alumno = Alumno(nombre, nota)
+            //Todos los objetos se guardan en la lista alumnos
+            alumnos.add(alumno)
+        }
+
+        reader.close()
+
+
+        val mapper = jacksonObjectMapper()
+        mapper.writerWithDefaultPrettyPrinter().writeValue(File(rutaJSON), alumnos)
+
+        println("✅ Conversión CSV → JSON completada: $rutaJSON")
+    }
+</code></pre>
+<p>🖥️ <strong>Ejemplo_convertir_json_a_csv.kt</strong>        </p>
+<pre><code>    import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+    import com.fasterxml.jackson.module.kotlin.readValue
+    import com.opencsv.CSVWriter
+    import java.io.File
+    import java.io.FileWriter
+
+
+    fun main() {
+        val rutaJson = "documentos/alumnos.json"
+        val rutaCsv = "documentos/alumnos.csv"
+
+        // 1. Leer JSON
+        val mapper = jacksonObjectMapper()
+        val alumnos: List&lt;Alumno&gt; = mapper.readValue(File(rutaJson))
+
+        // 2. Escribir CSV
+        val writer = CSVWriter(FileWriter(rutaCsv), ';', CSVWriter.NO_QUOTE_CHARACTER,
+            CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END)
+
+        // Cabecera
+        writer.writeNext(arrayOf("nombre", "nota"))
+
+        // Cuerpo
+        for (alumno in alumnos) {
+            writer.writeNext(arrayOf(alumno.nombre, alumno.nota.toString()))
+        }
+
+        writer.close()
+
+        println("✅ Conversión JSON → CSV completada: $rutaCsv")
+    }
+</code></pre>
+<h3 id="json-xml"><strong class="azul">JSON &lt;-&gt; XML</strong></h3>
+<div class="admonition note">
+<p>En estos ejemplos utilizamos <strong>Jackson</strong>, en ambas conversiones, y por lo tanto también utiliza un objeto intermediario (<strong>persona</strong>), aunque de forma más implícita.</p>
+</div>
+<p>🖥️ <strong>Ejemplo_convertir_json_a_xml.kt</strong></p>
+<pre><code>    import com.fasterxml.jackson.dataformat.xml.XmlMapper
+    import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+    import com.fasterxml.jackson.module.kotlin.readValue
+    import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+    import java.io.File
+
+    fun convertirJsonAXml(jsonPath: String, xmlPath: String) {
+        val xmlMapper = XmlMapper().registerKotlinModule()
+        val jsonMapper = jacksonObjectMapper()
+
+        //Leer JSON y convertirlo a un objeto Persona
+        val persona = jsonMapper.readValue&lt;Persona&gt;(File(jsonPath))
+
+        // Escribir el objeto Persona en formato XML
+        xmlMapper.writerWithDefaultPrettyPrinter().writeValue(File(xmlPath), persona)
+
+        println("Conversión JSON → XML completada")
+    }
+
+    fun main() {
+        convertirJsonAXml("documentos/persona.json", "documentos/persona.xml")
+
+
+    }
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Fichero JSON compuesto por una lista de elementos</p>
+<p>Si el fichero <strong>JSON</strong> contiene un <em>array</em> (<code>[...]</code>), es decir, una <strong>lista de objetos</strong>, entonces debemos indicar explícitamente que queremos leer un <code>List&lt;Objeto&gt;</code>. </p>
+<p><strong>lista_personas_jackson.json</strong> </p>
+<pre><code>[ 
+    {
+    "nombre" : "Lucía",
+    "edad" : 28
+    }, {
+    "nombre" : "Pepe",
+    "edad" : 30
+    }, {
+    "nombre" : "Ana",
+    "edad" : 50
+    }, {
+    "nombre" : "Juan",
+    "edad" : 12
+    } 
+]
+</code></pre>
+</div>
+<p>🖥️ <strong>Ejemplo_convertir_listajson_a_xml.kt</strong></p>
+<pre><code>    import com.fasterxml.jackson.dataformat.xml.XmlMapper
+    import com.fasterxml.jackson.module.kotlin.readValue
+    import java.io.File
+    import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+    import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+
+
+    fun convertirListaJsonAXml(jsonPath: String, xmlPath: String) {
+
+        val jsonMapper = jacksonObjectMapper()
+        val xmlMapper = XmlMapper().registerKotlinModule()
+
+        // Leer JSON y convertirlo a lista de objetos Persona
+        val personas: List&lt;Persona&gt; = jsonMapper.readValue(File(jsonPath))
+
+        // Escribir el XML
+        xmlMapper.writerWithDefaultPrettyPrinter().writeValue(File(xmlPath), personas)
+
+        println("Conversión JSON → XML completada")
+    }
+
+    fun main() {
+
+        convertirListaJsonAXml("documentos/lista_personas.json", "documentos/lista_personas.xml")
+
+    }
+</code></pre>
+<p>El contenido del fichero xml convertido sería el siguiente:</p>
+<pre><code>    &lt;ArrayList&gt;
+    &lt;item&gt;
+        &lt;nombre&gt;Lucía&lt;/nombre&gt;
+        &lt;edad&gt;28&lt;/edad&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+        &lt;nombre&gt;Pepe&lt;/nombre&gt;
+        &lt;edad&gt;30&lt;/edad&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+        &lt;nombre&gt;Ana&lt;/nombre&gt;
+        &lt;edad&gt;50&lt;/edad&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+        &lt;nombre&gt;Juan&lt;/nombre&gt;
+        &lt;edad&gt;12&lt;/edad&gt;
+    &lt;/item&gt;
+    &lt;/ArrayList&gt;
+</code></pre>
+<p>⚠️ Esto no es correcto porque, aunque el XML se puede leer, cuando un XML representa una lista, siempre debe tener un elemento raíz con significado.</p>
+<div class="admonition tip">
+<p class="admonition-title">Clase contenedora</p>
+<p>Cuando se convierte una lista de JSON a XML, es recomendable utilizar un <strong>data class</strong> para modelar los datos y una <strong>clase contenedora auxiliar</strong> para representar el nodo raíz del XML.  </p>
+</div>
+<p>📌 Creamos la Clase contenedora <strong>ListaPersonas</strong> en el <strong>paquete Ejemplos</strong>, fuera de los programas, para poder reutilizarla:</p>
+<pre><code>    import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
+
+    data class ListaPersonas(
+        @JacksonXmlElementWrapper(useWrapping = false)
+        val persona: List&lt;Persona&gt;
+    )
+</code></pre>
+<p>🖥️ <strong>Ejemplo_convertir_listajson_a_xml_nodo.kt</strong></p>
+<pre><code>    import com.fasterxml.jackson.dataformat.xml.XmlMapper
+    import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+    import com.fasterxml.jackson.module.kotlin.readValue
+    import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+    import java.io.File
+
+    fun convertirListaJsonAXml_nodo(jsonPath: String, xmlPath: String) {
+        val jsonMapper = jacksonObjectMapper()
+        val xmlMapper = XmlMapper().registerKotlinModule()
+
+        // Leer JSON y convertirlo a lista de objetos Persona
+        val personas: List&lt;Persona&gt; = jsonMapper.readValue(File(jsonPath))
+
+        // Envolver la lista en la clase contenedora para XML
+        val listaPersonas = ListaPersonas(personas)
+
+        // Escribir el XML
+        xmlMapper.writerWithDefaultPrettyPrinter()
+            .writeValue(File(xmlPath), listaPersonas)
+
+        println("✅ Conversión JSON → XML completada")
+    }
+
+    fun main() {
+        convertirListaJsonAXml_nodo(
+            "documentos/lista_personas.json",
+            "documentos/lista_personas_nodo.xml"
+        )
+    }
+</code></pre>
+<p>Ahora la conversión si que es correcta:</p>
+<pre><code>    &lt;ListaPersonas&gt;
+    &lt;persona&gt;
+        &lt;nombre&gt;Lucía&lt;/nombre&gt;
+        &lt;edad&gt;28&lt;/edad&gt;
+    &lt;/persona&gt;
+    &lt;persona&gt;
+        &lt;nombre&gt;Pepe&lt;/nombre&gt;
+        &lt;edad&gt;30&lt;/edad&gt;
+    &lt;/persona&gt;
+    &lt;persona&gt;
+        &lt;nombre&gt;Ana&lt;/nombre&gt;
+        &lt;edad&gt;50&lt;/edad&gt;
+    &lt;/persona&gt;
+    &lt;persona&gt;
+        &lt;nombre&gt;Juan&lt;/nombre&gt;
+        &lt;edad&gt;12&lt;/edad&gt;
+    &lt;/persona&gt;
+    &lt;/ListaPersonas&gt;
+</code></pre>
+<p>🖥️ <strong>Ejemplo_convertir_xml_a_json.kt</strong></p>
+<pre><code>   import com.fasterxml.jackson.dataformat.xml.XmlMapper
+    import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+    import com.fasterxml.jackson.module.kotlin.readValue
+    import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+    import java.io.File
+
+    fun convertirXmlAJson(xmlPath: String, jsonPath: String) {
+        val xmlMapper = XmlMapper().registerKotlinModule()
+        val jsonMapper = jacksonObjectMapper()
+
+
+        val persona = xmlMapper.readValue&lt;Persona&gt;(File(xmlPath))
+        jsonMapper.writerWithDefaultPrettyPrinter().writeValue(File(jsonPath), persona)
+
+        println("Conversión XML → JSON completada")
+    }
+
+    fun main() {
+
+        convertirXmlAJson("documentos/persona.xml", "documentos/persona.json")
+
+    }
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Fichero XML compuesto por una lista de elementos</p>
+<p>Si el fichero <strong>XML</strong> contiene una <strong>lista de objetos</strong>, entonces debemos indicar explícitamente que queremos leer un <code>List&lt;Objeto&gt;</code>.  </p>
+<p><strong>lista_personas.xml</strong></p>
+<pre><code>&lt;ArrayList&gt;
+&lt;item&gt;
+    &lt;nombre&gt;Lucía&lt;/nombre&gt;
+    &lt;edad&gt;28&lt;/edad&gt;
+&lt;/item&gt;
+&lt;item&gt;
+    &lt;nombre&gt;Pepe&lt;/nombre&gt;
+    &lt;edad&gt;30&lt;/edad&gt;
+&lt;/item&gt;
+&lt;item&gt;
+    &lt;nombre&gt;Ana&lt;/nombre&gt;
+    &lt;edad&gt;50&lt;/edad&gt;
+&lt;/item&gt;
+&lt;item&gt;
+    &lt;nombre&gt;Juan&lt;/nombre&gt;
+    &lt;edad&gt;12&lt;/edad&gt;
+&lt;/item&gt;
+&lt;/ArrayList&gt;
+</code></pre>
+</div>
+<p>🖥️ <strong>Ejemplo_convertir_listaxml_a_json.kt</strong></p>
+<pre><code>    import com.fasterxml.jackson.dataformat.xml.XmlMapper
+    import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+    import com.fasterxml.jackson.module.kotlin.readValue
+    import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+    import java.io.File
+
+    fun convertirListaXmlAJson(xmlPath: String, jsonPath: String) {
+        val jsonMapper = jacksonObjectMapper()
+        val xmlMapper = XmlMapper().registerKotlinModule()
+
+        val personas: List&lt;Persona&gt; = xmlMapper.readValue(File(xmlPath))
+        jsonMapper.writerWithDefaultPrettyPrinter().writeValue(File(jsonPath), personas)
+
+        println("Conversión XML → JSON completada")
+    }
+
+    fun main() {
+
+        convertirListaXmlAJson("documentos/lista_personas.xml", "documentos/lista_personas.json")
+    }
+</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Clase contenedora</p>
+<p>Cuando el XML contiene un nodo raíz que agrupa varios elementos, es conveniente utilizar una <strong>clase contenedora auxiliar</strong> para mapear correctamente la estructura del documento.</p>
+<p><strong>lista_personas_nodo.xml</strong></p>
+<pre><code>&lt;ListaPersonas&gt;
+    &lt;persona&gt;
+        &lt;nombre&gt;Lucía&lt;/nombre&gt;
+        &lt;edad&gt;28&lt;/edad&gt;
+    &lt;/persona&gt;
+    &lt;persona&gt;
+        &lt;nombre&gt;Pepe&lt;/nombre&gt;
+        &lt;edad&gt;30&lt;/edad&gt;
+    &lt;/persona&gt;
+    &lt;persona&gt;
+        &lt;nombre&gt;Ana&lt;/nombre&gt;
+        &lt;edad&gt;50&lt;/edad&gt;
+    &lt;/persona&gt;
+    &lt;persona&gt;
+        &lt;nombre&gt;Juan&lt;/nombre&gt;
+        &lt;edad&gt;12&lt;/edad&gt;
+    &lt;/persona&gt;
+    &lt;/ListaPersonas&gt;
+</code></pre>
+</div>
+<p>📌 Utilizaremos la clase contenedora <strong>ListapPersona</strong> creada anteriormente.</p>
+<p>🖥️ <strong>Ejemplo_convertir_listaxml_a_json_nodo.kt</strong></p>
+<pre><code>    import com.fasterxml.jackson.dataformat.xml.XmlMapper
+    import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+    import com.fasterxml.jackson.module.kotlin.readValue
+    import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+    import java.io.File
+    import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
+
+    fun convertirListaXmlAJsonNodo(xmlPath: String, jsonPath: String) {
+        val jsonMapper = jacksonObjectMapper()
+        val xmlMapper = XmlMapper().registerKotlinModule()
+
+        // Lee el XML y lo convierte a un objeto de tipo ListaPersonas
+        // Aquí utilizamos la clase contenedora para representar el nodo raíz del XML
+        val lista: ListaPersonas = xmlMapper.readValue(File(xmlPath)) //Aquí utilizamos la clase contendora
+
+        // Extrae la lista de objetos Persona desde la clase contenedora
+        val personas = lista.persona
+
+        // Escribe la lista de personas en formato JSON
+        // El JSON generado será un array de objetos
+        jsonMapper.writerWithDefaultPrettyPrinter()
+            .writeValue(File(jsonPath), personas)
+
+        println("Conversión XML → JSON completada")
+    }
+
+    fun main() {
+
+        convertirListaXmlAJsonNodo("documentos/lista_personas_nodo.xml", "documentos/lista_personas.json")
+    }
+</code></pre>
+<h3 id="json-binario-estructurado"><strong class="azul">JSON &lt;-&gt; Binario estructurado</strong></h3>
+<p>En estos ejemplos utilizamos <strong>kotlinx.serialization</strong>.</p>
+<div class="admonition note">
+<p>El objeto <strong>persona</strong> (instancia de la clase Persona) es el intermediario entre el archivo JSON y el archivo binario.</p>
+</div>
+<p>🖥️ <strong>Ejemplo_convertir_json_a_binario.kt</strong></p>
+<pre><code>    import kotlinx.serialization.json.Json
+    import java.io.DataOutputStream
+    import java.io.File
+    import java.io.FileOutputStream
+    import java.nio.file.Files
+    import java.nio.file.Paths
+    import java.io.DataInputStream
+    import java.io.FileInputStream
+
+    fun main() {
+        val rutaJson = "documentos/persona.json"
+        val rutaBin = "documentos/persona.dat"
+
+        // Leer JSON
+        val contenido = File(rutaJson).readText()
+        val persona = Json.decodeFromString&lt;Persona&gt;(contenido)
+
+        // Crear carpeta si no existe
+        Files.createDirectories(Paths.get(rutaBin).parent)
+
+        // Escribir como binario estructurado
+        val salida = DataOutputStream(FileOutputStream(rutaBin))
+        salida.writeUTF(persona.nombre)  // Guarda string como UTF con longitud
+        salida.writeInt(persona.edad)    // Guarda entero (4 bytes)
+        salida.close()
+
+        println("✅ .Persona guardada como binario estructurado en: $rutaBin")
+
+        //Leer el binario estructurado
+        val entrada = DataInputStream(FileInputStream(rutaBin))
+        val nombre = entrada.readUTF()
+        val edad = entrada.readInt()
+        entrada.close()
+
+        println("📄 Persona leída del binario:")
+        println("Nombre: $nombre, Edad: $edad")
+
+    }
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Fichero JSON compuesto por una lista de elementos</p>
+<p>Si el fichero <strong>JSON</strong> contiene un <em>array</em> (<code>[...]</code>), es decir, una <strong>lista de objetos</strong>, necesitas iterar sobre la lista al escribir y al leer.</p>
+</div>
+<p>🖥️ <strong>Ejemplo_convertir_listajson_a_binario.kt</strong>        </p>
+<pre><code>    import kotlinx.serialization.json.Json
+    import java.io.DataOutputStream
+    import java.io.File
+    import java.io.FileOutputStream
+    import java.nio.file.Files
+    import java.nio.file.Paths
+    import java.io.DataInputStream
+    import java.io.FileInputStream
+
+    fun main() {
+        val rutaJson = "documentos/lista_personas.json"
+        val rutaBin = "documentos/lista_personas.dat"
+
+        // Leer JSON
+        val contenido = File(rutaJson).readText()
+        val personas = Json.decodeFromString&lt;List&lt;Persona&gt;&gt;(contenido)
+
+        // Crear carpeta si no existe
+        Files.createDirectories(Paths.get(rutaBin).parent)
+
+        // Escribir como binario estructurado
+        val salida = DataOutputStream(FileOutputStream(rutaBin))
+        salida.writeInt(personas.size) // Guardar el tamaño de la lista
+        for (persona in personas) {
+            salida.writeUTF(persona.nombre)
+            salida.writeInt(persona.edad)
+        }
+        salida.close()
+
+        println("✅ Lista de personas guardada como binario estructurado en: $rutaBin")
+
+        // Leer el binario estructurado
+        val entrada = DataInputStream(FileInputStream(rutaBin))
+        val cantidad = entrada.readInt() // Leer el tamaño de la lista
+        for (i in 0 until cantidad) {
+            val nombre = entrada.readUTF()
+            val edad = entrada.readInt()
+
+            println("Nombre: $nombre, Edad: $edad")
+        }
+        entrada.close()
+    }
+</code></pre>
+<div class="admonition note">
+<p>El mismo ejermplo pero utilizando la libreía <strong>Jackson</strong> en lugar de Kotlinx.serialization</p>
+</div>
+<p>🖥️ <strong>Ejemplo_convertir_listajson_a_binario_Jackson.kt</strong>         </p>
+<pre><code>    import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+    import com.fasterxml.jackson.module.kotlin.readValue
+    import java.io.DataOutputStream
+    import java.io.File
+    import java.io.FileOutputStream
+    import java.nio.file.Files
+    import java.nio.file.Paths
+    import java.io.DataInputStream
+    import java.io.FileInputStream
+
+    fun main() {
+        val rutaJson = "documentos/lista_personas.json"
+        val rutaBin = "documentos/lista_personas.dat"
+
+        // Leer JSON con Jackson
+        val mapper = jacksonObjectMapper()
+        val personas: List&lt;Persona&gt; = mapper.readValue(File(rutaJson))
+
+        // Crear carpeta si no existe
+        Files.createDirectories(Paths.get(rutaBin).parent)
+
+        // Escribir como binario estructurado
+        val salida = DataOutputStream(FileOutputStream(rutaBin))
+        salida.writeInt(personas.size) // Guardar el tamaño de la lista
+        for (persona in personas) {
+            salida.writeUTF(persona.nombre)
+            salida.writeInt(persona.edad)
+        }
+        salida.close()
+
+        println("✅ Lista de personas guardada como binario estructurado en: $rutaBin")
+
+        // Leer el binario estructurado
+        val entrada = DataInputStream(FileInputStream(rutaBin))
+        val cantidad = entrada.readInt() // Leer el tamaño de la lista
+        for (i in 0 until cantidad) {
+            val nombre = entrada.readUTF()
+            val edad = entrada.readInt()
+
+            println("Nombre: $nombre, Edad: $edad")
+        }
+        entrada.close()
+    }
+</code></pre>
+<p>🖥️ <strong>Ejemplo_convertir_binario_a_json.kt</strong></p>
+<pre><code>    import kotlinx.serialization.encodeToString
+    import kotlinx.serialization.json.Json
+    import java.io.DataInputStream
+    import java.io.File
+    import java.io.FileInputStream
+    import java.nio.file.Files
+    import java.nio.file.Paths
+
+    fun main() {
+        val rutaBin = "documentos/persona.dat"
+        val rutaJson = "documentos/persona.json"
+
+        // Leer binario estructurado
+        val entrada = DataInputStream(FileInputStream(rutaBin))
+        val nombre = entrada.readUTF()
+        val edad = entrada.readInt()
+        entrada.close()
+
+        // Crear objeto
+        val persona = Persona(nombre, edad)
+
+        // Convertir a JSON con pretty print
+        val json = Json { prettyPrint = true }.encodeToString(persona)
+
+        // Crear carpeta si no existe
+        Files.createDirectories(Paths.get(rutaJson).parent)
+
+        // Escribir JSON en archivo
+        File(rutaJson).writeText(json)
+
+        println("✅ Binario estructurado convertido a JSON:")
+        println(json)
+    }
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Fichero Binario compuesto por una lista de objetos</p>
+<p>Si el fichero <strong>Binario</strong> contiene una <strong>lista de objetos</strong>, debes leer el tamaño de la lista y luego leer cada objeto uno por uno, construir la lista y convertirla a JSON.</p>
+</div>
+<p>🖥️ <strong>Ejemplo_convertir_listabinario_a_json.kt</strong></p>
+<pre><code>        import kotlinx.serialization.encodeToString
+        import kotlinx.serialization.json.Json
+        import java.io.DataInputStream
+        import java.io.File
+        import java.io.FileInputStream
+        import java.nio.file.Files
+        import java.nio.file.Paths
+
+        fun main() {
+            val rutaBin = "documentos/lista_personas.dat"
+            val rutaJson = "documentos/lista_personas.json"
+
+            // Leer binario estructurado
+            val entrada = DataInputStream(FileInputStream(rutaBin))
+            val cantidad = entrada.readInt() // Leer el tamaño de la lista
+            val personas = mutableListOf&lt;Persona&gt;()
+            for (i in 0 until cantidad) {
+                val nombre = entrada.readUTF()
+                val edad = entrada.readInt()
+                personas.add(Persona(nombre, edad))
+            }
+            entrada.close()
+
+            // Convertir a JSON con pretty print
+            val json = Json { prettyPrint = true }.encodeToString(personas)
+
+            // Crear carpeta si no existe
+            Files.createDirectories(Paths.get(rutaJson).parent)
+
+            // Escribir JSON en archivo
+            File(rutaJson).writeText(json)
+
+            println("✅ Lista de personas convertida a JSON:")
+            println(json)
+        }
+</code></pre>
+<div class="admonition note">
+<p>El mismo ejermplo pero utilizando la libreía <strong>Jackson</strong> en lugar de Kotlinx.serialization</p>
+</div>
+<p>🖥️ <strong>Ejemplo_convertir_listabinario_a_json_Jackson.kt</strong></p>
+<pre><code>    import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+    import java.io.DataInputStream
+    import java.io.File
+    import java.io.FileInputStream
+    import java.nio.file.Files
+    import java.nio.file.Paths
+
+    fun main() {
+        val rutaBin = "documentos/lista_personas.dat"
+        val rutaJson = "documentos/lista_personas.json"
+
+        // Leer binario estructurado
+        val entrada = DataInputStream(FileInputStream(rutaBin))
+        val cantidad = entrada.readInt() // Leer el tamaño de la lista
+        val personas = mutableListOf&lt;Persona&gt;()
+        for (i in 0 until cantidad) {
+            val nombre = entrada.readUTF()
+            val edad = entrada.readInt()
+            personas.add(Persona(nombre, edad))
+        }
+        entrada.close()
+
+        // Convertir a JSON con pretty print usando Jackson
+        val mapper = jacksonObjectMapper()
+        mapper.writerWithDefaultPrettyPrinter().writeValue(File(rutaJson), personas)
+
+        // Crear carpeta si no existe
+        Files.createDirectories(Paths.get(rutaJson).parent)
+
+        println("✅ Lista de personas convertida a JSON con Jackson:")
+        println(mapper.writeValueAsString(personas))
+    }
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ficheros_intercambio/" class="btn btn-neutral float-left" title="🔹Ficheros de intercambio"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ejercicios/" class="btn btn-neutral float-right" title="📝 Ejercicio obligatorio 2">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ficheros_intercambio/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ejercicios/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-button.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

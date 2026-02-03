@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹 Ficheros - AD - Acceso a Datos - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+        <link href="../../css/copy-button.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39 Ficheros";
+        var mkdocs_page_input_path = "T1_Sistema_de_ficheros/ficheros.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">RA y CE</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">🔹 Ficheros</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis/">📝 Ejercicio obligatorio 1</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/clases/">🔹Clases y métodos sobre ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T2_Gestion_del_contenido/Lectura_Escritura_ficheros/">🔹Lectura y escritura de ficheros</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros de diferentes formatos</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/intro/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/ejercicios/">📝 Ejercicio obligatorio 2</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Resumen/">Resumen</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Acceso a Datos - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Sistema de ficheros</li>
+      <li class="breadcrumb-item active">🔹 Ficheros</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ficheros">Ficheros</h1>
+<p>Un <strong>fichero</strong> es una unidad de almacenamiento de datos en un sistema informático. Se trata de un conjunto de información organizada y almacenada en un dispositivo de almacenamiento (secuencia de bytes), como un disco duro, una memoria USB o un servidor en la nube.
+A los datos que se guardan en ficheros se llaman datos persistentes, porque persisten más allá de la ejecución de la aplicación que los trata.</p>
+<p><strong class="azul">Características de un fichero</strong></p>
+<ul>
+<li><strong>Nombre</strong>: Cada fichero tiene un nombre único dentro de su directorio.</li>
+<li><strong>Extensión</strong>: Muchos ficheros tienen una extensión que indica su tipo (por ejemplo, .txt para texto, .jpg para imágenes, .pdf para documentos, .dat para binarios...).</li>
+<li><strong>Ubicación</strong>: Se encuentran organizados en carpetas o directorios dentro del sistema de archivos.</li>
+<li><strong>Contenido</strong>: Puede ser texto, imágenes, vídeos, código fuente, bases de datos, etc.</li>
+<li><strong>Permisos de acceso</strong>: Se pueden configurar para permitir o restringir la lectura, escritura o ejecución a determinados usuarios o programas.</li>
+</ul>
+<p><strong class="azul">Tipos de ficheros</strong>  </p>
+<ul>
+<li><strong>Ficheros de texto</strong>: Contienen datos en formato legible por humanos (.txt, .csv, .json, .xml).</li>
+<li><strong>Ficheros binarios</strong>: Almacenan información en un formato no legible directamente (.exe, .jpg, .mp3, .dat).</li>
+<li><strong>Ficheros de código fuente</strong>: Contienen instrucciones escritas en lenguajes de programación (.java, .kt, .py).</li>
+<li><strong>Ficheros de configuración</strong>: Almacenan parámetros de configuración de programas (.ini, .conf, .properties).</li>
+<li><strong>Ficheros de bases de datos</strong>: Se utilizan para almacenar grandes volúmenes de datos estructurados (.db, .sql).</li>
+</ul>
+<p><img alt="ref" src="../tiposficheros.png" /></p>
+<p><strong class="azul">Principales usos de la persistencia de datos en ficheros</strong></p>
+<p>El uso de ficheros para la persistencia de datos es una alternativa sencilla y eficiente cuando no se requiere una base de datos completa:</p>
+<ul>
+<li>Guardar ajustes de una aplicación en archivos de configuración (.properties, .ini, .json).</li>
+<li>Mantener un historial de eventos o errores en un sistema (.log).</li>
+<li>Guardar información de usuario o estado de la aplicación sin necesidad de una base de datos (.csv, .json).</li>
+<li>Comunicación entre programas mediante archivos JSON o XML.</li>
+<li>Aplicaciones que funcionan sin internet o sin una base de datos centralizada.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../RA_CE/" class="btn btn-neutral float-left" title="RA y CE"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../NIO_AccesoFicheros/" class="btn btn-neutral float-right" title="🔹 Acceso al sistema de ficheros. Java.nio">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../RA_CE/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../NIO_AccesoFicheros/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-button.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

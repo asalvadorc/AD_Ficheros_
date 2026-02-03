@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>🔹Clases y métodos sobre ficheros. Java.nio - AD - Acceso a Datos - Ficheros</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+        <link href="../../css/copy-button.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd39Clases y m\u00e9todos sobre ficheros. Java.nio";
+        var mkdocs_page_input_path = "T2_Gestion_del_contenido/clases.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../RA_CE/">RA y CE</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sistema de ficheros</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/ficheros/">🔹 Ficheros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/NIO_AccesoFicheros/">🔹 Acceso al sistema de ficheros. Java.nio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T1_Sistema_de_ficheros/exercicis/">📝 Ejercicio obligatorio 1</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Manejo de ficheros</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Formas_acceso/">🔹Formas de acceso a un fichero</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">🔹Clases y métodos sobre ficheros. Java.nio</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Lectura_Escritura_ficheros/">🔹Lectura y escritura de ficheros</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Ficheros de diferentes formatos</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/intro/">🔹Introducción</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/seriaci_dobjectes/">🔹Serialización de Objetos</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/ficheros_intercambio/">🔹Ficheros de intercambio</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/Conversion/">🔹Conversión entre formatos diferentes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../T3_Formatos_diferentes/ejercicios/">📝 Ejercicio obligatorio 2</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../Resumen/">Resumen</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Acceso a Datos - Ficheros</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Manejo de ficheros</li>
+      <li class="breadcrumb-item active">🔹Clases y métodos sobre ficheros. Java.nio</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="clases-y-metodos-sobre-ficheros-javanio">🔹 Clases y métodos sobre ficheros. Java.nio</h1>
+<p>En el desarrollo de aplicaciones es común tener que leer y escribir datos almacenados en archivos. Según el tipo de contenido del fichero (texto, binario, imagen, estructurado...), se utilizan clases y métodos distintos para acceder a ellos de forma eficiente y segura.</p>
+<p><strong>Kotlin</strong> se apoya en las bibliotecas de Java (<strong>java.io</strong> y <strong>java.nio.file</strong>) para realizar estas operaciones, permitiendo un control detallado tanto para acceso secuencial como aleatorio.</p>
+<ul>
+<li>
+<p><strong>java.io</strong>: API tradicional basada en flujos de bytes o caracteres.</p>
+</li>
+<li>
+<p><strong>java.nio</strong> (New I/O): API moderna basada en canales y buffers, introducida para mejorar el rendimiento y la flexibilidad.</p>
+</li>
+</ul>
+<p>En el desarrollo actual, especialmente en aplicaciones que manejan datos estructurados, binarios o grandes volúmenes de información, es preferible utilizar <strong>java.nio</strong>, por lo que será la API que utilizaremos en los ejemplos y ejercicios.  </p>
+<p>La siguiente tabla resume las clases más utilizadas para trabajar con los distintos tipos de ficheros, indicando las opciones recomendadas para lectura y escritura, y proporcionando notas aclaratorias sobre su uso típico.</p>
+<p><strong class="verde">Resumen de clases y métodos para el acceso a ficheros en Kotlin (Java NIO)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tipo de fichero</th>
+<th>Lectura</th>
+<th>Escritura</th>
+<th>Comentario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Texto (líneas)</td>
+<td>Files.readAllLines(Path)</td>
+<td>Files.write(Path, List<String>)</td>
+<td>Carga todo en memoria</td>
+</tr>
+<tr>
+<td></td>
+<td>Files.newBufferedReader(Path)</td>
+<td>Files.newBufferedWriter(Path)</td>
+<td>Más eficiente para archivos grandes</td>
+</tr>
+<tr>
+<td></td>
+<td>Files.readString(Path) (Java 11+)</td>
+<td>Files.writeString(Path, String)</td>
+<td>Lectura/escritura completa como bloque</td>
+</tr>
+<tr>
+<td>Binario</td>
+<td>Files.readAllBytes(Path)</td>
+<td>Files.write(Path, ByteArray)</td>
+<td>Lee y escribe bytes puros</td>
+</tr>
+<tr>
+<td></td>
+<td>Files.newInputStream(Path)</td>
+<td>Files.newOutputStream(Path)</td>
+<td>Flujo de bytes directo</td>
+</tr>
+<tr>
+<td>Binario estructurado</td>
+<td>FileChannel.read(ByteBuffer)</td>
+<td>FileChannel.write(ByteBuffer)</td>
+<td>Usa <code>FileChannel</code> para secuencial o aleatorio</td>
+</tr>
+<tr>
+<td></td>
+<td>SeekableByteChannel.read(...)</td>
+<td>SeekableByteChannel.write(...)</td>
+<td>Canal flexible con <code>.position()</code></td>
+</tr>
+<tr>
+<td></td>
+<td>ByteBuffer.get*()</td>
+<td>ByteBuffer.put*()</td>
+<td>Tipos primitivos (<code>int</code>, <code>double</code>, etc.)</td>
+</tr>
+<tr>
+<td>Imagen</td>
+<td>ImageIO.read(Path/File)</td>
+<td>ImageIO.write(BufferedImage, ...)</td>
+<td>Usa <code>javax.imageio.ImageIO</code></td>
+</tr>
+<tr>
+<td>Acceso aleatorio</td>
+<td>FileChannel.position(offset)</td>
+<td>FileChannel.position(offset)</td>
+<td>Permite saltar a cualquier posición del fichero</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Formas_acceso/" class="btn btn-neutral float-left" title="🔹Formas de acceso a un fichero"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Lectura_Escritura_ficheros/" class="btn btn-neutral float-right" title="🔹Lectura y escritura de ficheros">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Formas_acceso/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Lectura_Escritura_ficheros/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/copy-button.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
