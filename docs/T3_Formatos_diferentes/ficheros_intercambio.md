@@ -100,12 +100,16 @@ El formato CSV es un archivo de texto donde los valores están separados por com
 
 La lectura y escrituara de un archivo CSV se puede hacer de tres formas:
 
-1. **Sin utilizar librerías** y mediante la lectura línea a línea + split().
-2. Con la librería **OpenCSV**.
-3. Con la librería **Kotlin-CSV**.
+### Resumen de ejemplos (CSV) {.verde}
+
+- [Sin librerías: lectura línea a línea + split()](#csv-sin-librerias)
+- [Con OpenCSV](#csv-opencsv)
+- [Con Kotlin-CSV](#csv-kotlincsv)
+
 
 
 En este bloque de contenidos vamos a trabajar con distintos programas de ejemplo y en todos estos casos, los datos representan siempre el mismo tipo de información: alumnos.
+
 
 !!!Tip "Alumnos.csv"
     nombre:nota
@@ -126,6 +130,8 @@ La **data class Alumno** correspondiente será:
 
 
 🖥️ **1- Sin librerías: lectura línea a línea + split()**{.azul}
+
+<a id="csv-sin-librerias"></a>
 
 **Ejemplo_CSV_lect_esc.kt**
 
@@ -237,6 +243,8 @@ La finalidad del ejercicio es entender cómo funciona internamente un CSV y cóm
 !!!Tip ""
     **CSVReader** y **CSVWriter** son clases Java, pensadas originalmente para Java, aunque se pueden usar desde Kotlin.
 
+<a id="csv-opencsv"></a>
+
 **Ejempo_OpenCSV_lect_esc.kt**
 
 Este ejemplo realiza la misma tarea que el anterior, pero utilizando la librería `OpenCSV`, que simplifica la lectura y escritura de archivos CSV.
@@ -327,6 +335,8 @@ Tradicionalmente, en entornos Java se ha utilizado la librería OpenCSV para lee
 |             | `writeAllWithHeader(data, File)` | `csvWriter().writeAllWithHeader(listOf(mapOf("nombre" to "Elena", "nota" to "10")), File("salida.csv"))` |
 | **Configuración** | `delimiter`, `quoteChar`, etc. | `csvReader { delimiter = ';' }` |
 
+
+<a id="csv-kotlincsv"></a>
 
 **Ejempo_KotlinCSV_lect_esc.kt**
 
@@ -424,6 +434,12 @@ Esto proporciona importantes **ventajas**:
 ✔️ Conversión directa entre JSON y objetos Kotlin.  
 ✔️ Código más limpio y mantenible.  
 ✔️ Mayor seguridad de tipos, detectando errores en tiempo de compilación.  
+
+### Resumen de ejemplos (JSON) {.verde}
+
+- [kotlinx.serialization: objeto JSON](#json-kserialization)
+- [Jackson: objeto JSON](#json-jackson)
+- [Jackson: lista JSON](#json-lista-jackson)
 
 ### 🔹 kotlinx.serialization
 
@@ -573,6 +589,8 @@ Anota la clase como **serializable**.
         @Serializable
         data class Persona(val nombre: String, val edad: Int)
 
+
+<a id="json-kserialization"></a>
 
 🖥️ **Ejemplo_JSON_KSerialization.kt**
 
@@ -798,6 +816,8 @@ Dependencia Gradle:
             data class Persona(val nombre: String, val edad: Int)
             
 
+<a id="json-jackson"></a>
+
 🖥️ **Ejemplo_JSON_jackson.kt**
 
 
@@ -867,6 +887,8 @@ La finalidad del ejercicio es comprobar cómo Jackson simplifica la conversión 
             } 
         ]
 
+
+<a id="json-lista-jackson"></a>
 
 🖥️ **Ejemplo_listaJSON_jackson.kt**
 
@@ -946,6 +968,12 @@ La mejor forma de trabajar con XML en **Kotlin** es utlizar la librería **DOM**
 
 - DOM	-> Estándar Java, sin dependencias.	Requiere muchas líneas de código para hacer algo relativamente simple. 
 - JDOM2 ->	API más amigable para desarrolladores.	Requiere añadir una librería externa.
+
+### Resumen de ejemplos (XML) {.verde}
+
+- [JDOM2: objeto a XML](#xml-objeto-a-xml)
+- [JDOM2: XML a objeto](#xml-a-objeto)
+- [Jackson XML: serialización/deserialización](#xml-jackson)
 
 ### 🔹JDOM2
 
@@ -1101,6 +1129,8 @@ Vamos a generar el siguiente archivo XML utilizando dos ejemplos, uno se encarga
         data class Alumno(val nombre: String, val nota: Int)
 
 
+<a id="xml-objeto-a-xml"></a>
+
 🖥️ **Ejemplo_Objeto_a_XML.kt**: Leemos el objeto Alumno y lo convertimos en fichero xml (alumnos.xml).
 
 
@@ -1153,6 +1183,8 @@ La finalidad del ejercicio es entender cómo pasar de objetos Kotlin a un ficher
             println("Archivo XML creado con éxito.")
         }
 
+
+<a id="xml-a-objeto"></a>
 
 🖥️ **Ejemplo_XML_a_Objeto.kt**: Leemos el archivo alumnos.xml y lo convertimos a objeto.
 
@@ -1262,6 +1294,8 @@ Creamos la clase contenedora **ListaAlumnos**, que actúa como puente entre el X
                 @JacksonXmlProperty(localName = "alumno") // Cada elemento se llama <alumno>
                 val alumno: List<Alumno> = emptyList()
             )
+
+<a id="xml-jackson"></a>
 
  🖥️ **Ejemplo_XML_Jackson.kt**
 
