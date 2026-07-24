@@ -1,5 +1,6 @@
 
-# 3.- Serialización de Objetos
+# Serialización de Objetos
+
 
 La serialización de objetos en Java es el proceso de convertir un objeto java en una secuencia de bytes, con el fin de guardarlo en un archivo o base de datos.
   
@@ -49,17 +50,35 @@ excepción de tipos **ClassCastExeception**. Además, es necesario que la aplica
 !!!warning "Ejemplos"
     Los ejemplos de esta parte se incluirán en el paquete **formatos**, dentro de nuestro proyecto **Ficheros**. 
 
-    ![Ref](paquetes.png)
+    ![Ref](paquetes.png){: .img-muy-pequena .img-izquierda }
+
+
+Este ejercicio completo se divide en tres partes que deben entenderse como un único proceso: definir un objeto serializable, guardarlo en un archivo y recuperarlo después desde ese mismo archivo.
+
+- Primero se crea la clase `Persona`, que representa la información que queremos almacenar.
+- Después se serializa un objeto de esa clase en un fichero binario.
+- Finalmente se deserializa el contenido para reconstruir el objeto original y comprobar que conserva sus datos.
+
+La finalidad del ejercicio es comprender el ciclo completo de serialización y deserialización de objetos en Kotlin usando las clases de `java.io`.    
 
 Los pasos para serializar un objeto java (kotlin) son los siguientes:
 
 🖥️ 1. **Persona.kt**: Crear una clase serializable
+
 
         import java.io.Serializable
 
         class Persona(val nombre: String, val edad: Int) : Serializable
 
 🖥️ 2. **Ejemplo_guardar_persona.kt**: Serializar un objeto a un archivo 
+
+En esta segunda parte se crea una instancia de `Persona` y se guarda en disco mediante serialización binaria.
+
+- Primero se construye un objeto `Persona` con unos valores concretos.
+- Después se define la ruta del archivo donde se almacenará el objeto serializado.
+- A continuación se abre un `ObjectOutputStream` sobre ese fichero.
+- Con `writeObject(...)` se transforma el objeto en una secuencia de bytes y se escribe en el archivo.
+- Por último, se cierra el flujo para asegurar que los datos quedan guardados correctamente.
 
         import java.io.ObjectOutputStream
         import java.nio.file.Files
@@ -83,6 +102,15 @@ Los pasos para serializar un objeto java (kotlin) son los siguientes:
 
 
 🖥️ 3. **Ejemplo_leer_persona.kt**: Deserializar un objeto desde un archivo
+
+En esta tercera parte se recupera el objeto almacenado en el paso anterior y se reconstruye en memoria.
+
+- Primero se localiza el fichero `persona.obj` que contiene el objeto serializado.
+- Después se abre un `ObjectInputStream` para leer su contenido binario.
+- Con `readObject()` se recupera el objeto almacenado y se convierte al tipo `Persona`.
+- Finalmente, se muestran sus atributos por pantalla para comprobar que la información leída coincide con la que se había guardado.
+
+Este paso permite ver que la deserialización reconstruye el objeto con su estado original, siempre que la clase siga siendo compatible con la versión con la que fue serializado.
 
         import java.io.ObjectInputStream
         import java.nio.file.Paths

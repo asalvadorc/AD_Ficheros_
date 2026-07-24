@@ -2,7 +2,6 @@ site_name: AD - Acceso a Datos - Ficheros
 
 extra_css:
   - css/extra.css
-  - img/favicon.ico 
   - css/copy-button.css
 
 extra_javascript:
@@ -17,31 +16,41 @@ theme:
     - copy-to-clipboard
     - content.code.copy
   logo: assets/logocaminas.png
+  favicon: img/favicon.ico
     
 
+plugins:
+  - search
+  - glightbox
 
 markdown_extensions:
   - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   - tables    
   - attr_list
   - toc
   - md_in_html
 
 nav:
-
+- Introducción: index.md
 - RA y CE: RA_CE.md
 - Sistema de ficheros:
   - 🔹 Ficheros: T1_Sistema_de_ficheros/ficheros.md
+  - 🔹 Formas de acceso a un fichero: T1_Sistema_de_ficheros/Formas_acceso.md
   - 🔹 Acceso al sistema de ficheros. Java.nio: T1_Sistema_de_ficheros/NIO_AccesoFicheros.md
   - 📝 Ejercicio obligatorio 1: T1_Sistema_de_ficheros/exercicis.md
 - Manejo de ficheros:
-    - 🔹Formas de acceso a un fichero: T2_Gestion_del_contenido/Formas_acceso.md
-    - 🔹Clases y métodos sobre ficheros. Java.nio: T2_Gestion_del_contenido/clases.md
-    - 🔹Lectura y escritura de ficheros: T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md
-- Ficheros de diferentes formatos :
-    - 🔹Introducción: T3_Formatos_diferentes/intro.md
-    - 🔹Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
-    - 🔹Ficheros de intercambio: T3_Formatos_diferentes/ficheros_intercambio.md    
-    - 🔹Conversión entre formatos diferentes: T3_Formatos_diferentes/Conversion.md
-    - 📝 Ejercicio obligatorio 2: T3_Formatos_diferentes/ejercicios.md
-- Resumen: Resumen.md       
+  - 🔹 Lectura y escritura de ficheros: T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md
+  - 🔹 Ficheros de texto y binarios: T2_Gestion_del_contenido/texto_binarios.md
+  - 🔹 Ficheros de imagen: T2_Gestion_del_contenido/ficheros_imagen.md
+  - 🔹 Ficheros binarios estructurados: T2_Gestion_del_contenido/binarios_estructurados.md
+  - 🔹 Ficheros de acceso aleatorio: T2_Gestion_del_contenido/acceso_aleatorio.md
+  - 📝 Ejercicio obligatorio 2: T2_Gestion_del_contenido/ejercicios.md
+- Ficheros de diferentes formatos:
+  - 🔹 Introducción: T3_Formatos_diferentes/intro.md
+  - 🔹 Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
+  - 🔹 Ficheros de intercambio: T3_Formatos_diferentes/ficheros_intercambio.md
+  - 🔹 Conversión entre formatos diferentes: T3_Formatos_diferentes/Conversion.md
+  - 📝 Ejercicio obligatorio 3: T3_Formatos_diferentes/ejercicios.md
+- Resumen: Resumen.md

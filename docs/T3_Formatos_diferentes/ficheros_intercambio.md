@@ -1,4 +1,4 @@
-# Ficheros de intercambio
+﻿# Ficheros de intercambio
 
 En el desarrollo de aplicaciones, es habitual trabajar con datos almacenados o transmitidos en distintos formatos de ficheros. La conversión entre estos formatos permite intercambiar información entre sistemas heterogéneos, integrarse con APIs, facilitar la persistencia de datos o adaptarse a requisitos específicos. 
 
@@ -31,7 +31,8 @@ Define qué información tiene un objeto y de qué tipo es cada dato: El data cl
     Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos un proyecto llamado **Ficheros_Gradle**, en el que incluiremos **Gradle** como herramienta de construcción. Los ejemplos los iremos creando directamente en la carpeta **src/main/Kotlin**.   
     Crearemo también la carpeta **documentos**, donde iremos dejando los ficheros geneados en los distintos ejemplos.
     
-    ![Ref](new_project_gradle.png)|![Ref](ejemplos_intercambio.png)
+    | ![Ref](new_project_gradle.png){width=600 } | ![Ref](ejemplos_intercambio.png){width=400 } |
+    |---|---|
 
 
 ## 🔹Dependencias Gradle
@@ -54,7 +55,6 @@ Para facilitar **el uso de librerías externas** que nos ayuden a trabajar con e
 | JSON    | Jackson              | Conversión entre objetos Java/Kotlin y JSON (muy usado en backend Java)         |
 | XML     | javax.xml (DOM API)  | Construcción y manipulación manual de documentos XML (bajo nivel, detallado)    |
 | XML     | Jackson              | Conversión directa entre objetos y XML (usando anotaciones, más sencillo)       |
-
 
 
 En el fichero **build.gradle.kts** se incluirán los plugins y dependencias necesarias:
@@ -94,7 +94,6 @@ En el fichero **build.gradle.kts** se incluirán los plugins y dependencias nece
         }
 
 
-
 ## 🔹Ficheros CSV  
 
 El formato CSV es un archivo de texto donde los valores están separados por comas u otro delimitador (como punto y coma), muy usado para intercambiar datos entre hojas de cálculo, sistemas contables, etc.
@@ -129,6 +128,20 @@ La **data class Alumno** correspondiente será:
 🖥️ **1- Sin librerías: lectura línea a línea + split()**{.azul}
 
 **Ejemplo_CSV_lect_esc.kt**
+
+
+Este ejemplo muestra la forma más básica de trabajar con un fichero CSV: escribirlo como texto y después leerlo línea a línea para convertir cada registro en un objeto `Alumno`.
+
+- Primero se define la ruta del archivo `alumnos.csv`.
+- Después se crea una lista de líneas de texto que incluye la cabecera y los datos de varios alumnos.
+- A continuación se escribe esa lista en el fichero con `Files.write(...)`, creando o sobrescribiendo el archivo si ya existía.
+- Luego se lee todo el contenido con `Files.readAllLines(...)`.
+- Durante la lectura, se omite la primera línea porque corresponde a la cabecera.
+- Cada línea de datos se divide con `split(";")` para separar el nombre y la nota.
+- Si la línea tiene el formato esperado, se crea un objeto `Alumno` y se añade a una lista.
+- Finalmente, se recorre la lista de objetos para mostrar la información por pantalla.
+
+La finalidad del ejercicio es entender cómo funciona internamente un CSV y cómo transformar su contenido textual en objetos Kotlin, incluso sin utilizar librerías externas.
 
         import java.nio.file.Files
         import java.nio.file.Paths
@@ -187,7 +200,6 @@ La **data class Alumno** correspondiente será:
         }
 
 
-
 🖥️ **2- Con OpenCSV**{.azul}
 
 !!!Note "Nota"
@@ -226,6 +238,18 @@ La **data class Alumno** correspondiente será:
     **CSVReader** y **CSVWriter** son clases Java, pensadas originalmente para Java, aunque se pueden usar desde Kotlin.
 
 **Ejempo_OpenCSV_lect_esc.kt**
+
+Este ejemplo realiza la misma tarea que el anterior, pero utilizando la librería `OpenCSV`, que simplifica la lectura y escritura de archivos CSV.
+
+- Primero se convierte la ruta del archivo a `String`, porque `OpenCSV` trabaja con clases tradicionales de `java.io` como `FileReader` y `FileWriter`.
+- Después se abre un `CSVWriter` para escribir el archivo, añadiendo primero la cabecera y luego varias filas con los datos de los alumnos.
+- Una vez creado el fichero, se abre un `CSVReader` para leer todo su contenido.
+- El método `readAll()` devuelve todas las filas del CSV como una lista de arrays de cadenas.
+- Durante el recorrido de las filas, se omite la primera porque corresponde a la cabecera.
+- A continuación se extraen los valores de cada fila y se convierten en objetos `Alumno`.
+- Finalmente, esos objetos pueden usarse dentro del programa igual que en el ejemplo sin librerías.
+
+La finalidad del ejercicio es comprobar cómo una librería especializada reduce el trabajo manual y hace más cómoda la manipulación de archivos CSV.
 
         import com.opencsv.CSVReader
         import com.opencsv.CSVWriter
@@ -304,14 +328,23 @@ Tradicionalmente, en entornos Java se ha utilizado la librería OpenCSV para lee
 | **Configuración** | `delimiter`, `quoteChar`, etc. | `csvReader { delimiter = ';' }` |
 
 
-
 **Ejempo_KotlinCSV_lect_esc.kt**
+
+Este ejemplo muestra cómo trabajar con archivos CSV usando la librería `kotlin-csv`, una alternativa más idiomática para Kotlin que permite leer y escribir de forma más expresiva.
+
+- Primero se obtiene la ruta del archivo `alumnos.csv`.
+- Después se usa `csvWriter().open(...)` para escribir el archivo fila a fila, comenzando por la cabecera y añadiendo después los datos de cada alumno.
+- A continuación se lee el CSV con `csvReader().readAllWithHeader(...)`, que interpreta la primera fila como cabecera.
+- El resultado de la lectura es una lista de mapas, donde cada fila asocia nombres de columna como `nombre` y `nota` con sus valores correspondientes.
+- Luego esas filas se transforman en objetos `Alumno`, comprobando que los datos necesarios existen antes de crear cada objeto.
+- Finalmente, se recorre la lista resultante para mostrar por pantalla la información de cada alumno.
+
+La finalidad del ejercicio es comprobar cómo una librería orientada a Kotlin simplifica el trabajo con CSV y facilita la conversión entre texto estructurado y objetos del programa.
 
         import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
         import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
         import java.io.File
         import java.nio.file.Paths
-
 
 
         fun main() {
@@ -363,7 +396,6 @@ La estructura de los ficheros **JSON** (JavaScript Object Notation) se basa en u
         
 
 
-
 **Elementos principales**{.azul}
 
 - **Objeto:**	Conjunto de pares clave-valor, delimitado por {}: "alumno"
@@ -382,7 +414,6 @@ En **Kotlin**, existen varias librerías que permiten trabajar con ficheros JSON
 | `Jackson`            | Java           | Proyectos Java/Kotlin con Spring Boot     | ❌ No             | Muy flexible y poderosa                          |
 | `Gson`               | Java           | Aplicaciones Android o proyectos simples  | ❌ No             | Fácil de usar, pero más lenta y menos segura     |
 | `org.json`           | Java           | Scripts rápidos o aprendizaje             | ❌ No             | Acceso directo a claves sin clases de datos      |
-
 
 
 Cuando trabajamos con ficheros **JSON en Kotlin**, existen dos formas de acceder a los datos, tratarlos como texto plano o estructuras genéricas, o convertirlos directamente en objetos Kotlin. Aunque la primera opción es posible y útil en ciertos casos, trabajar sin conversión implica mayor esfuerzo manual, riesgo de errores en los nombres de claves y ausencia de validación de tipos. Las librerías **kotlinx.serialization** y **Jackson** nos permiten convertir los ficheros JSON a objetos y viceversa.
@@ -429,11 +460,9 @@ Como ya vimos en el apartado anterior, **la serialización** es el proceso de co
 | `jsonArray`                   | Propiedad  | Convierte un `JsonElement` a `JsonArray` (si es compatible)               |
 
 
-
 **Métodos principales de kotlinx.serialization**{.verde}
 
 Son funciones generales que no están dentro del paquete .json, pero que se usan muy a menudo en la serialización en Kotlin.
-
 
 
 | Método de kotlinx.serialization         | ¿Qué hace?                                                   | Ejemplo básico                                                   |
@@ -445,7 +474,6 @@ Son funciones generales que no están dentro del paquete .json, pero que se usan
 | `Json.encodeToJsonElement(objeto)`     | Convierte un objeto a un árbol `JsonElement`.                | `val elem = Json.encodeToJsonElement(persona)`                  |
 | `Json.decodeFromJsonElement(elem)`     | Convierte un `JsonElement` a objeto Kotlin.                  | `val persona = Json.decodeFromJsonElement<Persona>(elem)`       |
 | `Json.parseToJsonElement(string)`      | Parsea una cadena JSON a un árbol `JsonElement` sin mapear.  | `val elem = Json.parseToJsonElement(json)`                      |
-
 
 
 **Requisitos para usar kotlinx.serialization en Gradle (JSON)**{.azul}
@@ -524,6 +552,8 @@ El resultado sería:
                 └── kotlin/
                     └── Ejemplos/
                             └──Ejemplo_JSON_KSerialization.kt 
+
+
                             └──Persona.kt
 
 
@@ -544,9 +574,20 @@ Anota la clase como **serializable**.
         data class Persona(val nombre: String, val edad: Int)
 
 
-
-
 🖥️ **Ejemplo_JSON_KSerialization.kt**
+
+
+Este ejemplo muestra el ciclo completo de trabajo con JSON usando `kotlinx.serialization`: convertir un objeto Kotlin en texto JSON, guardarlo en un archivo y volver a leerlo para reconstruir el objeto.
+
+- Primero se crea un objeto `Persona` con los datos que se quieren almacenar.
+- Después se utiliza `Json { prettyPrint = true }.encodeToString(...)` para transformarlo en una cadena JSON con formato legible.
+- A continuación se crea la carpeta de destino si no existe y se escribe el contenido JSON en el archivo `persona.json`.
+- En la segunda parte del ejemplo, se comprueba si el archivo existe antes de intentar leerlo.
+- Luego se recupera el texto del fichero con `readString(...)`.
+- Ese contenido se convierte de nuevo en un objeto `Persona` mediante `Json.decodeFromString<Persona>(...)`.
+- Finalmente, se muestra por pantalla el objeto leído para comprobar que la deserialización ha funcionado correctamente.
+
+La finalidad del ejercicio es entender cómo una `data class` anotada con `@Serializable` puede convertirse fácilmente a JSON y recuperarse después sin tener que procesar manualmente cada campo.
 
         import kotlinx.serialization.encodeToString
         import kotlinx.serialization.json.*
@@ -602,7 +643,6 @@ Anota la clase como **serializable**.
         }
 
 
-
         fun main() {
             escribirJSON()
             leerJSON()
@@ -613,6 +653,7 @@ Anota la clase como **serializable**.
 **JSON sin depender de una clase de datos**{.azul}
 
 🖥️ **Ejemplo_JSONObject.kt**
+
 
 Cuando queremos construir el JSON "a mano", sin depender de la serialización automática de la clase, utilizaremos el método **buildJsonObject**, la cual permite no tener una clase serializable y modificar campos dinámicamente.
 
@@ -734,8 +775,6 @@ Anotación|	¿Para qué sirve?
 @JsonInclude(...)|	Excluir valores nulos o vacíos en el JSON
 
 
-
-
 **Ejemplo de lectura y escritura con Jackson**{.azul}
 
 
@@ -761,12 +800,23 @@ Dependencia Gradle:
 
 🖥️ **Ejemplo_JSON_jackson.kt**
 
+
+Este ejemplo muestra cómo leer y escribir archivos JSON con la librería Jackson, que permite convertir objetos Kotlin a JSON y viceversa de forma muy directa.
+
+- Primero se crea un `ObjectMapper` mediante `jacksonObjectMapper()`, que será la herramienta encargada de hacer la conversión.
+- Después se construye un objeto `Persona` con los datos que se quieren guardar.
+- A continuación se define el archivo de salida y se usa `writeValue(...)` para escribir el objeto como JSON en disco.
+- La opción `writerWithDefaultPrettyPrinter()` sirve para generar un JSON con formato legible.
+- En la segunda parte del ejemplo, se vuelve a crear el `ObjectMapper` y se abre el mismo archivo JSON.
+- Con `readValue<Persona>(...)` se lee el contenido del fichero y se reconstruye automáticamente un objeto `Persona`.
+- Finalmente, se muestran sus datos por pantalla para verificar que la lectura se ha realizado correctamente.
+
+La finalidad del ejercicio es comprobar cómo Jackson simplifica la conversión entre objetos Kotlin y JSON sin necesidad de procesar manualmente el texto del archivo.
+
         
         import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
         import com.fasterxml.jackson.module.kotlin.readValue
         import java.io.File
-
-
 
 
         fun escribirJson() {
@@ -818,8 +868,20 @@ Dependencia Gradle:
         ]
 
 
-
 🖥️ **Ejemplo_listaJSON_jackson.kt**
+
+
+Este ejemplo amplía el caso anterior para trabajar no con un único objeto, sino con una lista completa de objetos `Persona` almacenada en un archivo JSON.
+
+- Primero se crea un `ObjectMapper` con `jacksonObjectMapper()`.
+- Después se construye una lista de objetos `Persona`, que será la información que se quiere guardar.
+- A continuación se define el archivo `lista_personas.json` y se escribe la lista completa con `writeValue(...)`.
+- Jackson convierte automáticamente la lista en un array JSON, donde cada elemento del array representa una persona.
+- En la segunda parte del ejemplo, se vuelve a abrir el archivo y se lee su contenido con `readValue<List<Persona>>(...)`.
+- Esto permite reconstruir directamente una lista de objetos Kotlin a partir del JSON almacenado.
+- Finalmente, se recorre la lista leída para mostrar por pantalla los datos de cada persona.
+
+La finalidad del ejercicio es entender que Jackson no solo puede serializar objetos individuales, sino también colecciones completas, facilitando el intercambio de listas de datos en formato JSON.
 
         import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
         import com.fasterxml.jackson.module.kotlin.readValue
@@ -863,7 +925,6 @@ Dependencia Gradle:
         }
 
 
-
 ## 🔹Ficheros XML
 
 Un fichero **XML** (eXtensible Markup Language) es un formato de texto estructurado diseñado para almacenar y transportar datos de forma legible tanto para humanos como para máquinas.
@@ -879,8 +940,6 @@ Tiene una estructura jerárquica basada en etiquetas, similar al HTML, pero orie
         </elemento>
         <otroElemento atributo="valor" />
     </raiz>
-
-
 
 
 La mejor forma de trabajar con XML en **Kotlin** es utlizar la librería **DOM** (Document Object Model) o **JDOM2**, que permiten crear, leer y modificar fácilmente estructuras XML.
@@ -900,7 +959,6 @@ Document|	Representa todo el documento XML.
 Element|	Representa una etiqueta (nodo) del XML.
 Attribute|	Representa un atributo dentro de una etiqueta.
 XMLOutputter|	Convierte el árbol de elementos en texto XML.
-
 
 
 **Métodos comunes de JDOM2 para manipular XML**{.verde}
@@ -949,6 +1007,7 @@ XMLOutputter|	Convierte el árbol de elementos en texto XML.
 
 
 🖥️ **Ejemplo_XML_Dom.kt**: Lectura de alumnos.xml
+
 
         import org.jdom2.input.SAXBuilder
         import org.jdom2.Document
@@ -1037,14 +1096,24 @@ Vamos a generar el siguiente archivo XML utilizando dos ejemplos, uno se encarga
         }
 
 
-
 - Reutilizamos la **clase Alumno** creada en los ejemplos anteriores:
 
         data class Alumno(val nombre: String, val nota: Int)
 
 
-
 🖥️ **Ejemplo_Objeto_a_XML.kt**: Leemos el objeto Alumno y lo convertimos en fichero xml (alumnos.xml).
+
+
+Este ejemplo muestra cómo convertir una colección de objetos `Alumno` en un documento XML usando JDOM2, construyendo manualmente la estructura del fichero.
+
+- Primero se crea una lista de objetos `Alumno`, que representa la información que se quiere almacenar.
+- Después se genera el elemento raíz `<alumnos>`, que contendrá todos los registros.
+- A continuación se recorre la lista de alumnos y, para cada uno, se crea un nodo `<alumno>` con sus elementos hijos `<nombre>` y `<nota>`.
+- Cada nodo generado se añade al elemento raíz, formando así el árbol completo del documento XML.
+- Una vez construida la estructura, se crea un objeto `Document` a partir del nodo raíz.
+- Finalmente, `XMLOutputter` escribe el contenido en el fichero `alumnos.xml` con formato legible.
+
+La finalidad del ejercicio es entender cómo pasar de objetos Kotlin a un fichero XML creando manualmente las etiquetas y la jerarquía del documento.
 
 
         import org.jdom2.Document
@@ -1087,6 +1156,18 @@ Vamos a generar el siguiente archivo XML utilizando dos ejemplos, uno se encarga
 
 🖥️ **Ejemplo_XML_a_Objeto.kt**: Leemos el archivo alumnos.xml y lo convertimos a objeto.
 
+
+Este ejemplo realiza el proceso inverso al anterior: leer un fichero XML existente y transformar su contenido en objetos Kotlin de tipo `Alumno`.
+
+- Primero se crea una lista mutable donde se irán almacenando los objetos recuperados del XML.
+- Después se abre el archivo `alumnos.xml` y se analiza con `SAXBuilder`, obteniendo un documento XML en memoria.
+- A continuación se accede al elemento raíz y se recuperan todos los nodos `<alumno>`.
+- Luego se recorren esos nodos uno a uno para extraer el texto de sus etiquetas `<nombre>` y `<nota>`.
+- Con esos datos se crea un objeto `Alumno` por cada elemento leído y se añade a la lista.
+- Finalmente, se muestran por pantalla los objetos obtenidos para comprobar que la conversión desde XML se ha realizado correctamente.
+
+La finalidad del ejercicio es entender cómo leer la estructura de un documento XML y mapear manualmente sus elementos a objetos del programa.
+
         import org.jdom2.input.SAXBuilder
         import java.io.File
 
@@ -1113,7 +1194,6 @@ Vamos a generar el siguiente archivo XML utilizando dos ejemplos, uno se encarga
             // Mostrar los objetos
             alumnos.forEach { println(it) }
         }
-
 
 
 ### 🔹Jackson (XML)
@@ -1186,6 +1266,19 @@ Creamos la clase contenedora **ListaAlumnos**, que actúa como puente entre el X
  🖥️ **Ejemplo_XML_Jackson.kt**
 
 
+Este ejemplo muestra cómo usar Jackson XML para serializar y deserializar automáticamente una colección de objetos Kotlin, sin tener que construir o recorrer manualmente el árbol XML como ocurría con JDOM2.
+
+- Primero se crea un `XmlMapper`, que es la clase de Jackson encargada de trabajar con archivos XML.
+- Después se construye un objeto `ListaAlumnos`, que actúa como contenedor de la lista de objetos `Alumno` y representa el nodo raíz `<alumnos>`.
+- A continuación se define el archivo de salida y se utiliza `writeValue(...)` para generar el fichero XML a partir de ese objeto.
+- La llamada a `writerWithDefaultPrettyPrinter()` permite que el XML se escriba con un formato legible.
+- En la segunda parte del ejemplo, se vuelve a crear un `XmlMapper` y se abre el archivo `alumnos.xml`.
+- Con `readValue<ListaAlumnos>(...)` se reconstruye automáticamente el objeto contenedor junto con la lista de alumnos que incluye.
+- Finalmente, se recorren los elementos leídos para mostrar por pantalla la información recuperada.
+
+La finalidad del ejercicio es comprobar cómo Jackson permite convertir entre objetos Kotlin y XML de forma automática, siempre que exista una clase que represente correctamente la estructura del documento.
+
+
         import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
         import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
         import com.fasterxml.jackson.dataformat.xml.XmlMapper
@@ -1233,5 +1326,6 @@ Creamos la clase contenedora **ListaAlumnos**, que actúa como puente entre el X
             escribirXml()
             leerXml()
         }
+
 
 

@@ -29,11 +29,19 @@ Cada formato tiene características que lo hacen adecuado para determinados cont
 
 
 
-Antes de abordar la conversión entre formatos como JSON, XML o CSV, es esencial comprender el concepto de **serialización de objetos**. En programación, la serialización es el proceso mediante el cual un objeto en memoria —con sus propiedades y valores— se transforma en una representación textual o binaria que puede ser almacenada en un fichero o transmitida a través de una red.
+Antes de abordar la conversión entre formatos como JSON, XML o CSV, es esencial comprender el concepto de **serialización de objetos**: el proceso mediante el cual un objeto en memoria se transforma en una representación que puede almacenarse o transmitirse, y su proceso inverso, la **deserialización**.
 
-La mayoría de las operaciones de lectura o escritura en estos formatos no trabajan directamente con texto, sino con objetos. Por ejemplo, al guardar información en JSON, no escribimos el fichero línea a línea, sino que serializamos un objeto Kotlin (o Java, Python, etc.) a ese formato. Del mismo modo, al leer un archivo XML o CSV, deserializamos su contenido para reconstruir objetos que podamos usar en la aplicación.
+Este concepto se desarrolla en detalle en el siguiente apartado.
 
-Comprender cómo funciona la serialización y qué herramientas proporciona el lenguaje para ello (como kotlinx.serialization, Jackson o Gson en Kotlin/Java) es clave para que la conversión entre formatos no sea un proceso manual y tedioso, sino automático, controlado y estructurado.
+---
+
+!!!question "🧠 Comprueba tu comprensión"
+    1. Si necesitas exportar una gran cantidad de datos tabulares simples (como el inventario de una tienda sin datos anidados) para que los lea otra persona o sistema, ¿qué formato suele ser el más rápido, ligero y compatible?
+    2. Si necesitas comunicar el *backend* y el *frontend* de una API web moderna, ¿qué formato es el estándar actual más utilizado?
+
+    ??? success "Ver respuestas"
+        1. **CSV**. Al no tener etiquetas redundantes ni requerir estructuras jerárquicas, ocupa muy poco espacio y se puede abrir directamente en Excel o LibreOffice.
+        2. **JSON**. Es el estándar dominante en servicios web, siendo ligero y fácil de parsear en la mayoría de lenguajes.
 
  
 

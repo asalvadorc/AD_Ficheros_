@@ -1,14 +1,13 @@
-# Acceso al sistema de ficheros. Java.nio 
-
+﻿# Acceso al sistema de ficheros. Java.nio 
 
 !!!warning "Proyecto Ficheros"
-    Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos en **IntelliJ** un proyecto llamado **Ficheros**.
+    1) Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos en **IntelliJ** un proyecto **Kotlin** llamado **Ficheros**.
 
-    Dentro de este proyecto crearemos tres paquetes (**sistema**, **contenido** y **formatos**) para organizar los diferentes ejemplos, que en cada ocasión se indicará en que paquete deben ubicarse.
+    ![Ref](new_project.png){: .img-pequena .img-izquierda }
 
-    ![Ref](new_project.png)|![Ref](paquetes.png)
+    2) Dentro de este proyecto crearemos tres paquetes (**sistema**, **contenido** y **formatos**) para organizar los diferentes ejemplos, que en cada ocasión se indicará en que paquete deben ubicarse.
 
-
+    ![Ref](paquetes.png){: .img-muy-pequena .img-izquierda }
 
 Durante muchos años se ha utilizado la librería **java.io** para trabajar con ficheros en el mundo Java. Se trata de un **API** muy potente y flexible que nos permite realizar casi cualquier tipo de operación. Sin embargo es una API complicada de entender. **Java.nio** (New IO) es una nueva API disponible desde Java7 que nos permite mejorar el rendimiento, así como simplificar el manejo de muchas operaciones. 
 
@@ -30,6 +29,7 @@ La clase **java.nio.file.Files** es el otro punto de entrada a la librería de f
 !!!Warning "Ejemplos"
     Los siguientes ejemplos se incluirán en el paquete **sistema** dentro del proyecto **Ficheros**.  
 
+
 ## 🔹Paths
 
 La clase **Paths** es una clase de utilidad que proporciona métodos estáticos para crear objetos **Path**, que luego puedes usar con métodos de **Files**.
@@ -45,6 +45,15 @@ La clase **Paths** es una clase de utilidad que proporciona métodos estáticos 
 
 🖥️ **Ejemplo_get.kt**
 
+
+Este ejemplo muestra cómo construir rutas con `Paths.get(...)` a partir de uno o varios segmentos de texto.
+
+- Primero se crea una ruta relativa (`documentos/archivo.txt`).
+- Después se crea una ruta con más segmentos que simula una ruta más completa.
+- Finalmente, se imprimen ambas rutas para ver cómo Java/Kotlin las representa según el sistema operativo.
+
+La finalidad del ejercicio es entender que `Paths.get(...)` solo construye la ruta en memoria y no comprueba si el archivo existe realmente.
+
         import java.nio.file.Path
         import java.nio.file.Paths
 
@@ -56,8 +65,21 @@ La clase **Paths** es una clase de utilidad que proporciona métodos estáticos 
             println("Ruta 2: $path2")
         }
 
+!!!note "📤 Salida esperada"
+        Ruta 1: documentos\archivo.txt
+        Ruta 2: C:\usuarios\nombre\archivo.txt
+
 
 🖥️ **Ejemplo_uri.kt**
+
+
+Este ejemplo muestra cómo crear un `Path` a partir de una URI de tipo `file:///`.
+
+- Primero se define una URI con formato de archivo local.
+- Después se transforma esa URI en un objeto `Path` con `Paths.get(uri)`.
+- Finalmente, se imprime la ruta generada.
+
+La finalidad del ejercicio es ver otra forma válida de construir rutas, útil cuando la fuente de datos ya viene en formato URI.
 
         import java.net.URI
         import java.nio.file.Path
@@ -69,6 +91,9 @@ La clase **Paths** es una clase de utilidad que proporciona métodos estáticos 
 
             println("Ruta a partir de URI: $path")
         }
+
+!!!note "📤 Salida esperada"
+        Ruta a partir de URI: C:\usuarios\nombre\archivo.txt
 
 
 ## 🔹Path
@@ -93,7 +118,6 @@ Un objeto Path puede representarse de dos formas:
 Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
 
 
-
 | **Método**                | **Qué devuelve**          | **Descripción**                                                                 |
 |-------------------------- |---------------------------|---------------------------------------------------------------------------------|
 | .startsWith(Path other)   | `Boolean`                 | Devuelve `true` si el path empieza por el path dado.                           |
@@ -108,6 +132,16 @@ Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
 
 
 🖥️ **Ejemplo_Path.kt**
+
+
+Este ejemplo recorre los métodos más usados de `Path` para inspeccionar y transformar rutas.
+
+- Primero se crea un `Path` base y se muestran sus propiedades principales (`fileName`, `parent`, `root`, etc.).
+- Después se combinan rutas con `resolve(...)` y se calcula una ruta relativa con `relativize(...)`.
+- También se normaliza una ruta con `normalize()` para eliminar segmentos redundantes.
+- Finalmente, se comprueba si una ruta empieza o termina con determinados valores.
+
+La finalidad del ejercicio es dominar las operaciones de manipulación de rutas antes de realizar operaciones reales de lectura o escritura con `Files`.
 
         import java.nio.file.Path
         import java.nio.file.Paths
@@ -133,6 +167,18 @@ Las **operaciones** y **métodos** principales que se pueden hacer con Path son:
             println("startsWith(\"documentos\"): ${path.startsWith("documentos")}")
             println("endsWith(\"ejemplo.txt\"): ${path.endsWith("ejemplo.txt")}")
         }
+
+!!!note "📤 Salida esperada"
+        toString(): documentos\ejemplo.txt
+        toAbsolutePath(): C:\Ruta\Al\Proyecto\documentos\ejemplo.txt
+        getFileName(): ejemplo.txt
+        getParent(): documentos
+        getRoot(): null
+        resolve(): documentos\ejemplo.txt\imagenes\foto.png
+        relativize(): ..\otroArchivo.txt
+        normalize(): archivo.txt
+        startsWith("documentos"): true
+        endsWith("ejemplo.txt"): true
         
 
 
@@ -145,7 +191,6 @@ En Java (y también en Kotlin), un **Stream** es una secuencia de elementos que 
 
 
 Las **operaciones** y **métodos** principales a realizar con Files son:
-
 
 
 | Método                            | Qué devuelve           | Descripción                                            |
@@ -171,8 +216,16 @@ Las **operaciones** y **métodos** principales a realizar con Files son:
 | .getAttribute(Path, String)       | `Object`               | Devuelve un atributo específico.                       |
 
 
-
 🖥️ **Ejemplo_permisos.kt**: existencia y comprobación de permisos
+
+
+Este ejemplo verifica si una ruta existe y qué permisos básicos tiene asociados.
+
+- Primero se crea un `Path` al archivo que se quiere comprobar.
+- Después se consulta su existencia con `Files.exists(...)`.
+- A continuación se revisan permisos de lectura, escritura y ejecución.
+
+La finalidad del ejercicio es realizar una validación previa antes de operar sobre un fichero, evitando errores por acceso no permitido.
 
         import java.nio.file.Path
         import java.nio.file.Paths
@@ -186,10 +239,27 @@ Las **operaciones** y **métodos** principales a realizar con Files son:
             println("readable = ${Files.isReadable(path)}")
             println("writable = ${Files.isWritable(path)}")
             println("executable = ${Files.isExecutable(path)}")
-        }    
+        }
+
+!!!note "📤 Salida esperada"
+        path = documentos\ejemplo.txt
+        exists = true
+        readable = true
+        writable = true
+        executable = true
 
   
 🖥️ **Ejemplo_creardirectorio.kt**: crear un directorio
+
+
+Este ejemplo muestra cómo crear un directorio con NIO y gestionar los errores habituales.
+
+- Primero se define la ruta del directorio a crear.
+- Después se intenta crear con `Files.createDirectory(...)`.
+- Si ya existe, se captura `FileAlreadyExistsException`.
+- Si ocurre otro problema de entrada/salida, se captura `IOException`.
+
+La finalidad del ejercicio es aprender a combinar operaciones de creación con manejo explícito de excepciones.
 
 
         import java.nio.file.Path
@@ -212,7 +282,19 @@ Las **operaciones** y **métodos** principales a realizar con Files son:
             }
         }
 
+!!!note "📤 Salida esperada"
+        Directorio creado en: documentos
+
 🖥️ **Ejemplo_borrardirectorio.kt**: elimina un directorio
+
+
+Este ejemplo elimina un directorio solo si existe previamente.
+
+- Primero se construye la ruta al directorio.
+- Después se comprueba su existencia con `Files.exists(...)`.
+- Si existe, se elimina con `Files.delete(...)`.
+
+La finalidad del ejercicio es introducir un patrón seguro de borrado, evitando llamar a `delete` sobre rutas inexistentes.
 
         import java.nio.file.Files
         import java.nio.file.Path
@@ -255,8 +337,17 @@ El método  **delete(Path)** borra el fichero o directorio o lanza una excepció
     El metodo **deleteIfExists(Path)** tambien borra el fichero o directorio, pero no lanza ningun error en caso de que el fichero o directorio no exista.
 
 
-
 🖥️ **Ejemplo_copiardirectorio.kt**: copiar directorios
+
+
+Este ejemplo muestra cómo copiar un directorio usando `Files.copy(...)`.
+
+- Primero se definen ruta origen y ruta destino.
+- Después se intenta copiar el directorio.
+- Si el destino ya existe, se captura la excepción correspondiente.
+- También se indica la opción `REPLACE_EXISTING` para sobrescribir si se necesita.
+
+La finalidad del ejercicio es entender que, al copiar directorios, se crea la carpeta destino pero no se copian automáticamente sus contenidos internos.
 
 Se puede copiar un archivo o directorio usando el método copy(Path, Path, CopyOption...). La copia falla si el archivo de destino existe, a menos que se especifique la opción REPLACE_EXISTING. 
 
@@ -289,6 +380,15 @@ Se puede copiar directorios aunque, los archivos dentro del directorio no se cop
 
 🖥️ **Ejemplo_copiarficheros.kt**: copiar ficheros
 
+
+Este ejemplo copia un fichero concreto y permite sobrescribir el destino si ya existe.
+
+- Primero se definen el archivo origen y el archivo destino.
+- Después se ejecuta la copia con `StandardCopyOption.REPLACE_EXISTING`.
+- Si hay conflictos o errores de E/S, se gestionan mediante excepciones.
+
+La finalidad del ejercicio es practicar la copia de archivos con control de colisiones en el destino.
+
         import java.io.IOException
         import java.nio.file.FileAlreadyExistsException
         import java.nio.file.Files
@@ -311,9 +411,21 @@ Se puede copiar directorios aunque, los archivos dentro del directorio no se cop
             }
         }
 
+!!!note "📤 Salida esperada"
+        Archivo copiado correctamente a: documentos\ejemplo_copia.txt
 
 
 🖥️ **Ejemplo_moverficheros.kt**: mover ficheros y directorios cambiando el nombre.
+
+
+Este ejemplo mueve un archivo de ubicación y, al mismo tiempo, cambia su nombre.
+
+- Primero se define la ruta de origen y la de destino final.
+- Después se usa `Files.move(...)` para realizar el traslado.
+- La opción `REPLACE_EXISTING` permite reemplazar si el destino ya existe.
+- Se gestionan excepciones para informar de posibles errores.
+
+La finalidad del ejercicio es mostrar que mover y renombrar son una misma operación cuando cambia la ruta de destino.
 
         import java.io.IOException
         import java.nio.file.FileAlreadyExistsException
@@ -337,11 +449,23 @@ Se puede copiar directorios aunque, los archivos dentro del directorio no se cop
             }
         }
 
+!!!note "📤 Salida esperada"
+        Archivo movido/renombrado correctamente a: documentos2\ejemplo2.txt
 
 
 El siguiente ejemplo recorre la estructura home en tu sistema, indicando los permisos de cada archivo y directorio: 
 
 🖥️ **Ejemplo_SistemaFicheros.kt**
+
+
+Este ejemplo implementa un explorador de ficheros en consola para navegar por directorios y ver atributos básicos.
+
+- Primero establece como punto inicial el directorio personal del usuario.
+- Después lista los elementos del directorio actual y muestra tipo, permisos y tamaño.
+- Permite navegar a subdirectorios por índice, subir con `..` o salir con `salir`.
+- Controla entradas inválidas y errores de acceso con manejo de excepciones.
+
+La finalidad del ejercicio es integrar en un único programa varias operaciones de NIO: listado, atributos, permisos y navegación por rutas.
 
         import java.nio.file.*
         import java.nio.file.attribute.BasicFileAttributes
@@ -410,8 +534,6 @@ El siguiente ejemplo recorre la estructura home en tu sistema, indicando los per
         }
 
 
-
-
 ## 🔹FileSystem
 
 En la biblioteca **java.nio** podemos encontrar otras clases que complementan y amplían lo que se puede hacer con **java.nio.file.Path**.
@@ -445,6 +567,15 @@ Pero usando FileSystems.getDefault() puedes:
 - Obtener características del sistema.
 
 🖥️ **Ejemplo_FileSystem.kt**: obtener el nombre de un fichero así como la carpeta padre en la que se encuentra ubicado.
+
+
+Este ejemplo muestra el uso de `FileSystems.getDefault()` para construir rutas y recorrer sus segmentos.
+
+- Primero se obtiene el sistema de archivos por defecto.
+- Después se crea una ruta de fichero y se muestran su nombre y el de su carpeta padre.
+- A continuación se crea una ruta de directorio y se recorre parte por parte con su iterador.
+
+La finalidad del ejercicio es comprender la relación entre `FileSystem` y `Path`, y cuándo puede interesar trabajar desde el sistema de archivos explícitamente.
 
         import java.nio.file.FileSystems
         import java.nio.file.Path
@@ -487,8 +618,17 @@ Para poder utilizar un objeto de tipo **BasicFileAttributes**, primero es necesa
 | isRegularFile()    | Verifica si es un archivo regular (no directorio). | `Boolean`             |
 
 
-
 🖥️ **Ejemplo_BasicFileAttributes.kt**:  leer los atributos básicos de un archivo o directorio.
+
+
+Este ejemplo recupera metadatos básicos de una ruta con `BasicFileAttributes`.
+
+- Primero se define la ruta a consultar.
+- Después se comprueba si existe para evitar errores.
+- Si existe, se leen sus atributos con `Files.readAttributes(...)`.
+- Finalmente, se muestran datos como fecha de creación, último acceso, tipo y tamaño.
+
+La finalidad del ejercicio es aprender a obtener información técnica del sistema de archivos sin abrir directamente el contenido del fichero.
 
     import java.nio.file.Files
     import java.nio.file.Paths
@@ -506,6 +646,12 @@ Para poder utilizar un objeto de tipo **BasicFileAttributes**, primero es necesa
         }
     }
 
+!!!note "📤 Salida esperada"
+        Creación: 2024-10-01T12:00:00Z
+        Último acceso: 2024-10-01T12:00:00Z
+        Es un directorio: true
+        Tamaño del archivo: 4096 bytes
+
 ## 🔹FileStore
 
 FileStore permite obtener **información sobre el sistema de archivos**, como el espacio disponible.
@@ -513,7 +659,6 @@ FileStore permite obtener **información sobre el sistema de archivos**, como el
 No se puede instanciar un FileStore directamente. Para usarlo, necesitamos obtenerlo desde un Path (archivo o directorio)
 
         val Store = Files.getFileStore(path)
-
 
 
 | Método                          | Descripción                                                       | Devuelve       |
@@ -527,6 +672,15 @@ No se puede instanciar un FileStore directamente. Para usarlo, necesitamos obten
 
 🖥️ **Ejemplo_FileStore.kt**: obtener información del almacenamiento físico.
 
+
+Este ejemplo consulta información del volumen o partición donde se encuentra una ruta.
+
+- Primero se define una ruta base del sistema.
+- Después se obtiene su `FileStore` con `Files.getFileStore(...)`.
+- Finalmente, se muestran tipo de sistema de archivos y espacio total/disponible.
+
+La finalidad del ejercicio es conocer cómo acceder a métricas de almacenamiento del sistema desde Java NIO.
+
     import java.nio.file.FileStore
     import java.nio.file.Files
     import java.nio.file.Paths
@@ -539,6 +693,11 @@ No se puede instanciar un FileStore directamente. Para usarlo, necesitamos obten
         println("Espacio total: ${fileStore.totalSpace / (1024 * 1024)} MB")
         println("Espacio disponible: ${fileStore.usableSpace / (1024 * 1024)} MB")
     }
+
+!!!note "📤 Salida esperada"
+        Sistema de archivos: NTFS
+        Espacio total: 476938 MB
+        Espacio disponible: 154320 MB
 
 !!!Note "Nota"
     Funciona en Windows y Linux, aunque Files.getFileStore(Paths.get("/")) podría requerir ajustes en Windows para seleccionar una unidad específica (C:\, D:\, etc.).    
@@ -584,4 +743,67 @@ No se puede instanciar un FileStore directamente. Para usarlo, necesitamos obten
                 println("\n El fichero 'datos.txt' no existe en la raíz del proyecto.")
             }
         }
+
+!!!note "📤 Salida esperada"
+         Raíces del sistema:
+        - C:\
+        - D:\
+
+         Sistemas de archivos detectados:
+        Unidad: OS (NTFS)
+        Total: 476938 MB
+        Libre: 154320 MB
+
+         Atributos del fichero 'datos.txt':
+        Creación: 2024-10-01T12:00:00Z
+        Último acceso: 2024-10-01T12:00:00Z
+        Última modificación: 2024-10-01T12:00:00Z
+        Tamaño: 4096 bytes
+        ¿Es directorio?: false
+        ¿Es archivo normal?: true
                     
+---
+
+!!!question "🧠 Comprueba tu comprensión"
+    1. ¿Cuál es la diferencia principal entre `Path` y `FileStore`?
+    2. Si necesitas crear un directorio y también sus carpetas padre en caso de que no existan, ¿qué método usarías?
+    3. Si instancias un objeto con `Paths.get("C:/no_existe.txt")`, ¿se lanza alguna excepción indicando que el archivo no está en el disco?
+
+    ??? success "Ver respuestas"
+        1. `Path` representa una ruta (un archivo o directorio), mientras que `FileStore` representa el volumen o partición física donde se almacena (ej. el disco C:).
+        2. Usaría `Files.createDirectories(path)` (en plural).
+        3. **No**. Crear un objeto `Path` solo construye la representación en memoria. El disco no se toca hasta que usas un método de la clase `Files` sobre ese `Path`.
+
+## 🔹 Gestión de excepciones (`try-catch`, `use`)
+
+La gestión de errores en operaciones de entrada/salida es clave para evitar fallos en tiempo de ejecución y mejorar la robustez de las aplicaciones.
+
+- **`try-catch`** permite capturar errores previsibles (archivo no encontrado, permisos, formato inválido, etc.).
+- **`use`** garantiza el cierre automático de recursos (streams, readers, writers), incluso si ocurre una excepción.
+
+**Recomendaciones didácticas**{.verde}
+
+- Capturar excepciones específicas siempre que sea posible (por ejemplo, `IOException`).
+- Evitar `catch (Exception)` como única estrategia; usarlo solo como respaldo.
+- Mostrar mensajes de error claros para facilitar depuración y mantenimiento.
+- Validar rutas y existencia de ficheros antes de operar cuando sea necesario.
+
+**Ejemplo mínimo en Kotlin**
+
+		import java.io.IOException
+		import java.nio.file.Files
+		import java.nio.file.Paths
+
+		fun main() {
+			val ruta = Paths.get("documentos/datos.txt")
+
+			try {
+				Files.newBufferedReader(ruta).use { reader ->
+					reader.forEachLine { println(it) }
+				}
+			} catch (e: IOException) {
+				println("Error de entrada/salida: ${e.message}")
+			}
+		}
+
+En este ejemplo, `use` cierra automáticamente el `BufferedReader`, y `try-catch` controla posibles errores de lectura.  

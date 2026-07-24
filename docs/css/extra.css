@@ -9,11 +9,11 @@ p {
 .wy-nav-content { 
     max-width: 100%; 
     padding: 2rem; 
-  } 
+} 
   
 .md-content {
     max-width: 100%; /* Ajusta este valor según tus necesidades */
-    margin: 2rem;; /* Centra el contenedor en la página */
+    margin: 2rem; /* Centra el contenedor en la página */
 }
 
 /*code, pre {
@@ -29,7 +29,6 @@ p {
     color: #2980B9 !important;
     font-size: 18px;
     /*text-decoration: underline;*/
-
 }
 
 .verde {
@@ -37,9 +36,86 @@ p {
     font-size: 18px;
 } 
 
-
-
 img {
-    border: 1px solid black; /* Marco negro de 2 píxeles */
-  }
+    display: block;
+    margin: 2rem auto;
+    max-width: 90%;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    border: 1px solid #ddd;
+}
 
+.img-muy-pequena { max-width: 25% !important; }
+.img-pequena { max-width: 40% !important; }
+.img-mediana { max-width: 60% !important; }
+
+.img-izquierda {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+/* --- ESTILOS MODERNOS PARA LAS CAJAS (ADMONITIONS) --- */
+.admonition {
+    border-radius: 8px !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+    border-left-width: 5px !important;
+    border-top: 1px solid #eaeaea !important;
+    border-right: 1px solid #eaeaea !important;
+    border-bottom: 1px solid #eaeaea !important;
+}
+
+/* Nota / Info (Azul suave) */
+.admonition.note, .admonition.info {
+    background-color: #f4f9fc !important;
+    border-left-color: #3498db !important;
+}
+.admonition.note .admonition-title, .admonition.info .admonition-title {
+    background-color: #e6f2f9 !important;
+    color: #2c3e50 !important;
+    border-bottom: none !important;
+}
+
+/* Tip / Hint (Verde suave) */
+.admonition.tip, .admonition.hint {
+    background-color: #f4fbf6 !important;
+    border-left-color: #27ae60 !important;
+}
+.admonition.tip .admonition-title, .admonition.hint .admonition-title {
+    background-color: #e5f7ed !important;
+    color: #2c3e50 !important;
+    border-bottom: none !important;
+}
+
+/* Warning (Naranja suave) */
+.admonition.warning {
+    background-color: #fef9f4 !important;
+    border-left-color: #e67e22 !important;
+}
+.admonition.warning .admonition-title {
+    background-color: #fcf1e5 !important;
+    color: #2c3e50 !important;
+    border-bottom: none !important;
+}
+
+/* Question (Morado suave) */
+.admonition.question {
+    background-color: #f8f6fb !important;
+    border-left-color: #8e44ad !important;
+}
+.admonition.question .admonition-title {
+    background-color: #eee9f5 !important;
+    color: #2c3e50 !important;
+    border-bottom: none !important;
+}
+
+/* --- ESTILOS MEJORADOS PARA TÍTULOS --- */
+h1, h2, h3, h4 {
+    color: #2c3e50 !important; /* Azul pizarra muy oscuro y elegante */
+    font-weight: 600 !important;
+}
+
+h1, h2 {
+    border-bottom: 1px solid #eaeaea !important; /* Línea separadora sutil */
+    padding-bottom: 8px !important;
+    margin-top: 1.5em !important;
+}

@@ -3,6 +3,9 @@
 
 ## 📋 Enunciado
 
+!!!info "Proyecto Integrador"
+    Este ejercicio es la **Parte 1** de un proyecto que irás construyendo a lo largo de todo el módulo. Escribe código limpio y ordenado, ¡porque en los siguientes temas añadirás más funcionalidades a este mismo programa!
+
 Desarrollar un programa en **Kotlin** que permita **explorar y manipular el contenido del directorio personal del usuario (home)** utilizando la API de `java.nio.file`.
 
 El programa debe:

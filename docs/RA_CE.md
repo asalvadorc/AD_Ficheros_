@@ -14,7 +14,6 @@
 | 6  | Conversión entre formatos (JSON, XML, binario)            | e) Clases para realizar conversiones      |
 | 7  | Gestión de excepciones (`try-catch`, `use`)               | f) Gestión de errores y validaciones      |
 | 8  | Pruebas y documentación de aplicaciones                   | g) Pruebas y documentación                |
-
 <!--
 **Rúbrica de Evaluación - Acceso y gestión de ficheros en Kotlin**{.azul}
 
