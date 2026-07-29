@@ -1,5 +1,8 @@
 # 📝 Ejercicio 2: Proyecto Integrador (Parte 2) - Gestión de contenido
 
+!!!info "Estructura del proyecto"
+    Antes de empezar, crea un paquete llamado `Ejercicio2` en tu proyecto Kotlin. Dentro de ese paquete se deberá construir el archivo `.kt` con la solución del ejercicio.
+
 ## 📋 Enunciado
 
 En este ejercicio vamos a continuar desarrollando el **Explorador Interactivo** que iniciamos en el Tema 1. Ahora que ya sabemos cómo navegar por el sistema de ficheros, vamos a añadirle la capacidad de **crear, leer, modificar y copiar el contenido** de los archivos.

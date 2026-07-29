@@ -1,5 +1,8 @@
 # 📝 Ejercicio 3: Proyecto Integrador (Parte 3) - Formatos de intercambio
 
+!!!info "Estructura del proyecto"
+    Antes de empezar, crea un paquete llamado `Ejercicio3` en tu proyecto Kotlin. Dentro de ese paquete se deberá construir el archivo `.kt` con la solución del ejercicio.
+
 ## 📋 Enunciado
 
 En este ejercicio vamos a completar el **Explorador Interactivo** que has desarrollado en los temas anteriores. Ahora añadiremos dos capacidades habituales en aplicaciones reales: **cargar configuración externa** y **exportar información** del sistema de ficheros en varios formatos.
