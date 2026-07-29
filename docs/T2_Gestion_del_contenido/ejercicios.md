@@ -4,10 +4,11 @@
 
 En este ejercicio vamos a continuar desarrollando el **Explorador Interactivo** que iniciamos en el Tema 1. Ahora que ya sabemos cómo navegar por el sistema de ficheros, vamos a añadirle la capacidad de **crear, leer, modificar y copiar el contenido** de los archivos.
 
+
 !!!info "Código Base"
-    Debes utilizar como punto de partida el código que desarrollaste en el Ejercicio 1. Si no conseguiste terminarlo, puedes descargar la solución base a continuación para continuar desde aquí sin bloquearte.
+    Utiliza como punto de partida el código desarrollado en el Ejercicio 1. Si lo prefieres, puedes comenzar directamente desde la plantilla oficial del proyecto, que incluye la estructura del programa y los retos a completar.
     
-    📥 **[Descargar Código Base Oficial (Solucion_T1_Base_T2.kt)](../recursos/Solucion_T1_Base_T2.kt)**
+    📥 **[Descargar Código Base Oficial (Solucion_T1_Plantilla_T2.kt)](../recursos/Solucion_T1_Base_T2.kt)**
 
 La aplicación debe incorporar las siguientes **nuevas opciones** al menú interactivo:
 
@@ -33,15 +34,72 @@ La aplicación debe incorporar las siguientes **nuevas opciones** al menú inter
 
 ---
 
+📤 Ejemplo de salida esperada
+
+
+        HOME: C:\Users\as_co
+
+        --------------------------------
+        Nombre: aliciatxt
+        Tipo: Archivo
+        Tamaño: 34 bytes
+        Creado: 2026-07-27T16:57:27.3750006Z
+        Modificado: 2026-07-27T16:58:15.1796471Z
+        Legible: true
+        Escribible: true
+        --------------------------------
+        Nombre: AppData
+        Tipo: Directorio
+        Tamaño: 0 bytes
+        Creado: 2025-07-04T14:35:56.2965815Z
+        Modificado: 2025-07-04T14:35:56.5186568Z
+        Legible: true
+        Escribible: true
+        ------
+
+        Información del sistema de archivos
+        Tipo: NTFS
+        Espacio total: 1022076719104 bytes
+        Espacio libre: 768046809088 bytes
+        Información del sistema de archivos:
+        - Tipo: WindowsFileSystem
+        - Total: 1022076719104 bytes
+        - Libre: 768046809088 bytes
+
+
+        ===== MENÚ =====
+        1. Crear directorio
+        2. Eliminar directorio o fichero
+        3. Ver contenido recursivo
+        4. Crear archivo de texto
+        5. Leer archivo de texto
+        6. Encriptar archivo
+        7. Copiar archivo
+        0. Salir
+        Selecciona una opción:
+
+        4
+        Nombre del archivo: nuevo.txt
+        Escribe líneas (FIN para terminar):
+        hola
+        adios
+        FIN
+        Archivo creado correctamente.
+
 ## ✅ Rúbrica de evaluación
 
-| Criterio                                  | Puntuación máxima |
-|-------------------------------------------|-------------------|
-| Parte 1 integrada y funcionando           | 1                 |
-| **Opción 4**: Creación correcta (hasta FIN) | 2                 |
-| **Opción 5**: Lectura eficiente (Buffer)  | 1.5               |
-| **Opción 6**: Paso de texto a binario     | 2                 |
-| **Opción 7**: Copia correcta de archivos  | 1.5               |
-| Gestión robusta de excepciones (`try/catch`) | 1                 |
-| Comentarios y estructura en funciones     | 1                 |
-| **Total**                                 | **10**            |
+
+La calificación del ejercicio se obtendrá sumando la puntuación obtenida en cada uno de los siguientes apartados.
+
+| Reto | Aspectos evaluados | Puntuación máxima |
+|-------|--------------------|:-----------------:|
+| **Reto 1. Ampliación del menú** | Se incorporan correctamente las nuevas opciones al menú principal y se integran con la estructura del programa. | **0,5** |
+| **Reto 2. Creación de archivos de texto** | Se implementa correctamente la creación de un archivo de texto, permitiendo introducir varias líneas desde consola hasta finalizar con la palabra `FIN`. | **2,0** |
+| **Reto 3. Lectura de archivos de texto** | Se implementa correctamente la lectura y visualización del contenido de un archivo de texto. | **1,5** |
+| **Reto 4. Encriptación de archivos** | Se implementa correctamente la lectura del archivo, la transformación de los datos y la generación del fichero binario resultante. | **2,0** |
+| **Reto 5. Copia de archivos** | Se implementa correctamente la copia de un archivo utilizando la API `java.nio.file`. | **1,5** |
+| **Gestión robusta de excepciones** | Se gestionan adecuadamente las posibles excepciones mediante bloques `try/catch`. | **1,0** |
+| **Comentarios y estructura del código** | El código está correctamente organizado en funciones, incluye comentarios útiles cuando son necesarios y mantiene una estructura clara y legible. | **1,5** |
+| | **TOTAL** | **10,0** |
+
+

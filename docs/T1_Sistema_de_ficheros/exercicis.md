@@ -50,45 +50,54 @@ El programa debe:
 
 📤 **Ejemplo de salida esperada**
 
-```
-📁 Exploración del home: /home/alumno
+     
+      Exploración del home (sin ocultos): C:\Users\as_co
 
-🔹 Nombre: Documentos
-   Tipo: Directorio
-   Tamaño: 4096 bytes
-   Creado: 2024-10-01T12:30:00
-   Modificado: 2025-08-15T09:00:00
-   Legible: true
-   Escribible: true
+      Nombre: aliciatxt
+      Tipo: Archivo
+      Tamaño: 34 bytes
+      Creado: 2026-07-27T16:57:27.3750006Z
+      Modificado: 2026-07-27T16:58:15.1796471Z
+      Legible: true
+      Escribible: true
 
-📊 Información del sistema de archivos:
-- Tipo: LinuxFileSystem
-- Total: 500000000000 bytes
-- Libre: 123456789000 bytes
+      Nombre: AppData
+      Tipo: Directorio
+      Tamaño: 0 bytes
+      Creado: 2025-07-04T14:35:56.2965815Z
+      Modificado: 2025-07-04T14:35:56.5186568Z
+      Legible: true
+      Escribible: true
 
-📋 Menú de acciones:
-1. Crear un directorio en el home
-2. Eliminar un directorio del home
-3. Ver contenido recursivo de un directorio
-0. Salir
-```
+      ---
+      Información del sistema de archivos:
+      - Tipo: WindowsFileSystem
+      - Total: 1022076719104 bytes
+      - Libre: 768391630848 bytes
+
+      ===== MENÚ =====
+      1. Crear un directorio en el home
+      2. Eliminar un directorio del home
+      3. Ver contenido recursivo de un directorio
+      0. Salir
+      Selecciona una opción: 
 
 ---
 
 
 ## ✅ Rúbrica de evaluación
 
+La calificación del ejercicio se obtendrá sumando la puntuación obtenida en cada uno de los siguientes apartados.
 
-| Criterio                         | Puntuación máxima |
-|----------------------------------|-------------------|
-| Exploración y atributos del home | 1 |
-| Menú funcional y navegación clara| 2 |
-| Creación de directorios          | 1 |
-| Eliminación de directorios       | 1 |
-| Recorrido recursivo completo     | 2 |
-| Control de errores               | 1 |
-| Claridad y organización del código | 1 |
-| Comentarios y estilo del código  | 1 |
-| **Total**                        | **10** |
+| Apartado | Aspectos evaluados | Puntuación máxima |
+|-----------|--------------------|:-----------------:|
+| **1. Visualización del directorio Home** | Se muestra correctamente el contenido del directorio Home y la información básica de cada archivo o directorio. | **2,0** |
+| **2. Información del sistema de archivos** | Se obtiene y muestra correctamente la información del sistema de archivos utilizando la API NIO.2. | **1,0** |
+| **3. Creación de directorios** | La opción permite crear correctamente un nuevo directorio y gestiona posibles errores. | **2,0** |
+| **4. Eliminación de archivos o directorios** | La opción elimina correctamente archivos o directorios y controla las excepciones que puedan producirse. | **2,0** |
+| **5. Visualización recursiva** | Se muestra correctamente el contenido de un directorio de forma recursiva utilizando `Files.walk()`. | **2,0** |
+| **6. Organización y calidad del código** | El código está correctamente estructurado en funciones, utiliza nombres adecuados, mantiene una buena legibilidad y gestiona correctamente las excepciones. | **1,0** |
+| | **TOTAL** | **10,0** |
+
 
 
