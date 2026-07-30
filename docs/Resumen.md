@@ -1,6 +1,6 @@
 # 📘 Guía resumen: Lectura y escritura de distintos formatos de ficheros en Kotlin
 
-## 📁 Tipos de ficheros y métodos de acceso
+## Tipos de ficheros y métodos de acceso
 
 | Tipo de fichero         | Lectura                             | Escritura                           | Comentario                                      |
 |-------------------------|--------------------------------------|--------------------------------------|-------------------------------------------------|
@@ -17,7 +17,7 @@
 
 ---
 
-## 💾 Serialización de objetos
+## Serialización de objetos
 
 | Herramienta               | Uso principal                         | Notas clave                                     |
 |---------------------------|----------------------------------------|-------------------------------------------------|
@@ -29,7 +29,8 @@
 
 ---
 
-## 🔁 Conversión de formatos
+
+## Conversión de formatos
 
 | Formato | Librería                   | Uso principal                                           |
 |---------|----------------------------|----------------------------------------------------------|
@@ -41,7 +42,7 @@
 
 ---
 
-## ⚙️ Métodos de `OpenCSV` (CSV)
+## Métodos de `OpenCSV` (CSV)
 
 **Lectura con OpenCSV**{.verde}
 
@@ -75,7 +76,7 @@
 
 ---
 
-## 🧰 Métodos de `kotlinx.serialization`
+## Métodos de `kotlinx.serialization`
 
 | Método                               | ¿Qué hace?                                      | Ejemplo básico                                    |
 |--------------------------------------|--------------------------------------------------|--------------------------------------------------|
@@ -87,7 +88,7 @@
 
 ---
 
-## 🧩 Métodos de Jackson
+## Métodos de Jackson
 
 | Método                         | ¿Qué hace?                                      | Ejemplo                                          |
 |--------------------------------|--------------------------------------------------|--------------------------------------------------|
@@ -101,7 +102,7 @@
 
 ---
 
-## 📚 Clases útiles para XML con JDOM
+## Clases útiles para XML con JDOM
 
 | Clase         | Función                                           |
 |---------------|--------------------------------------------------|
@@ -113,7 +114,7 @@
 
 ---
 
-## 🧠 Recomendaciones según situación
+## Recomendaciones según situación
 
 | Situación                           | Mejor opción             | Motivo principal                             |
 |------------------------------------|---------------------------|----------------------------------------------|

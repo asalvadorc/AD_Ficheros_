@@ -18,6 +18,7 @@ Esta guía responde a esa pregunta en dos pasos: primero según el **tipo de fic
 | 🔵 **JSON** (`.json`) | `kotlinx.serialization` o `Jackson` | `org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3` / `com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0` |
 | 🌐 **XML** (`.xml`) | `JDOM2` o `Jackson` (con módulo XML) | `org.jdom:jdom2:2.0.6` / `com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.17.0` |
 | 🖼️ **Imagen** (`.jpg`, `.png`) | `ImageIO` de Java | _Incluida en el JDK. Sin dependencias externas._ |
+| 🧱 **Binario no estructurado** (`.bin`, bytes puros) | API estándar `Files` de Java NIO | _Incluida en el JDK. Sin dependencias externas._ |
 | ⚙️ **Binario estructurado** | `FileChannel` + `ByteBuffer` de Java NIO | _Incluida en el JDK. Sin dependencias externas._ |
 | 📦 **Objeto serializado** (`.ser`) | `ObjectOutputStream` / `ObjectInputStream` | _Incluida en el JDK. Sin dependencias externas._ |
 
@@ -90,7 +91,9 @@ Esta guía responde a esa pregunta en dos pasos: primero según el **tipo de fic
 │
 ├── Imagen (.jpg, .png...)     → javax.imageio.ImageIO (sin dependencias)
 │
-├── Binario / acceso aleatorio → FileChannel + ByteBuffer (sin dependencias)
+├── Binario no estructurado (.bin) → Files.readAllBytes / Files.write (sin dependencias)
+│
+├── Binario estructurado / acceso aleatorio → FileChannel + ByteBuffer (sin dependencias)
 │
 ├── Objeto serializado (.ser)  → ObjectOutputStream / ObjectInputStream
 │
@@ -114,7 +117,9 @@ Esta guía responde a esa pregunta en dos pasos: primero según el **tipo de fic
 | Necesidad concreta | Librería | ¿Dependencia Gradle necesaria? |
 |---|---|---|
 | Leer/escribir texto línea a línea | `Files` (NIO) | ❌ No |
+| Leer/escribir binario no estructurado (bytes puros) | `Files.readAllBytes` / `Files.write` | ❌ No |
 | Leer/escribir bytes | `Files` (NIO) | ❌ No |
+| Binario estructurado (campos tipados) | `FileChannel` + `ByteBuffer` | ❌ No |
 | Acceso aleatorio en fichero binario | `FileChannel` | ❌ No |
 | Leer/escribir imagen | `ImageIO` | ❌ No |
 | Serializar un objeto Java | `ObjectOutputStream` | ❌ No |
