@@ -1,4 +1,4 @@
-﻿# 🔹Ficheros de imagen
+﻿# 🔹 Ficheros de imagen
 
 Los ficheros de imagen contienen datos que representan gráficamente una imagen visual (fotografías, ilustraciones, iconos, etc.). A diferencia de los ficheros de texto o binarios crudos, estos archivos tienen estructura interna que depende del formato (como .png, .jpg, .bmp, etc.).
 
@@ -20,6 +20,9 @@ En la plataforma Java (y por tanto en Kotlin), **el manejo de imágenes** se hac
 |---------------------------|--------------------------------------|---------------------------------------|----------------------------------------------------------|
 | Imagen                 | `ImageIO.read(Path/File)`           | `ImageIO.write(BufferedImage, ...)`   | Usa `javax.imageio.ImageIO`                             |
 
+!!!warning "Ejemplos"
+    Los ejemplos de esta sección se desarrollarán dentro del paquete contenido del proyecto **Ficheros**.
+    Además, si todavía no lo has hecho en los apartados anteriores, crea en la raíz del proyecto las carpetas **documentos** y **documentos2**, ya que se utilizarán para almacenar los archivos generados durante la ejecución de los ejemplos.
 
 🖥️ **Ejemplo_generar_imagen.kt:** genera una imagen de ejemplo.
 
@@ -163,5 +166,17 @@ imagen a copiar (penyagolosa.png)|imagen con los colores invertidos
         ImageIO.write(imagen, "png", modificadaPath.toFile())
         println("Imagen modificada guardada como: $modificadaPath")
     }
+
+!!!question "🧠 Comprueba tu comprensión"
+    Si quieres conservar la imagen original y generar una versión modificada con los colores invertidos, ¿qué pasos deberías seguir y por qué no conviene sobrescribir directamente el archivo original?
+
+    ??? success "Ver respuesta"
+        1. Comprobar que la imagen original existe.
+        2. Crear una copia de seguridad del fichero (por ejemplo, con `Files.copy(...)`).
+        3. Leer la copia con `ImageIO.read(...)` y convertirla en `BufferedImage`.
+        4. Recorrer los píxeles y aplicar la transformación de color.
+        5. Guardar el resultado en un archivo nuevo con `ImageIO.write(...)`.
+
+        No conviene sobrescribir directamente el original porque perderías la versión inicial y no podrías recuperar fácilmente el estado anterior en caso de error o de querer comparar resultados.
 
 

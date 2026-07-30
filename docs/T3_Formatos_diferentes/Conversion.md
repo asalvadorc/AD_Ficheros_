@@ -36,7 +36,7 @@ Las herramientas no destacadas en negrita son alternativas válidas, que pueden 
 | PNG → JPG (imagen)               | **ImageIO.read() + ImageIO.write()**                                                 | Leer imagen → guardar en otro formato                              |
 
 
-## 🔹 Ejemplos de Conversión
+## 🔹 Ejemplos de conversión
 
 !!!warning "Ejemplos"
     Los siguientes ejemplos también se incluirán en el proyecto **Ficheros_Gradle**.
@@ -74,11 +74,11 @@ Contenido de los archivos:
 | data class Alumno(<br>&nbsp;&nbsp;&nbsp;val nombre: String,<br>&nbsp;&nbsp;&nbsp;val nota: Int<br>) | data class Persona(<br>&nbsp;&nbsp;&nbsp;val nombre: String,<br>&nbsp;&nbsp;&nbsp;val edad: Int<br>) |
 
 
-### **CSV <-> JSON**{.azul}
+### 🔹 CSV <-> JSON {.azul}
 
 En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar también **Kotlinx.serialization**.
 
-**Resumen de ejemplos**{.verde}
+**Resumen de ejemplos**{.azul}
 
 - [Ejemplo_convertir_csv_a_json.kt](#ejemplo-convertir-csv-a-json): convierte un CSV en JSON mediante una lista de objetos `Alumno`.
 
@@ -203,12 +203,12 @@ La finalidad del ejercicio es entender que, igual que en la conversión anterior
         }
 
 
-### **JSON <-> XML**{.azul}
+### 🔹 JSON <-> XML {.azul}
 
 !!!Note ""
     En estos ejemplos utilizamos **Jackson**, en ambas conversiones, y por lo tanto también utiliza un objeto intermediario (**persona**), aunque de forma más implícita.
 
-**Resumen de ejemplos**{.verde}
+**Resumen de ejemplos**{.azul}
 
 - [Ejemplo_convertir_json_a_xml.kt](#ejemplo-convertir-json-a-xml): convierte un objeto JSON en un fichero XML.
 
@@ -610,11 +610,11 @@ La finalidad del ejercicio es entender cómo una clase contenedora permite mapea
             convertirListaXmlAJsonNodo("documentos/lista_personas_nodo.xml", "documentos/lista_personas.json")
         }
 
-### **JSON <-> Binario estructurado**{.azul}
+### 🔹 JSON <-> Binario estructurado {.azul}
 
 En estos ejemplos utilizamos **kotlinx.serialization**.
 
-**Resumen de ejemplos**{.verde}
+**Resumen de ejemplos**{.azul}
 
 - [Ejemplo_convertir_json_a_binario.kt](#ejemplo-convertir-json-a-binario): convierte un objeto JSON en binario estructurado.
 

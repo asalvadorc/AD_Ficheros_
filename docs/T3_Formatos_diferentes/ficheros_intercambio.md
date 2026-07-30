@@ -1,4 +1,4 @@
-﻿# Ficheros de intercambio
+﻿# 🔹 Ficheros de intercambio
 
 En el desarrollo de aplicaciones, es habitual trabajar con datos almacenados o transmitidos en distintos formatos de ficheros. La conversión entre estos formatos permite intercambiar información entre sistemas heterogéneos, integrarse con APIs, facilitar la persistencia de datos o adaptarse a requisitos específicos. 
 
@@ -12,14 +12,15 @@ Estos formatos no solo permiten guardar la información de forma más organizada
 
 En los siguientes apartados veremos cómo trabajar con cada uno de estos formatos, qué librerías se utilizan en Kotlin para manipularlos, y cómo adaptar nuestras clases y funciones para poder persistir y recuperar objetos fácilmente desde cada tipo de fichero.
 
-## 🔹Data Class
+
+## 🔹 Data class
 
 Aunque este tipo de ficheros están formados por texto, los programas no deberían trabajar directamente con texto, sino con datos estructurados.
 
 Por este motivo, toda la lectura y escritura de ficheros de intercambio se realizará **mediante objetos**, y no manipulando directamente cadenas de texto.
-Cuando leemos un fichero CSV, JSON o XML leemos texto pero, el objetivo final es obtener información con significado. Para representar correctamente esa información dentro del programa, utilizaremos **data class**, que nos permiten modelar los datos de forma clara y segura.
+Cuando leemos un fichero CSV, JSON o XML, leemos texto, pero el objetivo final es obtener información con significado. Para representar correctamente esa información dentro del programa, utilizaremos **data class**, que nos permiten modelar los datos de forma clara y segura.
 
-Define qué información tiene un objeto y de qué tipo es cada dato: El data class de una línea CSV se repreentaría así:
+Define qué información tiene un objeto y de qué tipo es cada dato. El data class de una línea CSV se representaría así:
 
    
 | CSV | Data Class |
@@ -29,13 +30,13 @@ Define qué información tiene un objeto y de qué tipo es cada dato: El data cl
 
 !!!warning "Ejemplos"
     Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos un proyecto llamado **Ficheros_Gradle**, en el que incluiremos **Gradle** como herramienta de construcción. Los ejemplos los iremos creando directamente en la carpeta **src/main/Kotlin**.   
-    Crearemo también la carpeta **documentos**, donde iremos dejando los ficheros geneados en los distintos ejemplos.
+    Crearemos también la carpeta **documentos**, donde iremos dejando los ficheros generados en los distintos ejemplos.
     
     | ![Ref](new_project_gradle.png){width=600 } | ![Ref](ejemplos_intercambio.png){width=400 } |
     |---|---|
 
 
-## 🔹Dependencias Gradle
+## 🔹 Dependencias Gradle
 
 
 En este apartado vamos a desarrollar una aplicación en Kotlin que gestione la lectura y escritura de datos utilizando distintos formatos de archivo estructurado: CSV, JSON y XML.
@@ -94,13 +95,13 @@ En el fichero **build.gradle.kts** se incluirán los plugins y dependencias nece
         }
 
 
-## 🔹Ficheros CSV  
+## 🔹 Ficheros CSV  
 
 El formato CSV es un archivo de texto donde los valores están separados por comas u otro delimitador (como punto y coma), muy usado para intercambiar datos entre hojas de cálculo, sistemas contables, etc.
 
-La lectura y escrituara de un archivo CSV se puede hacer de tres formas:
+La lectura y escritura de un archivo CSV se puede hacer de tres formas:
 
-### Resumen de ejemplos (CSV) {.verde}
+### 🔹 Resumen de ejemplos (CSV) {.azul}
 
 - [Sin librerías: lectura línea a línea + split()](#csv-sin-librerias)
 - [Con OpenCSV](#csv-opencsv)
@@ -126,7 +127,7 @@ La **data class Alumno** correspondiente será:
             val nota: Int
         )
 
-📌 Esta clase la crearemos fuera fuera de los programas de ejemplo para poder reutilizarla desde cualquier otro main. 
+📌 Esta clase la crearemos fuera de los programas de ejemplo para poder reutilizarla desde cualquier otro `main`.
 
 
 🖥️ **1- Sin librerías: lectura línea a línea + split()**{.azul}
@@ -211,33 +212,32 @@ La finalidad del ejercicio es entender cómo funciona internamente un CSV y cóm
 !!!Note "Nota"
     **OpenCSV** fue desarrollado antes de que **java.nio.file.Path** se introdujera en Java 7, y sus métodos aún usan la API antigua **(java.io.*)**, como FileReader y FileWriter.
 
-**Lectura con OpenCSV**{.verde}
+??? info "Lectura con OpenCSV"
 
-| Clase / Método          | ¿Qué hace?                                                              | Ejemplo básico                                         |
-| ----------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------ |
-| `CSVReader(FileReader)` | Crea un lector de archivos CSV.                                         | `val reader = CSVReader(FileReader("archivo.csv"))`    |
-| `readAll()`             | Lee todo el contenido como `List<Array<String>>`.                       | `val filas = reader.readAll()`                         |
-| `readNext()`            | Lee una fila como `Array<String>`.                                      | `val fila = reader.readNext()`                         |
-| `close()`               | Cierra el lector.                                                       | `reader.close()`                                       |
-| `CSVReaderBuilder(...)` | Permite configurar el lector: separador, comillas, salto de línea, etc. | `CSVReaderBuilder(FileReader(...)).withSeparator(';')` |
-| `withSkipLines(n)`      | Omite las primeras `n` líneas (útil para saltar cabeceras).             | `withSkipLines(1)`                                     |
-| `build()`               | Construye el lector configurado.                                        | `build()`                                              |
+    | Clase / Método          | ¿Qué hace?                                                              | Ejemplo básico                                         |
+    | ----------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------ |
+    | `CSVReader(FileReader)` | Crea un lector de archivos CSV.                                         | `val reader = CSVReader(FileReader("archivo.csv"))`    |
+    | `readAll()`             | Lee todo el contenido como `List<Array<String>>`.                       | `val filas = reader.readAll()`                         |
+    | `readNext()`            | Lee una fila como `Array<String>`.                                      | `val fila = reader.readNext()`                         |
+    | `close()`               | Cierra el lector.                                                       | `reader.close()`                                       |
+    | `CSVReaderBuilder(...)` | Permite configurar el lector: separador, comillas, salto de línea, etc. | `CSVReaderBuilder(FileReader(...)).withSeparator(';')` |
+    | `withSkipLines(n)`      | Omite las primeras `n` líneas (útil para saltar cabeceras).             | `withSkipLines(1)`                                     |
+    | `build()`               | Construye el lector configurado.                                        | `build()`                                              |
 
-**Escritura con OpenCSV**{.verde}
+??? info "Escritura con OpenCSV"
 
-
-| Clase / Método                  | ¿Qué hace?                                                          | Ejemplo básico                                         |
-| ------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------ |
-| `CSVWriter(FileWriter)`         | Crea un escritor CSV básico.                                        | `val writer = CSVWriter(FileWriter("archivo.csv"))`    |
-| `writeNext(Array<String>)`      | Escribe una línea al CSV.                                           | `writer.writeNext(arrayOf("Ana", "30"))`               |
-| `writeAll(List<Array<String>>)` | Escribe múltiples filas al CSV.                                     | `writer.writeAll(listaFilas)`                          |
-| `flush()`                       | Fuerza la escritura del buffer.                                     | `writer.flush()`                                       |
-| `close()`                       | Cierra el escritor.                                                 | `writer.close()`                                       |
-| `CSVWriterBuilder(...)`         | Permite configurar el escritor: delimitador, comillas, escape, etc. | `CSVWriterBuilder(FileWriter(...)).withSeparator(';')` |
-| `withQuoteChar(c)`              | Define el carácter de comillas (por defecto es `"`).                | `withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)`          |
-| `withEscapeChar(c)`             | Define el carácter de escape (por defecto `\`).                     | `withEscapeChar('\\')`                                 |
-| `withLineEnd(e)`                | Define el carácter de fin de línea.                                 | `withLineEnd("\n")`                                    |
-| `build()`                       | Construye el escritor configurado.                                  | `build()`                                              |
+    | Clase / Método                  | ¿Qué hace?                                                          | Ejemplo básico                                         |
+    | ------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------ |
+    | `CSVWriter(FileWriter)`         | Crea un escritor CSV básico.                                        | `val writer = CSVWriter(FileWriter("archivo.csv"))`    |
+    | `writeNext(Array<String>)`      | Escribe una línea al CSV.                                           | `writer.writeNext(arrayOf("Ana", "30"))`               |
+    | `writeAll(List<Array<String>>)` | Escribe múltiples filas al CSV.                                     | `writer.writeAll(listaFilas)`                          |
+    | `flush()`                       | Fuerza la escritura del buffer.                                     | `writer.flush()`                                       |
+    | `close()`                       | Cierra el escritor.                                                 | `writer.close()`                                       |
+    | `CSVWriterBuilder(...)`         | Permite configurar el escritor: delimitador, comillas, escape, etc. | `CSVWriterBuilder(FileWriter(...)).withSeparator(';')` |
+    | `withQuoteChar(c)`              | Define el carácter de comillas (por defecto es `"`).                | `withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)`          |
+    | `withEscapeChar(c)`             | Define el carácter de escape (por defecto `\`).                     | `withEscapeChar('\\')`                                 |
+    | `withLineEnd(e)`                | Define el carácter de fin de línea.                                 | `withLineEnd("\n")`                                    |
+    | `build()`                       | Construye el escritor configurado.                                  | `build()`                                              |
 
 
 !!!Tip ""
@@ -245,7 +245,7 @@ La finalidad del ejercicio es entender cómo funciona internamente un CSV y cóm
 
 <a id="csv-opencsv"></a>
 
-**Ejempo_OpenCSV_lect_esc.kt**
+**Ejemplo_OpenCSV_lect_esc.kt**
 
 Este ejemplo realiza la misma tarea que el anterior, pero utilizando la librería `OpenCSV`, que simplifica la lectura y escritura de archivos CSV.
 
@@ -325,20 +325,22 @@ Tradicionalmente, en entornos Java se ha utilizado la librería OpenCSV para lee
 !!!Tip ""
     **csvWriter** y **csvReader** no son clases, sino funciones DSL propias de Kotlin
 
-| Tipo        | Método                        | Ejemplo mínimo |
-|-------------|-------------------------------|----------------|
-| **Lectura** | `readAll(File)`               | `val filas = csvReader().readAll(File("alumnos.csv"))` |
-|             | `readAllWithHeader(File)`     | `val datos = csvReader().readAllWithHeader(File("alumnos.csv"))` |
-|             | `open { readAllAsSequence() }`| `csvReader().open("alumnos.csv") { readAllAsSequence().forEach { println(it) } }` |
-| **Escritura**| `writeAll(data, File)`       | `csvWriter().writeAll(listOf(listOf("Lucía", "9")), File("salida.csv"))` |
-|             | `writeRow(row, File)`         | `csvWriter().writeRow(listOf("Carlos", "8"), File("salida.csv"))` |
-|             | `writeAllWithHeader(data, File)` | `csvWriter().writeAllWithHeader(listOf(mapOf("nombre" to "Elena", "nota" to "10")), File("salida.csv"))` |
-| **Configuración** | `delimiter`, `quoteChar`, etc. | `csvReader { delimiter = ';' }` |
+??? info "Métodos habituales de kotlin-csv"
+
+    | Tipo        | Método                        | Ejemplo mínimo |
+    |-------------|-------------------------------|----------------|
+    | **Lectura** | `readAll(File)`               | `val filas = csvReader().readAll(File("alumnos.csv"))` |
+    |             | `readAllWithHeader(File)`     | `val datos = csvReader().readAllWithHeader(File("alumnos.csv"))` |
+    |             | `open { readAllAsSequence() }`| `csvReader().open("alumnos.csv") { readAllAsSequence().forEach { println(it) } }` |
+    | **Escritura**| `writeAll(data, File)`       | `csvWriter().writeAll(listOf(listOf("Lucía", "9")), File("salida.csv"))` |
+    |             | `writeRow(row, File)`         | `csvWriter().writeRow(listOf("Carlos", "8"), File("salida.csv"))` |
+    |             | `writeAllWithHeader(data, File)` | `csvWriter().writeAllWithHeader(listOf(mapOf("nombre" to "Elena", "nota" to "10")), File("salida.csv"))` |
+    | **Configuración** | `delimiter`, `quoteChar`, etc. | `csvReader { delimiter = ';' }` |
 
 
 <a id="csv-kotlincsv"></a>
 
-**Ejempo_KotlinCSV_lect_esc.kt**
+**Ejemplo_KotlinCSV_lect_esc.kt**
 
 Este ejemplo muestra cómo trabajar con archivos CSV usando la librería `kotlin-csv`, una alternativa más idiomática para Kotlin que permite leer y escribir de forma más expresiva.
 
@@ -382,7 +384,7 @@ La finalidad del ejercicio es comprobar cómo una librería orientada a Kotlin s
         }
 
 
-## 🔹Ficheros JSON
+## 🔹 Ficheros JSON
 
 En muchas aplicaciones modernas, los datos deben almacenarse o intercambiarse en formato JSON (JavaScript Object Notation), un formato ligero y legible ampliamente utilizado en APIs, configuraciones, bases de datos NoSQL y almacenamiento persistente.
 
@@ -435,13 +437,13 @@ Esto proporciona importantes **ventajas**:
 ✔️ Código más limpio y mantenible.  
 ✔️ Mayor seguridad de tipos, detectando errores en tiempo de compilación.  
 
-### Resumen de ejemplos (JSON) {.verde}
+### 🔹 Resumen de ejemplos (JSON) {.azul}
 
 - [kotlinx.serialization: objeto JSON](#json-kserialization)
 - [Jackson: objeto JSON](#json-jackson)
 - [Jackson: lista JSON](#json-lista-jackson)
 
-### 🔹 kotlinx.serialization
+### 🔹 Kotlinx.serialization
 
 **kotlinx.serialization** es la librería oficial de serialización de Kotlin, desarrollada por JetBrains, que permite convertir objetos Kotlin a y desde diferentes formatos como JSON, ProtoBuf, CBOR, XML (experimental), entre otros.
 
@@ -453,43 +455,42 @@ Como ya vimos en el apartado anterior, **la serialización** es el proceso de co
     Todas las bibliotecas de serialización de Kotlin pertenecen al grupo **org.jetbrains.kotlinx:grupo**. Sus nombres empiezan con _kotlinx-serialization-_ y tienen sufijos que reflejan el formato de serialización: **org.jetbrains.kotlinx:kotlinx-serialization-json**
 
 
-**Clases y funciones clave de kotlinx.serialization.json**{.verde}
+??? info "Clases y funciones clave de kotlinx.serialization.json"
 
-| Clase / Función                | Tipo       | Descripción                                                                 |
-|-------------------------------|------------|-----------------------------------------------------------------------------|
-| `Json`                        | Clase      | Punto de entrada principal para serializar y deserializar en JSON          |
-| `JsonObject`                  | Clase      | Representa un objeto JSON `{}` como un `Map<String, JsonElement>`          |
-| `JsonArray`                   | Clase      | Representa un array JSON `[]`, como una lista de `JsonElement`             |
-| `JsonElement`                 | Clase      | Superclase abstracta para cualquier valor JSON                             |
-| `JsonPrimitive`               | Clase      | Representa valores primitivos JSON (string, número, booleano, null)        |
-| `JsonNull`                    | Objeto     | Representa el valor `null` en JSON                                         |
-| `JsonLiteral`                 | Clase      | Subtipo de `JsonPrimitive` que representa valores literales (string/num)   |
-| `JsonObjectBuilder`           | Clase DSL  | Permite construir objetos JSON usando `buildJsonObject { ... }`           |
-| `JsonArrayBuilder`            | Clase DSL  | Permite construir arrays JSON usando `buildJsonArray { ... }`             |
-| `buildJsonObject { ... }`     | Función    | Crea un `JsonObject` de forma declarativa                                 |
-| `buildJsonArray { ... }`      | Función    | Crea un `JsonArray` de forma declarativa                                  |
-| `parseToJsonElement(...)`     | Función    | Convierte un `String` en `JsonElement` (analiza el JSON sin clase)        |
-| `encodeToJsonElement(...)`    | Función    | Convierte un objeto Kotlin en `JsonElement` usando un `Json`              |
-| `decodeFromJsonElement(...)`  | Función    | Convierte un `JsonElement` a un objeto Kotlin                             |
-| `jsonPrimitive`               | Propiedad  | Accede al valor primitivo dentro de un `JsonElement`                      |
-| `jsonObject`                  | Propiedad  | Convierte un `JsonElement` a `JsonObject` (si es compatible)              |
-| `jsonArray`                   | Propiedad  | Convierte un `JsonElement` a `JsonArray` (si es compatible)               |
-
-
-**Métodos principales de kotlinx.serialization**{.verde}
-
-Son funciones generales que no están dentro del paquete .json, pero que se usan muy a menudo en la serialización en Kotlin.
+    | Clase / Función                | Tipo       | Descripción                                                                 |
+    |-------------------------------|------------|-----------------------------------------------------------------------------|
+    | `Json`                        | Clase      | Punto de entrada principal para serializar y deserializar en JSON          |
+    | `JsonObject`                  | Clase      | Representa un objeto JSON `{}` como un `Map<String, JsonElement>`          |
+    | `JsonArray`                   | Clase      | Representa un array JSON `[]`, como una lista de `JsonElement`             |
+    | `JsonElement`                 | Clase      | Superclase abstracta para cualquier valor JSON                             |
+    | `JsonPrimitive`               | Clase      | Representa valores primitivos JSON (string, número, booleano, null)        |
+    | `JsonNull`                    | Objeto     | Representa el valor `null` en JSON                                         |
+    | `JsonLiteral`                 | Clase      | Subtipo de `JsonPrimitive` que representa valores literales (string/num)   |
+    | `JsonObjectBuilder`           | Clase DSL  | Permite construir objetos JSON usando `buildJsonObject { ... }`           |
+    | `JsonArrayBuilder`            | Clase DSL  | Permite construir arrays JSON usando `buildJsonArray { ... }`             |
+    | `buildJsonObject { ... }`     | Función    | Crea un `JsonObject` de forma declarativa                                 |
+    | `buildJsonArray { ... }`      | Función    | Crea un `JsonArray` de forma declarativa                                  |
+    | `parseToJsonElement(...)`     | Función    | Convierte un `String` en `JsonElement` (analiza el JSON sin clase)        |
+    | `encodeToJsonElement(...)`    | Función    | Convierte un objeto Kotlin en `JsonElement` usando un `Json`              |
+    | `decodeFromJsonElement(...)`  | Función    | Convierte un `JsonElement` a un objeto Kotlin                             |
+    | `jsonPrimitive`               | Propiedad  | Accede al valor primitivo dentro de un `JsonElement`                      |
+    | `jsonObject`                  | Propiedad  | Convierte un `JsonElement` a `JsonObject` (si es compatible)              |
+    | `jsonArray`                   | Propiedad  | Convierte un `JsonElement` a `JsonArray` (si es compatible)               |
 
 
-| Método de kotlinx.serialization         | ¿Qué hace?                                                   | Ejemplo básico                                                   |
-|--------------------------------------------------------------|---------------------------------------------------------------|------------------------------------------------------------------|
-| `Json.encodeToString(objeto)`          | Convierte un objeto Kotlin a una cadena JSON.                | `Json.encodeToString(persona)`                                  |
-| `Json.encodeToString(serializer, obj)` | Igual que el anterior pero especificando el serializador.    | `Json.encodeToString(Persona.serializer(), persona)`            |
-| `Json.decodeFromString(json)`          | Convierte una cadena JSON a un objeto Kotlin.                | `Json.decodeFromString<Persona>(json)`                          |
-| `Json.decodeFromString(serializer, s)` | Igual que el anterior pero con el serializador explícito.    | `Json.decodeFromString(Persona.serializer(), json)`             |
-| `Json.encodeToJsonElement(objeto)`     | Convierte un objeto a un árbol `JsonElement`.                | `val elem = Json.encodeToJsonElement(persona)`                  |
-| `Json.decodeFromJsonElement(elem)`     | Convierte un `JsonElement` a objeto Kotlin.                  | `val persona = Json.decodeFromJsonElement<Persona>(elem)`       |
-| `Json.parseToJsonElement(string)`      | Parsea una cadena JSON a un árbol `JsonElement` sin mapear.  | `val elem = Json.parseToJsonElement(json)`                      |
+??? info "Métodos principales de kotlinx.serialization"
+
+    Son funciones generales que no están dentro del paquete .json, pero que se usan muy a menudo en la serialización en Kotlin.
+
+    | Método de kotlinx.serialization         | ¿Qué hace?                                                   | Ejemplo básico                                                   |
+    |--------------------------------------------------------------|---------------------------------------------------------------|------------------------------------------------------------------|
+    | `Json.encodeToString(objeto)`          | Convierte un objeto Kotlin a una cadena JSON.                | `Json.encodeToString(persona)`                                  |
+    | `Json.encodeToString(serializer, obj)` | Igual que el anterior pero especificando el serializador.    | `Json.encodeToString(Persona.serializer(), persona)`            |
+    | `Json.decodeFromString(json)`          | Convierte una cadena JSON a un objeto Kotlin.                | `Json.decodeFromString<Persona>(json)`                          |
+    | `Json.decodeFromString(serializer, s)` | Igual que el anterior pero con el serializador explícito.    | `Json.decodeFromString(Persona.serializer(), json)`             |
+    | `Json.encodeToJsonElement(objeto)`     | Convierte un objeto a un árbol `JsonElement`.                | `val elem = Json.encodeToJsonElement(persona)`                  |
+    | `Json.decodeFromJsonElement(elem)`     | Convierte un `JsonElement` a objeto Kotlin.                  | `val persona = Json.decodeFromJsonElement<Persona>(elem)`       |
+    | `Json.parseToJsonElement(string)`      | Parsea una cadena JSON a un árbol `JsonElement` sin mapear.  | `val elem = Json.parseToJsonElement(json)`                      |
 
 
 **Requisitos para usar kotlinx.serialization en Gradle (JSON)**{.azul}
@@ -746,14 +747,14 @@ Cuando queremos construir el JSON "a mano", sin depender de la serialización au
 
 -->
 
-### 🔹Jackson (JSON)
+### 🔹 Jackson (JSON)
 
 **Jackson** es la librería más usada en Java para JSON. Muchos frameworks Java lo usan por defecto (Spring Boot, Micronaut, Quarkus, etc.). Conocerlo permite trabajar con APIs externas, backends y entornos mixtos (Java + Kotlin). 
 
-Mientras que **kotlinx.serialization** está centrado en JSON y formatos binarios (CBOR, ProtoBuf...), **Jackson** también soporta XML, YAML, CSV de forma unificada, además, si necesitas convertir entre formatos (XML ↔ JSON), Jackson es ideal, por lo que es importante cononcer ambas librerías para entender los proyectos Kotlin puros y modernos (kotlinx.serialization) y también los proyectos reales empresariales con Jackson.
+Mientras que **kotlinx.serialization** está centrado en JSON y formatos binarios (CBOR, ProtoBuf...), **Jackson** también soporta XML, YAML y CSV de forma unificada. Además, si necesitas convertir entre formatos (XML ↔ JSON), Jackson es ideal. Por eso, es importante conocer ambas librerías para entender tanto proyectos Kotlin puros y modernos (kotlinx.serialization) como proyectos empresariales con Jackson.
 
 
-**Clases esenciales para trabajar con JSON usando Jackson**{.verde}
+**Clases esenciales para trabajar con JSON usando Jackson**{.azul}
 
 Clase / interfaz|	Para qué sirve
 ----------------|------------------
@@ -761,18 +762,20 @@ ObjectMapper|	La clase principal para leer y escribir JSON
 File (de java.io)|	Representa el archivo físico JSON
 Tu data class en Kotlin|	Define la estructura del objeto a leer o escribir
 
-| Método Jackson                        | ¿Qué hace?                                                     | Ejemplo básico                                                   |
-|--------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------------|
-| `readValue(String, Class)`           | Convierte una cadena JSON a un objeto Kotlin o Java.           | `mapper.readValue(json, Persona::class.java)`                   |
-| `readValue(File, Class)`             | Convierte un archivo JSON a un objeto.                         | `mapper.readValue(File("persona.json"), Persona::class.java)`   |
-| `readTree(String)`                   | Lee un JSON como árbol (`JsonNode`) sin mapear a clase.        | `val node = mapper.readTree(json)`                              |
-| `writeValue(File, Object)`           | Escribe un objeto como JSON en un archivo.                     | `mapper.writeValue(File("salida.json"), persona)`               |
-| `writeValueAsString(Object)`        | Convierte un objeto en una cadena JSON.                        | `val json = mapper.writeValueAsString(persona)`                 |
-| `writeValueAsBytes(Object)`         | Convierte un objeto en un array de bytes JSON.                 | `val bytes = mapper.writeValueAsBytes(persona)`                 |
-| `writerWithDefaultPrettyPrinter()`  | Devuelve un escritor que formatea (indentado) el JSON.         | `mapper.writerWithDefaultPrettyPrinter().writeValue(...)`       |
+??? info "Métodos principales de Jackson para JSON"
+
+    | Método Jackson                        | ¿Qué hace?                                                     | Ejemplo básico                                                   |
+    |--------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------------|
+    | `readValue(String, Class)`           | Convierte una cadena JSON a un objeto Kotlin o Java.           | `mapper.readValue(json, Persona::class.java)`                   |
+    | `readValue(File, Class)`             | Convierte un archivo JSON a un objeto.                         | `mapper.readValue(File("persona.json"), Persona::class.java)`   |
+    | `readTree(String)`                   | Lee un JSON como árbol (`JsonNode`) sin mapear a clase.        | `val node = mapper.readTree(json)`                              |
+    | `writeValue(File, Object)`           | Escribe un objeto como JSON en un archivo.                     | `mapper.writeValue(File("salida.json"), persona)`               |
+    | `writeValueAsString(Object)`        | Convierte un objeto en una cadena JSON.                        | `val json = mapper.writeValueAsString(persona)`                 |
+    | `writeValueAsBytes(Object)`         | Convierte un objeto en un array de bytes JSON.                 | `val bytes = mapper.writeValueAsBytes(persona)`                 |
+    | `writerWithDefaultPrettyPrinter()`  | Devuelve un escritor que formatea (indentado) el JSON.         | `mapper.writerWithDefaultPrettyPrinter().writeValue(...)`       |
 
 
-**Anotaciones en Jackson**{.verde}
+**Anotaciones en Jackson**{.azul}
 
 Las anotaciones en Jackson (como @JsonIgnoreProperties, @JsonProperty, etc.) no siempre son necesarias, pero se usan para resolver problemas comunes al serializar o deserializar objetos. 
 
@@ -947,7 +950,7 @@ La finalidad del ejercicio es entender que Jackson no solo puede serializar obje
         }
 
 
-## 🔹Ficheros XML
+## 🔹 Ficheros XML
 
 Un fichero **XML** (eXtensible Markup Language) es un formato de texto estructurado diseñado para almacenar y transportar datos de forma legible tanto para humanos como para máquinas.
 
@@ -964,18 +967,18 @@ Tiene una estructura jerárquica basada en etiquetas, similar al HTML, pero orie
     </raiz>
 
 
-La mejor forma de trabajar con XML en **Kotlin** es utlizar la librería **DOM** (Document Object Model) o **JDOM2**, que permiten crear, leer y modificar fácilmente estructuras XML.
+La mejor forma de trabajar con XML en **Kotlin** es utilizar la librería **DOM** (Document Object Model) o **JDOM2**, que permiten crear, leer y modificar fácilmente estructuras XML.
 
 - DOM	-> Estándar Java, sin dependencias.	Requiere muchas líneas de código para hacer algo relativamente simple. 
 - JDOM2 ->	API más amigable para desarrolladores.	Requiere añadir una librería externa.
 
-### Resumen de ejemplos (XML) {.verde}
+### 🔹 Resumen de ejemplos (XML) {.azul}
 
 - [JDOM2: objeto a XML](#xml-objeto-a-xml)
 - [JDOM2: XML a objeto](#xml-a-objeto)
 - [Jackson XML: serialización/deserialización](#xml-jackson)
 
-### 🔹JDOM2
+### 🔹 JDOM2
 
 **JDOM2** es una librería ligera y fácil de usar para trabajar con **XML** de forma manual y controlada, ideal cuando no necesitas solo convertir directamente a objetos, sino manipular el contenido de manera estructurada.
 
@@ -989,25 +992,25 @@ Attribute|	Representa un atributo dentro de una etiqueta.
 XMLOutputter|	Convierte el árbol de elementos en texto XML.
 
 
-**Métodos comunes de JDOM2 para manipular XML**{.verde}
+??? info "Métodos comunes de JDOM2 para manipular XML"
 
-| Método                             | Clase            | Descripción                                                                 |
-|------------------------------------|------------------|-----------------------------------------------------------------------------|
-| `Element(String name)`             | `Element`        | Crea un nuevo elemento XML con el nombre especificado                      |
-| `addContent(Element child)`        | `Element`        | Añade un elemento hijo al elemento actual                                  |
-| `addContent(String text)`          | `Element`        | Añade texto al contenido del elemento                                      |
-| `setText(String text)`             | `Element`        | Establece el texto del elemento                                            |
-| `getText()`                        | `Element`        | Obtiene el texto del elemento                                              |
-| `getChild(String name)`            | `Element`        | Obtiene el primer hijo con ese nombre                                      |
-| `getChildren(String name)`         | `Element`        | Obtiene todos los hijos con ese nombre                                     |
-| `getChildren()`                    | `Element`        | Obtiene todos los hijos del elemento                                       |
-| `setAttribute(String, String)`     | `Element`        | Establece un atributo del elemento                                         |
-| `getAttributeValue(String)`        | `Element`        | Obtiene el valor de un atributo                                            |
-| `Document(Element root)`           | `Document`       | Crea un documento XML con el elemento raíz dado                            |
-| `getRootElement()`                 | `Document`       | Obtiene el elemento raíz del documento                                     |
-| `SAXBuilder().build(File)`         | `SAXBuilder`     | Carga un documento XML desde un archivo                                    |
-| `XMLOutputter().output(Document, OutputStream)` | `XMLOutputter` | Escribe el documento XML en una salida (archivo, consola, etc.)            |
-| `setFormat(Format.prettyFormat())` | `XMLOutputter`   | Establece un formato bonito con sangrías                                   |
+    | Método                             | Clase            | Descripción                                                                 |
+    |------------------------------------|------------------|-----------------------------------------------------------------------------|
+    | `Element(String name)`             | `Element`        | Crea un nuevo elemento XML con el nombre especificado                      |
+    | `addContent(Element child)`        | `Element`        | Añade un elemento hijo al elemento actual                                  |
+    | `addContent(String text)`          | `Element`        | Añade texto al contenido del elemento                                      |
+    | `setText(String text)`             | `Element`        | Establece el texto del elemento                                            |
+    | `getText()`                        | `Element`        | Obtiene el texto del elemento                                              |
+    | `getChild(String name)`            | `Element`        | Obtiene el primer hijo con ese nombre                                      |
+    | `getChildren(String name)`         | `Element`        | Obtiene todos los hijos con ese nombre                                     |
+    | `getChildren()`                    | `Element`        | Obtiene todos los hijos del elemento                                       |
+    | `setAttribute(String, String)`     | `Element`        | Establece un atributo del elemento                                         |
+    | `getAttributeValue(String)`        | `Element`        | Obtiene el valor de un atributo                                            |
+    | `Document(Element root)`           | `Document`       | Crea un documento XML con el elemento raíz dado                            |
+    | `getRootElement()`                 | `Document`       | Obtiene el elemento raíz del documento                                     |
+    | `SAXBuilder().build(File)`         | `SAXBuilder`     | Carga un documento XML desde un archivo                                    |
+    | `XMLOutputter().output(Document, OutputStream)` | `XMLOutputter` | Escribe el documento XML en una salida (archivo, consola, etc.)            |
+    | `setFormat(Format.prettyFormat())` | `XMLOutputter`   | Establece un formato bonito con sangrías                                   |
 
 <!--
 **Ejemplo de lectura y escritura de un archivo xml con JDOM2**{.azul}:
@@ -1228,29 +1231,29 @@ La finalidad del ejercicio es entender cómo leer la estructura de un documento 
         }
 
 
-### 🔹Jackson (XML)
+### 🔹 Jackson (XML)
 
 JDOM2 no realiza serialización automática de objetos Kotlin, pero se puede recurrir a librerías como **Jackson** o **kotlinx.serialization**.
 
 A diferencia de la librería **kotlinx.serialization-josn**, para ficheros **JSON**, que es es la librería oficial de serialización de Kotlin, la librería **kotlinx.serialization-xml**, para ficheros **XML**, no es oficial (aún experimental) y está mantenidad por terceros, por lo que no es una buena elección.
 
-Utilizaremos, por tanto, la librería **Jackson** para realizar la serialización automática de objetos Kotlin, la cual también permite soporte completo para XML y JSON, es decier, puede serializar y deserializar ambos formatos usando las mismas clases.
+Utilizaremos, por tanto, la librería **Jackson** para realizar la serialización automática de objetos Kotlin, la cual también permite soporte completo para XML y JSON. Es decir, puede serializar y deserializar ambos formatos usando las mismas clases.
 
 
-**Métodos comunes de Jackson para XML (XmlMapper)**{.verde}
+??? info "Métodos comunes de Jackson para XML (XmlMapper)"
 
-| Método                                       | Clase        | Descripción                                                                 |
-|----------------------------------------------|--------------|-----------------------------------------------------------------------------|
-| `readValue(File, Class<T>)`                  | `XmlMapper`  | Lee un archivo XML y lo convierte en un objeto Kotlin/Java                 |
-| `readValue(String, Class<T>)`                | `XmlMapper`  | Lee un String XML y lo convierte en un objeto                              |
-| `writeValue(File, Object)`                   | `XmlMapper`  | Escribe un objeto como XML en un archivo                                   |
-| `writeValueAsString(Object)`                 | `XmlMapper`  | Convierte un objeto en una cadena XML                                      |
-| `writeValueAsBytes(Object)`                  | `XmlMapper`  | Convierte un objeto en un array de bytes XML                               |
-| `registerModule(Module)`                     | `ObjectMapper` / `XmlMapper` | Registra un módulo como `KotlinModule` o `JavaTimeModule`        |
-| `enable(SerializationFeature)`               | `XmlMapper`  | Activa una opción de serialización (por ejemplo, indentado)                |
-| `disable(DeserializationFeature)`            | `XmlMapper`  | Desactiva una opción de deserialización                                    |
-| `configure(MapperFeature, boolean)`          | `XmlMapper`  | Configura opciones generales del mapeo                                     |
-| `setDefaultPrettyPrinter(...)`               | `XmlMapper`  | Establece un formateador personalizado                                     |
+    | Método                                       | Clase        | Descripción                                                                 |
+    |----------------------------------------------|--------------|-----------------------------------------------------------------------------|
+    | `readValue(File, Class<T>)`                  | `XmlMapper`  | Lee un archivo XML y lo convierte en un objeto Kotlin/Java                 |
+    | `readValue(String, Class<T>)`                | `XmlMapper`  | Lee un String XML y lo convierte en un objeto                              |
+    | `writeValue(File, Object)`                   | `XmlMapper`  | Escribe un objeto como XML en un archivo                                   |
+    | `writeValueAsString(Object)`                 | `XmlMapper`  | Convierte un objeto en una cadena XML                                      |
+    | `writeValueAsBytes(Object)`                  | `XmlMapper`  | Convierte un objeto en un array de bytes XML                               |
+    | `registerModule(Module)`                     | `ObjectMapper` / `XmlMapper` | Registra un módulo como `KotlinModule` o `JavaTimeModule`        |
+    | `enable(SerializationFeature)`               | `XmlMapper`  | Activa una opción de serialización (por ejemplo, indentado)                |
+    | `disable(DeserializationFeature)`            | `XmlMapper`  | Desactiva una opción de deserialización                                    |
+    | `configure(MapperFeature, boolean)`          | `XmlMapper`  | Configura opciones generales del mapeo                                     |
+    | `setDefaultPrettyPrinter(...)`               | `XmlMapper`  | Establece un formateador personalizado                                     |
 
 
 **Ejemplo de lectura y escritura del fichero alumnos.xml  con Jackson XML**{.azul}
@@ -1360,6 +1363,42 @@ La finalidad del ejercicio es comprobar cómo Jackson permite convertir entre ob
             escribirXml()
             leerXml()
         }
+
+
+!!!question "🧠 Comprueba tu comprensión"
+    1. Si en un proyecto Kotlin puro necesitas leer un CSV con cabecera y recorrer filas de forma expresiva, ¿qué librería elegirías entre OpenCSV y Kotlin-CSV?
+    2. Si trabajas en un backend con Spring y necesitas JSON y XML en el mismo proyecto, ¿qué librería suele ser la opción más práctica?
+    3. ¿Por qué en este tema se insiste en transformar el contenido del fichero a objetos (`data class`) antes de convertir entre formatos?
+
+    ??? success "Ver respuestas"
+        1. **Kotlin-CSV**, porque está diseñada para Kotlin y ofrece un estilo más idiomático (`readAllWithHeader`, DSL, secuencias).
+        2. **Jackson**, porque soporta ambos formatos de forma unificada y se integra muy bien en ecosistemas Java/Spring.
+        3. Porque el objeto actúa como representación intermedia tipada y desacopla el formato de entrada del formato de salida.
+
+!!!question "🧠 Caso práctico rápido"
+    Tienes un `alumnos.csv` y necesitas generar `alumnos.json` sin perder estructura.
+    ¿Cuál es el flujo correcto de trabajo?
+
+    ??? success "Ver respuesta"
+        El flujo recomendado es:
+
+        1. Leer el CSV.
+        2. Convertir cada fila en objetos `Alumno`.
+        3. Serializar esa lista de objetos a JSON.
+
+        Es decir: **CSV → objetos Kotlin → JSON**.
+
+!!!question "🧠 Errores frecuentes"
+    ¿Qué problema puede aparecer si intentas convertir directamente texto entre formatos (por ejemplo, CSV a JSON) sin mapear primero a objetos?
+
+    ??? success "Ver respuesta"
+        Suelen aparecer errores de interpretación de tipos y estructura:
+
+        - Números tratados como texto.
+        - Campos ausentes o desordenados.
+        - Dificultad para validar datos.
+
+        Mapear a `data class` primero evita estos problemas y hace el código más mantenible.
 
 
 

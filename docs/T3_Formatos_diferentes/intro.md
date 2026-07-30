@@ -1,4 +1,4 @@
-## Introducción
+# 🔹 Introducción
 
 
 
@@ -47,6 +47,4 @@ Este concepto se desarrolla en detalle en el siguiente apartado.
 
 
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
-CompartirIgual 2.5](http://creativecommons.org/licenses/by-nc-sa/2.5/)
 

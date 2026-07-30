@@ -36,6 +36,18 @@ p {
     font-size: 18px;
 } 
 
+.titulo-recuadro {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    margin: 0.2rem 0 0.6rem;
+    border: 2px solid #7db7e8;
+    border-radius: 8px;
+    background-color: #eef7ff;
+    color: #1f5f8b !important;
+    font-size: 17px;
+    font-weight: 600;
+}
+
 img {
     display: block;
     margin: 2rem auto;
@@ -73,6 +85,30 @@ img {
     background-color: #e6f2f9 !important;
     color: #2c3e50 !important;
     border-bottom: none !important;
+}
+
+details.info {
+    background-color: #f4f9fc !important;
+    border-left: 5px solid #3498db !important;
+    border-top: 1px solid #eaeaea !important;
+    border-right: 1px solid #eaeaea !important;
+    border-bottom: 1px solid #eaeaea !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+    margin: 1rem 0 !important;
+}
+
+details.info > summary {
+    background-color: #e6f2f9 !important;
+    color: #1f5f8b !important;
+    font-weight: 600 !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 8px !important;
+}
+
+details.info[open] > summary {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
 }
 
 /* Tip / Hint (Verde suave) */

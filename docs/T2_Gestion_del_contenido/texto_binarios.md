@@ -1,4 +1,4 @@
-﻿# 🔹Ficheros de texto y binarios
+﻿# 🔹 Ficheros de texto y binarios
 
 En el desarrollo de software, los ficheros de texto y los ficheros binarios son los dos tipos de archivos más comunes y utilizados para almacenar y gestionar información.
 

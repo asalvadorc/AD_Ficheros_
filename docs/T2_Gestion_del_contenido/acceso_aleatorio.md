@@ -1,4 +1,4 @@
-﻿# 🔹Ficheros de acceso aleatorio
+﻿# 🔹 Ficheros de acceso aleatorio
 
 Hasta el momento todos los accesos que hemos hecho a los archivos, tanto binarios como de texto, han sido secuenciales. Esto significa que siempre empezamos por el principio del archivo hasta que llegamos a la información que queremos, o en la mayor parte de los casos hasta el final de archivo.
 
@@ -15,14 +15,14 @@ Las clases **FileChannel**, **ByteBuffer** y **StandardOpenOption** forman parte
 | Acceso aleatorio       | `FileChannel.position(offset)`      | `FileChannel.position(offset)`        | Permite saltar a cualquier posición del fichero         |
 
 
-**Métodos habituales de FileChannel para el acceso aleatorio a ficheros**{.verde}
+??? info "Métodos habituales de FileChannel para el acceso aleatorio a ficheros"
 
-| Método                   | Función principal                                         |
-|--------------------------|-----------------------------------------------------------|
-| position()             |  Devuelve la posición actual del puntero en el archivo     |
-| position(long)         |  Establece una posición exacta para lectura/escritura      |
-| truncate(long)         | Recorta o amplía el tamaño del archivo                    |
-| size()                 |  Devuelve el tamaño total actual del archivo  
+    | Método                   | Función principal                                         |
+    |--------------------------|-----------------------------------------------------------|
+    | position()             |  Devuelve la posición actual del puntero en el archivo     |
+    | position(long)         |  Establece una posición exacta para lectura/escritura      |
+    | truncate(long)         | Recorta o amplía el tamaño del archivo                    |
+    | size()                 |  Devuelve el tamaño total actual del archivo              |
 
 
 **ByteBuffer**{.azul}
@@ -30,60 +30,60 @@ Las clases **FileChannel**, **ByteBuffer** y **StandardOpenOption** forman parte
 ByteBuffer se utiliza en archivos de acceso aleatorio porque permite leer y escribir bloques binarios de datos en posiciones específicas del archivo de forma eficiente y controlada.
 
 
-**Métodos de creación**{.verde}
+??? info "Métodos de creación de ByteBuffer"
 
-| Método                           | Descripción                                                                 |
-|----------------------------------|-----------------------------------------------------------------------------|
-| allocate(capacidad)| Crea un buffer con capacidad fija en memoria (no compartida).              |
-| wrap(byteArray)    | Crea un buffer que envuelve un array de bytes existente (memoria compartida). |
-| wrap(byteArray, offset, length) | Crea un buffer desde una porción del array existente.            |
-
----
-
-**Métodos de escritura (`put`)**{.verde}
-
-| Método                        | Descripción                                      |
-|-------------------------------|--------------------------------------------------|
-| put(byte)                   | Escribe un byte en la posición actual.          |
-| putInt(int)                 | Escribe un valor `int`.                         |
-| putDouble(double)           | Escribe un valor `double`.                      |
-| putFloat(float)             | Escribe un valor `float`.                       |
-| putChar(char)               | Escribe un carácter (`char`, 2 bytes).          |
-| putShort(short)             | Escribe un valor `short`.                       |
-| putLong(long)               | Escribe un valor `long`.                        |
-| put(byte[], offset, length)` | Escribe una porción de un array de bytes.       |
+    | Método                           | Descripción                                                                 |
+    |----------------------------------|-----------------------------------------------------------------------------|
+    | allocate(capacidad) | Crea un buffer con capacidad fija en memoria (no compartida).              |
+    | wrap(byteArray)    | Crea un buffer que envuelve un array de bytes existente (memoria compartida). |
+    | wrap(byteArray, offset, length) | Crea un buffer desde una porción del array existente.            |
 
 ---
 
-**Métodos de lectura (`get`)**{.verde}
+??? info "Métodos de escritura (`put`) de ByteBuffer"
 
-| Método                        | Descripción                                      |
-|-------------------------------|--------------------------------------------------|
-| get()                       | Lee un byte desde la posición actual.           |
-| getInt()                    | Lee un valor `int`.                             |
-| getDouble()                 | Lee un valor `double`.                          |
-| getFloat()                  | Lee un valor `float`.                           |
-| getChar()                   | Lee un carácter (`char`).                       |
-| getShort()                  | Lee un valor `short`.                           |
-| getLong()                   | Lee un valor `long`.                            |
-| get(byte[], offset, length)` | Lee una porción del buffer a un array.          |
+    | Método                        | Descripción                                      |
+    |-------------------------------|--------------------------------------------------|
+    | put(byte)                   | Escribe un byte en la posición actual.          |
+    | putInt(int)                 | Escribe un valor `int`.                         |
+    | putDouble(double)           | Escribe un valor `double`.                      |
+    | putFloat(float)             | Escribe un valor `float`.                       |
+    | putChar(char)               | Escribe un carácter (`char`, 2 bytes).          |
+    | putShort(short)             | Escribe un valor `short`.                       |
+    | putLong(long)               | Escribe un valor `long`.                        |
+    | put(byte[], offset, length) | Escribe una porción de un array de bytes.       |
 
 ---
 
-**Métodos de control del buffer**{.verde}
+??? info "Métodos de lectura (`get`) de ByteBuffer"
 
-| Método           | Descripción                                                                 |
-|------------------|-----------------------------------------------------------------------------|
-| position()     | Devuelve la posición actual del cursor.                                     |
-| position(int)  | Establece la posición del cursor.                                           |
-| limit()        | Devuelve el límite del buffer.                                              |
-| limit(int)     | Establece un nuevo límite.                                                  |
-| capacity()     | Devuelve la capacidad total del buffer.                                     |
-| clear()        | Limpia el buffer: posición a 0, límite al máximo (sin borrar contenido).    |
-| flip()         | Prepara el buffer para lectura después de escribir.                         |
-| rewind()       | Posición a 0 para releer desde el inicio.                                   |
-| remaining    | Indica cuántos elementos quedan por procesar.                               |
-| hasRemaining() | `true` si aún queda contenido por leer o escribir.   
+    | Método                        | Descripción                                      |
+    |-------------------------------|--------------------------------------------------|
+    | get()                       | Lee un byte desde la posición actual.           |
+    | getInt()                    | Lee un valor `int`.                             |
+    | getDouble()                 | Lee un valor `double`.                          |
+    | getFloat()                  | Lee un valor `float`.                           |
+    | getChar()                   | Lee un carácter (`char`).                       |
+    | getShort()                  | Lee un valor `short`.                           |
+    | getLong()                   | Lee un valor `long`.                            |
+    | get(byte[], offset, length) | Lee una porción del buffer a un array.          |
+
+---
+
+??? info "Métodos de control de ByteBuffer"
+
+    | Método           | Descripción                                                                 |
+    |------------------|-----------------------------------------------------------------------------|
+    | position()     | Devuelve la posición actual del cursor.                                     |
+    | position(int)  | Establece la posición del cursor.                                           |
+    | limit()        | Devuelve el límite del buffer.                                              |
+    | limit(int)     | Establece un nuevo límite.                                                  |
+    | capacity()     | Devuelve la capacidad total del buffer.                                     |
+    | clear()        | Limpia el buffer: posición a 0, límite al máximo (sin borrar contenido).    |
+    | flip()         | Prepara el buffer para lectura después de escribir.                         |
+    | rewind()       | Posición a 0 para releer desde el inicio.                                   |
+    | remaining()    | Indica cuántos elementos quedan por procesar.                               |
+    | hasRemaining() | `true` si aún queda contenido por leer o escribir.                          |
 
 **StandardOpenOption**{.azul}
 

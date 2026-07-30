@@ -1,50 +1,50 @@
 
-# Serialización de Objetos
+# 🔹 Serialización de objetos
 
 
-La serialización de objetos en Java es el proceso de convertir un objeto java en una secuencia de bytes, con el fin de guardarlo en un archivo o base de datos.
+La serialización de objetos en Java es el proceso de convertir un objeto Java en una secuencia de bytes, con el fin de guardarlo en un archivo o base de datos.
   
 La deserialización es el proceso inverso: leer esos bytes y reconstruir el objeto.
 
-Para que un objeto pueda ser seriado es necesario que su clase y todo su
-contenido implementan la interfaz **Serializable**. Se trata de una
+Para que un objeto pueda ser serializado es necesario que su clase y todo su
+contenido implementen la interfaz **Serializable**. Se trata de una
 interfaz sin métodos, porque el único objetivo de la interfaz es actuar de
-marcador para indicar en la máquina virtual qué clases se pueden seriar y
+marcador para indicar en la máquina virtual qué clases se pueden serializar y
 cuáles no.
 
-Todas las clases equivalentes a los tipos básicos ya implementan serializable.
+Todas las clases equivalentes a los tipos básicos ya implementan `Serializable`.
 También implementan esta interfaz la clase String y todos los contenedores y
 los objetos Array. La seriación de colecciones depende en último término de los
 elementos contenidos. Si éstos son seriables, la colección también lo será.
 
-En caso de que la clase del objeto que se intente seriar, o las de alguno de los
+En caso de que la clase del objeto que se intente serializar, o las de alguno de los
 objetos que contenga, no implementaran la interfaz Serializable, se
 lanzaría una excepción de tipos **NotSerializableException** , impidiendo
 el almacenamiento.
 
 !!!Note ""
-    **Kotlin** no proporciona ninguna librería adicional para serializar objetos java.  Utiliza exactamente el mismo sistema de serialización binaria de Java, ya que es 100% compatible.
+    **Kotlin** no proporciona ninguna librería adicional para serializar objetos Java. Utiliza exactamente el mismo sistema de serialización binaria de Java, ya que es 100% compatible.
 
-**Clases y herramientas que se utilizan**{.verde}
+??? info "Clases y herramientas que se utilizan"
 
-|Herramienta|	Uso principal|
-|------------|--------------|
-|java.io.Serializable|	Marca que un objeto es serializable|
-|ObjectOutputStream|	Serializa y escribe un objeto|
-|ObjectInputStream|	Lee un objeto serializado|
-|transient|	Excluye atributos de la serialización|
-|ReadObject| Lee y reconstruye un objeto binario|
-|WriteObject| Guarda un objeto como binario|
+    |Herramienta|	Uso principal|
+    |------------|--------------|
+    |java.io.Serializable|	Marca que un objeto es serializable|
+    |ObjectOutputStream| Serializa y escribe un objeto|
+    |ObjectInputStream|  Lee un objeto serializado|
+    |transient|  Excluye atributos de la serialización|
+    |ReadObject| Lee y reconstruye un objeto binario|
+    |WriteObject| Guarda un objeto como binario|
 
 !!!Note "Nota"
-    La serialización en java sigue necesitando usar las clases de **java.io** (ObjectOutputStream, ObjectInputStream) porque java.nio no proporciona soporte directo para serialización de objetos.  
-    Con java.nio.file.Files y Paths puedes usar Files para escribir directamente un ByteArray generado con la serialización tradicional.
+    La serialización en Java sigue necesitando usar las clases de **java.io** (ObjectOutputStream, ObjectInputStream) porque `java.nio` no proporciona soporte directo para serialización de objetos.  
+    Con `java.nio.file.Files` y `Paths` puedes escribir directamente un `ByteArray` generado con la serialización tradicional.
 
 Los Streams **ObjectInputStream** y **ObjectOutputStream** añaden a cualquier otro Stream la capacidad de seriar cualquier objeto Serializable. El stream de salida dispondrá del método **writeObject** y el stream de entrada, el método de lectura **readObject**.
 
 El método **readObject** sólo permite recuperar instancias que sean de la
 misma clase que la que se guardó. De lo contrario, se lanzaría una
-excepción de tipos **ClassCastExeception**. Además, es necesario que la aplicación disponga del código compilado de la clase; si no fuera así, la excepción lanzada sería
+excepción de tipos **ClassCastException**. Además, es necesario que la aplicación disponga del código compilado de la clase; si no fuera así, la excepción lanzada sería
 **ClassNotFoundException**.
 
 !!!warning "Ejemplos"
@@ -61,7 +61,7 @@ Este ejercicio completo se divide en tres partes que deben entenderse como un ú
 
 La finalidad del ejercicio es comprender el ciclo completo de serialización y deserialización de objetos en Kotlin usando las clases de `java.io`.    
 
-Los pasos para serializar un objeto java (kotlin) son los siguientes:
+Los pasos para serializar un objeto Java (Kotlin) son los siguientes:
 
 🖥️ 1. **Persona.kt**: Crear una clase serializable
 
@@ -157,8 +157,17 @@ La clase **persona.kt** quedaría así:
             }
        }        
 
+!!!question "🧠 Comprueba tu comprensión"
+    Si serializas hoy un objeto `Persona` y mañana cambias la clase (por ejemplo, añadiendo o modificando atributos), ¿qué papel tienen `Serializable`, `serialVersionUID` y `readObject()` para poder recuperar ese objeto sin errores?
+
+    ??? success "Ver respuesta"
+        - `Serializable` indica que la clase puede convertirse a bytes y recuperarse después.
+        - `readObject()` reconstruye el objeto desde el fichero binario y exige que la clase exista y sea compatible.
+        - `serialVersionUID` permite controlar la compatibilidad entre versiones de la clase.
+
+        Si el identificador no coincide entre lo que se guardó y la clase actual, puede aparecer una `InvalidClassException`. Por eso es recomendable definir `serialVersionUID` explícitamente cuando prevés evolución de la clase o intercambio de ficheros entre proyectos/entornos.
 
 
-Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
-CompartirIgual 2.5](http://creativecommons.org/licenses/by-nc-sa/2.5/)
+
+
 
