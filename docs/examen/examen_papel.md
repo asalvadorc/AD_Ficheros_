@@ -11,7 +11,7 @@
 
 ## 🅰️ Bloque 1 — Teoría y comprensión (4 puntos · 40%)
 
-### Pregunta 1 — Elección razonada (1,5 puntos)
+### Pregunta 1 — Elección razonada (1 punto)
 
 Para cada caso, indica **qué clase o librería usarías** y **justifica brevemente** (1-2 líneas):
 
@@ -22,12 +22,6 @@ Para cada caso, indica **qué clase o librería usarías** y **justifica breveme
 &nbsp;
 
 **b)** Tu proyecto es exclusivamente Kotlin y necesitas guardar una lista de objetos en un fichero **JSON**.
-
-&nbsp;
-
-&nbsp;
-
-**c)** Recibes un **CSV** generado por Excel (con `;` como separador y cabecera en la primera fila) y debes convertir cada fila en un objeto `Alumno`.
 
 &nbsp;
 
@@ -91,6 +85,18 @@ Indica **V** o **F** y corrige las falsas en una línea:
 &nbsp;
 
 **c)** `FileChannel` permite posicionarse en cualquier byte de un fichero para leer o escribir.
+
+&nbsp;
+
+---
+
+### Pregunta 5 — Conversión de formatos (0,5 puntos)
+
+Describe brevemente (2-3 líneas) el proceso conceptual correcto para convertir la información de un fichero **XML** a un fichero **JSON** en tu aplicación. ¿Qué pasos seguirías y qué librerías recomendarías usar?
+
+&nbsp;
+
+&nbsp;
 
 &nbsp;
 

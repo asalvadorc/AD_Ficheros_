@@ -1,4 +1,4 @@
-﻿# 🔹 Ficheros de intercambio
+# 🔹 Ficheros de intercambio
 
 En el desarrollo de aplicaciones, es habitual trabajar con datos almacenados o transmitidos en distintos formatos de ficheros. La conversión entre estos formatos permite intercambiar información entre sistemas heterogéneos, integrarse con APIs, facilitar la persistencia de datos o adaptarse a requisitos específicos. 
 
@@ -28,12 +28,7 @@ Define qué información tiene un objeto y de qué tipo es cada dato. El data cl
 | nombre;nota<br>Lucía;28 | data class Alumno(<br>&nbsp;&nbsp;&nbsp;val nombre: String,<br>&nbsp;&nbsp;&nbsp;val nota: Int<br>) |
 
 
-!!!warning "Ejemplos"
-    Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos un proyecto llamado **Ficheros_Gradle**, en el que incluiremos **Gradle** como herramienta de construcción. Los ejemplos los iremos creando directamente en la carpeta **src/main/Kotlin**.   
-    Crearemos también la carpeta **documentos**, donde iremos dejando los ficheros generados en los distintos ejemplos.
-    
-    | ![Ref](new_project_gradle.png){width=600 } | ![Ref](ejemplos_intercambio.png){width=400 } |
-    |---|---|
+
 
 
 ## 🔹 Dependencias Gradle

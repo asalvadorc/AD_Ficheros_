@@ -1,5 +1,12 @@
 # 📘 Guía resumen: Lectura y escritura de distintos formatos de ficheros en Kotlin
 
+!!!info "Convención de trazabilidad"
+	Las instrucciones operativas de entorno (IDE, carpetas, recursos y estructura base) se centralizan en:
+	- [Entorno y proyecto base](00_Entorno_y_proyecto.md)
+
+	Para buscarlas rápidamente en todo el proyecto, usa las etiquetas:
+	<span class="setup-tag">SETUP_IDE</span>, <span class="setup-tag">SETUP_PAQUETES</span>, <span class="setup-tag">SETUP_CARPETAS</span>, <span class="setup-tag">SETUP_RECURSOS_T3</span>.
+
 ## Tipos de ficheros y métodos de acceso
 
 | Tipo de fichero         | Lectura                             | Escritura                           | Comentario                                      |

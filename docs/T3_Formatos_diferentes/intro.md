@@ -1,5 +1,17 @@
 # 🔹 Introducción
 
+## 🛠️ Preparación de los ejemplos
+
+!!!warning ""
+    Los ejemplos del **Tema 3** se reparten entre dos proyectos: 
+
+    - **Sin librerías externas** (ej. ObjectOutputStream): usa el proyecto **`Ficheros`**, paquete **`formatos`**.
+    - **Con dependencias externas** (ej. JSON, CSV, XML): usa el proyecto **`Ficheros_Gradle`**.   
+    
+    Si tienes dudas, revisa la configuración en [🧰 Entorno y Ubicación de Ejemplos](../00_Entorno_y_proyecto.md).
+
+## 📖 Conceptos teóricos
+
 
 
 <!--![ref1](formatos.png)-->

@@ -14,12 +14,6 @@ En Java existen varias APIs para trabajar con este tipo de ficheros. La elecció
 
 En este apartado estudiaremos cuándo resulta más conveniente utilizar cada una de estas alternativas y las ventajas que aporta cada una de ellas.
 
-!!!warning "Ejemplos"
-    Los ejemplos de esta sección se desarrollarán dentro del paquete contenido del proyecto **Ficheros**.
-    Además, si todavía no lo has hecho en los apartados anteriores, crea en la raíz del proyecto las carpetas **documentos** y **documentos2**, ya que se utilizarán para almacenar los archivos generados durante la ejecución de los ejemplos.
-
-
-
 **DataInputStream y DataOutputStream**{.azul}
 
 Cuando hay que guardar tipos primitivos (por ejemplo `Int`, `Double`) de forma secuencial, suele usarse `DataInputStream` y `DataOutputStream`.

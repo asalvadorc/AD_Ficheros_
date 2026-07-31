@@ -1,5 +1,14 @@
-# 🔹 Lectura y escritura de ficheros
+# 🔹 Introducción
 
+## 🛠️ Preparación de los ejemplos
+
+!!!warning ""
+    Todos los ejemplos de código del **Tema 2** se deben programar en el proyecto **`Ficheros`**, dentro del paquete **`contenido`**.   
+    
+    <span class="setup-tag">SETUP_CARPETAS</span> Si todavía no has preparado las carpetas de trabajo (`documentos` y `documentos2`), consulta:
+    [🧰 Entorno y Ubicación de Ejemplos](../00_Entorno_y_proyecto.md)
+
+## 📖 Conceptos teóricos
 En el desarrollo de aplicaciones es común tener que leer y escribir datos almacenados en archivos. Según el tipo de contenido del fichero (texto, binario, imagen, estructurado...), se utilizan clases y métodos distintos para acceder a ellos de forma eficiente y segura.
 
 **Kotlin** se apoya en las bibliotecas de Java (**java.io** y **java.nio.file**) para realizar estas operaciones, permitiendo un control detallado tanto para acceso secuencial como aleatorio.
@@ -10,6 +19,7 @@ En el desarrollo de aplicaciones es común tener que leer y escribir datos almac
 
 En el desarrollo actual, especialmente en aplicaciones que manejan datos estructurados, binarios o grandes volúmenes de información, es preferible utilizar **java.nio**, por lo que será la API que utilizaremos en los ejemplos y ejercicios.
 
+<!--
 ??? info "Resumen de clases y métodos para el acceso a ficheros en Kotlin (Java NIO)"
 
     | Tipo de fichero           | Lectura                             | Escritura                            | Comentario                                               |
@@ -26,10 +36,7 @@ En el desarrollo actual, especialmente en aplicaciones que manejan datos estruct
     |                           | `ImageIO.read(InputStream)`         | `ImageIO.write(BufferedImage, formato, OutputStream)` | Útil si trabajas con streams en lugar de `File` |
     |                           | `Files.readAllBytes(Path)` + `ImageIO.read(ByteArrayInputStream)` | `ImageIO.write(...)` + `Files.write(Path, byte[])` | Alternativa cuando necesitas manipular bytes antes de guardar |
     | Acceso aleatorio          | `FileChannel.position(offset)`      | `FileChannel.position(offset)`        | Permite saltar a cualquier posición del fichero         |
+-->
 
-!!!warning "Ejemplos"
-    Los ejemplos de esta parte se incluirán en el paquete **contenido**, dentro de nuestro proyecto **Ficheros**.  
-    También será necesario crear las carpetas **documentos** y **documentos2** para guardar los archivos generados.
 
-    ![Ref](paquetes.png){: .img-muy-pequena .img-izquierda }
-
+    

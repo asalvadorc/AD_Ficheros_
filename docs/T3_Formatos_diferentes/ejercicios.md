@@ -1,7 +1,11 @@
 # 📝 Ejercicio 3: Proyecto Integrador (Parte 3) - Formatos de intercambio
 
 !!!info "Estructura del proyecto"
-    Antes de empezar, crea un paquete llamado `Ejercicio3` en tu proyecto Kotlin. Dentro de ese paquete se deberá construir el archivo `.kt` con la solución del ejercicio.
+  <span class="setup-tag">SETUP_PAQUETES</span>
+  Antes de empezar, crea un paquete llamado `Ejercicio3` en tu proyecto Kotlin. Dentro de ese paquete se deberá construir el archivo `.kt` con la solución del ejercicio.
+    
+  Referencia central de preparación:
+  - [Entorno y proyecto base](../00_Entorno_y_proyecto.md)
 
 ## 📋 Enunciado
 
@@ -49,58 +53,13 @@ Junto con este enunciado se proporcionan los siguientes archivos:
 
 Antes de comenzar la práctica debes incorporar los archivos proporcionados a tu proyecto de la **Parte 2**.
 
-  - **Paso 1.** Copia el fichero [config.json](../T3_Formatos_diferentes/config.json) en la raíz del proyecto, al mismo nivel que `build.gradle.kts`.
+<span class="setup-tag">SETUP_RECURSOS_T3</span>
 
-    La estructura deberá quedar similar a la siguiente:
+La preparación operativa de `config.json` y `carpeta_prueba` se ha movido a:
 
-    
-        MiProyecto
-        │
-        ├── build.gradle.kts
-        ├── settings.gradle.kts
-        ├── config.json
-        │
-        └── src
+- [Entorno y proyecto base](../00_Entorno_y_proyecto.md)
 
-     Este fichero contendrá la configuración inicial de la aplicación.
-
-      Ejemplo:
-
-      ```json
-      {
-          "directorio_inicial": "src/main/resources/carpeta_prueba",
-          "mostrar_archivos_ocultos": false
-      }
-      ```   
-    
-  - **Paso 2.** Descomprimir el archivo `carpeta_prueba.zip` y copiar la carpeta con sus archivos dentro de la carpeta `resources`:
-
-    
-        src/main/resources
-    
-
-    La estructura resultante del proyecto deberá ser la siguiente:
-
-        
-        Proyecto
-        │
-        ├── config.json
-        │
-        └── src
-            └── main
-                ├── kotlin
-                └── resources
-                    └── carpeta_prueba
-                        ├── notas.md
-                        ├── imagen.jpg
-                        ├── factura.pdf
-                        ├── documento.txt
-                        ├── datos.csv
-                        ├── .oculto.txt
-                        └── exportar
-        
-
-    ---
+---
 
 ## 🛠️ Requisitos técnicos de las nuevas opciones
 

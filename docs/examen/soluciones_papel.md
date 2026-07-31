@@ -13,8 +13,6 @@
 
 **b)** `kotlinx.serialization` con `@Serializable` y `Json.encodeToString()` — Librería oficial de JetBrains, ligera, sin necesidad de frameworks adicionales.
 
-**c)** `Kotlin-CSV` con `csvReader { delimiter = ';' }.readAllWithHeader(File(...))` o `OpenCSV` con `CSVReaderBuilder` + `withSeparator(';')` + `withSkipLines(1)`. Kotlin-CSV es más idiomático para Kotlin.
-
 ---
 
 ### Pregunta 2
@@ -46,6 +44,18 @@ Files.createDirectories(ruta.parent)
 | **a)** `readAllBytes()` es la mejor opción para cualquier tamaño | **F** | Solo es adecuado para ficheros pequeños. Para ficheros grandes provoca `OutOfMemoryError`. Usar `BufferedReader` o `InputStream`. |
 | **b)** `@Serializable` es obligatorio en `kotlinx.serialization` | **V** | — |
 | **c)** `FileChannel` permite posicionarse en cualquier byte | **V** | — |
+
+---
+
+### Pregunta 5 — Conversión de formatos
+
+**Proceso conceptual:**  
+No existe una conversión directa "de fichero a fichero". El proceso es:
+1. **Leer** el fichero XML y **deserializarlo** convirtiéndolo a objetos en memoria.
+2. **Serializar** esos objetos a formato JSON y **escribirlos** en el fichero de destino.
+
+**Herramientas recomendadas:**  
+- Para leer el XML y escribir el JSON: **Jackson** (con `XmlMapper` y `ObjectMapper`) o **kotlinx.serialization** (con el módulo XML de formato experimental).
 
 ---
 

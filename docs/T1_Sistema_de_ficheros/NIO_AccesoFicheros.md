@@ -1,14 +1,5 @@
 ﻿# 🔹 Acceso al sistema de ficheros. Java.nio 
 
-!!!warning "Proyecto Ficheros"
-    1) Para probar y organizar los ejemplos propuestos en esta parte del temario, crearemos en **IntelliJ** un proyecto **Kotlin** llamado **Ficheros**.
-
-    ![Ref](new_project.png){: .img-pequena .img-izquierda }
-
-    2) Dentro de este proyecto crearemos tres paquetes (**sistema**, **contenido** y **formatos**) para organizar los diferentes ejemplos, que en cada ocasión se indicará en que paquete deben ubicarse.
-
-    ![Ref](paquetes.png){: .img-muy-pequena .img-izquierda }
-
 Durante muchos años se ha utilizado la librería **java.io** para trabajar con ficheros en el mundo Java. Se trata de un **API** muy potente y flexible que nos permite realizar casi cualquier tipo de operación. Sin embargo es una API complicada de entender. **Java.nio** (New IO) es una nueva API disponible desde Java7 que nos permite mejorar el rendimiento, así como simplificar el manejo de muchas operaciones. 
 
 **Java.nio** define interfaces y clases para que la máquina virtual Java tenga acceso a archivos, atributos de archivos y sistemas de archivos. Aunque dicho API comprende numerosas clases, solo existen unas pocas de ellas que sirven de puntos de entrada al API, lo que simplifica considerablemente su manejo.
@@ -26,10 +17,6 @@ La clase **java.nio.file.Files** es el otro punto de entrada a la librería de f
 
 
     
-!!!Warning "Ejemplos"
-    Los siguientes ejemplos se incluirán en el paquete **sistema** dentro del proyecto **Ficheros**.  
-
-
 ## 🔹 Paths
 
 La clase **Paths** es una clase de utilidad que proporciona métodos estáticos para crear objetos **Path**, que luego puedes usar con métodos de **Files**.

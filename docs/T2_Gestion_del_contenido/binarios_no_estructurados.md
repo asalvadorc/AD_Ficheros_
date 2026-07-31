@@ -2,11 +2,6 @@
 
 Un fichero binario no estructurado es cualquier fichero binario cuyo contenido no está organizado en registros definidos por nuestro programa. En la mayoría de los casos, simplemente lo tratamos como una secuencia de bytes, sin necesidad de interpretar su formato interno (ficheros de imagen, audio, vídeo, zip, ejecutable...).
 
-!!!warning "Ejemplos"
-    Los ejemplos de esta sección se desarrollarán dentro del paquete contenido del proyecto **Ficheros**.
-    Además, si todavía no lo has hecho en los apartados anteriores, crea en la raíz del proyecto las carpetas **documentos** y **documentos2**, ya que se utilizarán para almacenar los archivos generados durante la ejecución de los ejemplos.
-
-    <!--[Ref](paquetes.png){: .img-muy-pequena .img-izquierda }-->
 ---
 **readAllBytes**{.azul}
 

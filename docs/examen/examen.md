@@ -13,15 +13,13 @@
 
 ## 🅰️ Bloque 1 — Teoría y comprensión (4 puntos · 40%)
 
-### Pregunta 1 — Elección razonada (1,5 puntos)
+### Pregunta 1 — Elección razonada (1 punto)
 
-Para cada uno de los tres casos siguientes, indica **qué clase o librería usarías** y **justifica brevemente tu respuesta** (1-2 líneas por caso):
+Para cada uno de los dos casos siguientes, indica **qué clase o librería usarías** y **justifica brevemente tu respuesta** (1-2 líneas por caso):
 
 **a)** Necesitas leer un fichero de texto de **800 MB** línea a línea sin que el programa se quede sin memoria.
 
 **b)** Tu aplicación Kotlin necesita guardar una lista de objetos en un fichero **JSON** y luego recuperarla. El proyecto es exclusivamente Kotlin y no usa Spring Boot.
-
-**c)** Recibes un fichero **CSV** generado por Excel (con punto y coma como separador y cabecera en la primera fila) y debes convertir cada fila en un objeto `Alumno`. Estás desarrollando en Kotlin.
 
 ---
 
@@ -78,6 +76,12 @@ Indica si cada afirmación es **verdadera (V) o falsa (F)** y, si es falsa, corr
 **b)** Para usar `kotlinx.serialization`, es obligatorio añadir la anotación `@Serializable` a la clase que se quiere serializar.
 
 **c)** `FileChannel` y `ByteBuffer` permiten posicionarse en cualquier byte de un fichero para lectura/escritura aleatoria.
+
+---
+
+### Pregunta 5 — Conversión de formatos (0,5 puntos)
+
+Describe brevemente (2-3 líneas) cuál es el proceso conceptual correcto para convertir la información de un fichero **XML** a un fichero **JSON** en tu aplicación. ¿Qué pasos seguirías y qué librerías recomendarías usar?
 
 ---
 

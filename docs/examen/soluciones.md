@@ -20,11 +20,6 @@
 ✅ **`kotlinx.serialization`** con la anotación `@Serializable` y `Json.encodeToString()` / `Json.decodeFromString<T>()`.  
 Es la librería oficial de JetBrains, ligera, sin dependencias adicionales de frameworks, y con soporte multiplataforma.
 
-**c)** Fichero CSV de Excel con `;` como separador y cabecera:
-
-✅ **Kotlin-CSV** (`csvReader { delimiter = ';' }.readAllWithHeader(File(...))`) o **OpenCSV** con `CSVReaderBuilder` usando `withSeparator(';')` y `withSkipLines(1)`.  
-Kotlin-CSV es más idiomático para Kotlin y `readAllWithHeader` simplifica el salto de la cabecera.
-
 ---
 
 ### Pregunta 2 — Detecta el error
@@ -77,7 +72,19 @@ fun main() {
 `@Serializable` es obligatorio. Sin ella, `kotlinx.serialization` no puede generar el serializador en tiempo de compilación y lanzará un error.
 
 **c) VERDADERA.**  
-`FileChannel` dispone del método `position(offset: Long)` que permite situarse en cualquier posición del fichero antes de leer o escribir, lo que habilita el acceso aleatorio.
+`FileChannel` permite posicionarse en cualquier byte | **V** | — |
+
+---
+
+### Pregunta 5 — Conversión de formatos
+
+| Indicador | Puntos |
+|---|---|
+| Menciona el patrón: leer XML → convertir a objetos (en memoria) → serializar a JSON | 0,25 |
+| Sugiere usar Jackson (XmlMapper y ObjectMapper) o kotlinx.serialization | 0,25 |
+
+!!!tip "Nota de corrección"
+    Lo esencial es que el alumno entienda que **no hay conversión mágica directa de texto a texto**, sino que se requiere parsear a objetos intermedios.
 
 ---
 

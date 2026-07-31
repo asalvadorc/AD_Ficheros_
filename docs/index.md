@@ -2,17 +2,7 @@
 title: "Acceso a Datos - Ficheros"
 ---
 
-# Ficheros
----
-
-### **¿De qué trata este módulo?**
-
-En este módulo aprenderás a desarrollar aplicaciones que gestionan información almacenada en **ficheros**. Trabajarás con la API moderna de Java (**java.nio**) desde Kotlin, y aprenderás a leer, escribir y convertir ficheros de distintos tipos: texto, binario, imagen, JSON, XML y CSV.
-
-![Portada del módulo](T1_Portada.png){: .img-muy-pequena .img-izquierda }
----
-
-## 🗺️ Guía de estudio
+# 🗺️ Guía de estudio
 
 El módulo está dividido en **3 bloques temáticos**. Sigue el orden indicado: cada bloque parte de los conocimientos del anterior.
 
@@ -23,9 +13,8 @@ Entenderás qué es un fichero, cómo se organiza el sistema de archivos y cómo
 | Orden | Página | Descripción |
 |-------|--------|-------------|
 | 1 | [Ficheros](T1_Sistema_de_ficheros/ficheros.md) | Qué es un fichero y para qué se usa |
-| 2 | [Formas de acceso](T1_Sistema_de_ficheros/Formas_acceso.md) | Acceso secuencial vs. aleatorio |
-| 3 | [Acceso al sistema. Java.nio](T1_Sistema_de_ficheros/NIO_AccesoFicheros.md) | Clases Path, Files, FileSystem... |
-| 4 | [Ejercicio obligatorio 1](T1_Sistema_de_ficheros/exercicis.md) | Explorador interactivo del directorio personal |
+| 2 | [Acceso al sistema. Java.nio](T1_Sistema_de_ficheros/NIO_AccesoFicheros.md) | Clases Path, Files, FileSystem... |
+| 3 | [Ejercicio obligatorio 1](T1_Sistema_de_ficheros/exercicis.md) | Explorador interactivo del directorio personal |
 
 ---
 
@@ -36,11 +25,12 @@ Aprenderás a leer y escribir ficheros de texto, binarios, imágenes y a hacer a
 | Orden | Página | Descripción |
 |-------|--------|-------------|
 | 1 | [Introducción y clases](T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md) | Tabla resumen de todas las clases |
-| 2 | [Texto y binarios](T2_Gestion_del_contenido/texto_binarios.md) | Leer y escribir ficheros .txt y .bin |
-| 3 | [Imágenes](T2_Gestion_del_contenido/ficheros_imagen.md) | Leer, copiar y modificar imágenes |
-| 4 | [Binarios estructurados](T2_Gestion_del_contenido/binarios_estructurados.md) | Tipos primitivos con DataStream |
-| 5 | [Acceso aleatorio](T2_Gestion_del_contenido/acceso_aleatorio.md) | FileChannel y ByteBuffer |
-| 6 | [Ejercicio obligatorio 2](T2_Gestion_del_contenido/ejercicios.md) | Gestión completa de ficheros |
+| 2 | [Formas de acceso](T2_Gestion_del_contenido/Formas_acceso.md) | Acceso secuencial vs. aleatorio |
+| 3 | [Texto y binarios](T2_Gestion_del_contenido/texto_binarios.md) | Leer y escribir ficheros .txt y .bin |
+| 4 | [Imágenes](T2_Gestion_del_contenido/ficheros_imagen.md) | Leer, copiar y modificar imágenes |
+| 5 | [Binarios estructurados](T2_Gestion_del_contenido/binarios_estructurados.md) | Tipos primitivos con DataStream |
+| 6 | [Acceso aleatorio](T2_Gestion_del_contenido/acceso_aleatorio.md) | FileChannel y ByteBuffer |
+| 7 | [Ejercicio obligatorio 2](T2_Gestion_del_contenido/ejercicios.md) | Gestión completa de ficheros |
 
 ---
 
@@ -66,11 +56,5 @@ Trabajarás con formatos de intercambio de datos (JSON, XML, CSV) usando librer�
     - Antes de pasar a la siguiente página, asegúrate de que entiendes el ejemplo anterior: compara tu salida con la salida esperada que aparece en cada ejemplo.
     - **Los ejercicios obligatorios** son la parte más importante: aplican todo lo aprendido en el bloque.
 
-## 📦 Proyecto base
-
-Todos los ejemplos de código se organizan en un único proyecto **IntelliJ** llamado **Ficheros**, con tres paquetes:
-`sistema`, `contenido`.`formatos`.
-
-Los ejemplos del **Bloque 3** usan un proyecto separado llamado **Ficheros_Gradle** que incluye Gradle para gestionar dependencias externas.
 
 ---

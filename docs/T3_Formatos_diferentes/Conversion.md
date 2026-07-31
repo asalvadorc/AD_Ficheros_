@@ -1,4 +1,4 @@
-﻿# 🔹 Conversión entre formatos de ficheros en Kotlin/Java
+# 🔹 Conversión entre formatos de ficheros en Kotlin/Java
 
 !!!Tip "Importante"
     Para convertir un fichero de un formato a otro, primero debo deserializarlo o interpretarlo convirtiéndolo a objetos en memoria, y después generar el nuevo formato a partir de esos objetos. El proceso correcto es siempre:  
@@ -38,8 +38,7 @@ Las herramientas no destacadas en negrita son alternativas válidas, que pueden 
 
 ## 🔹 Ejemplos de conversión
 
-!!!warning "Ejemplos"
-    Los siguientes ejemplos también se incluirán en el proyecto **Ficheros_Gradle**.
+
 
 En los siguientes ejemplos trabajaremos con tres archivos en diferentes formatos: **CSV**, **XML** y **JSON**. Estos archivos contienen información similar, representada con distinta estructura y sintaxis según el formato. Los utilizaremos como base para realizar ejercicios de conversión entre formatos.
 

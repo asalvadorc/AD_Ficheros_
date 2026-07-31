@@ -47,10 +47,7 @@ misma clase que la que se guardó. De lo contrario, se lanzaría una
 excepción de tipos **ClassCastException**. Además, es necesario que la aplicación disponga del código compilado de la clase; si no fuera así, la excepción lanzada sería
 **ClassNotFoundException**.
 
-!!!warning "Ejemplos"
-    Los ejemplos de esta parte se incluirán en el paquete **formatos**, dentro de nuestro proyecto **Ficheros**. 
 
-    ![Ref](paquetes.png){: .img-muy-pequena .img-izquierda }
 
 
 Este ejercicio completo se divide en tres partes que deben entenderse como un único proceso: definir un objeto serializable, guardarlo en un archivo y recuperarlo después desde ese mismo archivo.

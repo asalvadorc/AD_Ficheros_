@@ -4,12 +4,6 @@ Los ficheros de texto almacenan caracteres y se usan para datos legibles por hum
 
 En Kotlin, trabajaremos con la API `java.nio.file.Files` para leer y escribir texto de forma segura y eficiente.
 
-!!!warning "Ejemplos"
-    Los ejemplos de esta sección se desarrollarán dentro del paquete contenido del proyecto **Ficheros**.
-    Además, si todavía no lo has hecho en los apartados anteriores, crea en la raíz del proyecto las carpetas **documentos** y **documentos2**, ya que se utilizarán para almacenar los archivos generados durante la ejecución de los ejemplos.
-
-    ![Ref](paquetes.png){: .img-muy-pequena .img-izquierda }
-
 ???+ info "Metodos principales para texto"
 
     | Necesidad | Lectura | Escritura | Observaciones |
@@ -34,7 +28,7 @@ Este ejemplo muestra el ciclo completo de trabajo con un fichero de texto usando
         - `newBufferedReader()`: permite leer el archivo de forma secuencial, útil cuando el fichero es grande.
 
 
-
+---
 
     import java.nio.charset.StandardCharsets
     import java.nio.file.Files
