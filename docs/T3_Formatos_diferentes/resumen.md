@@ -1,28 +1,5 @@
-# 📘 Guía resumen: Lectura y escritura de distintos formatos de ficheros en Kotlin
+# 📘 Resumen del Tema 3: Ficheros de diferentes formatos
 
-!!!info "Convención de trazabilidad"
-	Las instrucciones operativas de entorno (IDE, carpetas, recursos y estructura base) se centralizan en:
-	- [Entorno y proyecto base](00_Entorno_y_proyecto.md)
-
-	Para buscarlas rápidamente en todo el proyecto, usa las etiquetas:
-	<span class="setup-tag">SETUP_IDE</span>, <span class="setup-tag">SETUP_PAQUETES</span>, <span class="setup-tag">SETUP_CARPETAS</span>, <span class="setup-tag">SETUP_RECURSOS_T3</span>.
-
-## Tipos de ficheros y métodos de acceso
-
-| Tipo de fichero         | Lectura                             | Escritura                           | Comentario                                      |
-|-------------------------|--------------------------------------|--------------------------------------|-------------------------------------------------|
-| **Texto (líneas)**      | `Files.readAllLines`                | `Files.write(Path, List<String>)`    | Carga todo en memoria                          |
-|                         | `Files.newBufferedReader`           | `Files.newBufferedWriter`            | Más eficiente para archivos grandes            |
-|                         | `Files.readString` (Java 11+)       | `Files.writeString`                  | Lectura/escritura completa como bloque         |
-| **Binario**             | `Files.readAllBytes`                | `Files.write(Path, ByteArray)`       | Lee y escribe bytes puros                      |
-|                         | `Files.newInputStream`              | `Files.newOutputStream`              | Flujo de bytes directo                         |
-| **Binario estructurado**| `FileChannel.read(ByteBuffer)`      | `FileChannel.write(ByteBuffer)`      | Acceso secuencial o aleatorio con `ByteBuffer` |
-|                         | `SeekableByteChannel.read(...)`     | `SeekableByteChannel.write(...)`     | Más flexible (se puede posicionar)             |
-|                         | `ByteBuffer.get*()`                 | `ByteBuffer.put*()`                  | Tipos primitivos                               |
-| **Acceso aleatorio**    | `FileChannel.position(offset)`      | `FileChannel.position(offset)`       | Permite saltar a posiciones concretas          |
-| **Imagen**              | `ImageIO.read(Path/File)`           | `ImageIO.write(BufferedImage, ...)`  | Usa `javax.imageio.ImageIO`                    |
-
----
 
 ## Serialización de objetos
 

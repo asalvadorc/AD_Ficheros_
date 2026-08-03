@@ -34,33 +34,35 @@ markdown_extensions:
 
 nav:
 - Guía de estudio: index.md
-- 🧰 Entorno y Ubicación de Ejemplos: 00_Entorno_y_proyecto.md
+- 🧰 Entorno y Ubicación de Ejemplos: 00_entorno_y_proyecto.md
 - RA y CE: RA_CE.md
 - 1. Sistema de ficheros:
   - 🔹 Introducción: T1_Sistema_de_ficheros/ficheros.md
   - 🔹 Acceso al sistema de ficheros. Java.nio: T1_Sistema_de_ficheros/NIO_AccesoFicheros.md
+  - 🔹 Resumen: T1_Sistema_de_ficheros/resumen.md
   #- 📝 Ejercicio obligatorio 1: T1_Sistema_de_ficheros/exercicis.md
 - 2. Manejo de ficheros:
-  - 🔹 Introducción: T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md
-  - 🔹 Formas de acceso a un fichero: T2_Gestion_del_contenido/Formas_acceso.md
-  - 🔹 Gestión segura de recursos: T2_Gestion_del_contenido/Gestion_segura_recursos.md 
-  - 🔹 Lectura y escritura de texto: T2_Gestion_del_contenido/Lectura_Escritura_texto.md
+  - 🔹 Introducción: T2_Gestion_del_contenido/intro.md
+  - 🔹 Formas de acceso a un fichero: T2_Gestion_del_contenido/formas_acceso.md
+  - 🔹 Manejo de errores y recursos: T2_Gestion_del_contenido/gestion_segura_recursos.md 
+  - 🔹 Lectura y escritura de texto: T2_Gestion_del_contenido/jectura_escritura_texto.md
   - 🔹 Lectura y escritura binaria:
-    - 🔹 Introducción: T2_Gestion_del_contenido/Lectura_Escritura_binaria.md 
+    - 🔹 Introducción: T2_Gestion_del_contenido/lectura_escritura_binaria.md 
     - 🔹Ficheros binarios no estructurados: T2_Gestion_del_contenido/binarios_no_estructurados.md
-    - 🔹Ficheros binarios estructurados: T2_Gestion_del_contenido/binarios_estructurados.md
+    - 🔹Ficheros binarios estructurados: T2_Gestion_del_contenido/binarios_estructuºrados.md
     - 🔹Ficheros de imagen: T2_Gestion_del_contenido/ficheros_imagen.md
   - 🔹 Ficheros de acceso aleatorio: T2_Gestion_del_contenido/acceso_aleatorio.md
-  #- 🔹 Ficheros de texto y binarios: T2_Gestion_del_contenido/texto_binarios.md
+  - 🔹 Resumen: T2_Gestion_del_contenido/resumen.md
   #- 📝 Ejercicio obligatorio 2: T2_Gestion_del_contenido/ejercicios.md
 - 3. Ficheros de diferentes formatos:
   - 🔹 Introducción: T3_Formatos_diferentes/intro.md
   - 🔹 Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
   - 🔹 Ficheros de intercambio: T3_Formatos_diferentes/ficheros_intercambio.md
-  - 🔹 Conversión entre formatos diferentes: T3_Formatos_diferentes/Conversion.md
-  - 🧭 ¿Qué librería usar?: T3_Formatos_diferentes/guia_eleccion.md
+  - 🔹 Conversión entre formatos diferentes: T3_Formatos_diferentes/conversion.md
+  - 🔹 Resumen: T3_Formatos_diferentes/resumen.md
+- 🧭 ¿Qué librería usar?: T3_Formatos_diferentes/guia_eleccion.md
   #- 📝 Ejercicio obligatorio 3: T3_Formatos_diferentes/ejercicios.md
-- 📘 Resumen de librerías y métodos: Resumen.md
+
 #- Examen:
   #- 💻 Enunciado (Ordenador): examen/examen.md
   #- 📄 Enunciado (Papel): examen/examen_papel.md
