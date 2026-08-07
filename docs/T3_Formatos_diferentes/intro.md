@@ -3,7 +3,7 @@
 ## 🛠️ Preparación de los ejemplos
 
 !!!warning ""
-    <span class="setup-tag">SETUP_IDE</span> <span class="setup-tag">SETUP_PAQUETES</span> Los ejemplos del **Tema 3** se reparten entre dos proyectos: 
+    <span class="setup-tag setup-tag-ide">SETUP_IDE</span> <span class="setup-tag setup-tag-paquetes">SETUP_PAQUETES</span> Los ejemplos del **Tema 3** se reparten entre dos proyectos: 
 
     - **Sin librerías externas** (ej. ObjectOutputStream): usa el proyecto **`Ficheros`**, paquete **`formatos`**.
     - **Con dependencias externas** (ej. JSON, CSV, XML): usa el proyecto **`Ficheros_Gradle`**.   

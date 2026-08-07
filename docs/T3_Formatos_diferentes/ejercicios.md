@@ -1,7 +1,7 @@
 # 📝 Ejercicio 3: Proyecto Integrador (Parte 3) - Formatos de intercambio
 
 !!!info "Estructura del proyecto"
-  <span class="setup-tag">SETUP_PAQUETES</span>
+  <span class="setup-tag setup-tag-paquetes">SETUP_PAQUETES</span>
   Antes de empezar, crea un paquete llamado `Ejercicio3` en tu proyecto Kotlin. Dentro de ese paquete se deberá construir el archivo `.kt` con la solución del ejercicio.
     
   Referencia central de preparación:
@@ -53,7 +53,7 @@ Junto con este enunciado se proporcionan los siguientes archivos:
 
 Antes de comenzar la práctica debes incorporar los archivos proporcionados a tu proyecto de la **Parte 2**.
 
-<span class="setup-tag">SETUP_RECURSOS_T3</span>
+<span class="setup-tag setup-tag-recursos">SETUP_RECURSOS_T3</span>
 
 La preparación operativa de `config.json` y `carpeta_prueba` se ha movido a:
 

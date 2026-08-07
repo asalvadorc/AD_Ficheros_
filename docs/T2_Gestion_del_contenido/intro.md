@@ -3,9 +3,9 @@
 ## 🛠️ Preparación de los ejemplos
 
 !!!warning ""
-    <span class="setup-tag">SETUP_IDE</span> <span class="setup-tag">SETUP_PAQUETES</span> Todos los ejemplos de código del **Tema 2** se deben programar en el proyecto **`Ficheros`**, dentro del paquete **`contenido`**.   
+    <span class="setup-tag setup-tag-ide">SETUP_IDE</span> <span class="setup-tag setup-tag-paquetes">SETUP_PAQUETES</span> Todos los ejemplos de código del **Tema 2** se deben programar en el proyecto **`Ficheros`**, dentro del paquete **`contenido`**.   
     
-    <span class="setup-tag">SETUP_CARPETAS</span> Si todavía no has preparado las carpetas de trabajo (`documentos` y `documentos2`).   
+    <span class="setup-tag setup-tag-carpetas">SETUP_CARPETAS</span> Si todavía no has preparado las carpetas de trabajo (`documentos` y `documentos2`).   
       
     Si tienes dudas, revisa la configuración en:[🧰 Entorno y Ubicación de Ejemplos](../00_entorno_y_proyecto.md)
 

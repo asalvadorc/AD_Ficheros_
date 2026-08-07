@@ -11,7 +11,7 @@
 
 Esta página centraliza todas las instrucciones operativas de preparación del entorno.
 
-## SETUP_IDE — IDE y proyecto base
+## <span class="setup-tag setup-tag-ide">SETUP_IDE</span> — IDE y proyecto base
 
 <!--Se recomienda descargar la última versión de **IntelliJ IDEA** y acceder con la cuenta educativa de GVA, ya que permite activar la licencia educativa y disponer de las funcionalidades avanzadas del entorno.
 
@@ -34,7 +34,7 @@ Esta separación se debe a que el **tema 3 requiere incorporar dependencias medi
 
 
 
-## SETUP_PAQUETES — Organización de paquetes
+## <span class="setup-tag setup-tag-paquetes">SETUP_PAQUETES</span> — Organización de paquetes
 
 En el proyecto **Ficheros**, crea estos **paquetes**, dentro de la carpeta `src`:
 
@@ -44,7 +44,7 @@ En el proyecto **Ficheros**, crea estos **paquetes**, dentro de la carpeta `src`
 
 ![alt text](image-7.png)
 
-## SETUP_CARPETAS — Carpetas de trabajo
+## <span class="setup-tag setup-tag-carpetas">SETUP_CARPETAS</span> — Carpetas de trabajo
 
 En la raiz del proyecto **Ficheros**, crea estas **carpetas** de apoyo, para los ejemplos del tema 1 y 2:
 
@@ -56,7 +56,7 @@ En la raiz del proyecto **Ficheros**, crea estas **carpetas** de apoyo, para los
 Se usan para generar y manipular archivos durante las prácticas.
 
 <!--
-## SETUP_RECURSOS_T3 — Recursos para Ejercicio 3
+## <span class="setup-tag setup-tag-recursos">SETUP_RECURSOS_T3</span> — Recursos para Ejercicio 3
 
 En el proyecto de la Parte 3 prepara los recursos así:
 

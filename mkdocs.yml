@@ -1,67 +1,118 @@
 site_name: AD - Acceso a Datos - Ficheros
+copyright: >
+  © 2026 Alicia Salvador —
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+  Licencia CC BY-NC-SA 4.0
+  </a>
 
 extra_css:
   - css/extra.css
-  - css/copy-button.css
+  #- css/copy-button.css
 
 extra_javascript:
-  - js/copy-button.js  
+  #- js/copy-button.js
+  - js/lightbox.js
 
 theme: 
-  name: readthedocs
-  features:
-    - navigation.expand
-    - navigation.sections
-    - navigation.tabs
-    - copy-to-clipboard
-    - content.code.copy
+  name: material
+  language: es
+  font:
+    text: Inter
+    code: JetBrains Mono
   logo: assets/logocaminas.png
   favicon: img/favicon.ico
-    
-
-plugins:
-  - search
-  - glightbox
+  features:
+    - toc.follow
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.tracking
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    - content.action.edit
+    - content.action.view
+    - header.autohide
+  palette: 
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
 
 markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
   - admonition
-  - pymdownx.details
-  - pymdownx.superfences
   - tables    
   - attr_list
-  - toc
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - md_in_html
+  - pymdownx.details
+  - meta
+  - toc:
+      toc_depth: 2
+      permalink: True
 
 nav:
-- Guía de estudio: index.md
-- 🧰 Entorno y Ubicación de Ejemplos: 00_entorno_y_proyecto.md
-- RA y CE: RA_CE.md
-- 1. Sistema de ficheros:
-  - 🔹 Introducción: T1_Sistema_de_ficheros/ficheros.md
-  - 🔹 Acceso al sistema de ficheros. Java.nio: T1_Sistema_de_ficheros/NIO_AccesoFicheros.md
-  - 🔹 Resumen: T1_Sistema_de_ficheros/resumen.md
-  #- 📝 Ejercicio obligatorio 1: T1_Sistema_de_ficheros/exercicis.md
-- 2. Manejo de ficheros:
-  - 🔹 Introducción: T2_Gestion_del_contenido/intro.md
-  - 🔹 Formas de acceso a un fichero: T2_Gestion_del_contenido/formas_acceso.md
-  - 🔹 Manejo de errores y recursos: T2_Gestion_del_contenido/gestion_segura_recursos.md 
-  - 🔹 Lectura y escritura de texto: T2_Gestion_del_contenido/lectura_escritura_texto.md
-  - 🔹 Lectura y escritura binaria:
-    - 🔹 Introducción: T2_Gestion_del_contenido/lectura_escritura_binaria.md 
-    - 🔹Ficheros binarios no estructurados: T2_Gestion_del_contenido/binarios_no_estructurados.md
-    - 🔹Ficheros binarios estructurados: T2_Gestion_del_contenido/binarios_estructurados.md
-    - 🔹Ficheros de imagen: T2_Gestion_del_contenido/ficheros_imagen.md
-  - 🔹 Ficheros de acceso aleatorio: T2_Gestion_del_contenido/acceso_aleatorio.md
-  - 🔹 Resumen: T2_Gestion_del_contenido/resumen.md
-  #- 📝 Ejercicio obligatorio 2: T2_Gestion_del_contenido/ejercicios.md
-- 3. Ficheros de diferentes formatos:
-  - 🔹 Introducción: T3_Formatos_diferentes/intro.md
-  - 🔹 Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
-  - 🔹 Ficheros de intercambio: T3_Formatos_diferentes/ficheros_intercambio.md
-  - 🔹 Conversión entre formatos diferentes: T3_Formatos_diferentes/conversion.md
-  - 🔹 Resumen: T3_Formatos_diferentes/resumen.md
-- 🧭 ¿Qué librería usar?: T3_Formatos_diferentes/guia_eleccion.md
-  #- 📝 Ejercicio obligatorio 3: T3_Formatos_diferentes/ejercicios.md
+- Inicio:
+  - Guía de estudio: index.md
+  - 🧰 Entorno y Ubicación de Ejemplos: 00_entorno_y_proyecto.md
+  - RA y CE: RA_CE.md
+- Ficheros:
+  - 1. Sistema de ficheros:
+    - 🔹 Introducción: T1_Sistema_de_ficheros/ficheros.md
+    - 🔹 Acceso al sistema de ficheros. Java.nio: T1_Sistema_de_ficheros/NIO_AccesoFicheros.md
+    - 🔹 Resumen: T1_Sistema_de_ficheros/resumen.md
+    #- 📝 Ejercicio obligatorio 1: T1_Sistema_de_ficheros/exercicis.md
+  - 2. Manejo de ficheros:
+    - 🔹 Introducción: T2_Gestion_del_contenido/intro.md
+    - 🔹 Formas de acceso a un fichero: T2_Gestion_del_contenido/formas_acceso.md
+    - 🔹 Manejo de errores y recursos: T2_Gestion_del_contenido/gestion_segura_recursos.md
+    - 🔹 Lectura y escritura de texto: T2_Gestion_del_contenido/lectura_escritura_texto.md
+    - 🔹 Lectura y escritura binaria:
+      - 🔹 Introducción: T2_Gestion_del_contenido/lectura_escritura_binaria.md
+      - 🔹Ficheros binarios no estructurados: T2_Gestion_del_contenido/binarios_no_estructurados.md
+      - 🔹Ficheros binarios estructurados: T2_Gestion_del_contenido/binarios_estructurados.md
+      - 🔹Ficheros de imagen: T2_Gestion_del_contenido/ficheros_imagen.md
+    - 🔹 Ficheros de acceso aleatorio: T2_Gestion_del_contenido/acceso_aleatorio.md
+    - 🔹 Resumen: T2_Gestion_del_contenido/resumen.md
+    #- 📝 Ejercicio obligatorio 2: T2_Gestion_del_contenido/ejercicios.md
+  - 3. Ficheros de diferentes formatos:
+    - 🔹 Introducción: T3_Formatos_diferentes/intro.md
+    - 🔹 Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
+    - 🔹 Ficheros de intercambio: T3_Formatos_diferentes/ficheros_intercambio.md
+    - 🔹 Conversión entre formatos diferentes: T3_Formatos_diferentes/conversion.md
+    - 🔹 Resumen: T3_Formatos_diferentes/resumen.md
+  - 🧭 ¿Qué librería usar?: T3_Formatos_diferentes/guia_eleccion.md
+    #- 📝 Ejercicio obligatorio 3: T3_Formatos_diferentes/ejercicios.md
 
 #- Examen:
   #- 💻 Enunciado (Ordenador): examen/examen.md
