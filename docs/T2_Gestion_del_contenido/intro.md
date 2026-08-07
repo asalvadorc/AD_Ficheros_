@@ -7,7 +7,7 @@
     
     <span class="setup-tag">SETUP_CARPETAS</span> Si todavía no has preparado las carpetas de trabajo (`documentos` y `documentos2`).   
       
-    Si tienes dudas, revisa la configuración en:[🧰 Entorno y Ubicación de Ejemplos](../00_Entorno_y_proyecto.md)
+    Si tienes dudas, revisa la configuración en:[🧰 Entorno y Ubicación de Ejemplos](../00_entorno_y_proyecto.md)
 
 ## 📖 Conceptos teóricos
 En el desarrollo de aplicaciones es común tener que leer y escribir datos almacenados en archivos. Según el tipo de contenido del fichero (texto, binario, imagen, estructurado...), se utilizan clases y métodos distintos para acceder a ellos de forma eficiente y segura.

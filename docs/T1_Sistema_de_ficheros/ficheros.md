@@ -5,7 +5,7 @@
 !!!warning ""
      <span class="setup-tag">SETUP_IDE</span> <span class="setup-tag">SETUP_PAQUETES</span> Todos los ejemplos de código del **Tema 1** se deben programar en el proyecto **`Ficheros`**, dentro del paquete **`sistema`**. 
        
-    Si tienes dudas, revisa la configuración en [🧰 Entorno y Ubicación de Ejemplos](../00_Entorno_y_proyecto.md).
+    Si tienes dudas, revisa la configuración en [🧰 Entorno y Ubicación de Ejemplos](../00_entorno_y_proyecto.md).
 
 
 ## 📖 Conceptos teóricos

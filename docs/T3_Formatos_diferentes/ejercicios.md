@@ -5,7 +5,7 @@
   Antes de empezar, crea un paquete llamado `Ejercicio3` en tu proyecto Kotlin. Dentro de ese paquete se deberá construir el archivo `.kt` con la solución del ejercicio.
     
   Referencia central de preparación:
-  - [Entorno y proyecto base](../00_Entorno_y_proyecto.md)
+  - [Entorno y proyecto base](../00_entorno_y_proyecto.md)
 
 ## 📋 Enunciado
 
@@ -57,7 +57,7 @@ Antes de comenzar la práctica debes incorporar los archivos proporcionados a tu
 
 La preparación operativa de `config.json` y `carpeta_prueba` se ha movido a:
 
-- [Entorno y proyecto base](../00_Entorno_y_proyecto.md)
+- [Entorno y proyecto base](../00_entorno_y_proyecto.md)
 
 ---
 

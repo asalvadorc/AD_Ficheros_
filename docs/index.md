@@ -24,8 +24,8 @@ Aprenderás a leer y escribir ficheros de texto, binarios, imágenes y a hacer a
 
 | Orden | Página | Descripción |
 |-------|--------|-------------|
-| 1 | [Introducción y clases](T2_Gestion_del_contenido/Lectura_Escritura_ficheros.md) | Tabla resumen de todas las clases |
-| 2 | [Formas de acceso](T2_Gestion_del_contenido/Formas_acceso.md) | Acceso secuencial vs. aleatorio |
+| 1 | [Introducción y clases](T2_Gestion_del_contenido/resumen.md) | Tabla resumen de todas las clases |
+| 2 | [Formas de acceso](T2_Gestion_del_contenido/formas_acceso.md) | Acceso secuencial vs. aleatorio |
 | 3 | [Texto y binarios](T2_Gestion_del_contenido/texto_binarios.md) | Leer y escribir ficheros .txt y .bin |
 | 4 | [Imágenes](T2_Gestion_del_contenido/ficheros_imagen.md) | Leer, copiar y modificar imágenes |
 | 5 | [Binarios estructurados](T2_Gestion_del_contenido/binarios_estructurados.md) | Tipos primitivos con DataStream |
@@ -43,7 +43,7 @@ Trabajarás con formatos de intercambio de datos (JSON, XML, CSV) usando librer�
 | 1 | [Introducción](T3_Formatos_diferentes/intro.md) | JSON, XML, CSV: cuándo usar cada uno |
 | 2 | [Serialización de Objetos](T3_Formatos_diferentes/seriaci_dobjectes.md) | Convertir objetos a bytes y viceversa |
 | 3 | [Ficheros de intercambio](T3_Formatos_diferentes/ficheros_intercambio.md) | CSV, JSON y XML con librerías |
-| 4 | [Conversión entre formatos](T3_Formatos_diferentes/Conversion.md) | De un formato a otro |
+| 4 | [Conversión entre formatos](T3_Formatos_diferentes/conversion.md) | De un formato a otro |
 | 5 | [Ejercicio obligatorio 3](T3_Formatos_diferentes/ejercicios.md) | Aplicación con múltiples formatos |
 
 ---

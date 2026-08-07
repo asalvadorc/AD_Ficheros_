@@ -8,7 +8,7 @@
     - **Sin librerías externas** (ej. ObjectOutputStream): usa el proyecto **`Ficheros`**, paquete **`formatos`**.
     - **Con dependencias externas** (ej. JSON, CSV, XML): usa el proyecto **`Ficheros_Gradle`**.   
     
-    Si tienes dudas, revisa la configuración en [🧰 Entorno y Ubicación de Ejemplos](../00_Entorno_y_proyecto.md).
+    Si tienes dudas, revisa la configuración en [🧰 Entorno y Ubicación de Ejemplos](../00_entorno_y_proyecto.md).
 
 ## 📖 Conceptos teóricos
 
