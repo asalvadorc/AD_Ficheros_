@@ -11,7 +11,7 @@ Existen dos formas principales de acceder a un fichero:
 - Es el más común y sencillo.
 - Se usa cuando se desea leer todo el contenido o recorrer registro por registro, por ejemplo la lectura de un archivo de texto línea por línea, o de un fichero binario estructurado registro a registro. 
 
-![](sec.png)
+![alt text](image.png){width=300}
 
 
 
@@ -21,7 +21,7 @@ Existen dos formas principales de acceder a un fichero:
 - Es útil cuando los registros tienen un tamaño fijo y se necesita eficiencia (por ejemplo, ir directamente al registro 100).
 - Requiere técnicas más avanzadas como el uso de **FileChannel**, **SeekableByteChannel** o **RandomAccessFile**.
 
-![](ale.png)
+![alt text](image-1.png){width=300}
 
 ---
 
