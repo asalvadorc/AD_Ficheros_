@@ -36,7 +36,7 @@ A los datos que se guardan en ficheros se llaman datos persistentes, porque pers
 - **Ficheros de bases de datos**: Se utilizan para almacenar grandes volúmenes de datos estructurados (.db, .sql).
 
 
-![Tipos de ficheros](tiposficheros_moderno_es.jpg){: .img-muy-pequena .img-izquierda }
+![Tipos de ficheros](tiposficheros_moderno_es.jpg){width=400 .img-izquierda }
 
 
 **Principales usos de la persistencia de datos en ficheros**{.azul}

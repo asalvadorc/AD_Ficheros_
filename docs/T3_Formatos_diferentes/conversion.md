@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # 🔹 Conversión entre formatos de ficheros en Kotlin/Java
 
 !!!Tip "Importante"
