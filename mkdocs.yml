@@ -19,7 +19,7 @@ theme:
   font:
     text: Inter
     code: JetBrains Mono
-  logo: assets/logocaminas.png
+  logo: assets/logo.png
   favicon: img/favicon.ico
   features:
     - toc.follow
