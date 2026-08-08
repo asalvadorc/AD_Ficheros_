@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # 🔹 Introducción
 
 ## 🛠️ Preparación de los ejemplos

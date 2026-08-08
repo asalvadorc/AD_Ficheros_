@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # 🧰 Entorno y proyecto base
 
 > **Ubicación rápida de los ejemplos de código**

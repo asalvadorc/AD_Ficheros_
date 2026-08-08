@@ -1,4 +1,9 @@
-﻿# 🔹 Ficheros de imagen
+﻿---
+hide:
+  - toc
+---
+
+# 🔹 Ficheros de imagen
 
 Los ficheros de imagen contienen datos que representan gráficamente una imagen visual (fotografías, ilustraciones, iconos, etc.). A diferencia de los ficheros de texto o binarios crudos, estos archivos tienen estructura interna que depende del formato (como .png, .jpg, .bmp, etc.).
 

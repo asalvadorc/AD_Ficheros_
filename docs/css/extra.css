@@ -960,6 +960,27 @@ body.lightbox-open {
     display: none !important;
 }
 
+/* Forzar menú izquierdo visible en escritorio (Material drawer) */
+@media screen and (min-width: 76.25em) {
+    [data-md-toggle="drawer"] {
+        display: none;
+    }
+
+    .md-sidebar--primary,
+    .md-sidebar--primary[hidden],
+    .md-toggle[data-md-toggle="drawer"] ~ .md-container .md-sidebar--primary,
+    .md-toggle[data-md-toggle="drawer"] ~ .md-container .md-sidebar--primary[hidden],
+    .md-toggle[data-md-toggle="drawer"]:not(:checked) ~ .md-container .md-sidebar--primary,
+    .md-toggle[data-md-toggle="drawer"]:not(:checked) ~ .md-container .md-sidebar--primary[hidden] {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        left: 0 !important;
+        transform: none !important;
+    }
+}
+
 /* Clases anteriores */
 .rojo { color: #e53935 !important; font-weight: 600; }
 .azul { color: #2980B9 !important; font-size: 18px; }

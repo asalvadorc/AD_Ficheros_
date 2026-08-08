@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # 🧭 Guía de elección: ¿qué librería usar?
 
 ![alt text](image-1.png){width=600}

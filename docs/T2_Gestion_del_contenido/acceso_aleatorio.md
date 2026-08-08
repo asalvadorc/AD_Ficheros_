@@ -1,4 +1,9 @@
-﻿# 🔹 Ficheros de acceso aleatorio
+﻿---
+hide:
+  - toc
+---
+
+# 🔹 Ficheros de acceso aleatorio
 
 Hasta el momento todos los accesos que hemos hecho a los archivos, tanto binarios como de texto, han sido secuenciales. Esto significa que siempre empezamos por el principio del archivo hasta que llegamos a la información que queremos, o en la mayor parte de los casos hasta el final de archivo.
 

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # 📘 Resumen del Tema 3: Ficheros de diferentes formatos
 
 

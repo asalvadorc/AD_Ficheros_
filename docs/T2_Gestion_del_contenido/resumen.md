@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # 📘 Resumen del Tema 2: Manejo de ficheros
 
 ## Tipos de ficheros y métodos de acceso

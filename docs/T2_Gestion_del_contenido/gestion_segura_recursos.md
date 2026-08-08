@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # 🔹 Manejo de errores y recursos
 
 

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lectura y escritura de ficheros binarios
 
 Los ficheros binarios guardan informacion como bytes en bruto. Pueden contener numeros, imagenes, audio, video o estructuras de datos compactas.

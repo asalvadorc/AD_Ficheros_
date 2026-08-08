@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # 🔹 Lectura y escritura de texto (Flujos de caracteres)
 
 Los ficheros de texto almacenan caracteres y se usan para datos legibles por humanos: `.txt`, `.csv`, `.json`, `.xml`, etc.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # 📘 Resumen del Tema 1: Sistema de ficheros
 
 | Concepto | Idea clave | Ejemplo o nota |

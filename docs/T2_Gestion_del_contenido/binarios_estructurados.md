@@ -1,4 +1,9 @@
-﻿# 🔹 Ficheros binarios estructurados
+﻿---
+hide:
+  - toc
+---
+
+# 🔹 Ficheros binarios estructurados
 
 
 

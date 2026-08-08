@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # 🔹 Formas de acceso a un fichero
 
 
