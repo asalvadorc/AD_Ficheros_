@@ -1,0 +1,2658 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ficheros/">
+      
+      
+        <link rel="next" href="../resumen/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>🔹 Acceso al sistema de ficheros. Java.nio - AD - Acceso a Datos - Ficheros</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#acceso-al-sistema-de-ficheros-javanio" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="AD - Acceso a Datos - Ficheros" class="md-header__button md-logo" aria-label="AD - Acceso a Datos - Ficheros" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD - Acceso a Datos - Ficheros
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🔹 Acceso al sistema de ficheros. Java.nio
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Inicio
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../ficheros/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Ficheros
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AD - Acceso a Datos - Ficheros" class="md-nav__button md-logo" aria-label="AD - Acceso a Datos - Ficheros" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    AD - Acceso a Datos - Ficheros
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inicio
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00_entorno_y_proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧰 Entorno y Ubicación de Ejemplos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RA_CE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RA y CE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ficheros
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ficheros
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Sistema de ficheros
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Sistema de ficheros
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ficheros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Acceso al sistema de ficheros. Java.nio
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Acceso al sistema de ficheros. Java.nio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Paths
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 FileSystem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basicfileattributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 BasicFileAttributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 FileStore
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resumen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Resumen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Manejo de ficheros
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Manejo de ficheros
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/formas_acceso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Formas de acceso a un fichero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/gestion_segura_recursos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Manejo de errores y recursos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/lectura_escritura_texto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Lectura y escritura de texto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Lectura y escritura binaria
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🔹 Lectura y escritura binaria
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/lectura_escritura_binaria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/binarios_no_estructurados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹Ficheros binarios no estructurados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/binarios_estructurados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹Ficheros binarios estructurados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/ficheros_imagen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹Ficheros de imagen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/acceso_aleatorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Ficheros de acceso aleatorio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/resumen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Resumen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Ficheros de diferentes formatos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Ficheros de diferentes formatos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/seriaci_dobjectes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Serialización de Objetos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/ficheros_intercambio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Ficheros de intercambio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Conversión entre formatos diferentes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/resumen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔹 Resumen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia_eleccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧭 ¿Qué librería usar?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Paths
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 FileSystem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basicfileattributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 BasicFileAttributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 FileStore
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="acceso-al-sistema-de-ficheros-javanio">🔹 Acceso al sistema de ficheros. Java.nio<a class="headerlink" href="#acceso-al-sistema-de-ficheros-javanio" title="Permanent link">&para;</a></h1>
+<p>Durante muchos años se ha utilizado la librería <strong>java.io</strong> para trabajar con ficheros en el mundo Java. Se trata de un <strong>API</strong> muy potente y flexible que nos permite realizar casi cualquier tipo de operación. Sin embargo es una API complicada de entender. <strong>Java.nio</strong> (New IO) es una nueva API disponible desde Java7 que nos permite mejorar el rendimiento, así como simplificar el manejo de muchas operaciones. </p>
+<p><strong>Java.nio</strong> define interfaces y clases para que la máquina virtual Java tenga acceso a archivos, atributos de archivos y sistemas de archivos. Aunque dicho API comprende numerosas clases, solo existen unas pocas de ellas que sirven de puntos de entrada al API, lo que simplifica considerablemente su manejo.</p>
+<p>La interfaz <strong>java.nio.file.Path</strong> representa un path, y las clases que implementen esta interfaz puede utilizarse para localizar ficheros en el sistema de ficheros. Nos permite manejar rutas al estilo GNU/Linux y rutas al estilo Windows dependiendo del SO en el que estemos trabajando.</p>
+<p>La clase <strong>java.nio.file.Files</strong> es el otro punto de entrada a la librería de ficheros de Java. Es la que nos permite manejar ficheros reales del disco desde Java.</p>
+<div class="admonition tip">
+<p class="admonition-title">Clases para la gesitón de ficheros</p>
+<ul>
+<li><strong>Paths</strong>: Crea objetos Path desde cadenas de texto</li>
+<li><strong>Path</strong>: Representa rutas a archivos o directorios</li>
+<li><strong>Files</strong>: Permite operaciones sobre archivos usando Path</li>
+</ul>
+</div>
+<h2 id="paths">🔹 Paths<a class="headerlink" href="#paths" title="Permanent link">&para;</a></h2>
+<p>La clase <strong>Paths</strong> es una clase de utilidad que proporciona métodos estáticos para crear objetos <strong>Path</strong>, que luego puedes usar con métodos de <strong>Files</strong>.</p>
+<details class="info">
+<summary>Métodos principales de Paths</summary>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>get(String first, String... )</strong></td>
+<td>Crea un objeto Path a partir de una o más cadenas.</td>
+</tr>
+<tr>
+<td><strong>get(URI uri)</strong></td>
+<td>Crea un Path desde un URI que debe ser del esquema file:///.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<div class="admonition note">
+<p>El uso de <strong>Paths.get(...)</strong> en Java (o Kotlin) no implica que el archivo o directorio exista. Este método simplemente crea una instancia de Path que representa una ruta en el sistema de archivos, pero no accede al disco ni verifica su existencia.</p>
+</div>
+<p>🖥️ <strong>Ejemplo_get.kt</strong></p>
+<p>Este ejemplo muestra cómo construir rutas con <code>Paths.get(...)</code> a partir de uno o varios segmentos de texto.</p>
+<p>La finalidad del ejercicio es entender que <code>Paths.get(...)</code> solo construye la ruta en memoria y no comprueba si el archivo existe realmente.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Path</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Paths</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">path1</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;archivo.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">path2</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;C:&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;usuarios&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nombre&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;archivo.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Ruta 1: </span><span class="si">$</span><span class="n">path1</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Ruta 2: </span><span class="si">$</span><span class="n">path2</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Crea una ruta relativa (<code>documentos/archivo.txt</code>) sin acceder al disco.</li>
+<li>Crea otra ruta a partir de varios segmentos, simulando una ruta más completa.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">📤 Salida esperada</p>
+<div class="language-text highlight"><pre><span></span><code>Ruta 1: documentos\archivo.txt
+Ruta 2: C:\usuarios\nombre\archivo.txt
+</code></pre></div>
+</div>
+<p>🖥️ <strong>Ejemplo_uri.kt</strong></p>
+<p>Este ejemplo muestra cómo crear un <code>Path</code> a partir de una URI de tipo <code>file:///</code>.</p>
+<p>La finalidad del ejercicio es ver otra forma válida de construir rutas, útil cuando la fuente de datos ya viene en formato URI.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.net.URI</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Path</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Paths</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">URI</span><span class="p">(</span><span class="s">&quot;file:///C:/usuarios/nombre/archivo.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">path</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Ruta a partir de URI: </span><span class="si">$</span><span class="n">path</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Construye una URI de fichero local en formato estándar.</li>
+<li>Convierte la URI en un objeto Path usando Paths.get(uri).</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">📤 Salida esperada</p>
+<div class="language-text highlight"><pre><span></span><code>Ruta a partir de URI: C:\usuarios\nombre\archivo.txt
+</code></pre></div>
+</div>
+<h2 id="path">🔹 Path<a class="headerlink" href="#path" title="Permanent link">&para;</a></h2>
+<p>La clase <strong>Path</strong> Se utiliza junto con la clase <strong>Files</strong> para realizar operaciones como lectura, escritura, copia, o eliminación de archivos.<br />
+La forma mas sencilla de construir un objeto que cumpla la interfaz <strong>Path</strong> es a partir de la clase <strong>java.nio.file.Paths</strong>, que tiene métodos estáticos que retornan objetos Path a partir de una representación tipo String del path deseado.<br />
+Por supuesto, no es necesario que los ficheros existan de verdad en el disco duro para que se puedan crear los objetos Path correspondientes.</p>
+<p>Un objeto Path puede representarse de dos formas:</p>
+<ul>
+<li>
+<p><strong>Ruta absoluta</strong>   </p>
+<div class="language-text highlight"><pre><span></span><code>val path = Paths.get(&quot;/home/usuario/archivo.txt&quot;)
+</code></pre></div>
+</li>
+<li>
+<p><strong>Ruta relativa</strong>   </p>
+</li>
+</ul>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos/ejemplo.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">println</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="na">toAbsolutePath</span><span class="p">())</span>
+</span></code></pre></div>
+<ol>
+<li>Construye una ruta relativa con <code>Paths.get(...)</code>.
+Las <strong>operaciones</strong> y <strong>métodos</strong> principales que se pueden hacer con Path son:</li>
+</ol>
+<details class="info">
+<summary>Operaciones y métodos principales de Path</summary>
+<table>
+<thead>
+<tr>
+<th><strong>Método</strong></th>
+<th><strong>Qué devuelve</strong></th>
+<th><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.startsWith(Path other)</td>
+<td><code>Boolean</code></td>
+<td>Devuelve <code>true</code> si el path empieza por el path dado.</td>
+</tr>
+<tr>
+<td>.endsWith(Path other)</td>
+<td><code>Boolean</code></td>
+<td>Devuelve <code>true</code> si el path termina con el path dado.</td>
+</tr>
+<tr>
+<td>.getParent()</td>
+<td><code>Path?</code></td>
+<td>Devuelve el path padre (superior) o <code>null</code> si no tiene.</td>
+</tr>
+<tr>
+<td>.getRoot()</td>
+<td><code>Path?</code></td>
+<td>Devuelve el componente raíz (<code>/</code>, <code>C:\</code>, etc.) o <code>null</code> si no existe.</td>
+</tr>
+<tr>
+<td>.iterator()</td>
+<td><code>Iterator&lt;Path&gt;</code></td>
+<td>Permite iterar sobre cada parte del path (carpetas y nombre final).</td>
+</tr>
+<tr>
+<td>.toString()</td>
+<td><code>String</code></td>
+<td>Devuelve el path como texto.</td>
+</tr>
+<tr>
+<td>.toAbsolutePath()</td>
+<td><code>Path</code></td>
+<td>Devuelve el path completo desde la raíz del sistema.</td>
+</tr>
+<tr>
+<td>.resolve(Path/String)</td>
+<td><code>Path</code></td>
+<td>Une dos partes de un path de forma correcta, manejando barras automáticamente.</td>
+</tr>
+<tr>
+<td>.toFile()</td>
+<td><code>java.io.File</code></td>
+<td>Convierte el <code>Path</code> en un <code>File</code> de la API tradicional de Java (<code>java.io</code>).</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>🖥️ <strong>Ejemplo_Path.kt</strong></p>
+<p>Este ejemplo recorre los métodos más usados de <code>Path</code> para inspeccionar y transformar rutas.</p>
+<p>La finalidad del ejercicio es dominar las operaciones de manipulación de rutas antes de realizar operaciones reales de lectura o escritura con <code>Files</code>.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Path</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Paths</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">path</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos/ejemplo.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">textoPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">absoluto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="na">toAbsolutePath</span><span class="p">()</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">nombreFichero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="na">fileName</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">padre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="na">parent</span><span class="w"> </span><span class="c1">// (5)!</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">raiz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="na">root</span><span class="w"> </span><span class="c1">// (6)!</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;toString(): </span><span class="si">${</span><span class="n">textoPath</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;toAbsolutePath(): </span><span class="si">${</span><span class="n">absoluto</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;getFileName(): </span><span class="si">${</span><span class="n">nombreFichero</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;getParent(): </span><span class="si">${</span><span class="n">padre</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;getRoot(): </span><span class="si">${</span><span class="n">raiz</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">otroPath</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;imagenes/foto.png&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (7)!</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">rutaResuelta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="na">resolve</span><span class="p">(</span><span class="n">otroPath</span><span class="p">)</span><span class="w"> </span><span class="c1">// (8)!</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;resolve(): </span><span class="si">${</span><span class="n">rutaResuelta</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">relativo</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="na">relativize</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos/otroArchivo.txt&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// (9)!</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;relativize(): </span><span class="si">$</span><span class="n">relativo</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">rutaNormalizada</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;carpeta/../archivo.txt&quot;</span><span class="p">).</span><span class="na">normalize</span><span class="p">()</span><span class="w"> </span><span class="c1">// (10)!</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;normalize(): </span><span class="si">$</span><span class="n">rutaNormalizada</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">empiezaPorDocumentos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;documentos&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (11)!</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">terminaEnEjemplo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="na">endsWith</span><span class="p">(</span><span class="s">&quot;ejemplo.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (12)!</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;startsWith(\&quot;documentos\&quot;): </span><span class="si">${</span><span class="n">empiezaPorDocumentos</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;endsWith(\&quot;ejemplo.txt\&quot;): </span><span class="si">${</span><span class="n">terminaEnEjemplo</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Crea la ruta base sobre la que se harán todas las pruebas.</li>
+<li>Muestra la representación textual directa del <code>Path</code>.</li>
+<li>Convierte la ruta a absoluta según el entorno de ejecución.</li>
+<li>Obtiene el nombre final del fichero.</li>
+<li>Obtiene el directorio padre.</li>
+<li>Consulta la raíz de la ruta (si existe).</li>
+<li>Crea otra ruta para combinarla con la ruta base.</li>
+<li>Combina rutas con <code>resolve(...)</code>.</li>
+<li>Calcula una ruta relativa con <code>relativize(...)</code>.</li>
+<li>se normaliza una ruta con <code>normalize()</code> para eliminar segmentos redundantes.</li>
+<li>Comprueba si la ruta comienza por <code>documentos</code>.</li>
+<li>Comprueba si la ruta termina en <code>ejemplo.txt</code>.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">📤 Salida esperada</p>
+<div class="language-text highlight"><pre><span></span><code>toString(): documentos\ejemplo.txt
+toAbsolutePath(): C:\Ruta\Al\Proyecto\documentos\ejemplo.txt
+getFileName(): ejemplo.txt
+getParent(): documentos
+getRoot(): null
+resolve(): documentos\ejemplo.txt\imagenes\foto.png
+relativize(): ..\otroArchivo.txt
+normalize(): archivo.txt
+startsWith(&quot;documentos&quot;): true
+endsWith(&quot;ejemplo.txt&quot;): true
+</code></pre></div>
+</div>
+<h2 id="files">🔹 Files<a class="headerlink" href="#files" title="Permanent link">&para;</a></h2>
+<p>La clase <strong>Files</strong> es el otro punto de entrada a la librería de ficheros de Java. Es la que nos permite manejar ficheros reales del disco desde Java.<br />
+Esta clase tiene métodos estáticos para el manejo de ficheros, los métodos de la clase <strong>Files</strong> trabajan sobre objetos <strong>Path</strong>. Muchos de estos métodos devuelven <strong>streams</strong>, lo que permite procesar archivos y directorios de forma eficiente y elegante. </p>
+<p>En Java (y también en Kotlin), un <strong>Stream</strong> es una secuencia de elementos que permite realizar operaciones funcionales (como map, filter, forEach, etc.) sobre datos de forma eficiente y fluida, sin necesidad de estructuras intermedias ni bucles explícitos. Algunos método de <strong>Files</strong> utilizan o devuelven <strong>Streams</strong>.</p>
+<p>Las <strong>operaciones</strong> y <strong>métodos</strong> principales a realizar con Files son:</p>
+<details class="info">
+<summary>Operaciones y métodos principales de Files</summary>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Qué devuelve</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>list(Path)</td>
+<td><code>Stream&lt;Path&gt;</code></td>
+<td>Lista contenido directo (no recursivo) del directorio.</td>
+</tr>
+<tr>
+<td>.walk(Path)</td>
+<td><code>Stream&lt;Path&gt;</code></td>
+<td>Recorre directorios de forma recursiva.</td>
+</tr>
+<tr>
+<td>.find(...  )</td>
+<td><code>Stream&lt;Path&gt;</code></td>
+<td>Busca elementos que cumplan una condición.</td>
+</tr>
+<tr>
+<td>.lines(Path)</td>
+<td><code>Stream&lt;String&gt;</code></td>
+<td>Devuelve las líneas de un archivo de texto.</td>
+</tr>
+<tr>
+<td>.exists(Path)</td>
+<td><code>Boolean</code></td>
+<td>Verifica si el archivo existe.</td>
+</tr>
+<tr>
+<td>.isDirectory(Path)</td>
+<td><code>Boolean</code></td>
+<td>Verifica si es un directorio.</td>
+</tr>
+<tr>
+<td>.isRegularFile(Path)</td>
+<td><code>Boolean</code></td>
+<td>Verifica si es un archivo normal.</td>
+</tr>
+<tr>
+<td>.isReadable(Path)</td>
+<td><code>Boolean</code></td>
+<td>Verifica si se puede leer.</td>
+</tr>
+<tr>
+<td>.createFile(Path)</td>
+<td><code>Path</code></td>
+<td>Crea un archivo vacío.</td>
+</tr>
+<tr>
+<td>.createDirectory(Path)</td>
+<td><code>Path</code></td>
+<td>Crea un directorio.</td>
+</tr>
+<tr>
+<td>.createDirectories(Path)</td>
+<td><code>Path</code></td>
+<td>Crea directorios y subdirectorios necesarios.</td>
+</tr>
+<tr>
+<td>.delete(Path)</td>
+<td><code>void</code></td>
+<td>Elimina un archivo o directorio.</td>
+</tr>
+<tr>
+<td>.deleteIfExists(Path)</td>
+<td><code>Boolean</code></td>
+<td>Elimina si existe.</td>
+</tr>
+<tr>
+<td>.move(Path, Path)</td>
+<td><code>Path</code></td>
+<td>Mueve un archivo o directorio.</td>
+</tr>
+<tr>
+<td>.copy(Path, Path)</td>
+<td><code>Path</code></td>
+<td>Copia un archivo o directorio.</td>
+</tr>
+<tr>
+<td>.size(Path)</td>
+<td><code>Long</code></td>
+<td>Tamaño del archivo.</td>
+</tr>
+<tr>
+<td>.getLastModifiedTime(Path)</td>
+<td><code>FileTime</code></td>
+<td>Última modificación.</td>
+</tr>
+<tr>
+<td>.getOwner(Path)</td>
+<td><code>UserPrincipal</code></td>
+<td>Devuelve el propietario.</td>
+</tr>
+<tr>
+<td>.getAttribute(Path, String)</td>
+<td><code>Object</code></td>
+<td>Devuelve un atributo específico.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>🖥️ <strong>Ejemplo_permisos.kt</strong>: existencia y comprobación de permisos</p>
+<p>Este ejemplo verifica si una ruta existe y qué permisos básicos tiene asociados.</p>
+<p>La finalidad del ejercicio es realizar una validación previa antes de operar sobre un fichero, evitando errores por acceso no permitido.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Path</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Paths</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Files</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">path</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos/ejemplo.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">existe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">exists</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">legible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">isReadable</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">escribible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">isWritable</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">ejecutable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">isExecutable</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="c1">// (5)!</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;path = </span><span class="si">$</span><span class="n">path</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;exists = </span><span class="si">${</span><span class="n">existe</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;readable = </span><span class="si">${</span><span class="n">legible</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;writable = </span><span class="si">${</span><span class="n">escribible</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;executable = </span><span class="si">${</span><span class="n">ejecutable</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Define la ruta del fichero que se quiere comprobar.</li>
+<li>Verifica si el fichero existe.</li>
+<li>Comprueba permiso de lectura.</li>
+<li>Comprueba permiso de escritura.</li>
+<li>Comprueba permiso de ejecución.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">📤 Salida esperada</p>
+<div class="language-text highlight"><pre><span></span><code>path = documentos\ejemplo.txt
+exists = true
+readable = true
+writable = true
+executable = true
+</code></pre></div>
+</div>
+<p>🖥️ <strong>Ejemplo_creardirectorio.kt</strong>: crear un directorio</p>
+<p>Este ejemplo muestra cómo crear un directorio con NIO y gestionar los errores habituales.</p>
+<p>La finalidad del ejercicio es aprender a combinar operaciones de creación con manejo explícito de excepciones.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Path</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Paths</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Files</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.FileAlreadyExistsException</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.io.IOException</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">path</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">newDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">createDirectory</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Directorio creado en: </span><span class="si">$</span><span class="n">newDir</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">FileAlreadyExistsException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;El directorio ya existe: </span><span class="si">$</span><span class="n">path</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">IOException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Error de entrada/salida: </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Define la ruta del directorio a crear.</li>
+<li>Intenta crear el directorio en disco.</li>
+<li>Captura el caso en que la carpeta ya existe.</li>
+<li>Captura otros errores de entrada/salida.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">📤 Salida esperada</p>
+<div class="language-text highlight"><pre><span></span><code>Directorio creado en: documentos
+</code></pre></div>
+</div>
+<p>🖥️ <strong>Ejemplo_borrardirectorio.kt</strong>: elimina un directorio</p>
+<p>Este ejemplo elimina un directorio solo si existe previamente.</p>
+<p>La finalidad del ejercicio es introducir un patrón seguro de borrado, evitando llamar a <code>delete</code> sobre rutas inexistentes.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Files</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Path</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Paths</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">directorio</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;c:/mi_directorio&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Files</span><span class="p">.</span><span class="na">exists</span><span class="p">(</span><span class="n">directorio</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;El directorio ya existe. Borrándolo...&quot;</span><span class="p">)</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="n">Files</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">directorio</span><span class="p">)</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Define la ruta del directorio a eliminar.</li>
+<li>Comprueba si existe antes de borrar.</li>
+<li>Elimina el directorio.</li>
+</ol>
+<p>El método  <strong>delete(Path)</strong> borra el fichero o directorio o lanza una excepción si el borrado falla. El siguiente ejemplo muestra como capturar y gestionar las excepciones que pueden producirse en el borrado. Si el fichero o directorio no existe, la excepción que se produce es  <strong>NoSuchFileException</strong>. Los sucesivos <strong>cath</strong> permiten determinar por  que ha fallado el borrado:</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.*</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.io.IOException</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;c:/mi_directorio&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">        </span><span class="n">Files</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">NoSuchFileException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%s: no such file or directory%n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">DirectoryNotEmptyException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%s not empty%n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">IOException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (5)!</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error: </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Define la ruta que se quiere borrar.</li>
+<li>Intenta eliminarla directamente con <code>Files.delete(...)</code>.</li>
+<li>Captura el error cuando la ruta no existe.</li>
+<li>Captura el error cuando el directorio no está vacío.</li>
+<li>Captura cualquier otro error de E/S.</li>
+</ol>
+<div class="admonition warning">
+<p>El metodo <strong>deleteIfExists(Path)</strong> tambien borra el fichero o directorio, pero no lanza ningun error en caso de que el fichero o directorio no exista.</p>
+</div>
+<p>🖥️ <strong>Ejemplo_copiardirectorio.kt</strong>: copiar directorios</p>
+<p>Este ejemplo muestra cómo copiar un directorio usando <code>Files.copy(...)</code>.</p>
+<p>La finalidad del ejercicio es entender que, al copiar directorios, se crea la carpeta destino pero no se copian automáticamente sus contenidos internos.</p>
+<p>Se puede copiar un archivo o directorio usando el método copy(Path, Path, CopyOption...). La copia falla si el archivo de destino existe, a menos que se especifique la opción REPLACE_EXISTING. </p>
+<p>Se puede copiar directorios aunque, los archivos dentro del directorio no se copian, por lo que el nuevo directorio está vacío incluso cuando el directorio original contiene archivos.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.io.IOException</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.FileAlreadyExistsException</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Files</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Path</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Paths</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">sourcePath</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">destinationPath</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos/destino&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">        </span><span class="n">Files</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">sourcePath</span><span class="p">,</span><span class="w"> </span><span class="n">destinationPath</span><span class="p">)</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Copia realizada con éxito.&quot;</span><span class="p">)</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">FileAlreadyExistsException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;El fichero o directorio ya existe en el destino.&quot;</span><span class="p">)</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">IOException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (5)!</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Error al copiar: </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Define la ruta de origen del directorio.</li>
+<li>Define la ruta de destino para la copia.</li>
+<li>Ejecuta la copia del directorio.</li>
+<li>Captura la colisión cuando el destino ya existe.</li>
+<li>Captura otros errores de E/S.</li>
+</ol>
+<p>🖥️ <strong>Ejemplo_copiarficheros.kt</strong>: copiar ficheros</p>
+<p>Este ejemplo copia un fichero concreto y permite sobrescribir el destino si ya existe.</p>
+<p>La finalidad del ejercicio es practicar la copia de archivos con control de colisiones en el destino.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.io.IOException</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.FileAlreadyExistsException</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Files</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Path</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Paths</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.StandardCopyOption</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">sourcePath</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos/ejemplo.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">destinationPath</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos/ejemplo_copia.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">        </span><span class="n">Files</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">sourcePath</span><span class="p">,</span><span class="w"> </span><span class="n">destinationPath</span><span class="p">,</span><span class="w"> </span><span class="n">StandardCopyOption</span><span class="p">.</span><span class="na">REPLACE_EXISTING</span><span class="p">)</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Archivo copiado correctamente a: </span><span class="si">$</span><span class="n">destinationPath</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">FileAlreadyExistsException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;El archivo destino ya existe.&quot;</span><span class="p">)</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">IOException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (5)!</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot; Error al copiar el archivo: </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Define la ruta del archivo origen.</li>
+<li>Define la ruta del archivo de destino.</li>
+<li>Copia el archivo permitiendo sobrescribir si ya existe.</li>
+<li>Captura el caso en que el destino ya existe.</li>
+<li>Captura otros errores de E/S.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">📤 Salida esperada</p>
+<div class="language-text highlight"><pre><span></span><code>Archivo copiado correctamente a: documentos\ejemplo_copia.txt
+</code></pre></div>
+</div>
+<p>🖥️ <strong>Ejemplo_moverficheros.kt</strong>: mover ficheros y directorios cambiando el nombre.</p>
+<p>Este ejemplo mueve un archivo de ubicación y, al mismo tiempo, cambia su nombre.</p>
+<p>La finalidad del ejercicio es mostrar que mover y renombrar son una misma operación cuando cambia la ruta de destino.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.io.IOException</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.FileAlreadyExistsException</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Files</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Path</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Paths</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.StandardCopyOption</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">sourcePath</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos/ejemplo.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">destinationPath</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos2/ejemplo2.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">        </span><span class="n">Files</span><span class="p">.</span><span class="na">move</span><span class="p">(</span><span class="n">sourcePath</span><span class="p">,</span><span class="w"> </span><span class="n">destinationPath</span><span class="p">,</span><span class="w"> </span><span class="n">StandardCopyOption</span><span class="p">.</span><span class="na">REPLACE_EXISTING</span><span class="p">)</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Archivo movido/renombrado correctamente a: </span><span class="si">$</span><span class="n">destinationPath</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">FileAlreadyExistsException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;El archivo destino ya existe.&quot;</span><span class="p">)</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">IOException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (5)!</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Error al mover el archivo: </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Define la ruta de origen del archivo.</li>
+<li>Define la nueva ruta (ubicación y nombre final).</li>
+<li>Mueve el archivo y reemplaza destino si existe.</li>
+<li>Captura conflicto por destino existente.</li>
+<li>Captura otros errores de E/S.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">📤 Salida esperada</p>
+<div class="language-text highlight"><pre><span></span><code>Archivo movido/renombrado correctamente a: documentos2\ejemplo2.txt
+</code></pre></div>
+</div>
+<p>El siguiente ejemplo recorre la estructura home en tu sistema, indicando los permisos de cada archivo y directorio: </p>
+<p>🖥️ <strong>Ejemplo_SistemaFicheros.kt</strong></p>
+<p>Este ejemplo implementa un explorador de ficheros en consola para navegar por directorios y ver atributos básicos.</p>
+<p>La finalidad del ejercicio es integrar en un único programa varias operaciones de NIO: listado, atributos, permisos y navegación por rutas.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.*</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.attribute.BasicFileAttributes</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.util.Scanner</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">scanner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">`in`</span><span class="p">)</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">currentPath</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="s">&quot;user.home&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;\n Directorio actual: </span><span class="si">$</span><span class="n">currentPath</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">paths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">list</span><span class="p">(</span><span class="n">currentPath</span><span class="p">).</span><span class="na">toList</span><span class="p">()</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">            </span><span class="n">paths</span><span class="p">.</span><span class="na">forEachIndexed</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">-&gt;</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">readAttributes</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">BasicFileAttributes</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">tipo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">                    </span><span class="n">attrs</span><span class="p">.</span><span class="na">isDirectory</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;[DIR]&quot;</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">                    </span><span class="n">attrs</span><span class="p">.</span><span class="na">isRegularFile</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;[FILE]&quot;</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">                    </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;[OTRO]&quot;</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">permisos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOfNotNull</span><span class="p">(</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Files</span><span class="p">.</span><span class="na">isReadable</span><span class="p">(</span><span class="n">path</span><span class="p">))</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Files</span><span class="p">.</span><span class="na">isWritable</span><span class="p">(</span><span class="n">path</span><span class="p">))</span><span class="w"> </span><span class="s">&quot;w&quot;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Files</span><span class="p">.</span><span class="na">isExecutable</span><span class="p">(</span><span class="n">path</span><span class="p">))</span><span class="w"> </span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="w">                </span><span class="p">).</span><span class="na">joinToString</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">attrs</span><span class="p">.</span><span class="na">isRegularFile</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">attrs</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="si">}</span><span class="s"> bytes&quot;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">// (5)!</span>
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="w">                </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$</span><span class="n">index</span><span class="s">. </span><span class="si">$</span><span class="n">tipo</span><span class="s"> </span><span class="si">${</span><span class="n">path</span><span class="p">.</span><span class="na">fileName</span><span class="si">}</span><span class="s"> [</span><span class="si">$</span><span class="n">permisos</span><span class="s">] </span><span class="si">$</span><span class="n">size</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a>
+</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;\nOpciones:&quot;</span><span class="p">)</span>
+</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot; - Número: acceder a subdirectorio&quot;</span><span class="p">)</span>
+</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot; - `..`: subir al directorio padre&quot;</span><span class="p">)</span>
+</span><span id="__span-11-35"><a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot; - `salir`: finalizar el programa&quot;</span><span class="p">)</span>
+</span><span id="__span-11-36"><a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a><span class="w">            </span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Opción: &quot;</span><span class="p">)</span>
+</span><span id="__span-11-37"><a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a>
+</span><span id="__span-11-38"><a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a><span class="w">            </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextLine</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-39"><a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a><span class="w">                </span><span class="s">&quot;salir&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-40"><a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span class="w">                    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Saliendo del explorador.&quot;</span><span class="p">)</span>
+</span><span id="__span-11-41"><a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a><span class="w">                    </span><span class="k">return</span>
+</span><span id="__span-11-42"><a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-11-43"><a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a><span class="w">                </span><span class="s">&quot;..&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-44"><a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a><span class="w">                    </span><span class="n">currentPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentPath</span><span class="p">.</span><span class="na">parent</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">currentPath</span><span class="w"> </span><span class="c1">// (6)!</span>
+</span><span id="__span-11-45"><a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-11-46"><a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a><span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-47"><a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a><span class="w">                    </span><span class="kd">val</span><span class="w"> </span><span class="nv">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="na">toIntOrNull</span><span class="p">()</span>
+</span><span id="__span-11-48"><a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">paths</span><span class="p">.</span><span class="na">indices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-49"><a id="__codelineno-11-49" name="__codelineno-11-49" href="#__codelineno-11-49"></a><span class="w">                        </span><span class="kd">val</span><span class="w"> </span><span class="nv">selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paths</span><span class="o">[</span><span class="n">index</span><span class="o">]</span>
+</span><span id="__span-11-50"><a id="__codelineno-11-50" name="__codelineno-11-50" href="#__codelineno-11-50"></a><span class="w">                        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Files</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">(</span><span class="n">selected</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (7)!</span>
+</span><span id="__span-11-51"><a id="__codelineno-11-51" name="__codelineno-11-51" href="#__codelineno-11-51"></a><span class="w">                            </span><span class="n">currentPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">selected</span>
+</span><span id="__span-11-52"><a id="__codelineno-11-52" name="__codelineno-11-52" href="#__codelineno-11-52"></a><span class="w">                        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-53"><a id="__codelineno-11-53" name="__codelineno-11-53" href="#__codelineno-11-53"></a><span class="w">                            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;No es un directorio.&quot;</span><span class="p">)</span>
+</span><span id="__span-11-54"><a id="__codelineno-11-54" name="__codelineno-11-54" href="#__codelineno-11-54"></a><span class="w">                        </span><span class="p">}</span>
+</span><span id="__span-11-55"><a id="__codelineno-11-55" name="__codelineno-11-55" href="#__codelineno-11-55"></a><span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-56"><a id="__codelineno-11-56" name="__codelineno-11-56" href="#__codelineno-11-56"></a><span class="w">                        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Entrada no válida.&quot;</span><span class="p">)</span>
+</span><span id="__span-11-57"><a id="__codelineno-11-57" name="__codelineno-11-57" href="#__codelineno-11-57"></a><span class="w">                    </span><span class="p">}</span>
+</span><span id="__span-11-58"><a id="__codelineno-11-58" name="__codelineno-11-58" href="#__codelineno-11-58"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-11-59"><a id="__codelineno-11-59" name="__codelineno-11-59" href="#__codelineno-11-59"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-11-60"><a id="__codelineno-11-60" name="__codelineno-11-60" href="#__codelineno-11-60"></a>
+</span><span id="__span-11-61"><a id="__codelineno-11-61" name="__codelineno-11-61" href="#__codelineno-11-61"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-62"><a id="__codelineno-11-62" name="__codelineno-11-62" href="#__codelineno-11-62"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Error al acceder al directorio: </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-11-63"><a id="__codelineno-11-63" name="__codelineno-11-63" href="#__codelineno-11-63"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-11-64"><a id="__codelineno-11-64" name="__codelineno-11-64" href="#__codelineno-11-64"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-65"><a id="__codelineno-11-65" name="__codelineno-11-65" href="#__codelineno-11-65"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Inicializa la navegación en el directorio personal del usuario.</li>
+<li>Lista el contenido directo de la carpeta actual.</li>
+<li>Lee atributos básicos de cada elemento.</li>
+<li>Construye la cadena de permisos <code>rwx</code> disponibles.</li>
+<li>Calcula tamaño solo para archivos regulares.</li>
+<li>Sube al directorio padre si existe.</li>
+<li>Comprueba que la selección sea un directorio antes de navegar.</li>
+</ol>
+<h2 id="filesystem">🔹 FileSystem<a class="headerlink" href="#filesystem" title="Permanent link">&para;</a></h2>
+<p>En la biblioteca <strong>java.nio</strong> podemos encontrar otras clases que complementan y amplían lo que se puede hacer con <strong>java.nio.file.Path</strong>.</p>
+<p>El concepto de <strong>FileSystem</strong> define un <strong>sistema de ficheros completo</strong>. Mientras que por otro lado el concepto de <strong>Path</strong> hace referencia a un <strong>directorio, fichero o link</strong> que tengamos dentro de nuestro sistema de ficheros. </p>
+<details class="info">
+<summary>Métodos principales de FileSystem</summary>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Qué devuelve</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.getDefault()</td>
+<td><code>FileSystem</code></td>
+<td>Devuelve el sistema de ficheros por defecto del entorno en ejecución.</td>
+</tr>
+<tr>
+<td>.getSeparator()</td>
+<td><code>String</code></td>
+<td>Devuelve el separador de nombres de ruta (por ejemplo, <code>/</code> o <code>\</code>).</td>
+</tr>
+<tr>
+<td>.getRootDirectories()</td>
+<td><code>Iterable&lt;Path&gt;</code></td>
+<td>Devuelve los directorios raíz del sistema (ej: <code>/</code>, <code>C:\</code>).</td>
+</tr>
+<tr>
+<td>.getFileStores()</td>
+<td><code>Iterable&lt;FileStore&gt;</code></td>
+<td>Devuelve las particiones o volúmenes montados en el sistema.</td>
+</tr>
+<tr>
+<td>.getPath(...)</td>
+<td><code>Path</code></td>
+<td>Crea una instancia de <code>Path</code> a partir de cadenas de texto.</td>
+</tr>
+<tr>
+<td>.provider()</td>
+<td><code>FileSystemProvider</code></td>
+<td>Devuelve el proveedor del sistema de archivos (ej. <code>UnixFileSystemProvider</code>).</td>
+</tr>
+</tbody>
+</table>
+</details>
+<hr />
+<p>Esto:</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">fileSystem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FileSystems</span><span class="p">.</span><span class="na">getDefault</span><span class="p">()</span><span class="w"> </span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kd">val</span><span class="w"> </span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fileSystem</span><span class="p">.</span><span class="na">getPath</span><span class="p">(</span><span class="s">&quot;C:\\Users\\alumno\\documento.txt&quot;</span><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div>
+<p>Es equivalente a usar:</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;C:\\Users\\alumno\\documento.txt&quot;</span><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div>
+<p>🖥️ <strong>Ejemplo_FileSystem.kt</strong>: obtener el nombre de un fichero así como la carpeta padre en la que se encuentra ubicado.</p>
+<p>Este ejemplo muestra el uso de <code>FileSystems.getDefault()</code> para construir rutas y recorrer sus segmentos.</p>
+<p>La finalidad del ejercicio es comprender la relación entre <code>FileSystem</code> y <code>Path</code>, y cuándo puede interesar trabajar desde el sistema de archivos explícitamente.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.FileSystems</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Path</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">sistemaFicheros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FileSystems</span><span class="p">.</span><span class="na">getDefault</span><span class="p">()</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">rutaFichero</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sistemaFicheros</span><span class="p">.</span><span class="na">getPath</span><span class="p">(</span><span class="s">&quot;documentos/destino/ejemplo3.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">rutaFichero</span><span class="p">.</span><span class="na">fileName</span><span class="p">)</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">rutaFichero</span><span class="p">.</span><span class="na">parent</span><span class="p">.</span><span class="na">fileName</span><span class="p">)</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">rutaDirectorio</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sistemaFicheros</span><span class="p">.</span><span class="na">getPath</span><span class="p">(</span><span class="s">&quot;documentos/destino&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rutaDirectorio</span><span class="p">.</span><span class="na">iterator</span><span class="p">()</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">next</span><span class="p">().</span><span class="na">fileName</span><span class="p">)</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Obtiene el sistema de archivos por defecto del sistema operativo.</li>
+<li>Construye la ruta del fichero desde ese <code>FileSystem</code>.</li>
+<li>Construye la ruta del directorio a recorrer.</li>
+<li>Crea un iterador para sus segmentos.</li>
+</ol>
+<h2 id="basicfileattributes">🔹 BasicFileAttributes<a class="headerlink" href="#basicfileattributes" title="Permanent link">&para;</a></h2>
+<p>BasicFileAttributes permite obtener <strong>información detallada sobre archivos y directorios</strong>, como fecha de creación, tamaño, etc.</p>
+<p>Para poder utilizar un objeto de tipo <strong>BasicFileAttributes</strong>, primero es necesario llamar al método <strong>readAttributes</strong>:</p>
+<div class="admonition note">
+<div class="language-text highlight"><pre><span></span><code>val attr = Files.readAttributes(path, BasicFileAttributes::class.java)
+</code></pre></div>
+<ul>
+<li>Este método pertenece a la clase <strong>Files</strong> y se encarga de leer los atributos asociados al archivo o directorio indicado por <strong>path</strong>.</li>
+<li><strong>BasicFileAttributes::class.java:</strong> indica que queremos obtener los atributos básicos definidos en esa clase.</li>
+<li>El resultado (<strong>attr</strong>) es un objeto del tipo BasicFileAttributes.</li>
+</ul>
+</div>
+<details class="info">
+<summary>Métodos principales de BasicFileAttributes</summary>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+<th>Devuelve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>creationTime()</td>
+<td>Devuelve la fecha de creación del archivo.</td>
+<td><code>FileTime</code></td>
+</tr>
+<tr>
+<td>lastModifiedTime()</td>
+<td>Devuelve la última fecha de modificación.</td>
+<td><code>FileTime</code></td>
+</tr>
+<tr>
+<td>size()</td>
+<td>Devuelve el tamaño del archivo en bytes.</td>
+<td><code>Long</code></td>
+</tr>
+<tr>
+<td>isDirectory()</td>
+<td>Verifica si el <code>Path</code> representa un directorio.</td>
+<td><code>Boolean</code></td>
+</tr>
+<tr>
+<td>isRegularFile()</td>
+<td>Verifica si es un archivo regular (no directorio).</td>
+<td><code>Boolean</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>🖥️ <strong>Ejemplo_BasicFileAttributes.kt</strong>:  leer los atributos básicos de un archivo o directorio.</p>
+<p>Este ejemplo recupera metadatos básicos de una ruta con <code>BasicFileAttributes</code>.</p>
+<p>La finalidad del ejercicio es aprender a obtener información técnica del sistema de archivos sin abrir directamente el contenido del fichero.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Files</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Paths</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.attribute.BasicFileAttributes</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Files</span><span class="p">.</span><span class="na">exists</span><span class="p">(</span><span class="n">path</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">attr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">readAttributes</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">BasicFileAttributes</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Creación: </span><span class="si">${</span><span class="n">attr</span><span class="p">.</span><span class="na">creationTime</span><span class="p">()</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Último acceso: </span><span class="si">${</span><span class="n">attr</span><span class="p">.</span><span class="na">lastAccessTime</span><span class="p">()</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Es un directorio: </span><span class="si">${</span><span class="n">attr</span><span class="p">.</span><span class="na">isDirectory</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Tamaño del archivo: </span><span class="si">${</span><span class="n">attr</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="si">}</span><span class="s"> bytes&quot;</span><span class="p">)</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Define la ruta del recurso a inspeccionar.</li>
+<li>Verifica su existencia antes de leer atributos.</li>
+<li>Obtiene los atributos básicos del fichero/directorio.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">📤 Salida esperada</p>
+<div class="language-text highlight"><pre><span></span><code>Creación: 2024-10-01T12:00:00Z
+Último acceso: 2024-10-01T12:00:00Z
+Es un directorio: true
+Tamaño del archivo: 4096 bytes
+</code></pre></div>
+</div>
+<h2 id="filestore">🔹 FileStore<a class="headerlink" href="#filestore" title="Permanent link">&para;</a></h2>
+<p>FileStore permite obtener <strong>información sobre el sistema de archivos</strong>, como el espacio disponible.</p>
+<p>No se puede instanciar un FileStore directamente. Para usarlo, necesitamos obtenerlo desde un Path (archivo o directorio)</p>
+<div class="language-text highlight"><pre><span></span><code>    val Store = Files.getFileStore(path)
+</code></pre></div>
+<details class="info">
+<summary>Métodos principales de FileStore</summary>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+<th>Devuelve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name()</td>
+<td>Nombre del volumen o unidad lógica.</td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td>type()</td>
+<td>Tipo de sistema de archivos (por ejemplo, <code>ext4</code>, <code>NTFS</code>, etc.).</td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td>getTotalSpace()</td>
+<td>Espacio total disponible en el volumen (en bytes).</td>
+<td><code>Long</code></td>
+</tr>
+<tr>
+<td>getUsableSpace()</td>
+<td>Espacio disponible para el usuario (en bytes).</td>
+<td><code>Long</code></td>
+</tr>
+<tr>
+<td>supportsFileAttributeView(...)</td>
+<td>Verifica si el volumen soporta ciertos atributos como POSIX o DOS.</td>
+<td><code>Boolean</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>🖥️ <strong>Ejemplo_FileStore.kt</strong>: obtener información del almacenamiento físico.</p>
+<p>Este ejemplo consulta información del volumen o partición donde se encuentra una ruta.</p>
+<p>La finalidad del ejercicio es conocer cómo acceder a métricas de almacenamiento del sistema desde Java NIO.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.FileStore</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Files</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Paths</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">fileStore</span><span class="p">:</span><span class="w"> </span><span class="n">FileStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">getFileStore</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Sistema de archivos: </span><span class="si">${</span><span class="n">fileStore</span><span class="p">.</span><span class="na">type</span><span class="p">()</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Espacio total: </span><span class="si">${</span><span class="n">fileStore</span><span class="p">.</span><span class="na">totalSpace</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1024</span><span class="p">)</span><span class="si">}</span><span class="s"> MB&quot;</span><span class="p">)</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Espacio disponible: </span><span class="si">${</span><span class="n">fileStore</span><span class="p">.</span><span class="na">usableSpace</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1024</span><span class="p">)</span><span class="si">}</span><span class="s"> MB&quot;</span><span class="p">)</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Define una ruta base para identificar el volumen.</li>
+<li>Obtiene el <code>FileStore</code> asociado a esa ruta.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">📤 Salida esperada</p>
+<div class="language-text highlight"><pre><span></span><code>Sistema de archivos: NTFS
+Espacio total: 476938 MB
+Espacio disponible: 154320 MB
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Funciona en Windows y Linux, aunque <code>Files.getFileStore(Paths.get("/"))</code> podría requerir ajustes en Windows para seleccionar una unidad específica (<code>C:\</code>, <code>D:\</code>, etc.).</p>
+</div>
+<p><strong>EjemploCompleto_File.kt</strong> :El siguiente ejemplo utiliza todas estas funciones para mostrar información sobre el sistema de ficheros.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.io.File</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.*</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.attribute.BasicFileAttributes</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.FileStore</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.FileSystems</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot; Raíces del sistema:&quot;</span><span class="p">)</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span><span class="n">File</span><span class="p">.</span><span class="na">listRoots</span><span class="p">().</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">raiz</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;- </span><span class="si">${</span><span class="n">raiz</span><span class="p">.</span><span class="na">absolutePath</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;\n Sistemas de archivos detectados:&quot;</span><span class="p">)</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">fileSystem</span><span class="p">:</span><span class="w"> </span><span class="n">FileSystem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FileSystems</span><span class="p">.</span><span class="na">getDefault</span><span class="p">()</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">    </span><span class="n">fileSystem</span><span class="p">.</span><span class="na">fileStores</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">store</span><span class="p">:</span><span class="w"> </span><span class="n">FileStore</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Unidad: </span><span class="si">${</span><span class="n">store</span><span class="p">.</span><span class="na">name</span><span class="p">()</span><span class="si">}</span><span class="s"> (</span><span class="si">${</span><span class="n">store</span><span class="p">.</span><span class="na">type</span><span class="p">()</span><span class="si">}</span><span class="s">)&quot;</span><span class="p">)</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Total: </span><span class="si">${</span><span class="n">store</span><span class="p">.</span><span class="na">totalSpace</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">1024</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">1024</span><span class="si">}</span><span class="s"> MB&quot;</span><span class="p">)</span>
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Libre: </span><span class="si">${</span><span class="n">store</span><span class="p">.</span><span class="na">usableSpace</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">1024</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">1024</span><span class="si">}</span><span class="s"> MB&quot;</span><span class="p">)</span>
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">path</span><span class="p">:</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;datos.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Files</span><span class="p">.</span><span class="na">exists</span><span class="p">(</span><span class="n">path</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (5)!</span>
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;\n Atributos del fichero &#39;</span><span class="si">${</span><span class="n">path</span><span class="p">.</span><span class="na">fileName</span><span class="si">}</span><span class="s">&#39;:&quot;</span><span class="p">)</span>
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">attrs</span><span class="p">:</span><span class="w"> </span><span class="n">BasicFileAttributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">readAttributes</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">BasicFileAttributes</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span><span class="w"> </span><span class="c1">// (6)!</span>
+</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>
+</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Creación: </span><span class="si">${</span><span class="n">attrs</span><span class="p">.</span><span class="na">creationTime</span><span class="p">()</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Último acceso: </span><span class="si">${</span><span class="n">attrs</span><span class="p">.</span><span class="na">lastAccessTime</span><span class="p">()</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-17-29"><a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Última modificación: </span><span class="si">${</span><span class="n">attrs</span><span class="p">.</span><span class="na">lastModifiedTime</span><span class="p">()</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-17-30"><a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Tamaño: </span><span class="si">${</span><span class="n">attrs</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="si">}</span><span class="s"> bytes&quot;</span><span class="p">)</span>
+</span><span id="__span-17-31"><a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;¿Es directorio?: </span><span class="si">${</span><span class="n">attrs</span><span class="p">.</span><span class="na">isDirectory</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-17-32"><a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;¿Es archivo normal?: </span><span class="si">${</span><span class="n">attrs</span><span class="p">.</span><span class="na">isRegularFile</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span id="__span-17-33"><a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-34"><a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;\n El fichero &#39;datos.txt&#39; no existe en la raíz del proyecto.&quot;</span><span class="p">)</span>
+</span><span id="__span-17-35"><a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-17-36"><a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Recorre todas las raíces disponibles (unidades o puntos de montaje).</li>
+<li>Obtiene el <code>FileSystem</code> por defecto.</li>
+<li>Recorre cada <code>FileStore</code> del sistema.</li>
+<li>Define la ruta del fichero a analizar.</li>
+<li>Comprueba si el fichero existe.</li>
+<li>Lee los atributos básicos del fichero.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">📤 Salida esperada</p>
+<div class="language-text highlight"><pre><span></span><code> Raíces del sistema:
+- C:\
+- D:\
+
+ Sistemas de archivos detectados:
+Unidad: OS (NTFS)
+Total: 476938 MB
+Libre: 154320 MB
+
+ Atributos del fichero &#39;datos.txt&#39;:
+Creación: 2024-10-01T12:00:00Z
+Último acceso: 2024-10-01T12:00:00Z
+Última modificación: 2024-10-01T12:00:00Z
+Tamaño: 4096 bytes
+¿Es directorio?: false
+¿Es archivo normal?: true
+</code></pre></div>
+</div>
+<hr />
+<div class="admonition question">
+<p class="admonition-title">🧠 Comprueba tu comprensión</p>
+<ol>
+<li>¿Cuál es la diferencia principal entre <code>Path</code> y <code>FileStore</code>?</li>
+<li>Si necesitas crear un directorio y también sus carpetas padre en caso de que no existan, ¿qué método usarías?</li>
+<li>Si instancias un objeto con <code>Paths.get("C:/no_existe.txt")</code>, ¿se lanza alguna excepción indicando que el archivo no está en el disco?</li>
+</ol>
+<details class="success">
+<summary>Ver respuestas</summary>
+<ol>
+<li><code>Path</code> representa una ruta (un archivo o directorio), mientras que <code>FileStore</code> representa el volumen o partición física donde se almacena (ej. el disco C:).</li>
+<li>Usaría <code>Files.createDirectories(path)</code> (en plural).</li>
+<li><strong>No</strong>. Crear un objeto <code>Path</code> solo construye la representación en memoria. El disco no se toca hasta que usas un método de la clase <code>Files</code> sobre ese <code>Path</code>.</li>
+</ol>
+</details>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../ficheros/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 🔹 Introducción">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                🔹 Introducción
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../resumen/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 🔹 Resumen">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                🔹 Resumen
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 Alicia Salvador — <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"> Licencia CC BY-NC-SA 4.0 </a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.follow", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "navigation.instant.progress", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.tracking", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "content.action.view", "header.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/lightbox.js"></script>
+      
+    
+  </body>
+</html>
