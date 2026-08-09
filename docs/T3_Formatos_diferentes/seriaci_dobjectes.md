@@ -67,38 +67,39 @@ Los pasos para serializar un objeto Java (Kotlin) son los siguientes:
 🖥️ 1. **Persona.kt**: Crear una clase serializable
 
 
-        import java.io.Serializable
+```kotlin
+import java.io.Serializable
 
-        class Persona(val nombre: String, val edad: Int) : Serializable
+class Persona(val nombre: String, val edad: Int) : Serializable // (1)!
+```
+
+1. Implementa `Serializable` para habilitar la serializacion binaria del objeto.
 
 🖥️ 2. **Ejemplo_guardar_persona.kt**: Serializar un objeto a un archivo 
 
 En esta segunda parte se crea una instancia de `Persona` y se guarda en disco mediante serialización binaria.
 
-- Primero se construye un objeto `Persona` con unos valores concretos.
-- Después se define la ruta del archivo donde se almacenará el objeto serializado.
-- A continuación se abre un `ObjectOutputStream` sobre ese fichero.
-- Con `writeObject(...)` se transforma el objeto en una secuencia de bytes y se escribe en el archivo.
-- Por último, se cierra el flujo para asegurar que los datos quedan guardados correctamente.
+```kotlin
+import java.io.ObjectOutputStream
+import java.nio.file.Files
+import java.nio.file.Paths
 
-        import java.io.ObjectOutputStream
-        import java.nio.file.Files
-        import java.nio.file.Paths
+fun main() {
+    val persona = Persona("Alicia", 30)// (4)!
 
+    val path = Paths.get("documentos/persona.obj") // (1)!
+    val objectOut = ObjectOutputStream(Files.newOutputStream(path)) // (2)!
+    objectOut.writeObject(persona) // (3)!
+    objectOut.close()
 
-        fun main() {
+    println("Objeto serializado correctamente.")
+}
+```
 
-            val persona = Persona("Alicia", 30)
-
-            val path = Paths.get("documentos/persona.obj")
-            val objectOut = ObjectOutputStream(Files.newOutputStream(path))
-            objectOut.writeObject(persona)
-            objectOut.close()
-
-   
-
-            println("Objeto serializado correctamente.")
-        }
+1. Define la ruta del fichero binario donde se guardara el objeto serializado.
+2. Crea un `ObjectOutputStream` sobre el fichero para escribir objetos.
+3. Serializa la instancia `persona` y la escribe en el flujo binario.
+4. Construye un objeto `Persona` con unos valores concretos.
            
 
 
@@ -106,27 +107,27 @@ En esta segunda parte se crea una instancia de `Persona` y se guarda en disco me
 
 En esta tercera parte se recupera el objeto almacenado en el paso anterior y se reconstruye en memoria.
 
-- Primero se localiza el fichero `persona.obj` que contiene el objeto serializado.
-- Después se abre un `ObjectInputStream` para leer su contenido binario.
-- Con `readObject()` se recupera el objeto almacenado y se convierte al tipo `Persona`.
-- Finalmente, se muestran sus atributos por pantalla para comprobar que la información leída coincide con la que se había guardado.
-
 Este paso permite ver que la deserialización reconstruye el objeto con su estado original, siempre que la clase siga siendo compatible con la versión con la que fue serializado.
 
-        import java.io.ObjectInputStream
-        import java.nio.file.Paths
-        import java.nio.file.Files
-            
-        fun main() {
-            val path = Paths.get("documentos/persona.obj")
-            val objectIn = ObjectInputStream(Files.newInputStream(path))
-            val persona= objectIn.readObject() as Persona
-            objectIn.close()
+```kotlin
+import java.io.ObjectInputStream
+import java.nio.file.Paths
+import java.nio.file.Files
 
-            
-            println("Objeto deserializado:")
-            println("Nombre: ${persona.nombre}, Edad: ${persona.edad}")
-        }
+fun main() {
+    val path = Paths.get("documentos/persona.obj") // (1)!
+    val objectIn = ObjectInputStream(Files.newInputStream(path)) // (2)!
+    val persona = objectIn.readObject() as Persona // (3)!
+    objectIn.close()
+
+    println("Objeto deserializado:")
+    println("Nombre: ${persona.nombre}, Edad: ${persona.edad}")
+}
+```
+
+1. Localiza el fichero que contiene el objeto previamente serializado.
+2. Abre un `ObjectInputStream` para leer el contenido binario del fichero.
+3. Deserializa con `readObject()` y convierte el resultado al tipo `Persona`.
 
   
     

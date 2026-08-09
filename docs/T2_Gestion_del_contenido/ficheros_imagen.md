@@ -30,96 +30,90 @@ En la plataforma Java (y por tanto en Kotlin), **el manejo de imágenes** se hac
 
 Este ejemplo muestra cómo crear una imagen desde cero en Kotlin, asignando un color a cada píxel y guardando después el resultado en un fichero PNG.
 
-- Primero se definen el ancho y el alto de la imagen.
-- Después se crea un objeto `BufferedImage`, que actúa como una imagen en memoria sobre la que se puede trabajar píxel a píxel.
-- A continuación se recorren todas las coordenadas `(x, y)` con dos bucles anidados para calcular un color distinto en cada posición.
-- Los valores de rojo y verde cambian según la posición del píxel, mientras que el azul se mantiene fijo, generando así un degradado de color.
-- Finalmente, `ImageIO.write(...)` guarda la imagen en formato `.png` dentro de la carpeta `documentos`.
-
 La finalidad del ejercicio es comprender que una imagen digital puede construirse manipulando directamente sus píxeles y que `BufferedImage` e `ImageIO` son las clases básicas para trabajar con imágenes en Java y Kotlin.
 
-    import java.awt.Color
-    import java.awt.image.BufferedImage
-    import java.io.File
-    import javax.imageio.ImageIO
+```kotlin
+import java.awt.Color
+import java.awt.image.BufferedImage
+import java.io.File
+import javax.imageio.ImageIO
 
-    fun main() {
-        val ancho = 200
-        val alto = 100
-        val imagen = BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB)
+fun main() {
+    val ancho = 200
+    val alto = 100
+    val imagen = BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB) // (1)!
 
-        // Rellenar la imagen con colores
-        for (x in 0 until ancho) {
-            for (y in 0 until alto) {
-                val rojo = (x * 255) / ancho
-                val verde = (y * 255) / alto
-                val azul = 128
-                val color = Color(rojo, verde, azul)
-                imagen.setRGB(x, y, color.rgb)
-            }
+    for (x in 0 until ancho) {
+        for (y in 0 until alto) {
+            val rojo = (x * 255) / ancho
+            val verde = (y * 255) / alto
+            val azul = 128
+            val color = Color(rojo, verde, azul) // (2)!
+            imagen.setRGB(x, y, color.rgb) // (3)!
         }
-
-        // Guardar la imagen
-        val archivo = File("documentos/imagen_generada.png")
-        ImageIO.write(imagen, "png", archivo)
-        println("✅ Imagen generada correctamente: ${archivo.absolutePath}")
     }
+
+    val archivo = File("documentos/imagen_generada.png") // (4)!
+    ImageIO.write(imagen, "png", archivo) // (5)!
+    println("✅ Imagen generada correctamente: ${archivo.absolutePath}")
+}
+```
+
+1. Crea una imagen RGB en memoria.
+2. Construye el color de cada pixel.
+3. Escribe el color en la coordenada `(x, y)`.
+4. Define el fichero de salida.
+5. Codifica y guarda la imagen en formato PNG.
 
 🖥️ **Ejemplo_invertircolores_imagen.kt:** invierte los colores de la imagen generada en el ejemplo anterior.
 
 
 Este ejemplo parte de una imagen ya existente, la recorre píxel a píxel y genera una nueva versión con los colores invertidos.
 
-- Primero se definen el archivo de entrada y el archivo de salida.
-- Después se carga la imagen original con `ImageIO.read(...)` en un objeto `BufferedImage`.
-- A continuación se recorren todos los píxeles de la imagen con dos bucles anidados.
-- Para cada píxel se obtiene su color original y se calcula el color inverso restando cada componente RGB a `255`.
-- Finalmente, la imagen modificada se guarda en un nuevo fichero con `ImageIO.write(...)`.
-
 La finalidad del ejercicio es entender cómo se puede transformar una imagen manipulando directamente los valores de color de cada píxel.
 
-    import java.awt.Color
-    import java.awt.image.BufferedImage
-    import java.io.File
-    import javax.imageio.ImageIO
+```kotlin
+import java.awt.Color
+import java.awt.image.BufferedImage
+import java.io.File
+import javax.imageio.ImageIO
 
-    fun main() {
-        val archivoEntrada = File("documentos/imagen_generada.png")
-        val archivoSalida = File("documentos/imagen_salida.png")
+fun main() {
+    val archivoEntrada = File("documentos/imagen_generada.png") // (1)!
+    val archivoSalida = File("documentos/imagen_salida.png") // (2)!
 
-        // Leer imagen original
-        val imagen: BufferedImage = ImageIO.read(archivoEntrada)
+    val imagen: BufferedImage = ImageIO.read(archivoEntrada) // (3)!
 
-        // Recorrer todos los píxeles
-        for (x in 0 until imagen.width) {
-            for (y in 0 until imagen.height) {
-                val colorOriginal = Color(imagen.getRGB(x, y))
-                val colorInvertido = Color(
-                    255 - colorOriginal.red,
-                    255 - colorOriginal.green,
-                    255 - colorOriginal.blue
-                )
-                imagen.setRGB(x, y, colorInvertido.rgb)
-            }
+    for (x in 0 until imagen.width) {
+        for (y in 0 until imagen.height) {
+            val colorOriginal = Color(imagen.getRGB(x, y)) // (4)!
+            val colorInvertido = Color( // (5)!
+                255 - colorOriginal.red,
+                255 - colorOriginal.green,
+                255 - colorOriginal.blue
+            )
+            imagen.setRGB(x, y, colorInvertido.rgb) // (6)!
         }
-
-        // Guardar imagen modificada
-        ImageIO.write(imagen, "png", archivoSalida)
-        println("✅ Imagen guardada como ${archivoSalida.name}")
     }
+
+    ImageIO.write(imagen, "png", archivoSalida) // (7)!
+    println("✅ Imagen guardada como ${archivoSalida.name}")
+}
+```
+
+1. Define el archivo de entrada.
+2. Define el archivo de salida.
+3. Carga la imagen en un `BufferedImage`.
+4. Lee el color del pixel actual.
+5. Calcula el color invertido en RGB.
+6. Escribe el nuevo color en la imagen.
+7. Guarda la imagen transformada.
 
 
 🖥️ **Ejemplo_img_penyagolosa.kt:** Invierte los colores de una imagen.  
 
 
 Este ejemplo aplica el trabajo con imágenes a un caso más real: partir de un archivo existente, hacer una copia de seguridad y generar otra versión con los colores invertidos.
-
-- Primero se definen tres rutas: la imagen original, la copia y la imagen modificada.
-- Después se comprueba si el archivo original existe antes de continuar, para evitar errores al intentar leer una imagen que no está en la carpeta `documentos`.
-- A continuación se realiza una copia del fichero con `Files.copy(...)`, de modo que la imagen original no se modifica directamente.
-- Luego se carga la copia en un `BufferedImage` mediante `ImageIO.read(...)`.
-- Una vez cargada, se recorren todos sus píxeles para calcular el color invertido de cada uno, cambiando los valores RGB.
-- Finalmente, la imagen transformada se guarda como un nuevo archivo PNG.
 
 La finalidad del ejercicio es combinar operaciones sobre ficheros e imágenes: comprobar existencia, copiar archivos y modificar píxeles para obtener una nueva imagen a partir de otra ya existente.
 
@@ -129,44 +123,52 @@ imagen a copiar (penyagolosa.png)|imagen con los colores invertidos
 ---------------|--------------------------------
 ![ref](penyagolosa.png)|![ref](penyagolosa_modificada.png)|
 
-    import java.awt.Color
-    import java.awt.image.BufferedImage
-    import java.nio.file.Files
-    import java.nio.file.Path
-    import java.nio.file.StandardCopyOption
-    import javax.imageio.ImageIO
+```kotlin
+import java.awt.Color
+import java.awt.image.BufferedImage
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.StandardCopyOption
+import javax.imageio.ImageIO
 
-    fun main() {
-        val originalPath = Path.of("documentos/penyagolosa.png")
-        val copiaPath = Path.of("documentos/penyagolosa_copia.png")
-        val modificadaPath = Path.of("documentos/penyagolosa_modificada.png")
+fun main() {
+    val originalPath = Path.of("documentos/penyagolosa.png") // (1)!
+    val copiaPath = Path.of("documentos/penyagolosa_copia.png") // (2)!
+    val modificadaPath = Path.of("documentos/penyagolosa_modificada.png") // (3)!
 
-        // 1. Comprobar si la imagen existe
-        if (!Files.exists(originalPath)) {
-            println("No se encuentra la imagen original: $originalPath")
-            return
-        }
-
-        // 2. Copiar la imagen con java.nio
-        Files.copy(originalPath, copiaPath, StandardCopyOption.REPLACE_EXISTING)
-        println("Imagen copiada a: $copiaPath")
-
-        // 3. Leer la imagen como BufferedImage
-        val imagen: BufferedImage = ImageIO.read(copiaPath.toFile())
-
-        // 4. Invertir colores
-        for (x in 0 until imagen.width) {
-            for (y in 0 until imagen.height) {
-                val color = Color(imagen.getRGB(x, y))
-                val invertido = Color(255 - color.red, 255 - color.green, 255 - color.blue)
-                imagen.setRGB(x, y, invertido.rgb)
-            }
-        }
-
-        // 5. Guardar la imagen modificada
-        ImageIO.write(imagen, "png", modificadaPath.toFile())
-        println("Imagen modificada guardada como: $modificadaPath")
+    if (!Files.exists(originalPath)) { // (4)!
+        println("No se encuentra la imagen original: $originalPath")
+        return
     }
+
+    Files.copy(originalPath, copiaPath, StandardCopyOption.REPLACE_EXISTING) // (5)!
+    println("Imagen copiada a: $copiaPath")
+
+    val imagen: BufferedImage = ImageIO.read(copiaPath.toFile()) // (6)!
+
+    for (x in 0 until imagen.width) {
+        for (y in 0 until imagen.height) {
+            val color = Color(imagen.getRGB(x, y)) // (7)!
+            val invertido = Color(255 - color.red, 255 - color.green, 255 - color.blue) // (8)!
+            imagen.setRGB(x, y, invertido.rgb) // (9)!
+        }
+    }
+
+    ImageIO.write(imagen, "png", modificadaPath.toFile()) // (10)!
+    println("Imagen modificada guardada como: $modificadaPath")
+}
+```
+
+1. Define ruta de imagen original.
+2. Define ruta para la copia de seguridad.
+3. Define ruta de imagen modificada.
+4. Verifica existencia del archivo original.
+5. Copia la imagen con opcion de sobrescritura.
+6. Carga la copia en memoria como `BufferedImage`.
+7. Lee el color de cada pixel.
+8. Calcula el color invertido.
+9. Guarda el pixel transformado.
+10. Escribe el resultado final en disco.
 
 !!!question "🧠 Comprueba tu comprensión"
     Si quieres conservar la imagen original y generar una versión modificada con los colores invertidos, ¿qué pasos deberías seguir y por qué no conviene sobrescribir directamente el archivo original?

@@ -19,32 +19,31 @@ Un fichero binario no estructurado es cualquier fichero binario cuyo contenido n
 
 Este ejemplo muestra cómo guardar y recuperar datos binarios simples usando `Files` de Java NIO desde Kotlin.
 
-- Primero se define una ruta con `Paths.get("documentos/datos.bin")`.
-- Después se crea un `ByteArray` con varios valores numéricos, que representan el contenido binario que se quiere almacenar.
-- Con `Files.write(...)` se escriben directamente esos bytes en el archivo.
-- Finalmente, con `Files.readAllBytes(...)` se recupera el contenido completo y se recorre byte a byte para mostrarlo por pantalla.
-
 La finalidad del ejercicio es entender que un fichero binario no almacena texto legible, sino datos en bruto, y que por eso su lectura y escritura se realiza en forma de bytes.
 
+```kotlin
+import java.nio.file.Files
+import java.nio.file.Paths
 
-    import java.nio.file.Files
-    import java.nio.file.Paths
+fun main() {
+    val ruta = Paths.get("documentos/datos.bin") // (1)!
 
-    fun main() {
-        val ruta = Paths.get("documentos/datos.bin")
+    val datos = byteArrayOf(1, 2, 3, 4, 5)// (2)!
+    Files.write(ruta, datos) // (3)!
+    println("Archivo binario creado: ${ruta.toAbsolutePath()}")
 
-        // Escritura de bytes puros
-        val datos = byteArrayOf(1, 2, 3, 4, 5)
-        Files.write(ruta, datos)
-        println("Archivo binario creado: ${ruta.toAbsolutePath()}")
-
-        // Lectura completa de bytes
-        val bytes = Files.readAllBytes(ruta)
-        println("Contenido leido (byte a byte):")
-        for (b in bytes) {
-            print("$b ")
-        }
+    val bytes = Files.readAllBytes(ruta) // (4)!
+    println("Contenido leido (byte a byte):")
+    for (b in bytes) {
+        print("$b ")
     }
+}
+```
+
+1. Define la ruta del fichero binario.
+2. se crea un `ByteArray` con varios valores numéricos, que representan el contenido binario que se quiere almacenar.
+3. Escribe todos los bytes del array en disco.
+4. Lee el contenido completo del binario en memoria.
 
 
 !!!note "📤 Salida esperada"
@@ -72,44 +71,43 @@ La finalidad del ejercicio es entender que un fichero binario no almacena texto 
 
 Este ejemplo muestra cómo escribir y leer un fichero binario utilizando `BufferedOutputStream` y `BufferedInputStream` desde Kotlin.
 
-- Primero se define una ruta con `Paths.get("documentos/datos.bin")`.
-- Después se crea un `ByteArray` con varios valores numéricos que representan los datos binarios que se desean almacenar.
-- A continuación se abre un `BufferedOutputStream` asociado al archivo mediante `Files.newOutputStream(...)` y se escriben todos los bytes utilizando el método `write(...)`.
-- Una vez creado el fichero, se abre un `BufferedInputStream` mediante `Files.newInputStream(...)`.
-- Mediante llamadas sucesivas a `read()` se recupera un byte cada vez hasta que el método devuelve `-1`, indicando que se ha alcanzado el final del fichero.
-- Finalmente, cada byte leído se muestra por pantalla.
-
 La finalidad del ejercicio es comprender cómo `BufferedOutputStream` y `BufferedInputStream` permiten escribir y leer datos binarios de forma secuencial utilizando un búfer interno. Este búfer reduce el número de accesos al dispositivo de almacenamiento, mejorando el rendimiento, especialmente cuando se trabaja con ficheros de gran tamaño.
 
+```kotlin
+import java.io.BufferedInputStream
+import java.io.BufferedOutputStream
+import java.nio.file.Files
+import java.nio.file.Paths
 
-       import java.io.BufferedInputStream
-        import java.io.BufferedOutputStream
-        import java.nio.file.Files
-        import java.nio.file.Paths
+fun main() {
+    val ruta = Paths.get("documentos/datos.bin") // (1)!
+    val datos = byteArrayOf(1, 2, 3, 4, 5)
 
-        fun main() {
-            val ruta = Paths.get("documentos/datos.bin")
+    BufferedOutputStream(Files.newOutputStream(ruta)).use { salida -> // (2)!
+        salida.write(datos) // (3)!
+    }
 
-            // Escritura de bytes puros
-            val datos = byteArrayOf(1, 2, 3, 4, 5)
+    println("Archivo binario creado: ${ruta.toAbsolutePath()}")
 
-            BufferedOutputStream(Files.newOutputStream(ruta)).use { salida ->
-                salida.write(datos)
-            }
+    BufferedInputStream(Files.newInputStream(ruta)).use { entrada -> // (4)!
+        println("Contenido leído (byte a byte):")
 
-            println("Archivo binario creado: ${ruta.toAbsolutePath()}")
-
-            // Lectura secuencial de bytes
-            BufferedInputStream(Files.newInputStream(ruta)).use { entrada ->
-                println("Contenido leído (byte a byte):")
-
-                var byte = entrada.read()
-                while (byte != -1) {
-                    print("$byte ")
-                    byte = entrada.read()
-                }
-            }
+        var byte = entrada.read() // (5)!
+        while (byte != -1) { // (6)!
+            print("$byte ")
+            byte = entrada.read() // (7)!
         }
+    }
+}
+```
+
+1. Define la ruta del binario.
+2. Abre un flujo de salida con buffer sobre NIO.
+3. Escribe el `ByteArray` en el flujo.
+4. Abre un flujo de entrada con buffer.
+5. Lee el primer byte del flujo.
+6. Repite hasta detectar fin de fichero (`-1`).
+7. Lee el siguiente byte en cada iteracion.
 
 
 !!!question "🧠 Comprueba tu comprensión"

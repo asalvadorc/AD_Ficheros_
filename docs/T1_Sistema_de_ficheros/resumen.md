@@ -31,8 +31,3 @@ hide:
 | `readString(...)` | Lee el contenido completo de un archivo de texto. |
 | `writeString(...)` | Escribe contenido en un archivo de texto. |
 
-## Idea final del tema
-
-| Resumen | Explicación |
-|---------|-------------|
-| Los ficheros permiten guardar información de forma persistente y Java NIO facilita su gestión mediante rutas (`Path`) y operaciones sobre archivos (`Files`). | Esta es la idea central del tema 1. |

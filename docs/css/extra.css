@@ -960,8 +960,8 @@ body.lightbox-open {
     display: none !important;
 }
 
-/* Forzar menú izquierdo visible en escritorio (Material drawer) */
-@media screen and (min-width: 76.25em) {
+/* Forzar menú izquierdo visible en escritorio/tablet ancho (Material drawer) */
+@media screen and (min-width: 60em) {
     [data-md-toggle="drawer"] {
         display: none;
     }

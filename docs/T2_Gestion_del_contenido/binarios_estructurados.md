@@ -56,49 +56,51 @@ Cuando hay que guardar tipos primitivos (por ejemplo `Int`, `Double`) de forma s
 
 Este ejemplo muestra cómo guardar varios datos primitivos en un fichero binario estructurado y recuperarlos después respetando exactamente el mismo orden de escritura.
 
-- Primero se define la ruta del archivo y se crea la carpeta contenedora si no existe.
-- Después se abre un `DataOutputStream`, que permite escribir datos primitivos en formato binario.
-- A continuación se escriben varios valores de tipos diferentes, como un entero, un número decimal y una cadena corta, todos seguidos dentro del mismo fichero.
-- Luego se abre un `DataInputStream` para leer esos datos almacenados.
-- La lectura debe hacerse en el mismo orden en que se escribieron; de lo contrario, los valores obtenidos serían incorrectos o se produciría un error.
-- Finalmente, los datos leídos se muestran por pantalla para comprobar que el contenido recuperado coincide con el contenido original.
-
 La finalidad del ejercicio es entender que un fichero binario estructurado organiza la información como una secuencia de datos tipados, y que `DataOutputStream` y `DataInputStream` son herramientas muy adecuadas para escribir y leer esa estructura.
 
-        import java.io.DataInputStream
-        import java.io.DataOutputStream
-        import java.io.FileInputStream
-        import java.io.FileOutputStream
-        import java.nio.file.Files
-        import java.nio.file.Paths
+```kotlin
+import java.io.DataInputStream
+import java.io.DataOutputStream
+import java.io.FileInputStream
+import java.nio.file.Files
+import java.nio.file.Paths
 
-        fun main() {
-            val ruta = Paths.get("documentos/binario.dat")
-            Files.createDirectories(ruta.parent)
+fun main() {
+    val ruta = Paths.get("documentos/binario.dat") // (1)!
+    Files.createDirectories(ruta.parent) // (2)!
 
-            // Escritura binaria
-            val out= DataOutputStream(Files.newOutputStream(ruta)).use { out -> //devuelve OutputStream
-            out.writeInt(42)         // int (4 bytes)
-            out.writeDouble(3.1416)  // double (8 bytes)
-            out.writeUTF("K")       // char (2 bytes)
-            }
+    DataOutputStream(Files.newOutputStream(ruta)).use { out -> // (3)!
+        out.writeInt(42) // (4)!
+        out.writeDouble(3.1416) // (5)!
+        out.writeUTF("K") // (6)!
+    }
 
-            println("✅ Fichero binario escrito con DataOutputStream (sin lambda).")
+    val fis = FileInputStream(ruta.toFile())
+    val input = DataInputStream(fis) // (7)!
+    val entero = input.readInt() // (8)!
+    val decimal = input.readDouble() // (9)!
+    val caracter = input.readUTF() // (10)!
+    input.close() // (11)!
+    fis.close()
 
-            // Lectura binaria
-            val fis = FileInputStream(ruta.toFile())
-            val input = DataInputStream(fis)
-            val entero = input.readInt()
-            val decimal = input.readDouble()
-            val caracter = input.readUTF()
-            input.close()
-            fis.close()
+    println("📄 Contenido leído:")
+    println("  Int: $entero")
+    println("  Double: $decimal")
+    println("  Char: $caracter")
+}
+```
 
-            println("📄 Contenido leído:")
-            println("  Int: $entero")
-            println("  Double: $decimal")
-            println("  Char: $caracter")
-        }
+1. Define el fichero binario destino.
+2. Asegura que la carpeta exista.
+3. Abre flujo binario de escritura.
+4. Escribe un `Int` en binario.
+5. Escribe un `Double` en binario.
+6. Escribe una cadena UTF en binario.
+7. Abre flujo binario de lectura.
+8. Lee el `Int` en el mismo orden de escritura.
+9. Lee el `Double` en el mismo orden.
+10. Lee la cadena UTF en el mismo orden.
+11. Cierra el flujo de lectura.
 
 **BufferedInputStream/BufferedOutputStream**{.azul}
 
@@ -108,59 +110,57 @@ Cuando se trabaja con ficheros binarios estructurados, normalmente estos método
 
 Este ejemplo muestra cómo mejorar la lectura y escritura de un fichero binario estructurado utilizando **flujos con búfer**. Para ello, `BufferedOutputStream` y `BufferedInputStream` se combinan con `DataOutputStream` y `DataInputStream`, consiguiendo una mayor eficiencia al reducir el número de accesos al disco.
 
-- Primero se define la ruta del archivo y se crea la carpeta contenedora si no existe.
-- Después se abre un `DataOutputStream` sobre un `BufferedOutputStream`, lo que permite escribir datos primitivos en formato binario utilizando un búfer de memoria.
-- A continuación se escriben varios valores de distintos tipos, como un entero, un número decimal y una cadena, almacenándolos de forma secuencial en el fichero.
-- Luego se abre un `DataInputStream` sobre un `BufferedInputStream` para leer el contenido del fichero de forma eficiente.
-- La lectura debe realizarse en el mismo orden en que se escribieron los datos; de lo contrario, los valores recuperados serán incorrectos o se producirá una excepción.
-- Finalmente, los datos leídos se muestran por pantalla para comprobar que la información recuperada coincide con la información almacenada.
-
 La finalidad del ejercicio es comprender que los flujos con búfer no modifican la estructura del fichero binario ni la forma de acceder a los datos, sino que **mejoran el rendimiento** al minimizar los accesos físicos al dispositivo de almacenamiento. Por ello, es habitual combinar `BufferedInputStream` y `BufferedOutputStream` con `DataInputStream` y `DataOutputStream` cuando se trabaja con ficheros binarios estructurados.
 
+```kotlin
+import java.io.BufferedInputStream
+import java.io.BufferedOutputStream
+import java.io.DataInputStream
+import java.io.DataOutputStream
+import java.nio.file.Files
+import java.nio.file.Paths
 
-        import java.io.BufferedInputStream
-        import java.io.BufferedOutputStream
-        import java.io.DataInputStream
-        import java.io.DataOutputStream
-        import java.nio.file.Files
-        import java.nio.file.Paths
+fun main() {
+    val ruta = Paths.get("documentos/binario.dat") // (1)!
+    Files.createDirectories(ruta.parent) // (2)!
 
-        fun main() {
+    DataOutputStream( // (3)!
+        BufferedOutputStream(
+            Files.newOutputStream(ruta)
+        )
+    ).use { out ->
+        out.writeInt(42) // (4)!
+        out.writeDouble(3.1416) // (5)!
+        out.writeUTF("K") // (6)!
+    }
 
-            val ruta = Paths.get("documentos/binario.dat")
-            Files.createDirectories(ruta.parent)
+    DataInputStream( // (7)!
+        BufferedInputStream(
+            Files.newInputStream(ruta)
+        )
+    ).use { input ->
+        val entero = input.readInt() // (8)!
+        val decimal = input.readDouble() // (9)!
+        val caracter = input.readUTF() // (10)!
 
-            // Escritura binaria utilizando un búfer
-            DataOutputStream(
-                BufferedOutputStream(
-                    Files.newOutputStream(ruta)
-                )
-            ).use { out ->
+        println("📄 Contenido leído:")
+        println("Int: $entero")
+        println("Double: $decimal")
+        println("Cadena: $caracter")
+    }
+}
+```
 
-                out.writeInt(42)
-                out.writeDouble(3.1416)
-                out.writeUTF("K")
-            }
-
-            println("✅ Fichero binario escrito correctamente.")
-
-            // Lectura binaria utilizando un búfer
-            DataInputStream(
-                BufferedInputStream(
-                    Files.newInputStream(ruta)
-                )
-            ).use { input ->
-
-                val entero = input.readInt()
-                val decimal = input.readDouble()
-                val caracter = input.readUTF()
-
-                println("📄 Contenido leído:")
-                println("Int: $entero")
-                println("Double: $decimal")
-                println("Cadena: $caracter")
-            }
-        }
+1. Define ruta del binario.
+2. Crea carpeta si falta.
+3. Encadena `DataOutputStream` sobre `BufferedOutputStream`.
+4. Escribe `Int` en binario.
+5. Escribe `Double` en binario.
+6. Escribe cadena UTF.
+7. Encadena `DataInputStream` sobre `BufferedInputStream`.
+8. Lee `Int` respetando orden.
+9. Lee `Double` respetando orden.
+10. Lee cadena UTF respetando orden.
 
 **FileChannel y ByteBuffer**{.azul}       
 
@@ -189,52 +189,54 @@ Cuando hay que guardar tipos primitivos (por ejemplo `Int`, `Double`) de forma c
 
 Este ejemplo muestra cómo leer y escribir un fichero binario estructurado utilizando la API **NIO** de Java mediante `FileChannel` y `ByteBuffer`. Esta combinación ofrece un mayor control sobre la gestión de los datos y resulta especialmente adecuada para aplicaciones que requieren un alto rendimiento o acceso directo a posiciones concretas del fichero.
 
-- Primero se define la ruta del fichero binario donde se almacenarán los datos.
-- Después se abre un `FileChannel` en modo escritura, creando el fichero si no existe y sobrescribiendo su contenido si ya estaba creado.
-- A continuación se reserva un `ByteBuffer` con el tamaño necesario para almacenar un entero y un número decimal (`Int.SIZE_BYTES + Double.SIZE_BYTES`).
-- Los valores se escriben en el búfer mediante los métodos `putInt()` y `putDouble()`.
-- Antes de escribir el contenido en el fichero se invoca el método `flip()`, que prepara el búfer para pasar del modo escritura al modo lectura.
-- El contenido del búfer se escribe en el fichero utilizando el método `write()` del canal.
-- Posteriormente se abre un nuevo `FileChannel` en modo lectura y se reserva otro `ByteBuffer` con el mismo tamaño.
-- Los datos del fichero se leen en el búfer mediante `read()`, y de nuevo se utiliza `flip()` para preparar el búfer para su lectura.
-- Finalmente, los valores se recuperan utilizando los métodos `getInt()` y `getDouble()` (o las propiedades equivalentes `buffer.int` y `buffer.double`) y se muestran por pantalla.
-
 La finalidad del ejercicio es comprender cómo `FileChannel` y `ByteBuffer` permiten trabajar directamente con los bytes de un fichero binario estructurado. Aunque requieren una gestión más explícita del búfer que `DataInputStream` y `DataOutputStream`, ofrecen un mayor control sobre la lectura y escritura de datos y constituyen la base de la API NIO para aplicaciones que necesitan un acceso más eficiente o flexible a los ficheros.
 
+```kotlin
+import java.nio.ByteBuffer
+import java.nio.channels.FileChannel
+import java.nio.file.Path
+import java.nio.file.StandardOpenOption
 
+fun main() {
+    val ruta = Path.of("documentos/registro.bin") // (1)!
 
-        import java.nio.ByteBuffer
-        import java.nio.channels.FileChannel
-        import java.nio.file.Path
-        import java.nio.file.StandardOpenOption
+    FileChannel.open( // (2)!
+        ruta,
+        StandardOpenOption.CREATE,
+        StandardOpenOption.WRITE,
+        StandardOpenOption.TRUNCATE_EXISTING
+    ).use { canal ->
+        val buffer = ByteBuffer.allocate(Int.SIZE_BYTES + Double.SIZE_BYTES) // (3)!
+        buffer.putInt(42) // (4)!
+        buffer.putDouble(19.95) // (5)!
+        buffer.flip() // (6)!
+        canal.write(buffer) // (7)!
+    }
 
-        fun main() {
-            val ruta = Path.of("documentos/registro.bin")
+    FileChannel.open(ruta, StandardOpenOption.READ).use { canal -> // (8)!
+        val buffer = ByteBuffer.allocate(Int.SIZE_BYTES + Double.SIZE_BYTES) // (9)!
+        canal.read(buffer) // (10)!
+        buffer.flip() // (11)!
+        val id = buffer.int // (12)!
+        val precio = buffer.double // (13)!
+        println("id=$id, precio=$precio")
+    }
+}
+```
 
-            // Escritura: Int + Double
-            FileChannel.open(
-                ruta,
-                StandardOpenOption.CREATE,
-                StandardOpenOption.WRITE,
-                StandardOpenOption.TRUNCATE_EXISTING
-            ).use { canal ->
-                val buffer = ByteBuffer.allocate(Int.SIZE_BYTES + Double.SIZE_BYTES)
-                buffer.putInt(42)
-                buffer.putDouble(19.95)
-                buffer.flip()
-                canal.write(buffer)
-            }
-
-            // Lectura
-            FileChannel.open(ruta, StandardOpenOption.READ).use { canal ->
-                val buffer = ByteBuffer.allocate(Int.SIZE_BYTES + Double.SIZE_BYTES)
-                canal.read(buffer)
-                buffer.flip()
-                val id = buffer.int
-                val precio = buffer.double
-                println("id=$id, precio=$precio")
-            }
-        }
+1. Define la ruta del registro binario.
+2. Abre canal de escritura con creacion/sobrescritura.
+3. Reserva bytes exactos para `Int + Double`.
+4. Inserta el `Int` en el buffer.
+5. Inserta el `Double` en el buffer.
+6. Cambia el buffer a modo lectura.
+7. Escribe los bytes al fichero.
+8. Abre canal en modo lectura.
+9. Reserva buffer de lectura del mismo tamaño.
+10. Lee bytes del fichero al buffer.
+11. Prepara buffer para extraer datos.
+12. Recupera el `Int`.
+13. Recupera el `Double`.
 
 !!!question "🧠 ¿Cuándo utilizar cada método?"
     Si tienes que decidir entre `DataInputStream`/`DataOutputStream` y `ByteBuffer`/`FileChannel`, ¿en qué casos conviene usar cada opción?

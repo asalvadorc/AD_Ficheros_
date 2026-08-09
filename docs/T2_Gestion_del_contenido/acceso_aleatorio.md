@@ -110,54 +110,42 @@ Se utiliza para indicar si el archivo se va a: **Leer (READ)**, **Escribir (WRIT
 
 Este ejemplo muestra cómo usar `FileChannel` y `ByteBuffer` para escribir y leer un archivo controlando de forma explícita la posición dentro del fichero.
 
-- Primero se crea la ruta del archivo y se abre un canal con permisos de lectura, escritura y creación.
-- Después se prepara un `ByteBuffer` con el texto que se quiere guardar en el archivo.
-- A continuación se sitúa el canal en la posición `0` mediante `canal.position(0)` para empezar a escribir desde el inicio.
-- Una vez escrito el contenido, se crea otro `ByteBuffer` vacío para almacenar los datos leídos.
-- Luego se vuelve a colocar el canal al principio del fichero para hacer la lectura desde el byte inicial.
-- Tras leer el contenido, se llama a `flip()` para preparar el buffer para su lectura.
-- Finalmente, los bytes almacenados en el buffer se convierten en una cadena y se muestran por pantalla.
-
 La finalidad del ejercicio es comprender cómo `FileChannel` permite controlar el punto exacto del archivo en el que se lee o escribe, algo fundamental en el acceso aleatorio a ficheros.
 
-        // Importamos las clases necesarias
-        import java.nio.ByteBuffer                      // Para gestionar buffers de bytes
-        import java.nio.channels.FileChannel            // Para acceder al archivo como canal
-        import java.nio.file.Paths                      // Para crear la ruta del archivo
-        import java.nio.file.StandardOpenOption.*       // Para usar opciones como READ, WRITE, CREATE
+```kotlin
+import java.nio.ByteBuffer
+import java.nio.channels.FileChannel
+import java.nio.file.Paths
+import java.nio.file.StandardOpenOption.*
 
-        fun main() {
-            // Creamos una ruta al archivo datos.txt
-            val path = Paths.get("documentos/datos.txt")
+fun main() {
+    val path = Paths.get("documentos/datos.txt") // (1)!
 
-            // Abrimos el canal con permisos de lectura, escritura y creación
-            FileChannel.open(path, READ, WRITE, CREATE).use { canal ->
+    FileChannel.open(path, READ, WRITE, CREATE).use { canal -> // (2)!
+        val buffer = ByteBuffer.wrap("Hola desde Kotlin\n".toByteArray()) // (3)!
 
-                // Creamos un buffer con el texto a escribir convertido a bytes
-                val buffer = ByteBuffer.wrap("Hola desde Kotlin\n".toByteArray())
+        canal.position(0) // (4)!
+        canal.write(buffer) // (5)!
 
-                // Establecemos la posición del canal al principio del archivo
-                canal.position(0)
+        val bufferLectura = ByteBuffer.allocate(1024) // (6)!
+        canal.position(0) // (7)!
+        canal.read(bufferLectura) // (8)!
 
-                // Escribimos el contenido del buffer en el archivo
-                canal.write(buffer)
+        bufferLectura.flip() // (9)!
+        println(String(bufferLectura.array(), 0, bufferLectura.limit()))
+    }
+}
+```
 
-                // Creamos un nuevo buffer vacío para leer hasta 1024 bytes
-                val bufferLectura = ByteBuffer.allocate(1024)
-
-                // Volvemos al principio del archivo para leer desde el inicio
-                canal.position(0)
-
-                // Leemos desde el archivo al buffer
-                canal.read(bufferLectura)
-
-                // Cambiamos el buffer de modo escritura a modo lectura
-                bufferLectura.flip()
-
-                // Convertimos el contenido leído a cadena y lo mostramos
-                println(String(bufferLectura.array(), 0, bufferLectura.limit()))
-            } // El canal se cierra automáticamente gracias a `use`
-        }
+1. Crea la ruta del fichero a trabajar.
+2. Abre el `FileChannel` con lectura, escritura y creacion.
+3. Carga en memoria los bytes a escribir.
+4. Situa el puntero del canal en el byte inicial.
+5. Escribe el contenido del buffer en el fichero.
+6. Reserva un buffer para la lectura.
+7. Recoloca el canal al inicio para leer.
+8. Lee bytes desde el fichero al buffer.
+9. Prepara el buffer para extraer sus datos.
 
 
 🖥️ **Ejemplo_acceso_aleatorio.kt** : acceso directo a posiciones en un archivo con **FileChannel** y **ByteBuffer**.
@@ -165,48 +153,49 @@ La finalidad del ejercicio es comprender cómo `FileChannel` permite controlar e
 
 Este ejemplo muestra un caso más claro de acceso aleatorio: escribir contenido en distintas posiciones del archivo sin necesidad de recorrerlo secuencialmente desde el principio hasta el final.
 
-- Primero se crea la ruta del archivo y se abre un `FileChannel` con permisos de lectura, escritura y creación.
-- Después se escribe el texto `Inicio` en la posición `0`, es decir, al comienzo del archivo.
-- A continuación se cambia la posición del canal a `20` con `canal.position(20)` para escribir otro texto en ese punto exacto del fichero.
-- Esta operación deja un espacio intermedio entre ambos fragmentos, que al leer el archivo puede aparecer como bytes o caracteres nulos.
-- Luego se reserva un `ByteBuffer` para cargar el contenido completo del archivo desde el inicio.
-- Tras la lectura, se usa `flip()` para preparar el buffer y convertir su contenido en una cadena de texto.
-- Finalmente, se muestra por pantalla el resultado para observar cómo el segundo texto ha sido escrito en una posición concreta del archivo.
-
 La finalidad del ejercicio es entender que el acceso aleatorio permite saltar directamente a un byte determinado del fichero y leer o escribir allí sin depender de un recorrido secuencial completo.
 
-        import java.nio.ByteBuffer
-        import java.nio.channels.FileChannel
-        import java.nio.file.Paths
-        import java.nio.file.StandardOpenOption.*
+```kotlin
+import java.nio.ByteBuffer
+import java.nio.channels.FileChannel
+import java.nio.file.Paths
+import java.nio.file.StandardOpenOption.*
 
-        fun main() {
-            val path = Paths.get("documentos/datos.txt")
+fun main() {
+    val path = Paths.get("documentos/datos.txt") // (1)!
 
-            // Abrimos el canal con permisos de lectura y escritura
-            FileChannel.open(path, READ, WRITE, CREATE).use { canal ->
+    FileChannel.open(path, READ, WRITE, CREATE).use { canal -> // (2)!
+        canal.position(0) // (3)!
+        val inicio = ByteBuffer.wrap("Inicio\n".toByteArray()) // (4)!
+        canal.write(inicio) // (5)!
 
-                // Escribimos "Inicio\n" en la posición 0 del archivo
-                canal.position(0)
-                val inicio = ByteBuffer.wrap("Inicio\n".toByteArray())
-                canal.write(inicio)
+        canal.position(20) // (6)!
+        val texto = ByteBuffer.wrap("Texto en posición 20\n".toByteArray()) // (7)!
+        canal.write(texto) // (8)!
 
-                // Escribimos "Texto en posición 20\n" en la posición 20 del archivo
-                canal.position(20)
-                val texto = ByteBuffer.wrap("Texto en posición 20\n".toByteArray())
-                canal.write(texto)
+        val bufferLectura = ByteBuffer.allocate(1024) // (9)!
+        canal.position(0) // (10)!
+        canal.read(bufferLectura) // (11)!
 
-                // Leemos el contenido completo desde el inicio (posición 0)
-                val bufferLectura = ByteBuffer.allocate(1024)
-                canal.position(0)
-                canal.read(bufferLectura)
+        bufferLectura.flip() // (12)!
+        val contenido = String(bufferLectura.array(), 0, bufferLectura.limit())
+        println("Contenido leído del archivo:\n$contenido")
+    }
+}
+```
 
-                // Preparamos el buffer para lectura e imprimimos el contenido
-                bufferLectura.flip()
-                val contenido = String(bufferLectura.array(), 0, bufferLectura.limit())
-                println("Contenido leído del archivo:\n$contenido")
-            }
-        }
+1. Define la ruta del fichero.
+2. Abre el `FileChannel` para acceso aleatorio.
+3. Situa el puntero en el inicio.
+4. Prepara el primer bloque de bytes.
+5. Escribe el primer bloque.
+6. Salta directamente al byte 20.
+7. Prepara el segundo bloque de bytes.
+8. Escribe el segundo bloque en esa posicion.
+9. Reserva buffer para lectura completa.
+10. Vuelve al inicio del archivo.
+11. Lee contenido del canal al buffer.
+12. Cambia el buffer a modo lectura.
 
 !!!note "📤 Salida esperada"
         Contenido leído del archivo:

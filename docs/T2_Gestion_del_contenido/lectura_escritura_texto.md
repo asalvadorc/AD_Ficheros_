@@ -25,50 +25,57 @@ En Kotlin, trabajaremos con la API `java.nio.file.Files` para leer y escribir te
 
 Este ejemplo muestra el ciclo completo de trabajo con un fichero de texto usando la API `Files` de Java NIO desde Kotlin.
 
-- Primero se define una ruta con `Paths.get("documentos/texto.txt")`.
-- Después se escriben varias líneas en el archivo con `Files.write(...)`, usando codificación UTF-8 para que los caracteres especiales se guarden correctamente.
-- A continuación se presentan tres formas de leer el mismo fichero:
-        - `readAllLines()`: carga todas las líneas en una lista.
-        - `readString()`: recupera todo el contenido como una sola cadena.
-        - `newBufferedReader()`: permite leer el archivo de forma secuencial, útil cuando el fichero es grande.
+A continuación se presentan tres formas de leer el mismo fichero:  
+ 
+- `readAllLines()`: carga todas las líneas en una lista.
+- `readString()`: recupera todo el contenido como una sola cadena.
+- `newBufferedReader()`: permite leer el archivo de forma secuencial, útil cuando el fichero es grande.
 
 
 ---
 
-    import java.nio.charset.StandardCharsets
-    import java.nio.file.Files
-    import java.nio.file.Paths
+```kotlin
+import java.nio.charset.StandardCharsets
+import java.nio.file.Files
+import java.nio.file.Paths
 
-    fun main() {
-        val ruta = Paths.get("documentos/texto.txt")
+fun main() {
+    val ruta = Paths.get("documentos/texto.txt") // (1)!
 
-        // Escritura en fichero de texto
-        val lineasParaGuardar = listOf(
-            "Primera linea",
-            "Segunda linea",
-            "Hola desde Kotlin"
-        )
-        Files.write(ruta, lineasParaGuardar, StandardCharsets.UTF_8)
-        println("Fichero de texto escrito.")
+    // Escritura en fichero de texto
+    val lineasParaGuardar = listOf(
+        "Primera linea",
+        "Segunda linea",
+        "Hola desde Kotlin"
+    )
+    Files.write(ruta, lineasParaGuardar, StandardCharsets.UTF_8) // (2)!
+    println("Fichero de texto escrito.")
 
-        // 1) readAllLines: devuelve lista de lineas
-        val lineasLeidas = Files.readAllLines(ruta, StandardCharsets.UTF_8)
-        println("Contenido leido con readAllLines:")
-        for (linea in lineasLeidas) {
-            println(linea)
-        }
-
-        // 2) readString: devuelve todo el texto en un String
-        val contenido = Files.readString(ruta, StandardCharsets.UTF_8)
-        println("Contenido leido con readString:")
-        println(contenido)
-
-        // 3) newBufferedReader: lectura secuencial (util en archivos grandes)
-        Files.newBufferedReader(ruta, StandardCharsets.UTF_8).use { reader ->
-            println("Contenido leido con newBufferedReader:")
-            reader.lineSequence().forEach { println(it) }
-        }
+    // 1) readAllLines: devuelve lista de lineas
+    val lineasLeidas = Files.readAllLines(ruta, StandardCharsets.UTF_8) // (3)!
+    println("Contenido leido con readAllLines:")
+    for (linea in lineasLeidas) {
+        println(linea)
     }
+
+    // 2) readString: devuelve todo el texto en un String
+    val contenido = Files.readString(ruta, StandardCharsets.UTF_8) // (4)!
+    println("Contenido leido con readString:")
+    println(contenido)
+
+    // 3) newBufferedReader: lectura secuencial (util en archivos grandes)
+    Files.newBufferedReader(ruta, StandardCharsets.UTF_8).use { reader -> // (5)!
+        println("Contenido leido con newBufferedReader:")
+        reader.lineSequence().forEach { println(it) }
+    }
+}
+```
+
+1. Crea el `Path` del fichero de texto.
+2. Escribe las lineas en disco con codificacion `UTF_8`.
+3. Lee todo el fichero como lista de lineas.
+4. Lee todo el fichero como un unico `String`.
+5. Abre un lector secuencial (`BufferedReader`) para lectura progresiva.
 
 
 !!!note "📤 Salida esperada"

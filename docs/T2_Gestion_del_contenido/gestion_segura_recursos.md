@@ -16,7 +16,7 @@ Kotlin utiliza el mismo modelo de excepciones que Java, pero con algunas diferen
 Se utiliza cuando queremos atrapar y manejar una excepción que puede producirse en un bloque de código.
 
 **Sintaxis**
-
+```kotlin
         try {
             //  Código que puede fallar
         } catch (e1: IOException) {
@@ -26,20 +26,27 @@ Se utiliza cuando queremos atrapar y manejar una excepción que puede producirse
         } finally {
             // opcional. Finalización y liberación de recursos
         }
+```
 
 
 **Ejemplo**
 
-        fun main() {
-        try {
-            val resultado = 10 / 0
-            println("Resultado: $resultado")
-        } catch (e: ArithmeticException) {
-            println("Error: no se puede dividir entre cero.")
-        } finally {
-            println("Fin del bloque try-catch.")
-        }
+```kotlin
+fun main() {
+    try { // (1)!
+        val resultado = 10 / 0
+        println("Resultado: $resultado")
+    } catch (e: ArithmeticException) { // (2)!
+        println("Error: no se puede dividir entre cero.")
+    } finally { // (3)!
+        println("Fin del bloque try-catch.")
     }
+}
+```
+
+1. Delimita el bloque que puede lanzar una excepcion.
+2. Captura una excepcion especifica (`ArithmeticException`).
+3. Ejecuta el bloque de limpieza final (`finally`).
 
 **2. use → Gestión automática de recursos**{.azul}
 
@@ -57,52 +64,78 @@ Con **use**, Kotlin abre, utiliza y cierra automáticamente el recurso (como un 
     
  **Ejemplo 1:** Leer archivo con BufferedReader
 
-        import java.io.BufferedReader
-        import java.io.FileReader
+```kotlin
+import java.io.BufferedReader
+import java.io.FileReader
 
-        fun main() {
-            BufferedReader(FileReader("archivo.txt")).use { reader ->
-                val linea = reader.readLine()
-                println(linea)
-            }
-        }
+fun main() {
+    BufferedReader(FileReader("archivo.txt")).use { reader -> // (1)!
+        val linea = reader.readLine() // (2)!
+        println(linea)
+    }
+}
+```
+
+1. Abre y cierra automaticamente el recurso con `use`.
+2. Lee una linea desde el `BufferedReader`.
 
     - Cuando el bloque use { ... } termina, el reader se cierra automáticamente.
 
 **Ejemplo 2:** Escribir archivo con FileWriter
 
-        import java.io.FileWriter
+```kotlin
+import java.io.FileWriter
 
-        fun main() {
-            FileWriter("archivo.txt").use {
-                it.write("Hola, Kotlin\n")
-            }
-        }
+fun main() {
+    FileWriter("archivo.txt").use { // (1)!
+        it.write("Hola, Kotlin\n") // (2)!
+    }
+}
+```
+
+1. Gestiona cierre automatico del `FileWriter` con `use`.
+2. Escribe texto en el fichero.
 
 Internamente, **use** hace lo mismo que esto:
 
-            val writer = FileWriter("archivo.txt")
-            try {
-                writer.write("Texto")
-            } finally {
-                writer.close()
-            }
+```kotlin
+val writer = FileWriter("archivo.txt") // (1)!
+try { // (2)!
+    writer.write("Texto") // (3)!
+} finally { // (4)!
+    writer.close() // (5)!
+}
+```
+
+1. Abre el recurso manualmente.
+2. Delimita bloque protegido frente a errores.
+3. Realiza la escritura del contenido.
+4. Garantiza la ejecucion del cierre.
+5. Libera el recurso explicitamente.
 
 **Ejemplo 3:** Ejemplo con BufferedReader. **Use** se encarga de cerrar el BufferedReader automáticamente, aunque haya un error.
 
-    import java.io.File
+```kotlin
+import java.io.File
 
-    fun main() {
-        val archivo = File("datos.txt")
+fun main() {
+    val archivo = File("datos.txt") // (1)!
 
-        try {
-            archivo.bufferedReader().use { reader ->
-                println("Primera línea: ${reader.readLine()}")
-            }
-        } catch (e: Exception) {
-            println("Error al leer el archivo: ${e.message}")
+    try { // (2)!
+        archivo.bufferedReader().use { reader -> // (3)!
+            println("Primera línea: ${reader.readLine()}") // (4)!
         }
+    } catch (e: Exception) { // (5)!
+        println("Error al leer el archivo: ${e.message}")
     }
+}
+```
+
+1. Define el fichero de entrada.
+2. Encapsula la lectura en un bloque con manejo de errores.
+3. Abre un `BufferedReader` con cierre automatico mediante `use`.
+4. Ejecuta la lectura de una linea.
+5. Captura errores de lectura.
 
 
 **Recomendaciones didácticas**{.azul}

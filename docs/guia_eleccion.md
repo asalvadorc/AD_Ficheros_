@@ -5,7 +5,7 @@ hide:
 
 # 🧭 Guía de elección: ¿qué librería usar?
 
-![alt text](image-1.png){width=600}
+![alt text](image_guia.png){width=800}
 
 
 !!!warning "Recuerda siempre"

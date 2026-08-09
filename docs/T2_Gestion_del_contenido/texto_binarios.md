@@ -21,42 +21,46 @@ Este ejemplo muestra el ciclo completo de trabajo con un fichero de texto usando
 
 La idea del ejercicio es comparar estas tres formas de lectura y entender cuándo conviene usar cada una.
 
-        import java.nio.file.Files
-        import java.nio.file.Paths
-        import java.nio.charset.StandardCharsets
+```kotlin
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.charset.StandardCharsets
 
-        fun main() {
-                val ruta = Paths.get("documentos/texto.txt")
+fun main() {
+    val ruta = Paths.get("documentos/texto.txt") // (1)!
 
-                //Escritura en fichero de texto
-                val lineasParaGuardar = listOf(
-                        "Primera línea",
-                        "Segunda línea",
-                        "¡Hola desde Kotlin!"
-                )
-                Files.write(ruta, lineasParaGuardar, StandardCharsets.UTF_8)
-                println("Fichero de texto escrito.")
+    //Escritura en fichero de texto
+    val lineasParaGuardar = listOf(
+        "Primera línea",
+        "Segunda línea",
+        "¡Hola desde Kotlin!"
+    )
+    Files.write(ruta, lineasParaGuardar, StandardCharsets.UTF_8) // (2)!
+    println("Fichero de texto escrito.")
 
-                //Lectura del fichero de texto
+    //Lectura del fichero de texto
+    val lineasLeidas = Files.readAllLines(ruta) // (3)!
+    println("Contenido leído con readAllLines:")
+    for (lineas in lineasLeidas) {
+        println(lineas)
+    }
 
-                //readAllLines
-                val lineasLeidas = Files.readAllLines(ruta)
-                println("Contenido leído con readAllLines:")
-                for (lineas in lineasLeidas) {
-                        println(lineas)
-                }
+    val contenido = Files.readString(ruta) // (4)!
+    println("Contenido leído con readString:")
+    println(contenido)
 
-                //readString
-                val contenido = Files.readString(ruta)
-                println("Contenido leído con readString:")
-                println(contenido)
+    Files.newBufferedReader(ruta).use { reader -> // (5)!
+        println("Contenido leído con newBufferedReader:")
+        reader.lineSequence().forEach { println(it) }
+    }
+}
+```
 
-                //newBufferedReader
-                Files.newBufferedReader(ruta).use { reader ->
-                        println("Contenido leído con newBufferedReader:")
-                        reader.lineSequence().forEach { println(it) }
-                }
-        }
+1. Crea la ruta del fichero de texto.
+2. Escribe lineas con `UTF_8`.
+3. Lee el archivo completo como lista.
+4. Lee el archivo completo como bloque de texto.
+5. Abre lectura secuencial con `BufferedReader`.
 
 !!!note "📤 Salida esperada"
         Fichero de texto escrito.
@@ -93,27 +97,28 @@ Este ejemplo muestra cómo guardar y recuperar datos binarios simples usando `Fi
 
 La finalidad del ejercicio es entender que un fichero binario no almacena texto legible, sino datos en bruto, y que por eso su lectura y escritura se realiza en forma de bytes.
 
+```kotlin
+import java.nio.file.Files
+import java.nio.file.Paths
 
-        import java.nio.file.Files
-        import java.nio.file.Paths
+fun main() {
+        val ruta = Paths.get("documentos/datos.bin") // (1)!
 
+        val datos = byteArrayOf(1, 2, 3, 4, 5)
+        Files.write(ruta, datos) // (2)!
+        println("Archivo binario creado: ${ruta.toAbsolutePath()}")
 
-        fun main() {
-                val ruta = Paths.get("documentos/datos.bin")
+        val bytes = Files.readAllBytes(ruta) // (3)!
+        println("Contenido leído (byte a byte):")
+        for (b in bytes) {
+                print("$b ")
+        }
+}
+```
 
-                //Escritura en fichero binario
-                val datos = byteArrayOf(1, 2, 3, 4, 5)
-                Files.write(ruta, datos)
-                println("Archivo binario creado: ${ruta.toAbsolutePath()}")
-
-
-                val bytes = Files.readAllBytes(ruta)
-
-                println("Contenido leído (byte a byte):")
-                for (b in bytes) {
-                        print("$b ")
-                }
-         }
+1. Define la ruta del fichero binario.
+2. Escribe el `ByteArray` completo en disco.
+3. Recupera todos los bytes del fichero con `readAllBytes()`.
 
 !!!note "📤 Salida esperada"
         Archivo binario creado: .../documentos/datos.bin
