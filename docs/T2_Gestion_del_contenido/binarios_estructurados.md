@@ -19,7 +19,7 @@ En Java existen varias APIs para trabajar con este tipo de ficheros. La elecció
 
 En este apartado estudiaremos cuándo resulta más conveniente utilizar cada una de estas alternativas y las ventajas que aporta cada una de ellas.
 
-**DataInputStream y DataOutputStream**{.azul}
+## 🔹 DataInputStream / DataOutputStream
 
 Cuando hay que guardar tipos primitivos (por ejemplo `Int`, `Double`) de forma secuencial, suele usarse `DataInputStream` y `DataOutputStream`.
 
@@ -102,7 +102,7 @@ fun main() {
 10. Lee la cadena UTF en el mismo orden.
 11. Cierra el flujo de lectura.
 
-**BufferedInputStream/BufferedOutputStream**{.azul}
+## 🔹 BufferedStream
 
 Cuando se trabaja con ficheros binarios estructurados, normalmente estos métodos se combinan con DataInputStream y DataOutputStream,
 
@@ -162,7 +162,7 @@ fun main() {
 9. Lee `Double` respetando orden.
 10. Lee cadena UTF respetando orden.
 
-**FileChannel y ByteBuffer**{.azul}       
+## 🔹 FileChannel y ByteBuffer     
 
 Cuando hay que guardar tipos primitivos (por ejemplo `Int`, `Double`) de forma compacta, suele usarse `ByteBuffer` y `FileChannel`.
 
