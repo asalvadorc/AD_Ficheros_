@@ -1,8 +1,3 @@
----
-hide:
-  - toc
----
-
 # 🔹 Binarios no estructurados
 
 Un fichero binario no estructurado es cualquier fichero binario cuyo contenido no está organizado en registros definidos por nuestro programa. En la mayoría de los casos, simplemente lo tratamos como una secuencia de bytes, sin necesidad de interpretar su formato interno (ficheros de imagen, audio, vídeo, zip, ejecutable...).

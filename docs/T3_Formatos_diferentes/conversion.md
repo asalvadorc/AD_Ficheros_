@@ -1,8 +1,3 @@
----
-hide:
-  - toc
----
-
 # 🔹 Conversión entre formatos de ficheros
 
 !!!Tip "Importante"

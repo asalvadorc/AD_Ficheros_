@@ -1027,8 +1027,7 @@ body.lightbox-open {
 
 /* Forzar menú derecho visible en ancho medio/alto para mantener el apartado activo visible */
 @media screen and (min-width: 56em) {
-    .md-sidebar--secondary,
-    .md-sidebar--secondary[hidden] {
+    .md-sidebar--secondary:not([hidden]) {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
