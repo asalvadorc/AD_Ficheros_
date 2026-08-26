@@ -3,7 +3,9 @@ hide:
   - toc
 ---
 
-# 🧰 Entorno y proyecto base
+# 🧰 Entorno y ubicación de los ejemplos
+
+Esta página centraliza todas las instrucciones operativas de preparación del entorno.
 
 > **Ubicación rápida de los ejemplos de código**
 >
@@ -14,7 +16,7 @@ hide:
 > | **Tema 3** (sin librerías extras) | `Ficheros` | `formatos` |
 > | **Tema 3** (con dependencias) | `Ficheros_Gradle` | (raíz o paquete a tu elección) |
 
-Esta página centraliza todas las instrucciones operativas de preparación del entorno.
+
 
 ## <span class="setup-tag setup-tag-ide">SETUP_IDE</span> — IDE y proyecto base
 
