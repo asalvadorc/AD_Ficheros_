@@ -10,6 +10,8 @@ La serialización de objetos en Java es el proceso de convertir un objeto Java e
   
 La deserialización es el proceso inverso: leer esos bytes y reconstruir el objeto.
 
+![alt text](image-1.png)
+
 Para que un objeto pueda ser serializado es necesario que su clase y todo su
 contenido implementen la interfaz **Serializable**. Se trata de una
 interfaz sin métodos, porque el único objetivo de la interfaz es actuar de
