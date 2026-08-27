@@ -5,16 +5,6 @@ hide:
 
 # 🔹 Introducción
 
-## 🛠️ Preparación de los ejemplos
-
-!!!warning ""
-    <span class="setup-tag setup-tag-ide">SETUP_IDE</span> <span class="setup-tag setup-tag-paquetes">SETUP_PAQUETES</span> Todos los ejemplos de código del **Tema 2** se deben programar en el proyecto **`Ficheros`**, dentro del paquete **`contenido`**.   
-    
-    <span class="setup-tag setup-tag-carpetas">SETUP_CARPETAS</span> Si todavía no has preparado las carpetas de trabajo (`documentos` y `documentos2`).   
-      
-    Si tienes dudas, revisa la configuración en:[🧰 Entorno y Ubicación de Ejemplos](../00_entorno_y_proyecto.md)
-
-## 📖 Conceptos teóricos
 En el desarrollo de aplicaciones es común tener que leer y escribir datos almacenados en archivos. Según el tipo de contenido del fichero (texto, binario, imagen, estructurado...), se utilizan clases y métodos distintos para acceder a ellos de forma eficiente y segura.
 
 **Kotlin** se apoya en las bibliotecas de Java (**java.io** y **java.nio.file**) para realizar estas operaciones, permitiendo un control detallado tanto para acceso secuencial como aleatorio.
@@ -25,6 +15,14 @@ En el desarrollo de aplicaciones es común tener que leer y escribir datos almac
 
 En el desarrollo actual, especialmente en aplicaciones que manejan datos estructurados, binarios o grandes volúmenes de información, es preferible utilizar **java.nio**, por lo que será la API que utilizaremos en los ejemplos y ejercicios.
 
+## 🛠️ Ubicación de los ejemplos
+
+!!!warning ""
+    <span class="setup-tag setup-tag-ide">SETUP_IDE</span> <span class="setup-tag setup-tag-paquetes">SETUP_PAQUETES</span> Todos los ejemplos de código del **Tema 2** se deben programar en el **proyecto** `Ficheros`, dentro del **paquete** `contenido`.   
+    
+    <span class="setup-tag setup-tag-carpetas">SETUP_CARPETAS</span> Si todavía no has preparado las carpetas de trabajo (`documentos` y `documentos2`).   
+      
+    Si tienes dudas sobre la preparación del entorno o la ubicación de los ejemplos, consulta [🧰 Entorno y Ubicación de los Ejemplos](../00_entorno_y_proyecto.md), disponible en el menú `Inicio`.
 <!--
 ??? info "Resumen de clases y métodos para el acceso a ficheros en Kotlin (Java NIO)"
 

@@ -5,62 +5,36 @@ hide:
 
 # 🔹 Introducción
 
-## 🛠️ Preparación de los ejemplos
+En el desarrollo de software es habitual utilizar formatos estándar para almacenar e intercambiar datos entre aplicaciones, sistemas o lenguajes de programación. Entre los más utilizados se encuentran **JSON**, **XML** y **CSV**.
+
+Estos formatos se emplean principalmente para:
+
+La comunicación entre aplicaciones, por ejemplo mediante APIs REST.
+La importación y exportación de datos entre sistemas.
+El almacenamiento estructurado de información.
+
+A diferencia de los ficheros de texto plano o binarios, JSON, XML y CSV tienen una estructura interna definida, por lo que su contenido se procesa mediante librerías específicas que permiten analizar o parsear los datos.
+
+Cada formato está orientado a diferentes necesidades:
+
+**CSV**: sencillo y eficiente para datos tabulares.  
+**JSON**: ligero y adecuado para datos estructurados y servicios web.  
+**XML**: más estructurado y extensible, útil en sistemas complejos y cuando se requiere validación.  
+
+Antes de trabajar con estos formatos es importante comprender la **serialización**, proceso que permite transformar un objeto en memoria en una representación que pueda almacenarse o transmitirse, y la deserialización, que realiza el proceso inverso.
+
+Este concepto se desarrolla en el siguiente apartado.
+
+
+## 🛠️ Ubicación de los ejemplos
 
 !!!warning ""
     <span class="setup-tag setup-tag-ide">SETUP_IDE</span> <span class="setup-tag setup-tag-paquetes">SETUP_PAQUETES</span> Los ejemplos del **Tema 3** se reparten entre dos proyectos: 
 
-    - **Sin librerías externas** (ej. ObjectOutputStream): usa el proyecto **`Ficheros`**, paquete **`formatos`**.
-    - **Con dependencias externas** (ej. JSON, CSV, XML): usa el proyecto **`Ficheros_Gradle`**.   
+    - **Sin librerías externas** (ej. ObjectOutputStream): usa el **proyecto** `Ficheros`, **paquete** `formatos`.
+    - **Con dependencias externas** (ej. JSON, CSV, XML): usa el **proyecto** `Ficheros_Gradle`.   
     
-    Si tienes dudas, revisa la configuración en [🧰 Entorno y Ubicación de Ejemplos](../00_entorno_y_proyecto.md).
-
-## 📖 Conceptos teóricos
-
-
-
-<!--![ref1](formatos.png)-->
-
-En el desarrollo de software, especialmente en aplicaciones que gestionan información o se comunican entre sistemas, es fundamental contar con formatos estándar para el intercambio de datos.   
-Entre los más utilizados destacan **JSON** (JavaScript Object Notation), **XML** (eXtensible Markup Language) y **CSV** (Comma-Separated Values).
-
-
-
-
-Estos formatos permiten que los datos puedan ser almacenados, transmitidos y compartidos entre diferentes aplicaciones, plataformas o lenguajes de programación de forma estructurada y comprensible. Su uso se ha convertido en una práctica habitual en ámbitos como:
-
-- La comunicación entre aplicaciones web (por ejemplo, mediante APIs REST).
-- La exportación e importación de datos entre sistemas distintos.
-- El almacenamiento estructurado de información, en ocasiones como alternativa ligera a una base de datos.
-
-
-A diferencia de los **ficheros de texto plano**, que se leen línea a línea como cadenas sin estructura interna definida, o de los **ficheros binarios**, que contienen datos codificados que requieren conocer su formato exacto para ser interpretados, estos formatos poseen una estructura interna estandarizada y legible, lo que requiere un enfoque diferente para acceder a su contenido. El acceso y procesamiento de estos ficheros se basa en parsear (analizar) su contenido utilizando **librerías específicas**.
-
-Cada formato tiene características que lo hacen adecuado para determinados contextos:
-
-- **CSV**: simple, muy legible y eficiente para representar datos tabulares (como hojas de cálculo).
-
-- **JSON**: ligero, fácil de leer y escribir, ideal para estructuras de datos jerárquicas y ampliamente usado en servicios web modernos.
-
-- **XML**: muy estructurado y extensible, adecuado cuando se necesita validar datos o integrar con sistemas complejos y estándares empresariales.
-
-
-
-Antes de abordar la conversión entre formatos como JSON, XML o CSV, es esencial comprender el concepto de **serialización de objetos**: el proceso mediante el cual un objeto en memoria se transforma en una representación que puede almacenarse o transmitirse, y su proceso inverso, la **deserialización**.
-
-Este concepto se desarrolla en detalle en el siguiente apartado.
-
----
-
-!!!question "🧠 Comprueba tu comprensión"
-    1. Si necesitas exportar una gran cantidad de datos tabulares simples (como el inventario de una tienda sin datos anidados) para que los lea otra persona o sistema, ¿qué formato suele ser el más rápido, ligero y compatible?
-    2. Si necesitas comunicar el *backend* y el *frontend* de una API web moderna, ¿qué formato es el estándar actual más utilizado?
-
-    ??? success "Ver respuestas"
-        1. **CSV**. Al no tener etiquetas redundantes ni requerir estructuras jerárquicas, ocupa muy poco espacio y se puede abrir directamente en Excel o LibreOffice.
-        2. **JSON**. Es el estándar dominante en servicios web, siendo ligero y fácil de parsear en la mayoría de lenguajes.
-
- 
+    Si tienes dudas sobre la preparación del entorno o la ubicación de los ejemplos, consulta [🧰 Entorno y Ubicación de los Ejemplos](../00_entorno_y_proyecto.md), disponible en el menú `Inicio`.
 
 
 
