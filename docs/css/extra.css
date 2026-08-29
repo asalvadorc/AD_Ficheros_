@@ -38,6 +38,33 @@
     --md-code-bg-color: #1b2e2c;
 }
 
+/* ===================== BLOQUE DE PREPARACIÓN ===================== */
+
+.bloque-preparacion {
+    margin: 1.5rem 0 2rem;
+    padding: 0.4rem 1.4rem 1.2rem;
+    border: 1px solid rgba(41, 128, 185, 0.35);
+    border-left: 0.35rem solid var(--md-accent-fg-color);
+    border-radius: 0.5rem;
+    background-color: rgba(41, 128, 185, 0.07);
+    box-shadow: 0 0.2rem 0.6rem rgba(21, 67, 96, 0.08);
+}
+
+[data-md-color-scheme="slate"] .bloque-preparacion {
+    border-color: rgba(93, 173, 226, 0.4);
+    border-left-color: var(--md-accent-fg-color);
+    background-color: rgba(93, 173, 226, 0.1);
+    box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.2);
+}
+
+.bloque-preparacion > :first-child {
+    margin-top: 0.8rem;
+}
+
+.bloque-preparacion > :last-child {
+    margin-bottom: 0;
+}
+
 /* =========================================================
    🧱 SIDEBAR (SIN ROMPER FUNCIONAMIENTO)
    ========================================================= */
@@ -309,6 +336,15 @@ p {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
+.md-typeset img[data-lightbox-ready="true"] {
+    cursor: zoom-in;
+}
+
+.md-typeset img[data-lightbox-ready="true"]:focus-visible {
+    outline: 3px solid var(--md-accent-fg-color);
+    outline-offset: 4px;
+}
+
 body.lightbox-open {
     overflow: hidden;
 }
@@ -363,6 +399,11 @@ body.lightbox-open {
 
 .lightbox-close:hover {
     background: #ffffff;
+}
+
+.lightbox-close:focus-visible {
+    outline: 3px solid var(--md-accent-fg-color);
+    outline-offset: 3px;
 }
 
 .md-typeset img.img-left {

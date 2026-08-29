@@ -2,6 +2,11 @@
 
 
 
+!!! warning "Dónde guardar los ejemplos"
+    Programa los ejemplos en el proyecto **`Ficheros`**, dentro del paquete **`contenido`**. Los archivos binarios estructurados se leerán y generarán en `documentos`, en la raíz del proyecto.
+
+    Consulta [🧰 Entorno y ubicación de los ejemplos](../00_entorno_y_proyecto.md) si necesitas revisar la estructura completa.
+
 Los ficheros binarios estructurados almacenan la información siguiendo una organización definida por el programador, normalmente mediante registros formados por tipos de datos primitivos (`int`, `double`, `boolean`, etc.).
 
 En Java existen varias APIs para trabajar con este tipo de ficheros. La elección de una u otra dependerá de las necesidades de la aplicación:

@@ -5,6 +5,11 @@ hide:
 
 # 🔹 Lectura y escritura de texto (Flujos de caracteres)
 
+!!! warning "Dónde guardar los ejemplos"
+    Programa los ejemplos en el proyecto **`Ficheros`**, dentro del paquete **`contenido`**. Los archivos de texto se leerán y generarán en `documentos`, en la raíz del proyecto.
+
+    Consulta [🧰 Entorno y ubicación de los ejemplos](../00_entorno_y_proyecto.md) si necesitas revisar la estructura completa.
+
 Los ficheros de texto almacenan caracteres y se usan para datos legibles por humanos: `.txt`, `.csv`, `.json`, `.xml`, etc.
 
 En Kotlin, trabajaremos con la API `java.nio.file.Files` para leer y escribir texto de forma segura y eficiente.

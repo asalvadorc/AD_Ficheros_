@@ -1,5 +1,10 @@
 ﻿# 🔹 Ficheros de acceso aleatorio
 
+!!! warning "Dónde guardar los ejemplos"
+    Programa los ejemplos en el proyecto **`Ficheros`**, dentro del paquete **`contenido`**. Los archivos de acceso aleatorio se leerán y generarán en `documentos`, en la raíz del proyecto.
+
+    Consulta [🧰 Entorno y ubicación de los ejemplos](../00_entorno_y_proyecto.md) si necesitas revisar la estructura completa.
+
 Hasta el momento todos los accesos que hemos hecho a los archivos, tanto binarios como de texto, han sido secuenciales. Esto significa que siempre empezamos por el principio del archivo hasta que llegamos a la información que queremos, o en la mayor parte de los casos hasta el final de archivo.
 
 Pero, ¿y si queremos únicamente una determinada información? Afortunadamente hay otra forma de acceder, otro tipo de acceso. Se llama acceso **directo o aleatorio**, porque permitirá ir directamente a una posición determinada del archivo.

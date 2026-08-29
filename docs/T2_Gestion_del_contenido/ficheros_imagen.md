@@ -5,6 +5,11 @@ hide:
 
 # 🔹 Ficheros de imagen
 
+!!! warning "Dónde guardar los ejemplos"
+    Programa los ejemplos en el proyecto **`Ficheros`**, dentro del paquete **`contenido`**. Guarda las imágenes de trabajo en `documentos`, en la raíz del proyecto.
+
+    Consulta [🧰 Entorno y ubicación de los ejemplos](../00_entorno_y_proyecto.md) si necesitas revisar la estructura completa.
+
 Los ficheros de imagen contienen datos que representan gráficamente una imagen visual (fotografías, ilustraciones, iconos, etc.). A diferencia de los ficheros de texto o binarios crudos, estos archivos tienen estructura interna que depende del formato (como .png, .jpg, .bmp, etc.).
 
 

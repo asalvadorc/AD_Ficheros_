@@ -1,7 +1,7 @@
 # 📝 Ejercicio 1: Explorador interactivo del directorio personal
 
 !!!info "Estructura del proyecto"
-    Antes de empezar, crea un paquete llamado `Ejercicio1` en tu proyecto Kotlin. Dentro de ese paquete se deberá construir el archivo `.kt` con la solución del ejercicio.
+    Antes de empezar, abre el proyecto **`Ficheros`** y crea un paquete llamado `Ejercicio1`. Dentro de ese paquete se deberá construir el archivo `.kt` con la solución del ejercicio.
 
 ## 📋 Enunciado
 

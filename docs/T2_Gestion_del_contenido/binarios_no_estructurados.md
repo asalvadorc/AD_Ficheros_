@@ -1,5 +1,10 @@
 # 🔹 Binarios no estructurados
 
+!!! warning "Dónde guardar los ejemplos"
+    Programa los ejemplos en el proyecto **`Ficheros`**, dentro del paquete **`contenido`**. Los archivos binarios se leerán y generarán en `documentos`, en la raíz del proyecto.
+
+    Consulta [🧰 Entorno y ubicación de los ejemplos](../00_entorno_y_proyecto.md) si necesitas revisar la estructura completa.
+
 Un fichero binario no estructurado es cualquier fichero binario cuyo contenido no está organizado en registros definidos por nuestro programa. En la mayoría de los casos, simplemente lo tratamos como una secuencia de bytes, sin necesidad de interpretar su formato interno (ficheros de imagen, audio, vídeo, zip, ejecutable...).
 
 ---

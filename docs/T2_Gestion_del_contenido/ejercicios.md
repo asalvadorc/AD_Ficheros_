@@ -1,7 +1,7 @@
 # 📝 Ejercicio 2: Proyecto Integrador (Parte 2) - Gestión de contenido
 
 !!!info "Estructura del proyecto"
-    Antes de empezar, crea un paquete llamado `Ejercicio2` en tu proyecto Kotlin. Dentro de ese paquete se deberá construir el archivo `.kt` con la solución del ejercicio.
+    Antes de empezar, abre el proyecto **`Ficheros`** y crea un paquete llamado `Ejercicio2`. Dentro de ese paquete se deberá construir el archivo `.kt` con la solución del ejercicio.
 
 ## 📋 Enunciado
 
@@ -104,5 +104,4 @@ La calificación del ejercicio se obtendrá sumando la puntuación obtenida en c
 | **Gestión robusta de excepciones** | Se gestionan adecuadamente las posibles excepciones mediante bloques `try/catch`. | **1,0** |
 | **Comentarios y estructura del código** | El código está correctamente organizado en funciones, incluye comentarios útiles cuando son necesarios y mantiene una estructura clara y legible. | **1,5** |
 | | **TOTAL** | **10,0** |
-
 

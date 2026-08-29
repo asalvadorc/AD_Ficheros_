@@ -12,6 +12,16 @@ La deserialización es el proceso inverso: leer esos bytes y reconstruir el obje
 
 ![alt text](image-1.png)
 
+!!! warning "Dónde guardar los ejemplos"
+    <span class="setup-tag setup-tag-ide">SETUP_IDE</span> <span class="setup-tag setup-tag-paquetes">SETUP_PAQUETES</span> <span class="setup-tag setup-tag-carpetas">SETUP_CARPETAS</span>
+
+    Los ejemplos de serialización binaria no necesitan librerías externas, por lo que deben realizarse en el proyecto **`Ficheros`**:
+
+    - Guarda `Persona.kt`, `Ejemplo_guardar_persona.kt` y `Ejemplo_leer_persona.kt` en el paquete **`formatos`**, dentro de `src/main/kotlin`.
+    - Los archivos serializados, como `persona.obj`, se guardarán en la carpeta **`documentos`**, situada en la raíz del proyecto.
+
+    Si necesitas revisar la estructura completa, consulta [🧰 Entorno y ubicación de los ejemplos](../00_entorno_y_proyecto.md).
+
 Para que un objeto pueda ser serializado es necesario que su clase y todo su
 contenido implementen la interfaz **Serializable**. Se trata de una
 interfaz sin métodos, porque el único objetivo de la interfaz es actuar de
