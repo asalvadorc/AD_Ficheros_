@@ -1,4 +1,9 @@
 site_name: AD - Acceso a Datos - Ficheros
+not_in_nav: |
+  T2_Gestion_del_contenido/ejercicios.md
+  T2_Gestion_del_contenido/texto_binarios.md
+  T3_Formatos_diferentes/ejercicios.md
+  examen/*
 copyright: >
   © 2026 Alicia Salvador —
   <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
@@ -119,8 +124,6 @@ nav:
     #- 📝 Ejercicio obligatorio 3: T3_Formatos_diferentes/ejercicios.md
 - Ejercicios:
   - Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md
-  - Ejercicio 2: "#"
-  - Ejercicio 3: "#"
   # - Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md
   # - Ejercicio 2: T2_Gestion_del_contenido/ejercicios.md
   # - Ejercicio 3: T3_Formatos_diferentes/ejercicios.md 

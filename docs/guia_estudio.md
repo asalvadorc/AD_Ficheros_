@@ -26,7 +26,7 @@ Aprenderás a leer y escribir ficheros de texto, binarios, imágenes y a hacer a
 | 4 | [Imágenes](T2_Gestion_del_contenido/ficheros_imagen.md) | Leer, copiar y modificar imágenes |
 | 5 | [Binarios estructurados](T2_Gestion_del_contenido/binarios_estructurados.md) | Tipos primitivos con DataStream |
 | 6 | [Acceso aleatorio](T2_Gestion_del_contenido/acceso_aleatorio.md) | FileChannel y ByteBuffer |
-| 7 | [Ejercicio obligatorio 2](T2_Gestion_del_contenido/ejercicios.md) | Gestión completa de ficheros |
+| 7 | Ejercicio obligatorio 2 *(próximamente)* | Gestión completa de ficheros |
 
 ---
 
@@ -40,7 +40,7 @@ Trabajarás con formatos de intercambio de datos (JSON, XML, CSV) usando librer�
 | 2 | [Serialización de Objetos](T3_Formatos_diferentes/seriaci_dobjectes.md) | Convertir objetos a bytes y viceversa |
 | 3 | [Ficheros de intercambio](T3_Formatos_diferentes/ficheros_intercambio.md) | CSV, JSON y XML con librerías |
 | 4 | [Conversión entre formatos](T3_Formatos_diferentes/conversion.md) | De un formato a otro |
-| 5 | [Ejercicio obligatorio 3](T3_Formatos_diferentes/ejercicios.md) | Aplicación con múltiples formatos |
+| 5 | Ejercicio obligatorio 3 *(próximamente)* | Aplicación con múltiples formatos |
 
 ---
 
@@ -50,7 +50,7 @@ Trabajarás con formatos de intercambio de datos (JSON, XML, CSV) usando librer�
     - **Lee primero la teoría** de cada página antes de intentar ejecutar el código.
     - **Ejecuta todos los ejemplos** en IntelliJ: la práctica es esencial para afianzar los conceptos.
     - Antes de pasar a la siguiente página, asegúrate de que entiendes el ejemplo anterior: compara tu salida con la salida esperada que aparece en cada ejemplo.
-    - **Los ejercicios obligatorios** son la parte más importante: aplican todo lo aprendido en el bloque.
+    - **Los ejercicios obligatorios habilitados** son la parte más importante: aplican todo lo aprendido en el bloque. Los ejercicios 2 y 3 estarán disponibles próximamente.
 
 
 ---
