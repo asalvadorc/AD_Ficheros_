@@ -1039,3 +1039,11 @@ body.lightbox-open {
 .rojo { color: #e53935 !important; font-weight: 600; }
 .azul { color: #2980B9 !important; font-size: 18px; }
 .verde { color: var(--md-primary-fg-color) !important; font-weight: 600; font-size: 16px; }
+
+/* Temas todavía no disponibles */
+.md-nav__link[href="#"] {
+    color: #999 !important;
+    opacity: 0.55;
+    pointer-events: none;
+    cursor: default;
+}

@@ -7,10 +7,9 @@ copyright: >
 
 extra_css:
   - css/extra.css
-  #- css/copy-button.css
+  
 
 extra_javascript:
-  #- js/copy-button.js
   - js/lightbox.js
 
 theme: 
@@ -81,13 +80,17 @@ markdown_extensions:
       toc_depth: 2
       permalink: True
 
+     
+
 nav:
 - 🏠 Inicio:
   - index.md
   - 🔹Guía de estudio: guia_estudio.md
-  - 🔹Entorno y ubicación de los ejemplos: 00_entorno_y_proyecto.md
+  #- 🔹Entorno y ubicación de los ejemplos: 00_entorno_y_proyecto.md
   - 🔹RA y CE: RA_CE.md
-- Ficheros:
+- Entorno y ubicación de los ejemplos: 
+  - 00_entorno_y_proyecto.md  
+- Contenido:
   - 1. Sistema de ficheros:
     - 🔹 Introducción: T1_Sistema_de_ficheros/ficheros.md
     - 🔹 Acceso al sistema de ficheros: T1_Sistema_de_ficheros/NIO_AccesoFicheros.md
@@ -114,7 +117,13 @@ nav:
     - 🔹 Resumen: T3_Formatos_diferentes/resumen.md
   - 🧭 ¿Qué librería usar?: guia_eleccion.md
     #- 📝 Ejercicio obligatorio 3: T3_Formatos_diferentes/ejercicios.md
-
+- Ejercicios:
+  - Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md
+  - Ejercicio 2: "#"
+  - Ejercicio 3: "#"
+  # - Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md
+  # - Ejercicio 2: T2_Gestion_del_contenido/ejercicios.md
+  # - Ejercicio 3: T3_Formatos_diferentes/ejercicios.md 
 #- Examen:
   #- 💻 Enunciado (Ordenador): examen/examen.md
   #- 📄 Enunciado (Papel): examen/examen_papel.md
