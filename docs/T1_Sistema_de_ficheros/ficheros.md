@@ -3,7 +3,7 @@ hide:
   - toc
 ---
 
-# 🔹 Introducción
+# Introducción
 
 Un **fichero** es una unidad de almacenamiento de datos en un sistema informático. Se trata de un conjunto de información organizada y almacenada en un dispositivo de almacenamiento (secuencia de bytes), como un disco duro, una memoria USB o un servidor en la nube.
 A los datos que se guardan en ficheros se llaman datos persistentes, porque persisten más allá de la ejecución de la aplicación que los trata.

@@ -22,7 +22,7 @@ La clase **java.nio.file.Files** es el otro punto de entrada a la librería de f
 
 
     
-## 🔹 Paths
+## Paths
 
 La clase **Paths** es una clase de utilidad que proporciona métodos estáticos para crear objetos **Path**, que luego puedes usar con métodos de **Files**.
 
@@ -90,7 +90,7 @@ fun main() {
         Ruta a partir de URI: C:\usuarios\nombre\archivo.txt
 
 
-## 🔹 Path
+## Path
 
 La clase **Path** Se utiliza junto con la clase **Files** para realizar operaciones como lectura, escritura, copia, o eliminación de archivos.  
 La forma mas sencilla de construir un objeto que cumpla la interfaz **Path** es a partir de la clase **java.nio.file.Paths**, que tiene métodos estáticos que retornan objetos Path a partir de una representación tipo String del path deseado.  
@@ -199,7 +199,7 @@ fun main() {
         
 
 
-## 🔹 Files
+## Files
 
 La clase **Files** es el otro punto de entrada a la librería de ficheros de Java. Es la que nos permite manejar ficheros reales del disco desde Java.  
 Esta clase tiene métodos estáticos para el manejo de ficheros, los métodos de la clase **Files** trabajan sobre objetos **Path**. Muchos de estos métodos devuelven **streams**, lo que permite procesar archivos y directorios de forma eficiente y elegante. 
@@ -578,7 +578,7 @@ fun main() {
 7. Comprueba que la selección sea un directorio antes de navegar.
 
 
-## 🔹 FileSystem
+## FileSystem
 
 En la biblioteca **java.nio** podemos encontrar otras clases que complementan y amplían lo que se puede hacer con **java.nio.file.Path**.
 
@@ -645,7 +645,7 @@ fun main() {
 4. Crea un iterador para sus segmentos.
 
 
-## 🔹 BasicFileAttributes
+## BasicFileAttributes
 
 BasicFileAttributes permite obtener **información detallada sobre archivos y directorios**, como fecha de creación, tamaño, etc.
 
@@ -703,7 +703,7 @@ fun main() {
         Es un directorio: true
         Tamaño del archivo: 4096 bytes
 
-## 🔹 FileStore
+## FileStore
 
 FileStore permite obtener **información sobre el sistema de archivos**, como el espacio disponible.
 

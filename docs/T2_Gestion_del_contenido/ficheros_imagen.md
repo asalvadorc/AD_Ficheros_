@@ -3,7 +3,7 @@ hide:
   - toc
 ---
 
-# 🔹 Ficheros de imagen
+# Ficheros de imagen
 
 !!! warning "Dónde guardar los ejemplos"
     Programa los ejemplos en el proyecto **`Ficheros`**, dentro del paquete **`contenido`**. Guarda las imágenes de trabajo en `documentos`, en la raíz del proyecto.

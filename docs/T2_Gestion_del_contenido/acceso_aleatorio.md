@@ -13,7 +13,7 @@ Cuando se necesita mayor control, eficiencia y rendimiento en el acceso a ficher
 
 Las clases **FileChannel**, **ByteBuffer** y **StandardOpenOption** forman parte de la API **java.nio** y se utilizan juntas para realizar lectura y escritura de archivos **binarios** y en el **acceso aleatorio a ficheros**.
 
-## 🔹 FileChannel
+## FileChannel
 
 | Tipo de fichero           | Lectura                             | Escritura                            | Comentario                                               |
 |---------------------------|--------------------------------------|---------------------------------------|----------------------------------------------------------|
@@ -30,7 +30,7 @@ Las clases **FileChannel**, **ByteBuffer** y **StandardOpenOption** forman parte
     | size()                 |  Devuelve el tamaño total actual del archivo              |
 
 
-## 🔹 ByteBuffer
+## ByteBuffer
 
 ByteBuffer se utiliza en archivos de acceso aleatorio porque permite leer y escribir bloques binarios de datos en posiciones específicas del archivo de forma eficiente y controlada.
 
@@ -90,7 +90,7 @@ ByteBuffer se utiliza en archivos de acceso aleatorio porque permite leer y escr
     | remaining()    | Indica cuántos elementos quedan por procesar.                               |
     | hasRemaining() | `true` si aún queda contenido por leer o escribir.                          |
 
-## 🔹StandardOpenOption
+## StandardOpenOption
 
 Se utiliza para indicar cómo debe abrirse o crearse un archivo al trabajar con **FileChannel** o Files.newOutputStream, Files.newByteChannel, etc.
 

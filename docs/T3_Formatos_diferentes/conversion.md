@@ -1,4 +1,4 @@
-# 🔹 Conversión entre formatos de ficheros
+# Conversión entre formatos de ficheros
 
 !!!Tip "Importante"
     Para convertir un fichero de un formato a otro, primero debo deserializarlo o interpretarlo convirtiéndolo a objetos en memoria, y después generar el nuevo formato a partir de esos objetos. El proceso correcto es siempre:  
@@ -35,7 +35,7 @@ Las herramientas no destacadas en negrita son alternativas válidas, que pueden 
 | Binario → objeto                 | **ObjectInputStream**                                                                | Deserializar objetos binarios                                      |
 | PNG → JPG (imagen)               | **ImageIO.read() + ImageIO.write()**                                                 | Leer imagen → guardar en otro formato                              |
 
-### 🔹 Ficheros de partida para los ejemplos {.azul}
+### Ficheros de partida para los ejemplos {.azul}
 
 
 !!!danger "Ficheros para trabajar en las conversiones"
@@ -89,7 +89,7 @@ Elena;10
             )   
     ```
 
-## 🔹 CSV <-> JSON
+## CSV <-> JSON
 
 En estos ejemplos utilizamos la librería **Jackson**, pero se podría  utilizar también **Kotlinx.serialization**.
 
@@ -216,7 +216,7 @@ fun main() {
 5. Escribe la cabecera del fichero CSV.
 6. Escribe una fila CSV con los datos del alumno.
 
-## 🔹 JSON <-> XML
+## JSON <-> XML
 
 !!!Note ""
     En estos ejemplos utilizamos **Jackson**, en ambas conversiones, y por lo tanto también utiliza un objeto intermediario (**persona**), aunque de forma más implícita.
@@ -636,7 +636,7 @@ fun main() {
 2. Crea el mapper XML y registra soporte para clases Kotlin.
 3. Deserializa el XML al contenedor ListaPersonas para poder acceder a su lista interna.
 4. Completa la escritura del contenido convertido en el fichero de salida.
-## 🔹 JSON <-> Binario estructurado
+## JSON <-> Binario estructurado
 
 En estos ejemplos utilizamos **kotlinx.serialization**.
 

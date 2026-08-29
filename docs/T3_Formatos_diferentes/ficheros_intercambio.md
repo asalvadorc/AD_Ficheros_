@@ -1,5 +1,5 @@
 
-# 🔹 Ficheros de intercambio
+# Ficheros de intercambio
 
 En el desarrollo de aplicaciones, es habitual trabajar con datos almacenados o transmitidos en distintos formatos de ficheros. La conversión entre estos formatos permite intercambiar información entre sistemas heterogéneos, integrarse con APIs, facilitar la persistencia de datos o adaptarse a requisitos específicos. 
 
@@ -34,7 +34,7 @@ Los ejemplos de CSV, JSON y XML comparten la configuración Gradle y el mismo mo
 
     Si necesitas revisar la estructura completa, consulta [🧰 Entorno y ubicación de los ejemplos](../00_entorno_y_proyecto.md).
 
-### 🔹 Configuración del proyecto con Gradle
+**Configuración del proyecto con Gradle**{.azul}
 
 En este apartado vamos a desarrollar una aplicación en Kotlin que gestione la lectura y escritura de datos utilizando distintos formatos de archivo estructurado: CSV, JSON y XML.
 
@@ -95,7 +95,7 @@ dependencies {
 
 ```
 
-### 🔹 Modelado de datos con `data class`
+**Modelado de datos con `data class`**{.azul}
 
 Aunque este tipo de ficheros están formados por texto, los programas no deberían trabajar directamente con texto, sino con datos estructurados.
 
@@ -115,7 +115,7 @@ Define qué información tiene un objeto y de qué tipo es cada dato. El data cl
 <a id="formato-csv"></a>
 
 
-## 🔹 Ficheros CSV
+## 📄 Ficheros CSV
 
 El formato CSV es un archivo de texto donde los valores están separados por comas u otro delimitador (como punto y coma), muy usado para intercambiar datos entre hojas de cálculo, sistemas contables, etc.
 
@@ -127,7 +127,7 @@ La lectura y escritura de un archivo CSV se puede hacer de tres formas:
 | OpenCSV | `com.opencsv:opencsv` | Alto | Proyectos Java/Kotlin que necesitan una biblioteca consolidada |
 | kotlin-csv | `com.github.doyaaaaaken:kotlin-csv-jvm` | Alto | Proyectos Kotlin que buscan una API más expresiva e idiomática |
 
-### 🔹 Resumen de ejemplos (CSV) {.azul}
+### Resumen de ejemplos (CSV) {.azul}
 
 - [Sin librerías: lectura línea a línea + split()](#csv-sin-librerias)
 - [Con OpenCSV](#csv-opencsv)
@@ -157,7 +157,7 @@ data class Alumno(
 📌 Esta clase la crearemos fuera de los programas de ejemplo para poder reutilizarla desde cualquier otro `main`.
 
 
-### 🔹 Enfoque: sin librerías
+### Enfoque: sin librerías
 
 <a id="csv-sin-librerias"></a>
 
@@ -233,7 +233,7 @@ fun main() {
 5. Cada línea de datos se divide con split(";") para separar el nombre y la nota.
 
 
-### 🔹 Librería: OpenCSV
+### Librería: OpenCSV
 
 !!!Note "Nota"
     **OpenCSV** fue desarrollado antes de que **java.nio.file.Path** se introdujera en Java 7, y sus métodos aún usan la API antigua **(java.io.*)**, como FileReader y FileWriter.
@@ -338,7 +338,7 @@ fun main() {
 !!!Note "Nota"
     El archivo CSV generado sin librerías es un archivo de texto plano con el separador **;**, pero sin comillas y sin escape. En cambio, el fichero CSV generado con OpenCSV sigue el estantar CSV (RFC 4180) que incluye encerrar los campos entre comillas dobles, si el campo contiene el separador (como **;** o **,**).
 
-### 🔹 Librería: kotlin-csv
+### Librería: kotlin-csv
 
 !!!Note "Nota"
     la librería **kotlin-csv** también utiliza **java.io.File** para muchas de sus operaciones principales, aunque de una forma un poco más moderna y flexible que **OpenCSV**.
@@ -414,7 +414,7 @@ La finalidad del ejercicio es comprobar cómo una librería orientada a Kotlin s
 
 <a id="formato-json"></a>
 
-## 🔹 Ficheros JSON
+## 📋 Ficheros JSON
 
 En muchas aplicaciones modernas, los datos deben almacenarse o intercambiarse en formato JSON (JavaScript Object Notation), un formato ligero y legible ampliamente utilizado en APIs, configuraciones, bases de datos NoSQL y almacenamiento persistente.
 
@@ -445,7 +445,7 @@ La estructura de los ficheros **JSON** (JavaScript Object Notation) se basa en u
 - **Clave:**	Siempre entre comillas dobles: "nombre"
 - **Valor:**	Puede ser: string, número, booleano, null, objeto o array:	"María", "Valencia", 20, true, etc.
 
-### 🔹 Resumen del bloque JSON
+### Resumen del bloque JSON
 
 En **Kotlin**, existen varias librerías que permiten trabajar con ficheros JSON de forma sencilla:
 
@@ -467,13 +467,13 @@ Esto proporciona importantes **ventajas**:
 ✔️ Código más limpio y mantenible.  
 ✔️ Mayor seguridad de tipos, detectando errores en tiempo de compilación.  
 
-### 🔹 Resumen de ejemplos (JSON) {.azul}
+### Resumen de ejemplos (JSON) {.azul}
 
 - [kotlinx.serialization: objeto JSON](#json-kserialization)
 - [Jackson: objeto JSON](#json-jackson)
 - [Jackson: lista JSON](#json-lista-jackson)
 
-### 🔹 Librería: kotlinx.serialization
+### Librería: kotlinx.serialization
 
 **kotlinx.serialization** es la librería oficial de serialización de Kotlin, desarrollada por JetBrains, que permite convertir objetos Kotlin a y desde diferentes formatos como JSON, ProtoBuf, CBOR, XML (experimental), entre otros.
 
@@ -781,7 +781,7 @@ Cuando queremos construir el JSON "a mano", sin depender de la serialización au
 
 -->
 
-### 🔹 Librería: Jackson JSON
+### Librería: Jackson JSON
 
 **Jackson** es la librería más usada en Java para JSON. Muchos frameworks Java lo usan por defecto (Spring Boot, Micronaut, Quarkus, etc.). Conocerlo permite trabajar con APIs externas, backends y entornos mixtos (Java + Kotlin). 
 
@@ -992,7 +992,7 @@ fun main() {
 
 <a id="formato-xml"></a>
 
-## 🔹 Ficheros XML
+## 🗂️ Ficheros XML
 
 Un fichero **XML** (eXtensible Markup Language) es un formato de texto estructurado diseñado para almacenar y transportar datos de forma legible tanto para humanos como para máquinas.
 
@@ -1011,7 +1011,7 @@ Tiene una estructura jerárquica basada en etiquetas, similar al HTML, pero orie
 
 Para trabajar con XML en **Kotlin** podemos utilizar una API de árbol como **JDOM2**, que permite crear, leer y modificar su estructura, o una librería de mapeo como **Jackson XML**, que convierte directamente entre XML y objetos Kotlin.
 
-### 🔹 Resumen de ejemplos (XML) {.azul}
+### Resumen de ejemplos (XML) {.azul}
 
 - [JDOM2: objeto a XML](#xml-objeto-a-xml)
 - [JDOM2: XML a objeto](#xml-a-objeto)
@@ -1022,7 +1022,7 @@ Para trabajar con XML en **Kotlin** podemos utilizar una API de árbol como **JD
 | JDOM2 | Manipulación de elementos, atributos y documentos | Alto | Comprender XML o modificar su estructura de manera precisa |
 | Jackson XML | Conversión directa entre XML y objetos Kotlin | Medio | Leer y escribir modelos de datos con menos código |
 
-### 🔹 Librería: JDOM2
+### Librería: JDOM2
 
 **JDOM2** es una librería ligera y fácil de usar para trabajar con **XML** de forma manual y controlada, ideal cuando no necesitas solo convertir directamente a objetos, sino manipular el contenido de manera estructurada.
 
@@ -1290,7 +1290,7 @@ fun main() {
 8. Construye el objeto `Alumno` a partir del nodo leido.
 
 
-### 🔹 Librería: Jackson XML
+### Librería: Jackson XML
 
 JDOM2 no realiza serialización automática de objetos Kotlin, pero se puede recurrir a librerías como **Jackson** o **kotlinx.serialization**.
 

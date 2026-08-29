@@ -3,7 +3,7 @@ hide:
   - toc
 ---
 
-# 🔹 Introducción
+# Introducción
 
 En el desarrollo de aplicaciones es común tener que leer y escribir datos almacenados en archivos. Según el tipo de contenido del fichero (texto, binario, imagen, estructurado...), se utilizan clases y métodos distintos para acceder a ellos de forma eficiente y segura.
 
@@ -43,4 +43,3 @@ En el desarrollo actual, especialmente en aplicaciones que manejan datos estruct
 -->
 
 
-    

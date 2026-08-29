@@ -3,7 +3,7 @@ hide:
   - toc
 ---
 
-# 🔹 Introducción
+# Introducción
 
 En el desarrollo de software es habitual utilizar formatos estándar para almacenar e intercambiar datos entre aplicaciones, sistemas o lenguajes de programación. Entre los más utilizados se encuentran **JSON**, **XML** y **CSV**.
 

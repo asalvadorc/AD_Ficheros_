@@ -3,7 +3,7 @@ hide:
   - toc
 ---
 
-# 🔹 Formas de acceso a un fichero
+# Formas de acceso a un fichero
 
 
 El acceso a ficheros es una tarea fundamental en la programación, ya que permite leer y escribir datos persistentes. En **Kotlin**, utilizando las bibliotecas de Java (**java.io y java.nio**), se pueden manejar diferentes tipos de ficheros (texto, binarios, imágenes...), según sus características y necesidades, y según su forma de acceder a ellos.

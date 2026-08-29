@@ -3,7 +3,7 @@ hide:
   - toc
 ---
 
-# 🔹 Lectura y escritura de texto (Flujos de caracteres)
+# Lectura y escritura de texto (Flujos de caracteres)
 
 !!! warning "Dónde guardar los ejemplos"
     Programa los ejemplos en el proyecto **`Ficheros`**, dentro del paquete **`contenido`**. Los archivos de texto se leerán y generarán en `documentos`, en la raíz del proyecto.

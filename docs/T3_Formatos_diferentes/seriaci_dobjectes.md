@@ -3,7 +3,7 @@ hide:
   - toc
 ---
 
-# 🔹 Serialización de objetos
+# Serialización de objetos
 
 
 La serialización de objetos en Java es el proceso de convertir un objeto Java en una secuencia de bytes, con el fin de guardarlo en un archivo o base de datos.

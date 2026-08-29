@@ -3,7 +3,7 @@ hide:
   - toc
 ---
 
-# 🔹 Manejo de errores y recursos
+# Manejo de errores y recursos
 
 !!! warning "Dónde guardar los ejemplos"
     Programa los ejemplos en el proyecto **`Ficheros`**, dentro del paquete **`contenido`**. Cuando un ejemplo utilice archivos, guárdalos en `documentos` o `documentos2`, en la raíz del proyecto.
