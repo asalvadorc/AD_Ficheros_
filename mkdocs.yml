@@ -95,36 +95,34 @@ nav:
   - 🔹RA y CE: RA_CE.md
 - Entorno y ubicación de los ejemplos: 
   - 00_entorno_y_proyecto.md  
-- Contenido:
-  - 1. Sistema de ficheros:
-    - 🔹 Introducción: T1_Sistema_de_ficheros/ficheros.md
-    - 🔹 Acceso al sistema de ficheros: T1_Sistema_de_ficheros/NIO_AccesoFicheros.md
-    - 🔹 Resumen: T1_Sistema_de_ficheros/resumen.md
-    #- 📝 Ejercicio obligatorio 1: T1_Sistema_de_ficheros/exercicis.md
-  - 2. Manejo de ficheros:
-    - 🔹 Introducción: T2_Gestion_del_contenido/intro.md
-    - 🔹 Formas de acceso a un fichero: T2_Gestion_del_contenido/formas_acceso.md
-    - 🔹 Manejo de errores y recursos: T2_Gestion_del_contenido/gestion_segura_recursos.md
-    - 🔹 Lectura y escritura de texto: T2_Gestion_del_contenido/lectura_escritura_texto.md
-    - 🔹 Lectura y escritura binaria:
-      - 🔹 Introducción: T2_Gestion_del_contenido/lectura_escritura_binaria.md
-      - 🔹Ficheros binarios no estructurados: T2_Gestion_del_contenido/binarios_no_estructurados.md
-      - 🔹Ficheros binarios estructurados: T2_Gestion_del_contenido/binarios_estructurados.md
-      - 🔹Ficheros de imagen: T2_Gestion_del_contenido/ficheros_imagen.md
-    - 🔹 Ficheros de acceso aleatorio: T2_Gestion_del_contenido/acceso_aleatorio.md
-    - 🔹 Resumen: T2_Gestion_del_contenido/resumen.md
-    #- 📝 Ejercicio obligatorio 2: T2_Gestion_del_contenido/ejercicios.md
-  - 3. Ficheros de diferentes formatos:
-    - 🔹 Introducción: T3_Formatos_diferentes/intro.md
-    - 🔹 Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
-    - 🔹 Ficheros de intercambio: T3_Formatos_diferentes/ficheros_intercambio.md
-    - 🔹 Conversión entre formatos diferentes: T3_Formatos_diferentes/conversion.md
-    - 🔹 Resumen: T3_Formatos_diferentes/resumen.md
+- 1. Sistema de ficheros:
+  - 🔹 Introducción: T1_Sistema_de_ficheros/ficheros.md
+  - 🔹 Acceso al sistema de ficheros: T1_Sistema_de_ficheros/NIO_AccesoFicheros.md
+  - 🔹 Resumen: T1_Sistema_de_ficheros/resumen.md
+  - 📝 Ejercicio obligatorio 1: T1_Sistema_de_ficheros/exercicis.md
+- 2. Manejo de ficheros:
+  - 🔹 Introducción: T2_Gestion_del_contenido/intro.md
+  - 🔹 Formas de acceso a un fichero: T2_Gestion_del_contenido/formas_acceso.md
+  - 🔹 Manejo de errores y recursos: T2_Gestion_del_contenido/gestion_segura_recursos.md
+  - 🔹 Lectura y escritura de texto: T2_Gestion_del_contenido/lectura_escritura_texto.md
+  - 🔹 Lectura y escritura binaria:
+    - 🔹 Introducción: T2_Gestion_del_contenido/lectura_escritura_binaria.md
+    - 🔹Ficheros binarios no estructurados: T2_Gestion_del_contenido/binarios_no_estructurados.md
+    - 🔹Ficheros binarios estructurados: T2_Gestion_del_contenido/binarios_estructurados.md
+    - 🔹Ficheros de imagen: T2_Gestion_del_contenido/ficheros_imagen.md
+  - 🔹 Ficheros de acceso aleatorio: T2_Gestion_del_contenido/acceso_aleatorio.md
+  - 🔹 Resumen: T2_Gestion_del_contenido/resumen.md
+  #- 📝 Ejercicio obligatorio 2: T2_Gestion_del_contenido/ejercicios.md
+- 3. Ficheros de diferentes formatos:
+  - 🔹 Introducción: T3_Formatos_diferentes/intro.md
+  - 🔹 Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
+  - 🔹 Ficheros de intercambio: T3_Formatos_diferentes/ficheros_intercambio.md
+  - 🔹 Conversión entre formatos diferentes: T3_Formatos_diferentes/conversion.md
+  - 🔹 Resumen: T3_Formatos_diferentes/resumen.md
   - 🧭 ¿Qué librería usar?: guia_eleccion.md
-    #- 📝 Ejercicio obligatorio 3: T3_Formatos_diferentes/ejercicios.md
-- Ejercicios:
-  - Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md
-  # - Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md
+  #- 📝 Ejercicio obligatorio 3: T3_Formatos_diferentes/ejercicios.md
+#- Ejercicios:
+  #- Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md
   # - Ejercicio 2: T2_Gestion_del_contenido/ejercicios.md
   # - Ejercicio 3: T3_Formatos_diferentes/ejercicios.md 
 #- Examen:
