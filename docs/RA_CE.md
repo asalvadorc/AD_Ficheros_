@@ -9,16 +9,16 @@ hide:
 
 **Contenidos vs Criterios de Evaluación**{.azul}
 
-| Nº | Contenido Didáctico                                      | Criterios de Evaluación Relacionados      |
-|----|-----------------------------------------------------------|-------------------------------------------|
-| 1  | Introducción a los ficheros y su aplicación               | -                                          |
-| 2  | Acceso al sistema de archivos (`File`, `Path`, etc.)      | a) Clases para gestión de ficheros y directorios |
-| 3  | Formas de acceso: secuencial vs aleatorio                 | b) Ventajas e inconvenientes del acceso   |
-| 4  | Lectura de ficheros                                       | c) Clases para recuperar información      |
-| 5  | Escritura en ficheros                                     | d) Clases para almacenar información      |
-| 6  | Conversión entre formatos (JSON, XML, binario)            | e) Clases para realizar conversiones      |
-| 7  | Gestión de excepciones (`try-catch`, `use`)               | f) Gestión de errores y validaciones      |
-| 8  | Pruebas y documentación de aplicaciones                   | g) Pruebas y documentación                |
+| Nº | Tema | Contenido Didáctico                                      | Criterios de Evaluación Relacionados      |
+|----|------|-----------------------------------------------------------|-------------------------------------------|
+| 1  | T1   | Introducción a los ficheros y su aplicación               | -                                          |
+| 2  | T1   | Acceso al sistema de archivos (`File`, `Path`, etc.)      | a) Clases para gestión de ficheros y directorios |
+| 3  | T2   | Formas de acceso: secuencial vs aleatorio                 | b) Ventajas e inconvenientes del acceso   |
+| 4  | T2   | Lectura de ficheros                                       | c) Clases para recuperar información      |
+| 5  | T2   | Escritura en ficheros                                     | d) Clases para almacenar información      |
+| 6  | T3   | Conversión entre formatos (JSON, XML, binario)            | e) Clases para realizar conversiones      |
+| 7  | T2   | Gestión de excepciones (`try-catch`, `use`)               | f) Gestión de errores y validaciones      |
+| 8  | T1-T3| Pruebas y documentación de aplicaciones                   | g) Pruebas y documentación                |
 <!--
 **Rúbrica de Evaluación - Acceso y gestión de ficheros en Kotlin**{.azul}
 
