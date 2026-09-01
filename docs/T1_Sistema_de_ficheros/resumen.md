@@ -18,7 +18,7 @@ hide:
 | Lectura/escritura | Permiten leer y guardar información de forma estructurada. | Se puede trabajar con texto o datos binarios. |
 | Gestión de errores | Es importante controlar excepciones al usar ficheros. | Se suelen manejar con `IOException`. |
 
-## Operaciones principales con `Files`
+## Operaciones principales con **Files**
 
 | Operación | Qué hace |
 |-----------|----------|

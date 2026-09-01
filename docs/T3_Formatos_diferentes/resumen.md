@@ -31,7 +31,7 @@ hide:
 
 ---
 
-## Métodos de `OpenCSV` (CSV)
+## Métodos de **OpenCSV** (CSV)
 
 **Lectura con OpenCSV**{.verde}
 
@@ -65,7 +65,7 @@ hide:
 
 ---
 
-## Métodos de `kotlinx.serialization`
+## Métodos de **kotlinx.serialization**
 
 | Método                               | ¿Qué hace?                                      | Ejemplo básico                                    |
 |--------------------------------------|--------------------------------------------------|--------------------------------------------------|
