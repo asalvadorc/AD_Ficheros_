@@ -116,7 +116,11 @@ nav:
 - T3. Ficheros de diferentes formatos:
   - 🔹 Introducción: T3_Formatos_diferentes/intro.md
   - 🔹 Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
-  - 🔹 Ficheros de intercambio: T3_Formatos_diferentes/ficheros_intercambio.md
+  - 🔹 Ficheros de intercambio: 
+    - 🔹 Introducción: T3_Formatos_diferentes/ficheros_intercambio.md
+    - 🔹 Ficheros CSV: T3_Formatos_diferentes/ficheros_csv.md
+    - 🔹 Ficheros JSON: T3_Formatos_diferentes/ficheros_json.md
+    - 🔹 Ficheros XML: T3_Formatos_diferentes/ficheros_xml.md
   - 🔹 Conversión entre formatos diferentes: T3_Formatos_diferentes/conversion.md
   - 🔹 Resumen: T3_Formatos_diferentes/resumen.md
   - 🧭 ¿Qué librería usar?: guia_eleccion.md
