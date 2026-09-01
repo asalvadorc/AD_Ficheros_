@@ -90,9 +90,10 @@ markdown_extensions:
 nav:
 - 🏠 Inicio:
   - index.md
+  - 🔹RA y CE: RA_CE.md
   - 🔹Guía de estudio: guia_estudio.md
   #- 🔹Entorno y ubicación de los ejemplos: 00_entorno_y_proyecto.md
-  - 🔹RA y CE: RA_CE.md
+  
 - Entorno y ubicación de los ejemplos: 
   - 00_entorno_y_proyecto.md  
 - T1. Sistema de ficheros:
