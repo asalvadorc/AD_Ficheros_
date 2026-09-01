@@ -99,7 +99,7 @@ nav:
   - 🔹 Introducción: T1_Sistema_de_ficheros/ficheros.md
   - 🔹 Acceso al sistema de ficheros: T1_Sistema_de_ficheros/NIO_AccesoFicheros.md
   - 🔹 Resumen: T1_Sistema_de_ficheros/resumen.md
-  - 📝 Ejercicio obligatorio 1: T1_Sistema_de_ficheros/exercicis.md
+  - 📝 Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md
 - T2. Manejo de ficheros:
   - 🔹 Introducción: T2_Gestion_del_contenido/intro.md
   - 🔹 Formas de acceso a un fichero: T2_Gestion_del_contenido/formas_acceso.md
@@ -112,6 +112,7 @@ nav:
     - 🔹Ficheros de imagen: T2_Gestion_del_contenido/ficheros_imagen.md
   - 🔹 Ficheros de acceso aleatorio: T2_Gestion_del_contenido/acceso_aleatorio.md
   - 🔹 Resumen: T2_Gestion_del_contenido/resumen.md
+  - 📝 Ejercicio 2: T2_Gestion_del_contenido/proximamente.md
   #- 📝 Ejercicio obligatorio 2: T2_Gestion_del_contenido/ejercicios.md
 - T3. Ficheros de diferentes formatos:
   - 🔹 Introducción: T3_Formatos_diferentes/intro.md
@@ -124,6 +125,7 @@ nav:
   - 🔹 Conversión entre formatos diferentes: T3_Formatos_diferentes/conversion.md
   - 🔹 Resumen: T3_Formatos_diferentes/resumen.md
   - 🧭 ¿Qué librería usar?: guia_eleccion.md
+  - 📝 Ejercicio 3: T3_Formatos_diferentes/proximamente.md
   #- 📝 Ejercicio obligatorio 3: T3_Formatos_diferentes/ejercicios.md
 #- Ejercicios:
   #- Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md

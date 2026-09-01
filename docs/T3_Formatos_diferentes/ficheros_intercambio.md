@@ -112,9 +112,5 @@ Define qué información tiene un objeto y de qué tipo es cada dato. El data cl
 
 ---
 
-En los siguientes apartados se desarrolla cada formato con sus ejemplos y librerias correspondientes:
 
-- [📄 Ficheros CSV](ficheros_csv.md)
-- [📋 Ficheros JSON](ficheros_json.md)
-- [🗂️ Ficheros XML](ficheros_xml.md)
 
