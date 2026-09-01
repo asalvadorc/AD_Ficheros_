@@ -1,7 +1,6 @@
 site_name: AD - Acceso a Datos - Ficheros
 not_in_nav: |
   T2_Gestion_del_contenido/ejercicios.md
-  T2_Gestion_del_contenido/texto_binarios.md
   T3_Formatos_diferentes/ejercicios.md
   examen/*
 copyright: >

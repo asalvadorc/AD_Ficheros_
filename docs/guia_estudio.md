@@ -22,11 +22,13 @@ Aprenderás a leer y escribir ficheros de texto, binarios, imágenes y a hacer a
 |-------|--------|-------------|
 | 1 | [Introducción y clases](T2_Gestion_del_contenido/resumen.md) | Tabla resumen de todas las clases |
 | 2 | [Formas de acceso](T2_Gestion_del_contenido/formas_acceso.md) | Acceso secuencial vs. aleatorio |
-| 3 | [Texto y binarios](T2_Gestion_del_contenido/texto_binarios.md) | Leer y escribir ficheros .txt y .bin |
-| 4 | [Imágenes](T2_Gestion_del_contenido/ficheros_imagen.md) | Leer, copiar y modificar imágenes |
-| 5 | [Binarios estructurados](T2_Gestion_del_contenido/binarios_estructurados.md) | Tipos primitivos con DataStream |
-| 6 | [Acceso aleatorio](T2_Gestion_del_contenido/acceso_aleatorio.md) | FileChannel y ByteBuffer |
-| 7 | Ejercicio obligatorio 2 *(próximamente)* | Gestión completa de ficheros |
+| 3 | [Ficheros de texto](T2_Gestion_del_contenido/lectura_escritura_texto.md) | Leer y escribir ficheros de texto (.txt) |
+| 4 | [Ficheros binarios](T2_Gestion_del_contenido/lectura_escritura_binaria.md) | Introducción a los ficheros binarios |
+| 5 | [Binarios no estructurados](T2_Gestion_del_contenido/binarios_no_estructurados.md) | Secuencia de bytes sin formato interno |
+| 6 | [Binarios estructurados](T2_Gestion_del_contenido/binarios_estructurados.md) | Tipos primitivos con DataStream |
+| 7 | [Imágenes](T2_Gestion_del_contenido/ficheros_imagen.md) | Leer, copiar y modificar imágenes |
+| 8 | [Acceso aleatorio](T2_Gestion_del_contenido/acceso_aleatorio.md) | FileChannel y ByteBuffer |
+| 9 | Ejercicio obligatorio 2 *(próximamente)* | Gestión completa de ficheros |
 
 ---
 
