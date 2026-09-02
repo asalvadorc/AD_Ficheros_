@@ -1,0 +1,2440 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ficheros_csv/">
+      
+      
+        <link rel="next" href="../ficheros_xml/">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>🔹 Ficheros JSON - AD - Acceso a Datos - Ficheros</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ficheros-json" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="AD - Acceso a Datos - Ficheros" class="md-header__button md-logo" aria-label="AD - Acceso a Datos - Ficheros" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD - Acceso a Datos - Ficheros
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🔹 Ficheros JSON
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏠 Inicio
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../00_entorno_y_proyecto/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Entorno y ubicación de los ejemplos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../T1_Sistema_de_ficheros/ficheros/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  T1. Sistema de ficheros
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../T2_Gestion_del_contenido/intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  T2. Manejo de ficheros
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  T3. Ficheros de diferentes formatos
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AD - Acceso a Datos - Ficheros" class="md-nav__button md-logo" aria-label="AD - Acceso a Datos - Ficheros" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    AD - Acceso a Datos - Ficheros
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    🏠 Inicio
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            🏠 Inicio
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RA_CE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹RA y CE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia_estudio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹Guía de estudio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Entorno y ubicación de los ejemplos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Entorno y ubicación de los ejemplos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00_entorno_y_proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧰 Entorno y ubicación de los ejemplos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    T1. Sistema de ficheros
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            T1. Sistema de ficheros
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T1_Sistema_de_ficheros/ficheros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T1_Sistema_de_ficheros/NIO_AccesoFicheros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Acceso al sistema de ficheros
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T1_Sistema_de_ficheros/resumen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Resumen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T1_Sistema_de_ficheros/exercicis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ejercicio 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    T2. Manejo de ficheros
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            T2. Manejo de ficheros
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/formas_acceso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Formas de acceso a un fichero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/gestion_segura_recursos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Manejo de errores y recursos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/lectura_escritura_texto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Lectura y escritura de texto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔹 Lectura y escritura binaria
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            🔹 Lectura y escritura binaria
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/lectura_escritura_binaria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/binarios_no_estructurados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹Ficheros binarios no estructurados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/binarios_estructurados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹Ficheros binarios estructurados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/ficheros_imagen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹Ficheros de imagen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/acceso_aleatorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros de acceso aleatorio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/resumen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Resumen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/proximamente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ejercicio 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    T3. Ficheros de diferentes formatos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            T3. Ficheros de diferentes formatos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seriaci_dobjectes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Serialización de Objetos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros de intercambio
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            🔹 Ficheros de intercambio
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ficheros_intercambio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ficheros_csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros CSV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros JSON
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros JSON
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-del-bloque-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen del bloque JSON
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-de-ejemplos-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen de ejemplos (JSON)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#libreria-kotlinxserialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Librería: kotlinx.serialization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#libreria-jackson-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Librería: Jackson JSON
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ficheros_xml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros XML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Conversión entre formatos diferentes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resumen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Resumen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia_eleccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧭 ¿Qué librería usar?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proximamente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ejercicio 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-del-bloque-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen del bloque JSON
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-de-ejemplos-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen de ejemplos (JSON)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#libreria-kotlinxserialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Librería: kotlinx.serialization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#libreria-jackson-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Librería: Jackson JSON
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ficheros-json">📋 Ficheros JSON<a class="headerlink" href="#ficheros-json" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Dónde guardar los ejemplos</p>
+<p>Antes de continuar, realiza la <a href="../ficheros_intercambio/">🛠️ Preparación del proyecto</a> (configuración de Gradle y modelado de datos), común para los ejemplos de CSV, JSON y XML.</p>
+</div>
+<p>En muchas aplicaciones modernas, los datos deben almacenarse o intercambiarse en formato JSON (JavaScript Object Notation), un formato ligero y legible ampliamente utilizado en APIs, configuraciones, bases de datos NoSQL y almacenamiento persistente.</p>
+<p><strong class="azul">Estructura</strong></p>
+<p>La estructura de los ficheros <strong>JSON</strong> (JavaScript Object Notation) se basa en una sintaxis sencilla y legible para representar datos estructurados. <strong>JSON</strong> está formado por <strong>pares clave-valor</strong> y/o listas ordenadas de valores.<br />
+<strong>Ejemplo</strong>: Información sobre un alumno.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span><span class="nt">"alumno"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">        </span><span class="nt">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"María"</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="nt">"edad"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="nt">"activo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="nt">"notas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">8.5</span><span class="p">,</span><span class="w"> </span><span class="mf">9.2</span><span class="p">,</span><span class="w"> </span><span class="mf">7.8</span><span class="p">],</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="nt">"direccion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="nt">"calle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. del Sol"</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="nt">"ciudad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Valencia"</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="nt">"codigoPostal"</span><span class="p">:</span><span class="w"> </span><span class="mi">46001</span><span class="p">}</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="p">}</span>
+</span></code></pre></div>
+<p><strong class="azul">Elementos principales</strong></p>
+<ul>
+<li><strong>Objeto:</strong>   Conjunto de pares clave-valor, delimitado por {}: "alumno"</li>
+<li><strong>Array:</strong>    Lista ordenada de valores, delimitada por []: "notas"</li>
+<li><strong>Clave:</strong>    Siempre entre comillas dobles: "nombre"</li>
+<li><strong>Valor:</strong>    Puede ser: string, número, booleano, null, objeto o array:  "María", "Valencia", 20, true, etc.</li>
+</ul>
+<h2 id="resumen-del-bloque-json">Resumen del bloque JSON<a class="headerlink" href="#resumen-del-bloque-json" title="Permanent link">&para;</a></h2>
+<p>En <strong>Kotlin</strong>, existen varias librerías que permiten trabajar con ficheros JSON de forma sencilla:</p>
+<table>
+<thead>
+<tr>
+<th>Librería</th>
+<th>Lenguaje base</th>
+<th>Uso recomendado</th>
+<th>Multiplataforma</th>
+<th>Notas destacadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kotlinx.serialization</code></td>
+<td>Kotlin</td>
+<td>Kotlin puro y Kotlin Multiplatform</td>
+<td>✅ Sí</td>
+<td>Ligera, rápida y con soporte oficial de JetBrains</td>
+</tr>
+<tr>
+<td><code>Jackson</code></td>
+<td>Java</td>
+<td>Proyectos Java/Kotlin con Spring Boot</td>
+<td>❌ No</td>
+<td>Muy flexible y poderosa</td>
+</tr>
+<tr>
+<td><code>Gson</code></td>
+<td>Java</td>
+<td>Aplicaciones Android o proyectos simples</td>
+<td>❌ No</td>
+<td>Fácil de usar, pero más lenta y menos segura</td>
+</tr>
+<tr>
+<td><code>org.json</code></td>
+<td>Java</td>
+<td>Scripts rápidos o aprendizaje</td>
+<td>❌ No</td>
+<td>Acceso directo a claves sin clases de datos</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando trabajamos con ficheros <strong>JSON en Kotlin</strong>, existen dos formas de acceder a los datos, tratarlos como texto plano o estructuras genéricas, o convertirlos directamente en objetos Kotlin. Aunque la primera opción es posible y útil en ciertos casos, trabajar sin conversión implica mayor esfuerzo manual, riesgo de errores en los nombres de claves y ausencia de validación de tipos. Las librerías <strong>kotlinx.serialization</strong> y <strong>Jackson</strong> nos permiten convertir los ficheros JSON a objetos y viceversa.</p>
+<p>Esto proporciona importantes <strong>ventajas</strong>:  </p>
+<p>✔️ Validación automática de la estructura del JSON.<br />
+✔️ Conversión directa entre JSON y objetos Kotlin.<br />
+✔️ Código más limpio y mantenible.<br />
+✔️ Mayor seguridad de tipos, detectando errores en tiempo de compilación.  </p>
+<h2 class="azul" id="resumen-de-ejemplos-json">Resumen de ejemplos (JSON)<a class="headerlink" href="#resumen-de-ejemplos-json" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#json-kserialization">kotlinx.serialization: objeto JSON</a></li>
+<li><a href="#json-jackson">Jackson: objeto JSON</a></li>
+<li><a href="#json-lista-jackson">Jackson: lista JSON</a></li>
+</ul>
+<h2 id="libreria-kotlinxserialization">Librería: kotlinx.serialization<a class="headerlink" href="#libreria-kotlinxserialization" title="Permanent link">&para;</a></h2>
+<p><strong>kotlinx.serialization</strong> es la librería oficial de serialización de Kotlin, desarrollada por JetBrains, que permite convertir objetos Kotlin a y desde diferentes formatos como JSON, ProtoBuf, CBOR, XML (experimental), entre otros.</p>
+<p>Como ya vimos en el apartado anterior, <strong>la serialización</strong> es el proceso de convertir los datos utilizados por una aplicación a un formato que pueda transferirse por red o almacenarse en una base de datos o archivo. A su vez, la deserialización es el proceso inverso: leer datos de una fuente externa y convertirlos en un objeto de tiempo de ejecución.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Todas las bibliotecas de serialización de Kotlin pertenecen al grupo <strong>org.jetbrains.kotlinx:grupo</strong>. Sus nombres empiezan con <em>kotlinx-serialization-</em> y tienen sufijos que reflejan el formato de serialización: <strong>org.jetbrains.kotlinx:kotlinx-serialization-json</strong></p>
+</div>
+<details class="info">
+<summary>Clases y funciones clave de kotlinx.serialization.json</summary>
+<table>
+<thead>
+<tr>
+<th>Clase / Función</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Json</code></td>
+<td>Clase</td>
+<td>Punto de entrada principal para serializar y deserializar en JSON</td>
+</tr>
+<tr>
+<td><code>JsonObject</code></td>
+<td>Clase</td>
+<td>Representa un objeto JSON <code>{}</code> como un <code>Map&lt;String, JsonElement&gt;</code></td>
+</tr>
+<tr>
+<td><code>JsonArray</code></td>
+<td>Clase</td>
+<td>Representa un array JSON <code>[]</code>, como una lista de <code>JsonElement</code></td>
+</tr>
+<tr>
+<td><code>JsonElement</code></td>
+<td>Clase</td>
+<td>Superclase abstracta para cualquier valor JSON</td>
+</tr>
+<tr>
+<td><code>JsonPrimitive</code></td>
+<td>Clase</td>
+<td>Representa valores primitivos JSON (string, número, booleano, null)</td>
+</tr>
+<tr>
+<td><code>JsonNull</code></td>
+<td>Objeto</td>
+<td>Representa el valor <code>null</code> en JSON</td>
+</tr>
+<tr>
+<td><code>JsonLiteral</code></td>
+<td>Clase</td>
+<td>Subtipo de <code>JsonPrimitive</code> que representa valores literales (string/num)</td>
+</tr>
+<tr>
+<td><code>JsonObjectBuilder</code></td>
+<td>Clase DSL</td>
+<td>Permite construir objetos JSON usando <code>buildJsonObject { ... }</code></td>
+</tr>
+<tr>
+<td><code>JsonArrayBuilder</code></td>
+<td>Clase DSL</td>
+<td>Permite construir arrays JSON usando <code>buildJsonArray { ... }</code></td>
+</tr>
+<tr>
+<td><code>buildJsonObject { ... }</code></td>
+<td>Función</td>
+<td>Crea un <code>JsonObject</code> de forma declarativa</td>
+</tr>
+<tr>
+<td><code>buildJsonArray { ... }</code></td>
+<td>Función</td>
+<td>Crea un <code>JsonArray</code> de forma declarativa</td>
+</tr>
+<tr>
+<td><code>parseToJsonElement(...)</code></td>
+<td>Función</td>
+<td>Convierte un <code>String</code> en <code>JsonElement</code> (analiza el JSON sin clase)</td>
+</tr>
+<tr>
+<td><code>encodeToJsonElement(...)</code></td>
+<td>Función</td>
+<td>Convierte un objeto Kotlin en <code>JsonElement</code> usando un <code>Json</code></td>
+</tr>
+<tr>
+<td><code>decodeFromJsonElement(...)</code></td>
+<td>Función</td>
+<td>Convierte un <code>JsonElement</code> a un objeto Kotlin</td>
+</tr>
+<tr>
+<td><code>jsonPrimitive</code></td>
+<td>Propiedad</td>
+<td>Accede al valor primitivo dentro de un <code>JsonElement</code></td>
+</tr>
+<tr>
+<td><code>jsonObject</code></td>
+<td>Propiedad</td>
+<td>Convierte un <code>JsonElement</code> a <code>JsonObject</code> (si es compatible)</td>
+</tr>
+<tr>
+<td><code>jsonArray</code></td>
+<td>Propiedad</td>
+<td>Convierte un <code>JsonElement</code> a <code>JsonArray</code> (si es compatible)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="info">
+<summary>Métodos principales de kotlinx.serialization</summary>
+<p>Son funciones generales que no están dentro del paquete .json, pero que se usan muy a menudo en la serialización en Kotlin.</p>
+<table>
+<thead>
+<tr>
+<th>Método de kotlinx.serialization</th>
+<th>¿Qué hace?</th>
+<th>Ejemplo básico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Json.encodeToString(objeto)</code></td>
+<td>Convierte un objeto Kotlin a una cadena JSON.</td>
+<td><code>Json.encodeToString(persona)</code></td>
+</tr>
+<tr>
+<td><code>Json.encodeToString(serializer, obj)</code></td>
+<td>Igual que el anterior pero especificando el serializador.</td>
+<td><code>Json.encodeToString(Persona.serializer(), persona)</code></td>
+</tr>
+<tr>
+<td><code>Json.decodeFromString(json)</code></td>
+<td>Convierte una cadena JSON a un objeto Kotlin.</td>
+<td><code>Json.decodeFromString&lt;Persona&gt;(json)</code></td>
+</tr>
+<tr>
+<td><code>Json.decodeFromString(serializer, s)</code></td>
+<td>Igual que el anterior pero con el serializador explícito.</td>
+<td><code>Json.decodeFromString(Persona.serializer(), json)</code></td>
+</tr>
+<tr>
+<td><code>Json.encodeToJsonElement(objeto)</code></td>
+<td>Convierte un objeto a un árbol <code>JsonElement</code>.</td>
+<td><code>val elem = Json.encodeToJsonElement(persona)</code></td>
+</tr>
+<tr>
+<td><code>Json.decodeFromJsonElement(elem)</code></td>
+<td>Convierte un <code>JsonElement</code> a objeto Kotlin.</td>
+<td><code>val persona = Json.decodeFromJsonElement&lt;Persona&gt;(elem)</code></td>
+</tr>
+<tr>
+<td><code>Json.parseToJsonElement(string)</code></td>
+<td>Parsea una cadena JSON a un árbol <code>JsonElement</code> sin mapear.</td>
+<td><code>val elem = Json.parseToJsonElement(json)</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p><strong class="azul">Requisitos para usar kotlinx.serialization en Gradle (JSON)</strong></p>
+<ul>
+<li>Activar el plugin de Kotlin serialization en <strong>build.gradle.kts</strong></li>
+</ul>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="n">plugins</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">        </span><span class="n">kotlin</span><span class="p">(</span><span class="s">"jvm"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"2.0.20"</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="n">kotlin</span><span class="p">(</span><span class="s">"plugin.serialization"</span><span class="p">)</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="s">"2.0.20"</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="n">application</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="n">implementation</span><span class="p">(</span><span class="s">"org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3"</span><span class="p">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+<p>⚠️ Asegúrate de usar una versión compatible con tu Kotlin. Por ejemplo, 1.6.3 funciona bien con Kotlin 2.0.20.        </p>
+<ul>
+<li>Anota tus clases con <strong>@Serializable</strong></li>
+</ul>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.serialization.Serializable</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nd">@Serializable</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Objeto</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">clave1</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">clave2</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En Kotlin, las <strong>data class</strong> están diseñadas para modelar datos puros. La palabra clave <strong>data</strong> no es obligatoria para la serialización, pero se usa por buena práctica y para obtener funcionalidades adicionales que son muy útiles, especialmente cuando trabajas con objetos de datos, como toString(), equals(), hashCode(), copy()..     </p>
+</div>
+<ul>
+<li>Utiliza el objeto Json para <strong>serializar/deserializar</strong>      </li>
+</ul>
+<p>Para serializar una instancia de esta clase llamamos a <strong>Json.encodeToString()</strong> y para
+deserializar llamamos a <strong>Json.decodeFromString()</strong>.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">        </span><span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.serialization.json.Json</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">        </span><span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.serialization.encodeToString</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.serialization.decodeFromString</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Objeto</span><span class="p">(</span><span class="s">"María"</span><span class="p">,</span><span class="w"> </span><span class="m">22</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Json</span><span class="p">.</span><span class="na">encodeToString</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">"JSON: </span><span class="si">$</span><span class="n">json</span><span class="s">"</span><span class="p">)</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Json</span><span class="p">.</span><span class="na">decodeFromString</span><span class="o">&lt;</span><span class="n">Objeto</span><span class="o">&gt;</span><span class="p">(</span><span class="n">json</span><span class="p">)</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">"Objeto: </span><span class="si">$</span><span class="n">obj</span><span class="s">"</span><span class="p">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="p">}</span>
+</span></code></pre></div>
+<p>También puedes serializar <strong>colecciones de objetos</strong>, como listas, en una sola llamada:</p>
+<p><div class="language-kotlin highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">dataList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="n">Objeto</span><span class="p">(</span><span class="s">"María"</span><span class="p">,</span><span class="w"> </span><span class="m">22</span><span class="p">),</span><span class="w"> </span><span class="n">Objeto</span><span class="p">(</span><span class="s">"Carlos"</span><span class="p">,</span><span class="w"> </span><span class="m">30</span><span class="p">),</span><span class="w"> </span><span class="n">Objeto</span><span class="p">(</span><span class="s">"Ana"</span><span class="p">,</span><span class="w"> </span><span class="m">18</span><span class="p">))</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">jsonList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Json</span><span class="p">.</span><span class="na">encodeToString</span><span class="p">(</span><span class="n">dataList</span><span class="p">)</span>
+</span></code></pre></div>
+El resultado sería:
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="p">[</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">        </span><span class="p">{</span><span class="nt">"nombre"</span><span class="p">:</span><span class="s2">"Lucía"</span><span class="p">,</span><span class="nt">"edad"</span><span class="p">:</span><span class="mi">28</span><span class="p">},</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="p">{</span><span class="nt">"nombre"</span><span class="p">:</span><span class="s2">"Carlos"</span><span class="p">,</span><span class="nt">"edad"</span><span class="p">:</span><span class="mi">30</span><span class="p">},</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="p">{</span><span class="nt">"nombre"</span><span class="p">:</span><span class="s2">"Elena"</span><span class="p">,</span><span class="nt">"edad"</span><span class="p">:</span><span class="mi">18</span><span class="p">}</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="p">]</span>
+</span></code></pre></div></p>
+<p><strong class="azul">Ejemplo de lectura y escritura de un archivo json</strong></p>
+<p><strong>Estructura del proyecto:</strong></p>
+<div class="language-text highlight"><pre><span></span><code>    Ficheros_Gradle/            
+    ├── documentos/
+    |       └──persona.json
+    └── src/
+        └── main/
+            └── kotlin/
+                └── Ejemplos/
+                        └──Ejemplo_JSON_KSerialization.kt 
+                        └──Persona.kt
+</code></pre></div>
+<p>1- El fichero json que vamos a generar será el que tenga el siguiente contenido. Es un objeto JSON que contiene dos atributos, nombre y edad, representando una persona.:
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">        </span><span class="nt">"nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lucía"</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">        </span><span class="nt">"edad"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">        </span><span class="p">}</span>
+</span></code></pre></div>
+2- Crea la <strong>Data Class</strong> <strong>Persona.kt</strong> con la misma estructura del archivo fuera del programa de ejemplo para poder reutilizarla desde cualquier otro main.<br />
+Anota la clase como <strong>serializable</strong>.   </p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">    </span><span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.serialization.Serializable</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nd">@Serializable</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">nombre</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">edad</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span>
+</span></code></pre></div>
+<p><a id="json-kserialization"></a></p>
+<p><strong>🖥️ Ejemplo_JSON_KSerialization.kt</strong></p>
+<p>Este ejemplo muestra el ciclo completo de trabajo con JSON usando <code>kotlinx.serialization</code>: convertir un objeto Kotlin en texto JSON, guardarlo en un archivo y volver a leerlo para reconstruir el objeto.</p>
+<p>La finalidad del ejercicio es entender cómo una <code>data class</code> anotada con <code>@Serializable</code> puede convertirse fácilmente a JSON y recuperarse después sin tener que procesar manualmente cada campo.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">    </span><span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.serialization.encodeToString</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.serialization.json.*</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Files</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Paths</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="k">import</span><span class="w"> </span><span class="nn">java.io.IOException</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="k">import</span><span class="w"> </span><span class="nn">java.nio.file.Files.readString</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">escribirJSON</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">ruta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"documentos/persona.json"</span><span class="p">)</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">"Lucía"</span><span class="p">,</span><span class="w"> </span><span class="m">28</span><span class="p">)</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">            </span><span class="c1">// Convertir a String con formato bonito</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">jsonString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Json</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">prettyPrint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}.</span><span class="na">encodeToString</span><span class="p">(</span><span class="n">persona</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">            </span><span class="c1">// Crear carpeta si no existe</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">            </span><span class="n">Files</span><span class="p">.</span><span class="na">createDirectories</span><span class="p">(</span><span class="n">ruta</span><span class="p">.</span><span class="na">parent</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">            </span><span class="c1">// Escribir JSON en archivo</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">            </span><span class="n">Files</span><span class="p">.</span><span class="na">writeString</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span><span class="w"> </span><span class="n">jsonString</span><span class="p">)</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">"Archivo JSON creado en: </span><span class="si">${</span><span class="n">ruta</span><span class="p">.</span><span class="na">toAbsolutePath</span><span class="p">()</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">"Contenido:\n</span><span class="si">$</span><span class="n">jsonString</span><span class="s">"</span><span class="p">)</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">IOException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">"⚠️ Error de entrada/salida: </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">"⚠️ Error inesperado: </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>
+</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>
+</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">leerJSON</span><span class="p">(){</span>
+</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">rutaEntrada</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"documentos/persona.json"</span><span class="p">)</span>
+</span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a>
+</span><span id="__span-8-37"><a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a><span class="w">        </span><span class="c1">// --- Lectura segura ---</span>
+</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-39"><a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Files</span><span class="p">.</span><span class="na">exists</span><span class="p">(</span><span class="n">rutaEntrada</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-8-40"><a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a><span class="w">                </span><span class="n">println</span><span class="p">(</span><span class="s">"El archivo no existe: </span><span class="si">$</span><span class="n">rutaEntrada</span><span class="s">"</span><span class="p">)</span>
+</span><span id="__span-8-41"><a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a><span class="w">                </span><span class="k">return</span>
+</span><span id="__span-8-42"><a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-8-43"><a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a>
+</span><span id="__span-8-44"><a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a><span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">contenidoJson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">readString</span><span class="p">(</span><span class="n">rutaEntrada</span><span class="p">)</span><span class="w"> </span><span class="c1">// (5)!</span>
+</span><span id="__span-8-45"><a id="__codelineno-8-45" name="__codelineno-8-45" href="#__codelineno-8-45"></a><span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Json</span><span class="p">.</span><span class="na">decodeFromString</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="p">(</span><span class="n">contenidoJson</span><span class="p">)</span><span class="w"> </span><span class="c1">// (6)!</span>
+</span><span id="__span-8-46"><a id="__codelineno-8-46" name="__codelineno-8-46" href="#__codelineno-8-46"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">"Lectura correcta: </span><span class="si">$</span><span class="n">persona</span><span class="s">"</span><span class="p">)</span>
+</span><span id="__span-8-47"><a id="__codelineno-8-47" name="__codelineno-8-47" href="#__codelineno-8-47"></a>
+</span><span id="__span-8-48"><a id="__codelineno-8-48" name="__codelineno-8-48" href="#__codelineno-8-48"></a>
+</span><span id="__span-8-49"><a id="__codelineno-8-49" name="__codelineno-8-49" href="#__codelineno-8-49"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">IOException</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-50"><a id="__codelineno-8-50" name="__codelineno-8-50" href="#__codelineno-8-50"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">"Error de E/S: </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</span><span id="__span-8-51"><a id="__codelineno-8-51" name="__codelineno-8-51" href="#__codelineno-8-51"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-52"><a id="__codelineno-8-52" name="__codelineno-8-52" href="#__codelineno-8-52"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-53"><a id="__codelineno-8-53" name="__codelineno-8-53" href="#__codelineno-8-53"></a>
+</span><span id="__span-8-54"><a id="__codelineno-8-54" name="__codelineno-8-54" href="#__codelineno-8-54"></a>
+</span><span id="__span-8-55"><a id="__codelineno-8-55" name="__codelineno-8-55" href="#__codelineno-8-55"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-56"><a id="__codelineno-8-56" name="__codelineno-8-56" href="#__codelineno-8-56"></a><span class="w">    </span><span class="n">escribirJSON</span><span class="p">()</span>
+</span><span id="__span-8-57"><a id="__codelineno-8-57" name="__codelineno-8-57" href="#__codelineno-8-57"></a><span class="w">    </span><span class="n">leerJSON</span><span class="p">()</span>
+</span><span id="__span-8-58"><a id="__codelineno-8-58" name="__codelineno-8-58" href="#__codelineno-8-58"></a>
+</span><span id="__span-8-59"><a id="__codelineno-8-59" name="__codelineno-8-59" href="#__codelineno-8-59"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Serializa el objeto <code>Persona</code> a texto JSON legible.</li>
+<li>Crea la carpeta de destino antes de escribir el archivo.</li>
+<li>Escribe el JSON generado en disco.</li>
+<li>Comprueba que el archivo existe antes de intentar leerlo.</li>
+<li>Lee el contenido JSON como texto plano.</li>
+<li>Deserializa el texto y reconstruye el objeto <code>Persona</code>.</li>
+</ol>
+<!--
+**JSON sin depender de una clase de datos**{.azul}
+
+**🖥️ Ejemplo_JSONObject.kt**
+
+
+Cuando queremos construir el JSON "a mano", sin depender de la serialización automática de la clase, utilizaremos el método **buildJsonObject**, la cual permite no tener una clase serializable y modificar campos dinámicamente.
+
+
+       import kotlinx.serialization.json.*
+        import java.io.IOException
+        import java.nio.file.Files
+        import java.nio.file.Paths
+
+
+        fun escribirObjeto() {
+            val ruta = Paths.get("documentos/persona_nueva.json")
+
+            try {
+                // Construir el JSON manualmente
+                val jsonObject = buildJsonObject {
+                    put("nombre", "Mario")
+                    put("edad", 35)
+                }
+
+                // Convertirlo a String con formato bonito
+                val jsonString = Json { prettyPrint = true }.encodeToString(JsonObject.serializer(), jsonObject)
+
+                // Crear carpeta si no existe
+                Files.createDirectories(ruta.parent)
+
+                // Escribir JSON en el archivo
+                Files.writeString(ruta, jsonString)
+
+                println("Archivo JSON creado en: ${ruta.toAbsolutePath()}")
+                println("Contenido:\n$jsonString")
+
+            } catch (e: IOException) {
+                println("Error de entrada/salida: ${e.message}")
+            } catch (e: Exception) {
+                println("Error inesperado: ${e.message}")
+            }
+        }
+
+        fun leerObjeto() {
+            val ruta = Paths.get("documentos/persona_nueva.json")
+
+            if (!Files.exists(ruta)) {
+                println("El archivo no existe.")
+                return
+            }
+
+            try {
+                val contenido = Files.readString(ruta)
+                val json = Json { ignoreUnknownKeys = true }
+                val jsonElement = json.parseToJsonElement(contenido)
+                val jsonObject = jsonElement.jsonObject
+
+                // Acceso a los campos manualmente
+                val nombre = jsonObject["nombre"]?.jsonPrimitive?.content
+                val edad = jsonObject["edad"]?.jsonPrimitive?.int
+
+                println("Nombre leído manualmente: $nombre")
+                println("Edad leída manualmente: $edad")
+
+            } catch (e: Exception) {
+                println("Error al leer o procesar el archivo: ${e.message}")
+            }
+        }
+
+
+        fun main(){
+
+            escribirObjeto()
+            leerObjeto()
+        }
+
+-->
+
+<h2 id="libreria-jackson-json">Librería: Jackson JSON<a class="headerlink" href="#libreria-jackson-json" title="Permanent link">&para;</a></h2>
+<p><strong>Jackson</strong> es la librería más usada en Java para JSON. Muchos frameworks Java lo usan por defecto (Spring Boot, Micronaut, Quarkus, etc.). Conocerlo permite trabajar con APIs externas, backends y entornos mixtos (Java + Kotlin). </p>
+<p>Mientras que <strong>kotlinx.serialization</strong> está centrado en JSON y formatos binarios (CBOR, ProtoBuf...), <strong>Jackson</strong> también soporta XML, YAML y CSV de forma unificada. Además, si necesitas convertir entre formatos (XML ↔ JSON), Jackson es ideal. Por eso, es importante conocer ambas librerías para entender tanto proyectos Kotlin puros y modernos (kotlinx.serialization) como proyectos empresariales con Jackson.</p>
+<p><strong class="azul">Clases esenciales para trabajar con JSON usando Jackson</strong></p>
+<table>
+<thead>
+<tr>
+<th>Clase / interfaz</th>
+<th>Para qué sirve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ObjectMapper</td>
+<td>La clase principal para leer y escribir JSON</td>
+</tr>
+<tr>
+<td>File (de java.io)</td>
+<td>Representa el archivo físico JSON</td>
+</tr>
+<tr>
+<td>Tu data class en Kotlin</td>
+<td>Define la estructura del objeto a leer o escribir</td>
+</tr>
+</tbody>
+</table>
+<details class="info">
+<summary>Métodos principales de Jackson para JSON</summary>
+<table>
+<thead>
+<tr>
+<th>Método Jackson</th>
+<th>¿Qué hace?</th>
+<th>Ejemplo básico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>readValue(String, Class)</code></td>
+<td>Convierte una cadena JSON a un objeto Kotlin o Java.</td>
+<td><code>mapper.readValue(json, Persona::class.java)</code></td>
+</tr>
+<tr>
+<td><code>readValue(File, Class)</code></td>
+<td>Convierte un archivo JSON a un objeto.</td>
+<td><code>mapper.readValue(File("persona.json"), Persona::class.java)</code></td>
+</tr>
+<tr>
+<td><code>readTree(String)</code></td>
+<td>Lee un JSON como árbol (<code>JsonNode</code>) sin mapear a clase.</td>
+<td><code>val node = mapper.readTree(json)</code></td>
+</tr>
+<tr>
+<td><code>writeValue(File, Object)</code></td>
+<td>Escribe un objeto como JSON en un archivo.</td>
+<td><code>mapper.writeValue(File("salida.json"), persona)</code></td>
+</tr>
+<tr>
+<td><code>writeValueAsString(Object)</code></td>
+<td>Convierte un objeto en una cadena JSON.</td>
+<td><code>val json = mapper.writeValueAsString(persona)</code></td>
+</tr>
+<tr>
+<td><code>writeValueAsBytes(Object)</code></td>
+<td>Convierte un objeto en un array de bytes JSON.</td>
+<td><code>val bytes = mapper.writeValueAsBytes(persona)</code></td>
+</tr>
+<tr>
+<td><code>writerWithDefaultPrettyPrinter()</code></td>
+<td>Devuelve un escritor que formatea (indentado) el JSON.</td>
+<td><code>mapper.writerWithDefaultPrettyPrinter().writeValue(...)</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<p><strong class="azul">Anotaciones en Jackson</strong></p>
+<p>Las anotaciones en Jackson (como @JsonIgnoreProperties, @JsonProperty, etc.) no siempre son necesarias, pero se usan para resolver problemas comunes al serializar o deserializar objetos. </p>
+<table>
+<thead>
+<tr>
+<th>Caso</th>
+<th>¿Anotación necesaria?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JSON coincide exactamente con la data class</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td>JSON tiene campos extra</td>
+<td>✅ Sí (@JsonIgnoreProperties)</td>
+</tr>
+<tr>
+<td>Nombres distintos en JSON</td>
+<td>✅ Sí (@JsonProperty)</td>
+</tr>
+<tr>
+<td>Quieres ocultar campos</td>
+<td>✅ Sí (@JsonIgnore)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Anotación</th>
+<th>¿Para qué sirve?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@JsonProperty("x")</td>
+<td>Mapear nombres distintos entre JSON y la clase</td>
+</tr>
+<tr>
+<td>@JsonIgnore</td>
+<td>Excluir una propiedad al serializar/deserializar</td>
+</tr>
+<tr>
+<td>@JsonIgnoreProperties(ignoreUnknown = true)</td>
+<td>Evitar errores por campos JSON no mapeados</td>
+</tr>
+<tr>
+<td>@JsonInclude(...)</td>
+<td>Excluir valores nulos o vacíos en el JSON</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="azul">Ejemplo de lectura y escritura con Jackson</strong></p>
+<p>Dependencia Gradle:</p>
+<div class="language-text highlight"><pre><span></span><code>    dependencies {
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
+    }
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>⚠️ Con la librería Jackson no es obligatorio usar la anotación <strong>@Serializable</strong>.
+Jackson puede trabajar directamente con clases normales de Kotlin.</p>
+<p>En este caso, seguiremos utilizando la <strong>data class Persona</strong>, que ya está anotada con <strong>@Serializable</strong> porque se usa también en ejemplos con <strong>kotlinx.serialization</strong>.<br />
+👉 Esta anotación no afecta a Jackson ni provoca errores, por lo que la misma clase se puede reutilizar sin problemas en ambos casos.</p>
+<div class="language-text highlight"><pre><span></span><code> import kotlinx.serialization.Serializable
+
+    @Serializable
+    data class Persona(val nombre: String, val edad: Int)
+</code></pre></div>
+</div>
+<p><a id="json-jackson"></a></p>
+<p><strong>🖥️ Ejemplo_JSON_jackson.kt</strong></p>
+<p>Este ejemplo muestra cómo leer y escribir archivos JSON con la librería Jackson, que permite convertir objetos Kotlin a JSON y viceversa de forma muy directa.</p>
+<p>La finalidad del ejercicio es comprobar cómo Jackson simplifica la conversión entre objetos Kotlin y JSON sin necesidad de procesar manualmente el texto del archivo.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">com.fasterxml.jackson.module.kotlin.jacksonObjectMapper</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">com.fasterxml.jackson.module.kotlin.readValue</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.io.File</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">escribirJson</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">mapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jacksonObjectMapper</span><span class="p">()</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">"Mario"</span><span class="p">,</span><span class="w"> </span><span class="m">35</span><span class="p">)</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">archivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"documentos/persona.json"</span><span class="p">)</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">    </span><span class="n">mapper</span><span class="p">.</span><span class="na">writerWithDefaultPrettyPrinter</span><span class="p">().</span><span class="na">writeValue</span><span class="p">(</span><span class="n">archivo</span><span class="p">,</span><span class="w"> </span><span class="n">persona</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">"JSON generado correctamente en: </span><span class="si">${</span><span class="n">archivo</span><span class="p">.</span><span class="na">absolutePath</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="p">}</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">leerJson</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">mapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jacksonObjectMapper</span><span class="p">()</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">archivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"documentos/persona.json"</span><span class="p">)</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapper</span><span class="p">.</span><span class="na">readValue</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="p">(</span><span class="n">archivo</span><span class="p">)</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">"Lectura correcta: </span><span class="si">${</span><span class="n">persona</span><span class="p">.</span><span class="na">nombre</span><span class="si">}</span><span class="s"> tiene </span><span class="si">${</span><span class="n">persona</span><span class="p">.</span><span class="na">edad</span><span class="si">}</span><span class="s"> años."</span><span class="p">)</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="p">}</span>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">    </span><span class="n">escribirJson</span><span class="p">()</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="w">    </span><span class="n">leerJson</span><span class="p">()</span>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Crea el <code>ObjectMapper</code> de Jackson.</li>
+<li>Escribe el objeto <code>Persona</code> como JSON en el archivo.</li>
+<li>Crea de nuevo el <code>ObjectMapper</code> para leer el fichero.</li>
+<li>Lee el JSON del archivo y reconstruye el objeto <code>Persona</code>.</li>
+</ol>
+<p><strong class="azul">Ejemplo de lectura y escritura de un array (lista) de elementos con Jackson</strong>        </p>
+<div class="admonition note">
+<p class="admonition-title">Fichero JSON compuesto por una lista de elementos</p>
+<p>Si el fichero <strong>JSON</strong> contiene un <em>array</em> (<code>[...]</code>), es decir, una <strong>lista de objetos</strong>, entonces debemos indicar explícitamente que queremos leer un <code>List&lt;Objeto&gt;</code>.  </p>
+</div>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">    </span><span class="p">[</span><span class="w"> </span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">        </span><span class="nt">"nombre"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Lucía"</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">        </span><span class="nt">"edad"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">28</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">        </span><span class="nt">"nombre"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Pepe"</span><span class="p">,</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">        </span><span class="nt">"edad"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">30</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">        </span><span class="nt">"nombre"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Ana"</span><span class="p">,</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">        </span><span class="nt">"edad"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">        </span><span class="nt">"nombre"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Juan"</span><span class="p">,</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">        </span><span class="nt">"edad"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">12</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">    </span><span class="p">]</span>
+</span></code></pre></div>
+<p><a id="json-lista-jackson"></a></p>
+<p><strong>🖥️ Ejemplo_listaJSON_jackson.kt</strong></p>
+<p>Este ejemplo amplía el caso anterior para trabajar no con un único objeto, sino con una lista completa de objetos <code>Persona</code> almacenada en un archivo JSON.</p>
+<p>La finalidad del ejercicio es entender que Jackson no solo puede serializar objetos individuales, sino también colecciones completas, facilitando el intercambio de listas de datos en formato JSON.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">com.fasterxml.jackson.module.kotlin.jacksonObjectMapper</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">import</span><span class="w"> </span><span class="nn">com.fasterxml.jackson.module.kotlin.readValue</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.io.File</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">escribirListaJson</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">mapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jacksonObjectMapper</span><span class="p">()</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">personas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">        </span><span class="n">Persona</span><span class="p">(</span><span class="s">"Lucía"</span><span class="p">,</span><span class="w"> </span><span class="m">28</span><span class="p">),</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">        </span><span class="n">Persona</span><span class="p">(</span><span class="s">"Pepe"</span><span class="p">,</span><span class="w"> </span><span class="m">30</span><span class="p">),</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">        </span><span class="n">Persona</span><span class="p">(</span><span class="s">"Ana"</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">        </span><span class="n">Persona</span><span class="p">(</span><span class="s">"Juan"</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">)</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">    </span><span class="p">)</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">archivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"documentos/lista_personas.json"</span><span class="p">)</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">    </span><span class="n">mapper</span><span class="p">.</span><span class="na">writerWithDefaultPrettyPrinter</span><span class="p">().</span><span class="na">writeValue</span><span class="p">(</span><span class="n">archivo</span><span class="p">,</span><span class="w"> </span><span class="n">personas</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">"JSON generado correctamente en: </span><span class="si">${</span><span class="n">archivo</span><span class="p">.</span><span class="na">absolutePath</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">leerListaJson</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">mapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jacksonObjectMapper</span><span class="p">()</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">archivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"documentos/lista_personas.json"</span><span class="p">)</span>
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">lista</span><span class="o">=</span><span class="n">mapper</span><span class="p">.</span><span class="na">readValue</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">archivo</span><span class="p">)</span><span class="w"> </span><span class="c1">// (4)!</span>
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>
+</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">lista</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">"</span><span class="si">${</span><span class="n">p</span><span class="p">.</span><span class="na">nombre</span><span class="si">}</span><span class="s"> tiene </span><span class="si">${</span><span class="n">p</span><span class="p">.</span><span class="na">edad</span><span class="si">}</span><span class="s"> años."</span><span class="p">)</span>
+</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a>
+</span><span id="__span-11-35"><a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-36"><a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a>
+</span><span id="__span-11-37"><a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-38"><a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a><span class="w">            </span><span class="n">escribirListaJson</span><span class="p">()</span>
+</span><span id="__span-11-39"><a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a><span class="w">            </span><span class="n">leerListaJson</span><span class="p">()</span>
+</span><span id="__span-11-40"><a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span class="p">}</span><span class="w">    </span>
+</span></code></pre></div>
+<ol>
+<li>Crea el <code>ObjectMapper</code> para trabajar con la lista.</li>
+<li>Serializa la lista completa en JSON.</li>
+<li>Crea el <code>ObjectMapper</code> para la lectura.</li>
+<li>Lee el array JSON y lo reconstruye como <code>List&lt;Persona&gt;</code>.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../ficheros_csv/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 🔹 Ficheros CSV">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                🔹 Ficheros CSV
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../ficheros_xml/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 🔹 Ficheros XML">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                🔹 Ficheros XML
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 Alicia Salvador — <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"> Licencia CC BY-NC-SA 4.0 </a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "navigation.instant.progress", "navigation.expand", "navigation.indexes", "navigation.tracking", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "content.action.view", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../../js/lightbox.js"></script>
+      
+    
+  </body>
+</html>

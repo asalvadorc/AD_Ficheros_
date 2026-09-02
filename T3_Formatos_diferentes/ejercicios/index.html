@@ -1,0 +1,1827 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>📝 Ejercicio 3: Proyecto Integrador (Parte 3) - Formatos de intercambio - AD - Acceso a Datos - Ficheros</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ejercicio-3-proyecto-integrador-parte-3-formatos-de-intercambio" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="AD - Acceso a Datos - Ficheros" class="md-header__button md-logo" aria-label="AD - Acceso a Datos - Ficheros" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD - Acceso a Datos - Ficheros
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              📝 Ejercicio 3: Proyecto Integrador (Parte 3) - Formatos de intercambio
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏠 Inicio
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../00_entorno_y_proyecto/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Entorno y ubicación de los ejemplos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../T1_Sistema_de_ficheros/ficheros/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  T1. Sistema de ficheros
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../T2_Gestion_del_contenido/intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  T2. Manejo de ficheros
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  T3. Ficheros de diferentes formatos
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AD - Acceso a Datos - Ficheros" class="md-nav__button md-logo" aria-label="AD - Acceso a Datos - Ficheros" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    AD - Acceso a Datos - Ficheros
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    🏠 Inicio
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            🏠 Inicio
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RA_CE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹RA y CE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia_estudio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹Guía de estudio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Entorno y ubicación de los ejemplos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Entorno y ubicación de los ejemplos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00_entorno_y_proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧰 Entorno y ubicación de los ejemplos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    T1. Sistema de ficheros
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            T1. Sistema de ficheros
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T1_Sistema_de_ficheros/ficheros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T1_Sistema_de_ficheros/NIO_AccesoFicheros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Acceso al sistema de ficheros
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T1_Sistema_de_ficheros/resumen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Resumen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T1_Sistema_de_ficheros/exercicis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ejercicio 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    T2. Manejo de ficheros
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            T2. Manejo de ficheros
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/formas_acceso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Formas de acceso a un fichero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/gestion_segura_recursos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Manejo de errores y recursos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/lectura_escritura_texto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Lectura y escritura de texto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔹 Lectura y escritura binaria
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            🔹 Lectura y escritura binaria
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/lectura_escritura_binaria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/binarios_no_estructurados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹Ficheros binarios no estructurados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/binarios_estructurados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹Ficheros binarios estructurados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/ficheros_imagen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹Ficheros de imagen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/acceso_aleatorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros de acceso aleatorio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/resumen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Resumen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/proximamente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ejercicio 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    T3. Ficheros de diferentes formatos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            T3. Ficheros de diferentes formatos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seriaci_dobjectes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Serialización de Objetos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros de intercambio
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            🔹 Ficheros de intercambio
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ficheros_intercambio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ficheros_csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros CSV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ficheros_json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros JSON
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ficheros_xml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros XML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Conversión entre formatos diferentes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resumen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Resumen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia_eleccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧭 ¿Qué librería usar?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proximamente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ejercicio 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enunciado" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Enunciado
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ejercicio-3-proyecto-integrador-parte-3-formatos-de-intercambio">📝 Ejercicio 3: Proyecto Integrador (Parte 3) - Formatos de intercambio<a class="headerlink" href="#ejercicio-3-proyecto-integrador-parte-3-formatos-de-intercambio" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Estructura del proyecto</p>
+</div>
+<p><span class="setup-tag setup-tag-paquetes">SETUP_PAQUETES</span>
+  Antes de empezar, crea un paquete llamado <code>Ejercicio3</code> en tu proyecto Kotlin. Dentro de ese paquete se deberá construir el archivo <code>.kt</code> con la solución del ejercicio.</p>
+<p>Referencia central de preparación:
+  - <a href="../../00_entorno_y_proyecto/">Entorno y proyecto base</a></p>
+<h2 id="enunciado">📋 Enunciado<a class="headerlink" href="#enunciado" title="Permanent link">&para;</a></h2>
+<p>En este ejercicio vamos a completar el <strong>Explorador Interactivo</strong> que has desarrollado en los temas anteriores. Ahora añadiremos dos capacidades habituales en aplicaciones reales: <strong>cargar configuración externa</strong> y <strong>exportar información</strong> del sistema de ficheros en varios formatos.</p>
+<div class="admonition info">
+<p class="admonition-title">Código Base</p>
+<p>Utiliza como punto de partida el código desarrollado en el Ejercicio 2. Si lo prefieres, puedes comenzar directamente desde la plantilla oficial del proyecto, que incluye la estructura del programa y los retos a completar.</p>
+<p>📥 <strong><a href="../../recursos/Solucion_T2_Plantilla_T3.kt">Descargar Código Base Oficial (Solucion_T2_Plantilla_T3.kt)</a></strong></p>
+</div>
+<p>La aplicación debe incorporar las siguientes <strong>novedades</strong>:</p>
+<div class="admonition tip">
+<p class="admonition-title">📋 Menú final:</p>
+<ul>
+<li>1- Crear un directorio</li>
+<li>2- Eliminar un directorio o fichero</li>
+<li>3- Ver contenido recursivo de un directorio</li>
+<li>4- Crear un archivo de texto</li>
+<li>5- Leer un archivo de texto</li>
+<li>6- Encriptar/Ocultar archivo (Texto a Binario)</li>
+<li>7- Copiar un archivo a otra ruta</li>
+<li><strong>8- Exportar CSV y convertir a JSON y XML</strong></li>
+<li>0- Salir</li>
+</ul>
+</div>
+<h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
+<p>En esta tercera y última parte del proyecto ampliarás el explorador de archivos desarrollado anteriormente incorporando dos nuevas funcionalidades:</p>
+<ul>
+<li>Cargar la configuración inicial desde un fichero externo en formato <strong>JSON</strong>.</li>
+<li>Exportar la información del directorio actual a un fichero <strong>CSV</strong> y, posteriormente, convertir dicho fichero a los formatos <strong>JSON</strong> y <strong>XML</strong>.</li>
+</ul>
+<p>De esta forma practicarás un flujo habitual en muchas aplicaciones reales:</p>
+<p><img alt="alt text" src="../image.png" style="display:block; margin-left:0; margin-right:auto;" width="350" /></p>
+<h1 id="material-proporcionado">Material proporcionado<a class="headerlink" href="#material-proporcionado" title="Permanent link">&para;</a></h1>
+<p>Junto con este enunciado se proporcionan los siguientes archivos:</p>
+<ul>
+<li><a href="../config.json">config.json</a></li>
+<li><a href="../carpeta_prueba.zip">carpeta_prueba.zip</a></li>
+</ul>
+<p>Antes de comenzar la práctica debes incorporar los archivos proporcionados a tu proyecto de la <strong>Parte 2</strong>.</p>
+<p><span class="setup-tag setup-tag-recursos">SETUP_RECURSOS_T3</span></p>
+<p>La preparación operativa de <code>config.json</code> y <code>carpeta_prueba</code> se ha movido a:</p>
+<ul>
+<li><a href="../../00_entorno_y_proyecto/">Entorno y proyecto base</a></li>
+</ul>
+<hr />
+<h2 id="requisitos-tecnicos-de-las-nuevas-opciones">🛠️ Requisitos técnicos de las nuevas opciones<a class="headerlink" href="#requisitos-tecnicos-de-las-nuevas-opciones" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Configuración inicial:</strong> Al arrancar, el programa debe buscar un fichero <a href="../config.json">config.json</a> en la raíz del proyecto. Si existe, utilizará los valores de <code>directorio_inicial</code> y <code>mostrar_archivos_ocultos</code>. Si no existe, deberá usar <code>System.getProperty("user.home")</code> como directorio inicial y no mostrar archivos ocultos.</li>
+<li><strong>Opción 8 (Generar CSV):</strong> Debe analizar <strong>solo el contenido del directorio actual</strong>, sin recorrer subdirectorios, y generar un fichero <code>reporte.csv</code> con esta información: nombre, tipo y tamaño en bytes, y guardarlo en la carpeta <code>exportar</code>.<ul>
+<li>Convertir a JSON y XML: Después de generar <code>reporte.csv</code>, el programa deberá leer ese CSV y, a partir de sus datos, crear <code>reporte.json</code> y <code>reporte.xml</code> y guardarlos en la carpeta <code>exportar</code>.</li>
+</ul>
+</li>
+<li><strong>Restricción importante:</strong> Una vez creado <code>reporte.csv</code>, no está permitido volver a recorrer el directorio para generar <code>reporte.json</code> y <code>reporte.xml</code>. Ambos archivos deben obtenerse <strong>exclusivamente</strong> desde la información almacenada en el CSV.</li>
+<li><strong>Modularidad:</strong> El código debe estar organizado en funciones o clases separadas para cargar la configuración, obtener la información del directorio, generar el CSV, leer el CSV, generar el JSON y generar el XML. Es recomendable utilizar una clase para representar la información de cada archivo.</li>
+<li><strong>Dependencias:</strong> Puedes utilizar librerías externas para JSON o XML si lo consideras oportuno, pero deben gestionarse mediante <strong>Gradle</strong>.</li>
+<li><strong>Gestión de errores:</strong> Todas las operaciones deben estar protegidas adecuadamente. Si falta <code>config.json</code>, si una ruta no existe o si ocurre un error durante la exportación, el programa no debe cerrarse de forma abrupta.</li>
+</ul>
+<hr />
+<h2 id="antes-de-entregar">Antes de entregar<a class="headerlink" href="#antes-de-entregar" title="Permanent link">&para;</a></h2>
+<p>Comprueba si cumple el cheklis siguiente:</p>
+<ul>
+<li>[ ] El programa sigue funcionando igual que en la Parte 2.</li>
+<li>[ ] Lee correctamente config.json.</li>
+<li>[ ] Si config.json no existe continúa funcionando.</li>
+<li>[ ] Respeta la configuración de archivos ocultos.</li>
+<li>[ ] Genera reporte.csv.</li>
+<li>[ ] Lee correctamente el CSV generado.</li>
+<li>[ ] Genera reporte.json.</li>
+<li>[ ] Genera reporte.xml.</li>
+<li>[ ] El código está modularizado.</li>
+<li>[ ] Se utilizan data class cuando corresponde.</li>
+</ul>
+<p>📤 Ejemplo de salida esperada</p>
+<p><strong>Salida por consola</strong></p>
+<div class="language-text highlight"><pre><span></span><code>HOME: src\main\resources\carpeta_prueba
+
+--------------------------------
+Nombre: datos.csv
+Tipo: Archivo
+Tamaño: 51 bytes
+Creado: 2026-07-28T08:48:45.055565Z
+Modificado: 2026-07-28T08:50:52.4224377Z
+Legible: true
+Escribible: true
+--------------------------------
+Nombre: documento.txt
+Tipo: Archivo
+Tamaño: 180 bytes
+Creado: 2026-07-27T19:21:05.4714133Z
+Modificado: 2026-07-28T08:44:40.185279Z
+Legible: true
+Escribible: true
+--------------------------------
+Nombre: exportar
+Tipo: Directorio
+Tamaño: 4096 bytes
+Creado: 2026-07-28T08:42:09.0645828Z
+Modificado: 2026-07-28T09:45:27.8279419Z
+Legible: true
+Escribible: true
+--------------------------------
+Nombre: imagen.jpg
+Tipo: Archivo
+Tamaño: 0 bytes
+Creado: 2026-07-28T08:48:09.9378597Z
+Modificado: 2026-07-28T08:48:09.9378597Z
+Legible: true
+Escribible: true
+
+Información del sistema de archivos
+Tipo: NTFS
+Espacio total: 1022076719104 bytes
+Espacio libre: 768379420672 bytes
+
+===== MENÚ =====
+1. Crear directorio
+2. Eliminar directorio o fichero
+3. Ver contenido recursivo
+4. Crear archivo de texto
+5. Leer archivo de texto
+6. Encriptar archivo
+7. Copiar archivo
+8. Exportar reporte del directorio actual
+0. Salir
+Selecciona una opción:
+
+8
+Reportes generados correctamente en la carpeta exportar.
+</code></pre></div>
+<p><strong>reporte.csv</strong></p>
+<div class="language-text highlight"><pre><span></span><code>Nombre,Tipo,Tamaño
+datos.csv,Archivo,51
+documento.txt,Archivo,180
+exportar,Directorio,4096
+imagen.jpg,Archivo,0
+</code></pre></div>
+<p><strong>reporte.json</strong></p>
+<div class="language-text highlight"><pre><span></span><code>[ {
+  "nombre" : "datos.csv",
+  "tipo" : "Archivo",
+  "tamanyo" : 51
+}, {
+  "nombre" : "documento.txt",
+  "tipo" : "Archivo",
+  "tamanyo" : 180
+}, {
+  "nombre" : "exportar",
+  "tipo" : "Directorio",
+  "tamanyo" : 4096
+}, {
+  "nombre" : "imagen.jpg",
+  "tipo" : "Archivo",
+  "tamanyo" : 0
+} ]
+</code></pre></div>
+<p><strong>reporte.xml</strong></p>
+<div class="language-text highlight"><pre><span></span><code>&lt;Reporte&gt;
+  &lt;archivo&gt;
+    &lt;archivo&gt;
+      &lt;nombre&gt;datos.csv&lt;/nombre&gt;
+      &lt;tipo&gt;Archivo&lt;/tipo&gt;
+      &lt;tamanyo&gt;51&lt;/tamanyo&gt;
+    &lt;/archivo&gt;
+    &lt;archivo&gt;
+      &lt;nombre&gt;documento.txt&lt;/nombre&gt;
+      &lt;tipo&gt;Archivo&lt;/tipo&gt;
+      &lt;tamanyo&gt;180&lt;/tamanyo&gt;
+    &lt;/archivo&gt;
+    &lt;archivo&gt;
+      &lt;nombre&gt;exportar&lt;/nombre&gt;
+      &lt;tipo&gt;Directorio&lt;/tipo&gt;
+      &lt;tamanyo&gt;4096&lt;/tamanyo&gt;
+    &lt;/archivo&gt;
+    &lt;archivo&gt;
+      &lt;nombre&gt;imagen.jpg&lt;/nombre&gt;
+      &lt;tipo&gt;Archivo&lt;/tipo&gt;
+      &lt;tamanyo&gt;0&lt;/tamanyo&gt;
+    &lt;/archivo&gt;
+  &lt;/archivo&gt;
+&lt;/Reporte&gt;
+</code></pre></div>
+<h2 id="rubrica-de-evaluacion">✅ Rúbrica de evaluación<a class="headerlink" href="#rubrica-de-evaluacion" title="Permanent link">&para;</a></h2>
+<p>La calificación del proyecto se obtendrá sumando la puntuación obtenida en cada uno de los siguientes apartados.</p>
+<table>
+<thead>
+<tr>
+<th>Reto</th>
+<th>Aspectos evaluados</th>
+<th style="text-align: center;">Puntuación máxima</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reto 1. Modelo de datos</strong></td>
+<td>Se han creado correctamente las <code>data class</code> necesarias para representar la configuración, la información de los archivos y la estructura del XML.</td>
+<td style="text-align: center;"><strong>1,0</strong></td>
+</tr>
+<tr>
+<td><strong>Reto 2. Configuración del programa</strong></td>
+<td>Se implementa correctamente la lectura de <code>config.json</code> y el programa utiliza una configuración por defecto cuando el fichero no existe.</td>
+<td style="text-align: center;"><strong>1,0</strong></td>
+</tr>
+<tr>
+<td><strong>Reto 3. Inicialización del programa</strong></td>
+<td>El directorio inicial y la visualización de archivos ocultos se configuran correctamente a partir del fichero de configuración.</td>
+<td style="text-align: center;"><strong>0,5</strong></td>
+</tr>
+<tr>
+<td><strong>Reto 4. Menú principal</strong></td>
+<td>Se incorpora correctamente la nueva opción para generar el reporte y se integra con el resto del programa.</td>
+<td style="text-align: center;"><strong>0,5</strong></td>
+</tr>
+<tr>
+<td><strong>Reto 5. Visualización de archivos</strong></td>
+<td>La función <code>mostrarHome()</code> respeta correctamente la configuración para mostrar u ocultar archivos ocultos.</td>
+<td style="text-align: center;"><strong>1,0</strong></td>
+</tr>
+<tr>
+<td><strong>Reto 6. Coordinación del proceso</strong></td>
+<td>La función principal del reporte coordina correctamente todas las operaciones necesarias para generar los distintos formatos.</td>
+<td style="text-align: center;"><strong>1,5</strong></td>
+</tr>
+<tr>
+<td><strong>Reto 7. Obtención de la información</strong></td>
+<td>Se obtiene correctamente la información del directorio y se almacena utilizando las estructuras de datos adecuadas.</td>
+<td style="text-align: center;"><strong>1,0</strong></td>
+</tr>
+<tr>
+<td><strong>Reto 8. Lectura del CSV</strong></td>
+<td>Se reconstruye correctamente la información almacenada en el fichero CSV.</td>
+<td style="text-align: center;"><strong>0,5</strong></td>
+</tr>
+<tr>
+<td><strong>Reto 9. Exportación a CSV</strong></td>
+<td>Se genera correctamente el fichero <code>reporte.csv</code> con la cabecera y todos los datos requeridos.</td>
+<td style="text-align: center;"><strong>1,0</strong></td>
+</tr>
+<tr>
+<td><strong>Reto 10. Exportación a JSON</strong></td>
+<td>Se genera correctamente el fichero <code>reporte.json</code> utilizando la información obtenida del CSV.</td>
+<td style="text-align: center;"><strong>1,0</strong></td>
+</tr>
+<tr>
+<td><strong>Reto 11. Exportación a XML</strong></td>
+<td>Se genera correctamente el fichero <code>reporte.xml</code> utilizando la información obtenida del CSV.</td>
+<td style="text-align: center;"><strong>1,0</strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>TOTAL</strong></td>
+<td style="text-align: center;"><strong>10,0</strong></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 Alicia Salvador — <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"> Licencia CC BY-NC-SA 4.0 </a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "navigation.instant.progress", "navigation.expand", "navigation.indexes", "navigation.tracking", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "content.action.view", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../../js/lightbox.js"></script>
+      
+    
+  </body>
+</html>
