@@ -1041,6 +1041,11 @@ body.lightbox-open {
     display: block;
 }
 
+/* Oculta títulos H1 que solo existen para evitar el título automático de Material */
+.md-typeset .pagetitle-hidden {
+    display: none;
+}
+
 .md-nav__link[href*="titulo-oculto"] {
     display: none !important;
 }
