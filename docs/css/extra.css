@@ -1046,6 +1046,12 @@ body.lightbox-open {
     display: none;
 }
 
+.md-typeset .portada-inicio {
+    width: 100%;
+    max-width: 680px;
+    margin: 1rem auto;
+}
+
 .md-nav__link[href*="titulo-oculto"] {
     display: none !important;
 }
