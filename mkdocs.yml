@@ -111,8 +111,8 @@ nav:
     - 🔹Ficheros de imagen: T2_Gestion_del_contenido/ficheros_imagen.md
   - 🔹 Ficheros de acceso aleatorio: T2_Gestion_del_contenido/acceso_aleatorio.md
   - 🔹 Resumen: T2_Gestion_del_contenido/resumen.md
-  - 📝 Ejercicio 2: T2_Gestion_del_contenido/proximamente.md
-  #- 📝 Ejercicio obligatorio 2: T2_Gestion_del_contenido/ejercicios.md
+  #- 📝 Ejercicio 2: T2_Gestion_del_contenido/proximamente.md
+  - 📝 Ejercicio obligatorio 2: T2_Gestion_del_contenido/ejercicios.md
 - T3. Ficheros de diferentes formatos:
   - 🔹 Introducción: T3_Formatos_diferentes/intro.md
   - 🔹 Serialización de Objetos: T3_Formatos_diferentes/seriaci_dobjectes.md
@@ -126,6 +126,12 @@ nav:
   - 🧭 ¿Qué librería usar?: guia_eleccion.md
   - 📝 Ejercicio 3: T3_Formatos_diferentes/proximamente.md
   #- 📝 Ejercicio obligatorio 3: T3_Formatos_diferentes/ejercicios.md
+#- T4. Introducción a Spring Boot:
+  #- 🔹 Conceptos básicos: T4_Spring_Boot/intro.md
+  #- 🔹 Primera aplicación: T4_Spring_Boot/primera_aplicacion.md
+  #- 🔹 Primera aplicación con ficheros: T4_Spring_Boot/ficheros.md
+  #- 🔹 Subir y listar ficheros: T4_Spring_Boot/gestion_ficheros.md
+  #- 🔹 Convertir CSV a JSON: T4_Spring_Boot/conversion.md
 #- Ejercicios:
   #- Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md
   # - Ejercicio 2: T2_Gestion_del_contenido/ejercicios.md

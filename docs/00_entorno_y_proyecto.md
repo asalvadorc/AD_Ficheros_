@@ -15,6 +15,7 @@ Esta página centraliza todas las instrucciones operativas de preparación del e
 > | **Tema 2** | `Ficheros` | `contenido` |
 > | **Tema 3** (sin librerías extras) | `Ficheros` | `formatos` |
 > | **Tema 3** (con dependencias) | `Ficheros_Gradle` | (raíz o paquete a tu elección) |
+> | **Tema 4** | `ficheros-api` (Spring Boot) | `com.example.ficherosapi` |
 
 
 

@@ -4,9 +4,11 @@ hide:
 title: "AD - Ficheros"
 ---
 
-# Acceso a Datos - Ficheros {.pagetitle-hidden}
+<div class="portada-banner" markdown>
+# Acceso a Datos - Ficheros
 
 ![Kotlin y sistema de ficheros](portada.png){.portada-inicio}
+</div>
 
 
 
