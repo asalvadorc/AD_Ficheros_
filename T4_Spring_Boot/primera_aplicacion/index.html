@@ -1,0 +1,1892 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Primera aplicación con Spring Boot - AD - Acceso a Datos - Ficheros</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#primera-aplicacion-con-spring-boot" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="AD - Acceso a Datos - Ficheros" class="md-header__button md-logo" aria-label="AD - Acceso a Datos - Ficheros" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD - Acceso a Datos - Ficheros
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Primera aplicación con Spring Boot
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏠 Inicio
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../00_entorno_y_proyecto/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Entorno y ubicación de los ejemplos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../T1_Sistema_de_ficheros/ficheros/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  T1. Sistema de ficheros
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../T2_Gestion_del_contenido/intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  T2. Manejo de ficheros
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../T3_Formatos_diferentes/intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  T3. Ficheros de diferentes formatos
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AD - Acceso a Datos - Ficheros" class="md-nav__button md-logo" aria-label="AD - Acceso a Datos - Ficheros" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    AD - Acceso a Datos - Ficheros
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    🏠 Inicio
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            🏠 Inicio
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RA_CE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹RA y CE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia_estudio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹Guía de estudio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Entorno y ubicación de los ejemplos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Entorno y ubicación de los ejemplos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00_entorno_y_proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧰 Entorno y ubicación de los ejemplos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    T1. Sistema de ficheros
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            T1. Sistema de ficheros
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T1_Sistema_de_ficheros/ficheros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T1_Sistema_de_ficheros/NIO_AccesoFicheros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Acceso al sistema de ficheros
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T1_Sistema_de_ficheros/resumen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Resumen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T1_Sistema_de_ficheros/exercicis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ejercicio 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    T2. Manejo de ficheros
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            T2. Manejo de ficheros
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/formas_acceso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Formas de acceso a un fichero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/gestion_segura_recursos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Manejo de errores y recursos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/lectura_escritura_texto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Lectura y escritura de texto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔹 Lectura y escritura binaria
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            🔹 Lectura y escritura binaria
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/lectura_escritura_binaria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/binarios_no_estructurados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹Ficheros binarios no estructurados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/binarios_estructurados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹Ficheros binarios estructurados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/ficheros_imagen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹Ficheros de imagen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/acceso_aleatorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros de acceso aleatorio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/resumen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Resumen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T2_Gestion_del_contenido/ejercicios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ejercicio obligatorio 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    T3. Ficheros de diferentes formatos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            T3. Ficheros de diferentes formatos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/seriaci_dobjectes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Serialización de Objetos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros de intercambio
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            🔹 Ficheros de intercambio
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/ficheros_intercambio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/ficheros_csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros CSV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/ficheros_json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros JSON
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/ficheros_xml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Ficheros XML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Conversión entre formatos diferentes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/resumen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔹 Resumen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia_eleccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧭 ¿Qué librería usar?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../T3_Formatos_diferentes/proximamente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ejercicio 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-crear-el-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Crear el proyecto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-reconocer-la-estructura" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Reconocer la estructura
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-crear-el-primer-controlador" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Crear el primer controlador
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-recibir-un-dato-en-la-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Recibir un dato en la URL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-devolver-un-objeto-como-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Devolver un objeto como JSON
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-anadir-un-servicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Añadir un servicio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas-habituales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problemas habituales
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="primera-aplicacion-con-spring-boot">Primera aplicación con Spring Boot<a class="headerlink" href="#primera-aplicacion-con-spring-boot" title="Permanent link">&para;</a></h1>
+<p>En esta primera aplicación construiremos el código <strong>por etapas</strong>. Los primeros ejemplos son deliberadamente sencillos y sirven para observar el recorrido de una petición HTTP.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Cliente → Controlador → Respuesta
+</span></code></pre></div>
+<h2 id="1-crear-el-proyecto">1. Crear el proyecto<a class="headerlink" href="#1-crear-el-proyecto" title="Permanent link">&para;</a></h2>
+<p>Abre <a href="https://start.spring.io/">Spring Initializr</a> y selecciona:</p>
+<table>
+<thead>
+<tr>
+<th>Opción</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Project</td>
+<td>Gradle - Kotlin</td>
+</tr>
+<tr>
+<td>Language</td>
+<td>Kotlin</td>
+</tr>
+<tr>
+<td>Packaging</td>
+<td>Jar</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>17 o la versión indicada por el profesor</td>
+</tr>
+<tr>
+<td>Group</td>
+<td><code>com.example</code></td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>ficheros-api</code></td>
+</tr>
+</tbody>
+</table>
+<p>Añade estas dependencias:</p>
+<ul>
+<li><strong>Spring Web</strong>: permite crear controladores y endpoints HTTP.</li>
+<li><strong>Validation</strong>: permite validar los datos recibidos.</li>
+</ul>
+<p>Pulsa <strong>Generate</strong>, descomprime el proyecto y ábrelo desde IntelliJ IDEA mediante su fichero <code>build.gradle.kts</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Utiliza el proyecto generado</p>
+<p>No copies números de versión de otros proyectos. Spring Initializr genera una combinación compatible de Spring Boot, Kotlin, Java y Gradle.</p>
+</div>
+<h2 id="2-reconocer-la-estructura">2. Reconocer la estructura<a class="headerlink" href="#2-reconocer-la-estructura" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ficheros-api/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── build.gradle.kts
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── gradlew
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── gradlew.bat
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>└── src/
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    ├── main/
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    │   ├── kotlin/com/example/ficherosapi/
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    │   │   └── FicherosApiApplication.kt
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    │   └── resources/
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    │       └── application.properties
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    └── test/
+</span></code></pre></div>
+<ul>
+<li><code>build.gradle.kts</code>: dependencias y configuración del proyecto.</li>
+<li><code>src/main/kotlin</code>: código Kotlin de la aplicación.</li>
+<li><code>src/main/resources</code>: configuración y recursos.</li>
+<li><code>src/test</code>: pruebas automáticas.</li>
+</ul>
+<p>La clase principal tendrá un aspecto similar a este:</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">package</span><span class="w"> </span><span class="nn">com.example.ficherosapi</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.boot.autoconfigure.SpringBootApplication</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.boot.runApplication</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nd">@SpringBootApplication</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="kd">class</span><span class="w"> </span><span class="nc">FicherosApiApplication</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="n">runApplication</span><span class="o">&lt;</span><span class="n">FicherosApiApplication</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Indica que esta es la clase principal de una aplicación Spring Boot.</li>
+<li>Crea el contexto de Spring e inicia el servidor web.</li>
+</ol>
+<h2 id="3-crear-el-primer-controlador">3. Crear el primer controlador<a class="headerlink" href="#3-crear-el-primer-controlador" title="Permanent link">&para;</a></h2>
+<p>Crea el paquete <code>controller</code> y, dentro de él, el fichero <code>SaludoController.kt</code>:</p>
+<p>En esta primera versión devolvemos el saludo directamente para observar qué ocurre cuando se visita una URL. <strong>Todavía no es la organización definitiva del código.</strong></p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">package</span><span class="w"> </span><span class="nn">com.example.ficherosapi.controller</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.GetMapping</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.RestController</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nd">@RestController</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="kd">class</span><span class="w"> </span><span class="nc">SaludoController</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/api/saludos"</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">saludar</span><span class="p">():</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">"Hola desde Spring Boot"</span><span class="w"> </span><span class="c1">// (3)!</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Spring detecta esta clase y la utiliza para atender peticiones web.</li>
+<li>Esta función se ejecuta al recibir una petición <code>GET</code> en <code>/api/saludos</code>. Utilizamos el prefijo <code>/api</code> para identificar los endpoints de la API y el plural <code>saludos</code> para nombrar el recurso.</li>
+<li>El valor devuelto se convierte en el cuerpo de la respuesta HTTP.</li>
+</ol>
+<p>Ejecuta <code>FicherosApiApplication.kt</code> y abre:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>http://localhost:8080/api/saludos
+</span></code></pre></div>
+<p>También puedes usar PowerShell:</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">8080</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">saludos</span>
+</span></code></pre></div>
+<h2 id="4-recibir-un-dato-en-la-url">4. Recibir un dato en la URL<a class="headerlink" href="#4-recibir-un-dato-en-la-url" title="Permanent link">&para;</a></h2>
+<p>Podemos declarar una parte variable de la ruta mediante <code>@PathVariable</code>:</p>
+<p>Por ahora continuamos trabajando únicamente en el controlador para concentrarnos en cómo llega el dato desde la URL.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.PathVariable</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/api/saludos/{nombre}"</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">saludarA</span><span class="p">(</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">nombre</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">):</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">"Hola, </span><span class="si">$</span><span class="n">nombre</span><span class="s">"</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li><code>{nombre}</code> señala la parte de la ruta que puede variar.</li>
+<li><code>@PathVariable</code> copia el valor de la URL en el parámetro <code>nombre</code>.</li>
+</ol>
+<p>La petición <code>GET /api/saludos/Ana</code> devuelve <code>Hola, Ana</code>.</p>
+<h2 id="5-devolver-un-objeto-como-json">5. Devolver un objeto como JSON<a class="headerlink" href="#5-devolver-un-objeto-como-json" title="Permanent link">&para;</a></h2>
+<p>Hasta ahora la función devolvía un <code>String</code>, por lo que el cliente recibía únicamente texto:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Hola, Ana
+</span></code></pre></div>
+<p>Comenzamos así porque es la respuesta más sencilla posible: permite comprobar el recorrido entre el navegador y el controlador sin introducir todavía nuevos conceptos.</p>
+<p>Sin embargo, una API suele necesitar devolver varios datos relacionados. En lugar de fabricar manualmente una cadena, podemos devolver un objeto y dejar que Spring lo convierta a <strong>JSON</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Respuesta</th>
+<th>Ventaja</th>
+<th>Limitación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Texto</td>
+<td>Es fácil de crear y visualizar</td>
+<td>No separa los datos</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>Es estructurado y fácil de procesar</td>
+<td>Requiere definir un modelo</td>
+</tr>
+</tbody>
+</table>
+<p>Por ejemplo, en JSON podemos enviar por separado el mensaje y su longitud. Si posteriormente necesitamos añadir la fecha o el idioma, incorporamos otra propiedad sin tener que interpretar una frase.</p>
+<p>Crea el paquete <code>model</code> dentro de <code>com.example.ficherosapi</code>. Dentro de él, crea el fichero <code>SaludoResponse.kt</code>:</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">package</span><span class="w"> </span><span class="nn">com.example.ficherosapi.model</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">SaludoResponse</span><span class="p">(</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">mensaje</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">longitud</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">)</span>
+</span></code></pre></div>
+<ol>
+<li>Esta clase define la estructura de la respuesta: tendrá los campos <code>mensaje</code> y <code>longitud</code>.</li>
+</ol>
+<p>Ahora modifica el controlador para que devuelva un objeto <code>SaludoResponse</code>:</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">com.example.ficherosapi.model.SaludoResponse</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/api/saludos/{nombre}"</span><span class="p">)</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">obtenerSaludo</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">nombre</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">SaludoResponse</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">mensaje</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola, </span><span class="si">$</span><span class="n">nombre</span><span class="s">"</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">SaludoResponse</span><span class="p">(</span><span class="n">mensaje</span><span class="p">,</span><span class="w"> </span><span class="n">mensaje</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>Spring convierte automáticamente este objeto Kotlin a JSON.</li>
+</ol>
+<p>Spring convierte automáticamente el objeto a JSON:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">"mensaje"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hola, Ana"</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">"longitud"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="6-anadir-un-servicio">6. Añadir un servicio<a class="headerlink" href="#6-anadir-un-servicio" title="Permanent link">&para;</a></h2>
+<p>Ya conocemos el recorrido de la petición, <code>@PathVariable</code> y la conversión a JSON. Ahora reorganizaremos el código: el controlador no debería contener las reglas del programa, por lo que trasladaremos la creación del saludo a un servicio.</p>
+<p>Al separar la lógica, distinguimos el recorrido de la petición y el de la respuesta:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Petición:   Cliente → Controlador → Servicio
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Respuesta:  Cliente ← Controlador ← Servicio
+</span></code></pre></div>
+<p>El controlador recibe los datos de la petición y se los entrega al servicio. El servicio realiza el trabajo y devuelve el resultado al controlador, que lo envía al cliente.</p>
+<p>Crea el paquete <code>service</code> dentro de <code>com.example.ficherosapi</code>. Dentro del nuevo paquete, crea el fichero <code>SaludoService.kt</code>:</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">package</span><span class="w"> </span><span class="nn">com.example.ficherosapi.service</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">com.example.ficherosapi.model.SaludoResponse</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.stereotype.Service</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="nd">@Service</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="kd">class</span><span class="w"> </span><span class="nc">SaludoService</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">crearSaludo</span><span class="p">(</span><span class="n">nombre</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">SaludoResponse</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">mensaje</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola, </span><span class="si">$</span><span class="n">nombre</span><span class="s">"</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">SaludoResponse</span><span class="p">(</span><span class="n">mensaje</span><span class="p">,</span><span class="w"> </span><span class="n">mensaje</span><span class="p">.</span><span class="na">length</span><span class="p">)</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li><code>@Service</code> indica que esta clase contiene lógica de la aplicación. Spring creará y administrará automáticamente un objeto de esta clase.</li>
+<li>La creación del mensaje y de la respuesta ya no se realiza en el controlador: ahora es responsabilidad del servicio.</li>
+</ol>
+<p>Ahora abre <code>controller/SaludoController.kt</code> y sustituye su contenido por el siguiente. El controlador solicitará el servicio mediante su constructor:</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">package</span><span class="w"> </span><span class="nn">com.example.ficherosapi.controller</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">import</span><span class="w"> </span><span class="nn">com.example.ficherosapi.model.SaludoResponse</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">import</span><span class="w"> </span><span class="nn">com.example.ficherosapi.service.SaludoService</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.GetMapping</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.PathVariable</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.RestController</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="nd">@RestController</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="kd">class</span><span class="w"> </span><span class="nc">SaludoController</span><span class="p">(</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">saludoService</span><span class="p">:</span><span class="w"> </span><span class="n">SaludoService</span><span class="w"> </span><span class="c1">// (1)!</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">"/api/saludos/{nombre}"</span><span class="p">)</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">saludarA</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">nombre</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">SaludoResponse</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">saludoService</span><span class="p">.</span><span class="na">crearSaludo</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="c1">// (2)!</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>No utilizamos <code>SaludoService()</code> para crear el objeto. Spring proporciona al controlador el servicio que ha creado previamente. Esto es la <strong>inyección de dependencias</strong>.</li>
+<li>El controlador recibe la petición, pero delega la lógica en el servicio.</li>
+</ol>
+<p>La estructura del código será ahora:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>src/main/kotlin/com/example/ficherosapi/
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>├── FicherosApiApplication.kt
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>├── controller/
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>│   └── SaludoController.kt
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>├── model/
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>│   └── SaludoResponse.kt
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>└── service/
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    └── SaludoService.kt
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Primera aplicación completada</p>
+<p>Esta es la versión que debemos conservar. El cliente llama al controlador, el controlador recoge el nombre y llama al servicio, el servicio crea el saludo y Spring devuelve la respuesta.</p>
+<p>Los controladores se ocupan de HTTP; los servicios contienen la lógica de la aplicación. En el próximo ejemplo, <code>FileController</code> recibirá las peticiones y <code>FileService</code> realizará las operaciones con ficheros.</p>
+</div>
+<h2 id="problemas-habituales">Problemas habituales<a class="headerlink" href="#problemas-habituales" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Posible causa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>El puerto 8080 está ocupado</td>
+<td>Otra aplicación sigue ejecutándose</td>
+</tr>
+<tr>
+<td>Aparece un error 404</td>
+<td>La ruta escrita no coincide con <code>@GetMapping</code></td>
+</tr>
+<tr>
+<td>Spring no encuentra una clase</td>
+<td>Está fuera del paquete raíz <code>com.example.ficherosapi</code></td>
+</tr>
+<tr>
+<td>Gradle no descarga dependencias</td>
+<td>No hay conexión o IntelliJ está en modo sin conexión</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 Alicia Salvador — <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"> Licencia CC BY-NC-SA 4.0 </a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "navigation.instant.progress", "navigation.expand", "navigation.indexes", "navigation.tracking", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "content.action.view", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../../js/lightbox.js"></script>
+      
+    
+  </body>
+</html>
