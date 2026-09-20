@@ -207,17 +207,17 @@ La calificación del proyecto se obtendrá sumando la puntuación obtenida en ca
 
 | Reto | Aspectos evaluados | Puntuación máxima |
 |-------|--------------------|:-----------------:|
-| **Reto 1. Modelo de datos** | Se han creado correctamente las `data class` necesarias para representar la configuración, la información de los archivos y la estructura del XML. | **1,0** |
-| **Reto 2. Configuración del programa** | Se implementa correctamente la lectura de `config.json` y el programa utiliza una configuración por defecto cuando el fichero no existe. | **1,0** |
-| **Reto 3. Inicialización del programa** | El directorio inicial y la visualización de archivos ocultos se configuran correctamente a partir del fichero de configuración. | **0,5** |
-| **Reto 4. Menú principal** | Se incorpora correctamente la nueva opción para generar el reporte y se integra con el resto del programa. | **0,5** |
-| **Reto 5. Visualización de archivos** | La función `mostrarHome()` respeta correctamente la configuración para mostrar u ocultar archivos ocultos. | **1,0** |
-| **Reto 6. Coordinación del proceso** | La función principal del reporte coordina correctamente todas las operaciones necesarias para generar los distintos formatos. | **1,5** |
-| **Reto 7. Obtención de la información** | Se obtiene correctamente la información del directorio y se almacena utilizando las estructuras de datos adecuadas. | **1,0** |
-| **Reto 8. Lectura del CSV** | Se reconstruye correctamente la información almacenada en el fichero CSV. | **0,5** |
-| **Reto 9. Exportación a CSV** | Se genera correctamente el fichero `reporte.csv` con la cabecera y todos los datos requeridos. | **1,0** |
-| **Reto 10. Exportación a JSON** | Se genera correctamente el fichero `reporte.json` utilizando la información obtenida del CSV. | **1,0** |
-| **Reto 11. Exportación a XML** | Se genera correctamente el fichero `reporte.xml` utilizando la información obtenida del CSV. | **1,0** |
+| **Modelo de datos** | Se han creado correctamente las `data class` necesarias para representar la configuración, la información de los archivos y la estructura del XML. | **1,0** |
+| **Configuración del programa** | Se implementa correctamente la lectura de `config.json` y el programa utiliza una configuración por defecto cuando el fichero no existe. | **1,0** |
+| **Inicialización del programa** | El directorio inicial y la visualización de archivos ocultos se configuran correctamente a partir del fichero de configuración. | **0,5** |
+| **Menú principal** | Se incorpora correctamente la nueva opción para generar el reporte y se integra con el resto del programa. | **0,5** |
+| **Visualización de archivos** | La función `mostrarHome()` respeta correctamente la configuración para mostrar u ocultar archivos ocultos. | **1,0** |
+| **Coordinación del proceso** | La función principal del reporte coordina correctamente todas las operaciones necesarias para generar los distintos formatos. | **1,5** |
+| **Obtención de la información** | Se obtiene correctamente la información del directorio y se almacena utilizando las estructuras de datos adecuadas. | **1,0** |
+| **Lectura del CSV** | Se reconstruye correctamente la información almacenada en el fichero CSV. | **0,5** |
+| **Exportación a CSV** | Se genera correctamente el fichero `reporte.csv` con la cabecera y todos los datos requeridos. | **1,0** |
+| **Exportación a JSON** | Se genera correctamente el fichero `reporte.json` utilizando la información obtenida del CSV. | **1,0** |
+| **Exportación a XML** | Se genera correctamente el fichero `reporte.xml` utilizando la información obtenida del CSV. | **1,0** |
 | | **TOTAL** | **10,0** |
 
 

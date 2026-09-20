@@ -8,6 +8,12 @@ Cliente → Controlador → Respuesta
 
 ## 1. Crear el proyecto
 
+Primero crearemos el proyecto desde la web [Spring Initializr](https://start.spring.io/) y después lo abriremos en **IntelliJ IDEA**, donde escribiremos y ejecutaremos el código.
+
+Utilizaremos este procedimiento por sencillez, en lugar de crear el proyecto directamente desde IntelliJ. Spring Initializr nos permite elegir las opciones y las dependencias en un único formulario y descargar el proyecto preparado para empezar.
+
+El recorrido será: **crear en Spring Initializr → descargar y descomprimir → abrir en IntelliJ IDEA**.
+
 Abre [Spring Initializr](https://start.spring.io/) y selecciona:
 
 | Opción | Valor |
@@ -21,7 +27,7 @@ Abre [Spring Initializr](https://start.spring.io/) y selecciona:
 
 Añade estas dependencias:
 
-- **Spring Web**: permite crear controladores y endpoints HTTP.
+- **Spring Web**: incorpora Spring MVC para crear controladores y atender peticiones HTTP, junto con el servidor Tomcat integrado.
 - **Validation**: permite validar los datos recibidos.
 
 Pulsa **Generate**, descomprime el proyecto y ábrelo desde IntelliJ IDEA mediante su fichero `build.gradle.kts`.
@@ -30,6 +36,8 @@ Pulsa **Generate**, descomprime el proyecto y ábrelo desde IntelliJ IDEA median
     No copies números de versión de otros proyectos. Spring Initializr genera una combinación compatible de Spring Boot, Kotlin, Java y Gradle.
 
 ## 2. Reconocer la estructura
+
+**Spring Initializr genera automáticamente esta estructura al crear el proyecto.** Al descargarlo, descomprimirlo y abrirlo en IntelliJ IDEA, encontrarás las siguientes carpetas y ficheros: no tienes que crearlos a mano. En este paso vamos a reconocer para qué sirve cada uno; después añadiremos nuestras propias clases.
 
 ```text
 ficheros-api/
@@ -71,7 +79,18 @@ fun main(args: Array<String>) {
 
 ## 3. Crear el primer controlador
 
-Crea el paquete `controller` y, dentro de él, el fichero `SaludoController.kt`:
+Vamos a empezar a construir la **capa de controladores**, encargada de recibir las peticiones HTTP y devolver las respuestas. Agruparemos sus clases en un **paquete llamado `controller`**. Un paquete sirve para organizar clases relacionadas; la capa describe la responsabilidad que cumplen esas clases.
+
+Este paquete lo crearemos nosotros: no viene generado por Spring Initializr. Dentro de `src/main/kotlin`, localiza el paquete principal `com.example.ficherosapi` y crea en él el paquete `controller`. Su nombre completo será `com.example.ficherosapi.controller`.
+
+Dentro de ese nuevo paquete, crea el fichero **`SaludoController.kt`**. La estructura quedará así:
+
+```text
+src/main/kotlin/com/example/ficherosapi/
+├── FicherosApiApplication.kt
+└── controller/
+    └── SaludoController.kt
+```
 
 En esta primera versión devolvemos el saludo directamente para observar qué ocurre cuando se visita una URL. **Todavía no es la organización definitiva del código.**
 
@@ -127,15 +146,19 @@ fun saludarA(
 1. `{nombre}` señala la parte de la ruta que puede variar.
 2. `@PathVariable` copia el valor de la URL en el parámetro `nombre`.
 
-La petición `GET /api/saludos/Ana` devuelve `Hola, Ana`.
+La petición `GET`
+
+```text
+ http://localhost:8080/api/saludos/Alicia
+ 
+```
+
+devuelve `Hola, Alicia`.
+
 
 ## 5. Devolver un objeto como JSON
 
 Hasta ahora la función devolvía un `String`, por lo que el cliente recibía únicamente texto:
-
-```text
-Hola, Ana
-```
 
 Comenzamos así porque es la respuesta más sencilla posible: permite comprobar el recorrido entre el navegador y el controlador sin introducir todavía nuevos conceptos.
 
@@ -146,9 +169,20 @@ Sin embargo, una API suele necesitar devolver varios datos relacionados. En luga
 | Texto | Es fácil de crear y visualizar | No separa los datos |
 | JSON | Es estructurado y fácil de procesar | Requiere definir un modelo |
 
-Por ejemplo, en JSON podemos enviar por separado el mensaje y su longitud. Si posteriormente necesitamos añadir la fecha o el idioma, incorporamos otra propiedad sin tener que interpretar una frase.
+Por ejemplo, en JSON podemos enviar por separado el mensaje y su longitud. Si posteriormente necesitamos añadir la fecha o el idioma, incorporamos otra propiedad sin tener que interpretar una frase. El paquete `model` reúne las clases que describen los **datos** de nuestra aplicación.
 
-Crea el paquete `model` dentro de `com.example.ficherosapi`. Dentro de él, crea el fichero `SaludoResponse.kt`:
+Crea el paquete `model` dentro de `com.example.ficherosapi`. Dentro de él, crea el fichero **`SaludoResponse.kt`**:
+
+En `src/main/kotlin/com/example/ficherosapi`, crea el paquete `model`. La estructura quedará así:
+
+```text
+src/main/kotlin/com/example/ficherosapi/
+├── FicherosApiApplication.kt
+├── controller/
+│   └── SaludoController.kt
+└── model/
+    └── SaludoResponse.kt
+```
 
 
 ```kotlin
@@ -160,7 +194,18 @@ data class SaludoResponse( // (1)!
 )
 ```
 
-1. Esta clase define la estructura de la respuesta: tendrá los campos `mensaje` y `longitud`.
+1. Esta clase define la estructura de la respuesta: tendrá los campos `mensaje` y `longitud`. Como es una `data class`, Kotlin la utiliza para representar datos, no para recibir peticiones ni ejecutar operaciones con ficheros.
+
+En este ejemplo, `SaludoResponse` es el modelo de la respuesta: indica qué información vamos a enviar y cómo se llama cada campo.
+
+Separar esta clase del controlador tiene dos ventajas:
+
+- el controlador se concentra en recibir la petición y devolver el resultado;
+- la estructura de los datos queda definida en una clase que podemos reutilizar en otros métodos o controladores.
+
+El paquete no contiene una copia del fichero ni realiza por sí mismo la conversión a JSON. Solo define la forma del dato. Spring utiliza esa definición para transformar el objeto en una respuesta JSON.
+
+
 
 Ahora modifica el controlador para que devuelva un objeto `SaludoResponse`:
 
@@ -181,14 +226,27 @@ Spring convierte automáticamente el objeto a JSON:
 
 ```json
 {
-  "mensaje": "Hola, Ana",
-  "longitud": 9
+  "mensaje": "Hola, Alicia",
+  "longitud": 12
 }
 ```
 
 ## 6. Añadir un servicio
 
 Ya conocemos el recorrido de la petición, `@PathVariable` y la conversión a JSON. Ahora reorganizaremos el código: el controlador no debería contener las reglas del programa, por lo que trasladaremos la creación del saludo a un servicio.
+
+Crea el paquete `service` dentro de `com.example.ficherosapi`. Dentro de él añadiremos `SaludoService.kt`. La estructura del proyecto quedará así:
+
+```text
+src/main/kotlin/com/example/ficherosapi/
+├── FicherosApiApplication.kt
+├── controller/
+│   └── SaludoController.kt
+├── model/
+│   └── SaludoResponse.kt
+└── service/
+    └── SaludoService.kt
+```
 
 Al separar la lógica, distinguimos el recorrido de la petición y el de la respuesta:
 
@@ -198,8 +256,6 @@ Respuesta:  Cliente ← Controlador ← Servicio
 ```
 
 El controlador recibe los datos de la petición y se los entrega al servicio. El servicio realiza el trabajo y devuelve el resultado al controlador, que lo envía al cliente.
-
-Crea el paquete `service` dentro de `com.example.ficherosapi`. Dentro del nuevo paquete, crea el fichero `SaludoService.kt`:
 
 ```kotlin
 package com.example.ficherosapi.service
