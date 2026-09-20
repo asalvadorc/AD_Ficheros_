@@ -208,4 +208,4 @@ Intenta responder antes de desplegar las soluciones:
     3. Spring, al preparar la respuesta del controlador.
     4. No. Hemos enviado JSON como respuesta; guardarlo exige una operación de escritura adicional.
 
-La [ampliación opcional de errores](errores.md) explica después cómo personalizar algunas respuestas de la aplicación de ficheros.
+
