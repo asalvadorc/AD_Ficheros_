@@ -48,15 +48,27 @@ Junto con este enunciado se proporcionan los siguientes archivos:
 - [config.json](../T3_Formatos_diferentes/config.json)
 - [carpeta_prueba.zip](../T3_Formatos_diferentes/carpeta_prueba.zip)
 
-Antes de comenzar la práctica debes incorporar los archivos proporcionados a tu proyecto de la **Parte 2**.
+Antes de programar, prepara estos recursos en tu proyecto de la **Parte 2**:
 
-<span class="setup-tag setup-tag-recursos">SETUP_RECURSOS_T3</span>
+1. Descarga `config.json` y cópialo en la raíz del proyecto, junto a `build.gradle.kts`.
+2. Descarga `carpeta_prueba.zip` y descomprímelo.
+3. Copia la carpeta `carpeta_prueba` dentro de `src/main/resources`.
+4. Comprueba que la estructura queda así:
 
-La preparación operativa de `config.json` y `carpeta_prueba` se ha movido a:
-
-- [Entorno y proyecto base](../00_entorno_y_proyecto.md)
-
+```text
+proyecto/
+├── build.gradle.kts
+├── config.json
+└── src/
+    └── main/
+        └── resources/
+            └── carpeta_prueba/
+                ├── datos.csv
+                ├── documento.txt
+                └── ...
+```
 ---
+El valor `src/main/resources/carpeta_prueba` de `config.json` indica el directorio inicial que utilizará el programa. Los archivos de esa carpeta son datos de partida y no forman parte de la solución que debes programar.
 
 ## 🛠️ Requisitos técnicos de las nuevas opciones
 

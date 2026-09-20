@@ -96,11 +96,11 @@ La calificación del ejercicio se obtendrá sumando la puntuación obtenida en c
 
 | Reto | Aspectos evaluados | Puntuación máxima |
 |-------|--------------------|:-----------------:|
-| **Reto 1. Ampliación del menú** | Se incorporan correctamente las nuevas opciones al menú principal y se integran con la estructura del programa. | **0,5** |
-| **Reto 2. Creación de archivos de texto** | Se implementa correctamente la creación de un archivo de texto, permitiendo introducir varias líneas desde consola hasta finalizar con la palabra `FIN`. | **2,0** |
-| **Reto 3. Lectura de archivos de texto** | Se implementa correctamente la lectura y visualización del contenido de un archivo de texto. | **1,5** |
-| **Reto 4. Encriptación de archivos** | Se implementa correctamente la lectura del archivo, la transformación de los datos y la generación del fichero binario resultante. | **2,0** |
-| **Reto 5. Copia de archivos** | Se implementa correctamente la copia de un archivo utilizando la API `java.nio.file`. | **1,5** |
+| **Ampliación del menú** | Se incorporan correctamente las nuevas opciones al menú principal y se integran con la estructura del programa. | **0,5** |
+| **Creación de archivos de texto** | Se implementa correctamente la creación de un archivo de texto, permitiendo introducir varias líneas desde consola hasta finalizar con la palabra `FIN`. | **2,0** |
+| **Lectura de archivos de texto** | Se implementa correctamente la lectura y visualización del contenido de un archivo de texto. | **1,5** |
+| **Encriptación de archivos** | Se implementa correctamente la lectura del archivo, la transformación de los datos y la generación del fichero binario resultante. | **2,0** |
+| **Copia de archivos** | Se implementa correctamente la copia de un archivo utilizando la API `java.nio.file`. | **1,5** |
 | **Gestión robusta de excepciones** | Se gestionan adecuadamente las posibles excepciones mediante bloques `try/catch`. | **1,0** |
 | **Comentarios y estructura del código** | El código está correctamente organizado en funciones, incluye comentarios útiles cuando son necesarios y mantiene una estructura clara y legible. | **1,5** |
 | | **TOTAL** | **10,0** |
