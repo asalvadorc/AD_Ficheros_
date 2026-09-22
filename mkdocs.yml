@@ -137,7 +137,7 @@ nav:
   - 🔹 Crear, leer y listar texto: T4_Spring_Boot/texto_y_listado.md
   - 🔹 Subir un fichero existente: T4_Spring_Boot/gestion_ficheros.md
   - 🔹 Convertir CSV a JSON: T4_Spring_Boot/conversion.md
-  - 📝 Ejercicio 4 - API de gestión de apuntes: T4_Spring_Boot/ejercicios.md
+  - 📝 Ejercicio obligatorio 4: T4_Spring_Boot/ejercicios.md
   
 #- Ejercicios:
   #- Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md
