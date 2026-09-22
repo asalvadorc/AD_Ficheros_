@@ -4,21 +4,41 @@ hide:
 ---
 # Resultados de Aprendizaje y Criterios de Evalucaicón.
 
+Esta unidad trabaja dos resultados de aprendizaje relacionados entre sí:
+
+- **RA 1**, centrado en el acceso, la lectura, la escritura y la transformación de información almacenada en ficheros.
+- **RA 6**, centrado en la creación de componentes que gestionan esos datos y en su integración en aplicaciones.
+
+El **Tema 4** conecta ambos resultados: utiliza Spring Boot para convertir las operaciones con ficheros del RA 1 en componentes accesibles mediante una API web. Los criterios del RA 6 relacionados con bases de datos y documentos se desarrollarán en los temas posteriores.
+
 ## RA1. Desarrolla aplicaciones que gestionan información almacenada en ficheros identificando el campo de aplicación de los mismos y utilizando clases específicas.
 
 
-**Contenidos vs Criterios de Evaluación**{.azul}
+**Criterios de evaluación del RA 1**
 
-| Nº | Tema | Contenido Didáctico                                      | Criterios de Evaluación Relacionados      |
-|----|------|-----------------------------------------------------------|-------------------------------------------|
-| 1  | T1   | Introducción a los ficheros y su aplicación               | -                                          |
-| 2  | T1   | Acceso al sistema de archivos (`File`, `Path`, etc.)      | a) Clases para gestión de ficheros y directorios |
-| 3  | T2   | Formas de acceso: secuencial vs aleatorio                 | b) Ventajas e inconvenientes del acceso   |
-| 4  | T2   | Lectura de ficheros                                       | c) Clases para recuperar información      |
-| 5  | T2   | Escritura en ficheros                                     | d) Clases para almacenar información      |
-| 6  | T3   | Conversión entre formatos (JSON, XML, binario)            | e) Clases para realizar conversiones      |
-| 7  | T2   | Gestión de excepciones (`try-catch`, `use`)               | f) Gestión de errores y validaciones      |
-| 8  | T1-T3| Pruebas y documentación de aplicaciones                   | g) Pruebas y documentación                |
+| Letra | Criterio de evaluación | Tema | Contenido didáctico |
+|:---:|---|:---:|---|
+| a) | Se han identificado las clases adecuadas para gestionar ficheros y directorios. | T1 | Acceso al sistema de archivos con `File`, `Path` y clases relacionadas. |
+| b) | Se han valorado las ventajas e inconvenientes de las formas de acceso a los ficheros. | T2 | Acceso secuencial y acceso aleatorio. |
+| c) | Se han utilizado clases para recuperar información de ficheros. | T2 | Lectura de ficheros de texto y otros formatos. |
+| d) | Se han utilizado clases para almacenar información en ficheros. | T2 | Escritura y modificación de ficheros. |
+| e) | Se han utilizado clases para realizar conversiones entre formatos. | T3 | Conversión entre JSON, XML, CSV y otros formatos. |
+| f) | Se han gestionado los errores y las validaciones durante el acceso a ficheros. | T2 | Excepciones de entrada y salida y uso seguro de recursos. |
+| g) | Se han probado y documentado las aplicaciones desarrolladas. | T1-T3 | Pruebas, comentarios y documentación. |
+
+## RA 6. Programa componentes de acceso a datos identificando las características que debe poseer un componente y utilizando herramientas de desarrollo
+
+Este resultado de aprendizaje se desarrolla progresivamente en los temas dedicados a ficheros, bases de datos y documentos XML. En el **Tema 4** se aborda la gestión de ficheros mediante componentes de una aplicación web construida con Spring Boot.
+
+**Criterios de evaluación del RA 6**
+
+| Letra | Criterio de evaluación | Tema | Contenido didáctico |
+|:---:|---|:---:|---|
+| a) | Se han valorado las ventajas e inconvenientes de utilizar programación orientada a componentes. | T4 | Separación entre controlador, servicio y acceso a ficheros. |
+| b) | Se han identificado herramientas de desarrollo de componentes. | T4 | Spring, Spring MVC, Spring Boot y Tomcat. |
+| c) | Se han programado componentes que gestionan información almacenada en ficheros. | T4 | Componentes para leer, escribir, listar, subir y convertir ficheros. |
+| h) | Se han probado y documentado los componentes desarrollados. | T4 | Pruebas de la API con Postman y documentación de sus operaciones. |
+| i) | Se han integrado los componentes desarrollados en aplicaciones. | T4 | Integración de la gestión de ficheros en una aplicación web con Spring Boot. |
 <!--
 **Rúbrica de Evaluación - Acceso y gestión de ficheros en Kotlin**{.azul}
 

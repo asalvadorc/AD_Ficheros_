@@ -434,6 +434,10 @@ body.lightbox-open {
     border-radius: 8px;
 }
 
+.img-text-row.img-equal-height img {
+    height: 320px;
+}
+
 @media (max-width: 900px) {
     .img-text-row {
         flex-direction: column;

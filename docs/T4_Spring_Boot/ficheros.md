@@ -103,8 +103,6 @@ Esto permite reutilizar la operación de lectura sin mezclarla con los detalles 
 
 Por ahora tendremos dos capas de código principales: controladores y servicios. Los ficheros son el almacenamiento que utiliza ese código. En aplicaciones más grandes, el acceso al almacenamiento puede separarse en otra capa.
 
-En la primera aplicación ya creamos una clase de datos en el paquete `model`: `SaludoResponse`. Esa clase define los datos que enviamos al cliente, pero **el paquete `model` no representa por sí solo todo el Modelo de MVC**.
-
 En esta primera versión con ficheros trabajaremos con texto (`String`), por lo que no necesitaremos crear una nueva clase de datos.
 
 ## 1. Crear el servicio
@@ -144,9 +142,9 @@ El servicio contiene las operaciones con el sistema de ficheros. Todavía no sab
 
 ### Relación con las funciones del ejercicio 2
 
-`writeMessage()` realiza el trabajo de escritura de la **opción 4**. En el ejercicio utilizábamos `Files.write` o un `BufferedWriter`; aquí usamos `Files.writeString` para guardar un único texto fijo.
+`writeMessage()` realiza el trabajo de escritura de la **opción 4**. 
 
-`readMessage()` realiza el trabajo de lectura de la **opción 5**, pero devuelve el contenido con `return` para que el controlador pueda enviarlo al cliente. El ejercicio 2 pide `Files.newBufferedReader()`; aquí utilizamos `Files.readString()` para simplificar la lectura de este fichero pequeño. Esta simplificación no modifica los requisitos del ejercicio 2.
+`readMessage()` realiza el trabajo de lectura de la **opción 5**, pero devuelve el contenido con `return` para que el controlador pueda enviarlo al cliente.
 
 Al adaptar una función de consola, hay que separar la interacción con el usuario de la operación sobre el fichero:
 
@@ -249,7 +247,38 @@ En el ejercicio 2, el menú decidía qué función ejecutar. Aquí, `@PostMappin
 
 ## 4. Probar la aplicación
 
-Ejecuta `FicherosApiApplication.kt`. Primero crea el fichero desde PowerShell:
+Podemos probar la misma API con Postman o con PowerShell. Elige una de las dos herramientas: no necesitas repetir las pruebas con ambas ni cambiar el código Kotlin.
+
+Ejecuta `FicherosApiApplication.kt`. 
+
+### Opción A: utilizar Postman
+
+
+Usaremos Postman y nuestra aplicación en el mismo ordenador. Por eso la dirección del servidor será `http://localhost:8080`. Postman envía las peticiones; la aplicación debe seguir funcionando en IntelliJ para responder.
+
+#### Escribir el fichero con POST
+
+   - Crea una petición **POST** a `http://localhost:8080/api/file`.
+   - No añadas ningún cuerpo a la petición.
+   - Pulsa **Send**.
+   - Debes recibir `Fichero guardado`.
+
+   ![alt text](image-16.png)
+
+#### Leer el fichero con GET
+  
+
+   - Crea una petición **GET** a `http://localhost:8080/api/file`.
+   - No añadas ningún cuerpo.
+   - Pulsa **Send**.
+   - Debes recibir `Hola desde un fichero`.
+
+![alt text](image-17.png)
+
+### Opción B: utilizar PowerShell
+
+
+Primero crea el fichero desde PowerShell:
 
 ```powershell
 Invoke-RestMethod -Method Post http://localhost:8080/api/file
@@ -279,6 +308,7 @@ La respuesta contendrá el texto guardado:
 Hola desde un fichero
 ```
 
+
 ### Comprobar la equivalencia con el menú
 
 1. La petición `POST` ha realizado la escritura, como la opción 4 del ejercicio 2, usando el nombre y el texto fijos del servicio.
@@ -288,4 +318,4 @@ Hola desde un fichero
 !!! info "¿Dónde está el fichero?"
     El fichero se guarda en el ordenador donde se ejecuta la aplicación Spring. En estas pruebas el cliente y el servidor están en tu propio ordenador. Abrir la URL en el navegador solicita una lectura al servidor.
 
-En la [siguiente página](texto_y_listado.md) ampliaremos esta misma aplicación para recibir el nombre y el texto del cliente, conservar la lectura, añadir un listado. El tratamiento de errores quedará como ampliación opcional.
+En la [siguiente página](texto_y_listado.md) ampliaremos esta misma aplicación para recibir el nombre y el texto del cliente, conservar la lectura, añadir un listado.

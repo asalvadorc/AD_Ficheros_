@@ -1,13 +1,26 @@
+<!--
 ---
 hide:
   - toc
 ---
-
+-->
 # Introducción a Spring Boot
 
 Hasta ahora nuestros programas se ejecutaban desde una función `main`, leían datos del teclado y trabajaban con ficheros del ordenador. En esta unidad convertiremos esas operaciones en una **aplicación web**.
 
 El objetivo no es aprender todo Spring, sino entender lo necesario para publicar nuestras operaciones con ficheros mediante una API REST.
+
+## Relación con el resultado de aprendizaje
+
+Este tema forma parte del resultado de aprendizaje **«Programa componentes de acceso a datos identificando las características que debe poseer un componente y utilizando herramientas de desarrollo»**.
+
+En esta primera parte trabajaremos especialmente los criterios de evaluación relacionados con los ficheros:
+
+- **c) Se han programado componentes que gestionan información almacenada en ficheros.** Crearemos componentes para leer, escribir, listar, subir y transformar ficheros.
+- **h) Se han probado y documentado los componentes desarrollados.** Comprobaremos las operaciones con clientes HTTP, como Postman, y explicaremos su funcionamiento.
+- **i) Se han integrado los componentes desarrollados en aplicaciones.** Integraremos la gestión de ficheros en una aplicación web con Spring Boot y una API REST.
+
+Los criterios relacionados con bases de datos, mapeo objeto-relacional y bases de datos documentates se desarrollarán en los temas posteriores de la unidad.
 
 ## ¿Qué es una aplicación web?
 
@@ -17,8 +30,6 @@ En una aplicación web intervienen normalmente dos programas:
 2. El **servidor** recibe la petición, ejecuta una operación y devuelve una respuesta.
 
 ![El cliente envía una petición HTTP al servidor y el servidor devuelve una respuesta HTTP al cliente.](aplicacion_web.png){width=600}
-
-
 
 ## ¿Qué es Apache Tomcat?
 
@@ -149,6 +160,10 @@ Por ejemplo, al pedir `GET /api/files`, nuestra API podrá devolver:
 Una aplicación cliente podría utilizar esa lista para dibujar una tabla o un menú. En este tema consultaremos las respuestas desde el navegador o PowerShell, sin construir una interfaz gráfica.
 
 En [Primera aplicación con ficheros](ficheros.md#las-capas-de-nuestra-aplicacion) concretaremos cómo repartir estas responsabilidades entre las clases del proyecto.
+
+## Postman: herramienta para probar peticiones
+
+Además del navegador, utilizaremos **[Postman](https://www.postman.com/downloads/)** para enviar peticiones HTTP y comprobar las respuestas de nuestra aplicación. Permite elegir el método (`GET`, `POST`, etc.), indicar la URL y enviar datos en el cuerpo de la petición. Lo usaremos en los ejemplos y ejercicios posteriores, especialmente para probar operaciones `POST` y subidas de ficheros.
 
 ## Vocabulario mínimo
 

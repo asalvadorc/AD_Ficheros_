@@ -5,9 +5,7 @@
 
 ## 📋 Enunciado
 
-Crea una **API de gestión de apuntes** que permita guardar, leer, listar y subir ficheros de texto mediante peticiones HTTP. Los apuntes se almacenarán en una carpeta llamada `apuntes` en el ordenador servidor.
-
-En el ejercicio 2 del tema 2, la opción 4 pedía un nombre y líneas de texto por consola hasta escribir `FIN`, y la opción 5 pedía un nombre para mostrar el contenido del fichero. En este ejercicio, el cliente enviará los datos mediante Postman y recibirá una respuesta de la API.
+Crea una **API de gestión de apuntes** que permita guardar, leer, listar y subir ficheros de texto mediante peticiones HTTP. Los apuntes se almacenarán en una carpeta llamada `apuntes` en el ordenador servidor. El cliente enviará los datos mediante Postman y recibirá una respuesta de la API.
 
 !!! info "Código base"
     Utiliza los ejemplos de [crear, leer y listar texto](texto_y_listado.md) y [subir un fichero existente](gestion_ficheros.md) como referencia. Conserva las operaciones anteriores y añade las de apuntes con sus propias clases y rutas.
@@ -19,6 +17,9 @@ En el ejercicio 2 del tema 2, la opción 4 pedía un nombre y líneas de texto p
     | `GET` | `/api/apuntes?nombre=repaso.txt` | Leer el apunte indicado |
     | `GET` | `/api/apuntes/listado` | Listar los nombres de los apuntes |
     | `POST` | `/api/apuntes/upload` | Subir un fichero de texto existente |
+    | `POST` | `/api/apuntes/importar-csv` | Importar varios apuntes desde un CSV |
+    | `GET` | `/api/apuntes/xml?nombre=repaso.txt` | Devolver un apunte en formato XML |
+    | `POST` / `GET` | `/api/apuntes/imagen` | Subir y mostrar una imagen |
 
 ## Objetivo
 
@@ -124,7 +125,7 @@ Si estos son los únicos apuntes, **GET** a `/api/apuntes/listado`, sin cuerpo, 
 
 Para comprobar el filtro del listado, crea manualmente en la carpeta `apuntes` del servidor un fichero `ignorar.csv` y una carpeta `carpeta.txt`. Ninguno debe aparecer en la respuesta.
 
-## ➕ Ampliación opcional: importar apuntes desde CSV
+### Reto 5. Importar apuntes desde CSV
 
 Añade `POST /api/apuntes/importar-csv` para recibir, en el campo `file`, un CSV UTF-8 con la cabecera `nombre,contenido`:
 
@@ -134,7 +135,7 @@ tema1.txt,Repasar las rutas de los ficheros.
 tema2.txt,Practicar la lectura de texto.
 ```
 
-Lee el CSV recibido y crea un apunte por cada fila, reutilizando el servicio de escritura y sus comprobaciones. Para esta ampliación utilizaremos campos sin comas, comillas ni saltos de línea internos. Si un apunte ya existe, sustituye su contenido.
+Lee el CSV recibido y crea un apunte por cada fila, reutilizando el servicio de escritura y sus comprobaciones. Para este reto utilizaremos campos sin comas, comillas ni saltos de línea internos. Si un apunte ya existe, sustituye su contenido.
 
 Devuelve una lista JSON con los nombres importados:
 
@@ -142,7 +143,37 @@ Devuelve una lista JSON con los nombres importados:
 ["tema1.txt", "tema2.txt"]
 ```
 
-Esta ampliación sirve para practicar la lectura de CSV y no es necesaria para obtener los 10 puntos de la parte obligatoria.
+Este reto sirve para practicar la lectura de CSV y forma parte de la evaluación del ejercicio.
+
+### Reto 6. Convertir un apunte a XML
+
+Este reto relaciona la API con los formatos estudiados anteriormente.
+
+Añade `GET /api/apuntes/xml?nombre=repaso.txt`. La API leerá el apunte y devolverá una respuesta XML con esta estructura:
+
+```xml
+<apunte>
+  <nombre>repaso.txt</nombre>
+  <contenido>Repasar lectura de ficheros.</contenido>
+</apunte>
+```
+
+Puedes crear una clase de respuesta, utilizar `XmlMapper` de Jackson o construir el XML con las herramientas que ya conoces. La conversión debe realizarse a partir del contenido del apunte guardado en `apuntes`.
+
+### Reto 7. Subir y mostrar una imagen
+
+Añade una operación para imágenes:
+
+| Método | Ruta | Operación |
+|---|---|---|
+| `POST` | `/api/apuntes/imagen` | Recibe una imagen mediante `MultipartFile` y la guarda en `apuntes` |
+| `GET` | `/api/apuntes/imagen?nombre=foto.png` | Devuelve los bytes de la imagen para que el navegador pueda mostrarla |
+
+La subida debe aceptar únicamente extensiones como `.png`, `.jpg` o `.jpeg`, rechazar archivos vacíos y conservar el nombre validado. Para la lectura, el controlador puede devolver `ByteArray` junto con el tipo MIME adecuado mediante `ResponseEntity`.
+
+Por ejemplo, una respuesta correcta debe indicar `image/png` para una imagen PNG. El navegador podrá mostrarla si visitas la URL GET directamente. No conviertas la imagen a texto ni la leas con `Files.readString`: las imágenes son ficheros binarios.
+
+Para probarlo, selecciona una imagen en Postman mediante **Body → form-data → file** y, después de subirla, abre la URL GET en el navegador.
 
 ## Antes de entregar
 
@@ -156,18 +187,22 @@ Esta ampliación sirve para practicar la lectura de CSV y no es necesaria para o
 - [ ] Se rechazan los nombres no admitidos y los archivos subidos vacíos.
 - [ ] Los apuntes siguen disponibles después de reiniciar la aplicación.
 - [ ] Las operaciones anteriores del proyecto siguen disponibles.
-- [ ] La colección de Postman contiene las cuatro peticiones obligatorias.
+- [ ] La colección de Postman contiene las operaciones de los siete retos.
 
 ## 📦 Entrega
 
-Entrega:
 
-1. El proyecto Spring Boot con el código fuente y los archivos de Gradle necesarios para abrirlo y ejecutarlo. No incluyas las carpetas `.gradle` ni `build`.
-2. Una colección de Postman exportada con las cuatro peticiones obligatorias y los datos de ejemplo. Incluye `clase.txt` por separado: al importar la colección en otro ordenador habrá que volver a seleccionarlo para la subida.
+1. **El proyecto Spring Boot** comprimido en un arhivo **.zip** con el código fuente y los archivos de Gradle necesarios para abrirlo y ejecutarlo. No incluyas las carpetas `.gradle` ni `build`.
+2. **Una colección de Postman** exportada con las peticiones de los siete retos y los datos de ejemplo. Incluye `clase.txt` y una imagen de prueba por separado: al importar la colección en otro ordenador habrá que volver a seleccionarlos para las subidas.
+3. **Un vídeo breve** en el que expliques la estructura del programa y muestres su ejecución desde Postman. Deben verse al menos la organización en `model`, `service` y `controller`, el arranque de la aplicación y algunas peticiones de los retos.
+
+<!--
 3. Un documento breve con evidencias de creación, lectura, sustitución, subida y filtrado del listado, y las respuestas a estas preguntas:
     - ¿En qué ordenador se guardan los apuntes si el cliente y el servidor están en equipos distintos?
     - ¿Qué hace el controlador y qué hace el servicio?
     - ¿Por qué escribir la URL en la barra del navegador no ejecuta el POST?
+
+-->
 
 ## ✅ Rúbrica de evaluación
 
@@ -175,11 +210,14 @@ La calificación se obtiene sumando los siguientes apartados:
 
 | Reto | Aspectos evaluados | Puntuación máxima |
 |---|---|:---:|
-| **Organización del proyecto** | Modelo, controlador y servicio separados; responsabilidades bien distribuidas y código legible. | **1,5** |
-| **Creación de apuntes** | Recibe JSON, guarda texto con varias líneas y sustituye el contenido cuando corresponde. | **2,0** |
-| **Lectura de apuntes** | Recibe el nombre en la URL y devuelve el contenido del fichero solicitado. | **1,5** |
-| **Listado de apuntes** | Devuelve JSON ordenado, filtra ficheros `.txt`, excluye carpetas y admite un listado vacío. | **1,5** |
-| **Subida de apuntes** | Recibe el campo `file`, copia el archivo y permite leerlo después. | **1,5** |
-| **Almacenamiento y comprobaciones** | Crea la carpeta, conserva los datos, comprueba nombres y archivos vacíos y cierra los recursos. | **1,0** |
-| **Pruebas y comprensión** | Entrega la colección y las evidencias, y explica correctamente el papel del cliente, del controlador y del servicio. | **1,0** |
+| **Organización del proyecto** | Modelo, controlador y servicio separados; responsabilidades bien distribuidas y código legible. | **1,0** |
+| **Creación de apuntes** | Recibe JSON, guarda texto con varias líneas y sustituye el contenido cuando corresponde. | **1,5** |
+| **Lectura de apuntes** | Recibe el nombre en la URL y devuelve el contenido del fichero solicitado. | **1,0** |
+| **Listado de apuntes** | Devuelve JSON ordenado, filtra ficheros `.txt`, excluye carpetas y admite un listado vacío. | **1,0** |
+| **Subida de apuntes** | Recibe el campo `file`, copia el archivo y permite leerlo después. | **1,0** |
+| **Importación CSV** | Lee el CSV recibido, crea o sustituye los apuntes y devuelve sus nombres. | **1,25** |
+| **Conversión a XML** | Lee un apunte y genera una respuesta XML con su nombre y contenido. | **1,0** |
+| **Gestión de imágenes** | Sube, valida, almacena y devuelve imágenes con el tipo MIME correcto. | **1,0** |
+| **Almacenamiento y comprobaciones** | Crea la carpeta, conserva los datos, comprueba nombres y archivos vacíos y cierra los recursos. | **0,75** |
+| **Pruebas y comprensión** | Entrega la colección, las evidencias y un vídeo breve; explica correctamente el papel del cliente, del controlador y del servicio. | **0,5** |
 | | **TOTAL** | **10,0** |

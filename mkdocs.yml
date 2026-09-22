@@ -130,14 +130,14 @@ nav:
   - 🧭 ¿Qué librería usar?: guia_eleccion.md
  # - 📝 Ejercicio 3: T3_Formatos_diferentes/proximamente.md
   - 📝 Ejercicio obligatorio 3: T3_Formatos_diferentes/ejercicios.md
-#- T4. Introducción a Spring Boot:
-  #- 🔹 Conceptos básicos: T4_Spring_Boot/intro.md
-  #- 🔹 Primera aplicación: T4_Spring_Boot/primera_aplicacion.md
-  #- 🔹 Primera aplicación con ficheros: T4_Spring_Boot/ficheros.md
-  #- 🔹 Crear, leer y listar texto: T4_Spring_Boot/texto_y_listado.md
-  #- 🔹 Subir un fichero existente: T4_Spring_Boot/gestion_ficheros.md
-  #- 🔹 Convertir CSV a JSON: T4_Spring_Boot/conversion.md
-  #- 📝 Ejercicio 4 - API de gestión de apuntes: T4_Spring_Boot/ejercicios.md
+- T4.  Spring Boot con ficheros:
+  - 🔹 Introducción: T4_Spring_Boot/intro.md
+  - 🔹 Primera aplicación: T4_Spring_Boot/primera_aplicacion.md
+  - 🔹 Primera aplicación con ficheros: T4_Spring_Boot/ficheros.md
+  - 🔹 Crear, leer y listar texto: T4_Spring_Boot/texto_y_listado.md
+  - 🔹 Subir un fichero existente: T4_Spring_Boot/gestion_ficheros.md
+  - 🔹 Convertir CSV a JSON: T4_Spring_Boot/conversion.md
+  - 📝 Ejercicio 4 - API de gestión de apuntes: T4_Spring_Boot/ejercicios.md
   
 #- Ejercicios:
   #- Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md

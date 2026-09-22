@@ -2,7 +2,6 @@
 
 En la [primera aplicación con ficheros](ficheros.md) escribíamos un texto fijo en `data/mensaje.txt`. Ahora el cliente elegirá **el nombre y el contenido**, como en la opción 4 del **ejercicio 2**. Conservaremos la lectura de la opción 5 y añadiremos un listado.
 
-En el ejercicio 2 del tema 2, la opción 4 pedía el nombre del archivo y las líneas de texto hasta `FIN`; la opción 5 pedía el nombre para leerlo. No se exigía un fichero llamado `notas.txt` ni `mensaje.txt`: el nombre lo elegía el usuario. Aquí empezaremos con **`mensaje.txt`, el mismo fichero del apartado anterior**, y después probaremos otro nombre.
 
 !!! info "Cómo trabajar esta página"
     Continúa en el proyecto del ejemplo anterior. Primero modifica la aplicación para escribir y leer `mensaje.txt` con datos enviados por el cliente; comprueba el resultado antes de añadir el listado.
@@ -45,7 +44,7 @@ data class CrearTextoRequest( // (1)!
 
 ## 2. Ampliar el servicio
 
-Sustituye el contenido de `service/FileService.kt` por esta versión. Los métodos de escritura y lectura ahora reciben datos como parámetros:
+Actualiza `service/FileService.kt` conservando el método de la primera aplicación y añadiendo una versión que recibe el nombre y el contenido como parámetros:
 
 ```kotlin
 package com.example.ficherosapi.service
@@ -71,6 +70,11 @@ class FileService {
             "Introduce solo un nombre, sin carpetas"
         }
         return folder.resolve(nombre) // (5)!
+    }
+
+    // Mantiene la operación inicial, que escribía un mensaje fijo.
+    fun writeMessage() {
+        Files.writeString(folder.resolve("mensaje.txt"), "Hola desde un fichero")
     }
 
     fun writeMessage(nombre: String, contenido: String) {
@@ -104,7 +108,7 @@ Introducimos dos anotaciones para recibir datos:
 | `@RequestBody` | Convierte el cuerpo JSON en un objeto `CrearTextoRequest` |
 | `@RequestParam` | Obtiene el nombre indicado en la URL al leer |
 
-Sustituye `controller/FileController.kt` por:
+Actualiza `controller/FileController.kt` conservando la operación inicial y añadiendo la recepción de JSON:
 
 ```kotlin
 package com.example.ficherosapi.controller
@@ -123,7 +127,11 @@ class FileController(
 ) {
 
     @PostMapping("/api/file") // (1)!
-    fun write(@RequestBody datos: CrearTextoRequest): String { // (2)!
+    fun write(@RequestBody(required = false) datos: CrearTextoRequest?): String { // (2)!
+        if (datos == null) {
+            fileService.writeMessage()
+            return "Fichero guardado: mensaje.txt"
+        }
         fileService.writeMessage(datos.nombre, datos.contenido) // (3)!
         return "Fichero guardado: ${datos.nombre}" // (4)!
     }
@@ -136,13 +144,13 @@ class FileController(
 ```
 
 1. Asocia las peticiones `POST /api/file` con este método. La anotación atiende la petición que envía el cliente.
-2. `@RequestBody` hace que Spring convierta el JSON recibido en un objeto `CrearTextoRequest`, que aquí llamamos `datos`.
+2. `@RequestBody(required = false)` permite aceptar el JSON nuevo y también la petición antigua sin cuerpo. Si no llega JSON, se conserva la escritura fija de la primera aplicación.
 3. Entrega el nombre y el contenido al servicio, que realiza la escritura.
 4. Devuelve al cliente una confirmación con el nombre del fichero guardado.
 5. `@RequestParam` recoge `nombre` de la URL. Si no se indica, `defaultValue` permite seguir leyendo `mensaje.txt`, como en el ejemplo anterior.
 6. Pide al servicio la lectura y devuelve su resultado al cliente. El servicio recibe un `String` normal: no necesita saber que procede de una URL.
 
-`GET /api/file` sigue leyendo `mensaje.txt` por defecto. También podemos indicar su nombre mediante `?nombre=mensaje.txt`. La petición `POST /api/file` ahora necesita un cuerpo JSON; reemplaza la antigua petición sin datos.
+`GET /api/file` sigue leyendo `mensaje.txt` por defecto. También podemos indicar su nombre mediante `?nombre=mensaje.txt`. `POST /api/file` acepta ahora un cuerpo JSON, pero mantiene la posibilidad de enviarse sin datos para conservar la operación de la primera aplicación.
 
 ## 4. Comprobar la escritura y la lectura
 
@@ -150,15 +158,6 @@ Podemos probar la misma API con **Postman** o con **PowerShell**. Elige una de l
 
 ### Opción A: utilizar Postman
 
-Postman es una aplicación que actúa como cliente HTTP. Nos permite elegir el método, escribir la URL, enviar datos y ver la respuesta del servidor.
-
-#### Preparar Postman
-
-1. Descarga e instala la [aplicación de escritorio de Postman](https://www.postman.com/downloads/).
-2. Reinicia nuestra aplicación desde IntelliJ para cargar los cambios y déjala ejecutándose.
-3. Abre Postman y crea una petición HTTP mediante **New → HTTP**.
-
-Usaremos Postman y nuestra aplicación en el mismo ordenador. Por eso la dirección del servidor será `http://localhost:8080`. Postman envía las peticiones; la aplicación debe seguir funcionando en IntelliJ para responder.
 
 #### Escribir el fichero con POST
 
@@ -175,6 +174,8 @@ Usaremos Postman y nuestra aplicación en el mismo ordenador. Por eso la direcci
 ```
 
 5. Pulsa **Send** para enviar la petición.
+
+![alt text](image-7.png)
 
 Al seleccionar JSON, Postman añade la cabecera `Content-Type: application/json`, que indica al servidor el formato de los datos. Puedes comprobarla en **Headers**. En este JSON, `\n` representa el salto de línea.
 
@@ -200,6 +201,7 @@ La respuesta debe tener el estado **200 OK** y mostrar:
 Primera linea
 Segunda linea
 ```
+![alt text](image-8.png)
 
 Puedes guardar las peticiones con **Save** en una colección llamada `Ficheros API`, con los nombres `Escribir texto` y `Leer texto`, para reutilizarlas durante las pruebas.
 
@@ -259,6 +261,15 @@ Para comprobar la equivalencia con la opción 4 del ejercicio 2, cambia el valor
 
 La API creará `data/notas.txt` y conservará `data/mensaje.txt`. Para leer el nuevo fichero, utiliza `http://localhost:8080/api/file?nombre=notas.txt`. Así comprobamos que el nombre ya no está fijado en el servicio.
 
+<div class="img-text-row img-equal-height" markdown>
+<div markdown>
+![alt text](image-9.png)
+</div>
+<div markdown>
+![alt text](image-10.png)
+</div>
+</div>
+
 ## 5. Añadir el listado
 
 El listado es una ampliación de nuestra API: nos permitirá ver los nombres de los ficheros creados en `data`.
@@ -313,6 +324,8 @@ También puedes abrir esa URL en el navegador. Si has completado las pruebas con
 ```
 
 PowerShell muestra la lista ya interpretada. El listado real dependerá de los ficheros que tengas en `data`.
+
+![alt text](image-6.png)
 
 ## 6. Relación con el ejercicio 2
 

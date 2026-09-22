@@ -17,15 +17,9 @@ Por ejemplo, en Postman pasaríamos de escribir el JSON en **Body → raw → JS
 
 La subida también sirve para imágenes o PDF porque copia bytes. Para empezar probaremos con un archivo de texto, de modo que podamos comprobar su contenido con la operación de lectura que ya tenemos.
 
-```text
-Crear texto:  Nombre y contenido en JSON → Files.writeString → carpeta data
-Subir:        Archivo en un formulario → Files.copy → carpeta data
-```
-
 Continuamos en el mismo proyecto. **Conserva el modelo, los métodos de escritura, lectura y listado.** Añadiremos un método al servicio y otro al controlador.
 
-!!! info "Antes de empezar"
-    Comprueba que puedes crear y leer `notas.txt` con la página anterior. En esta página solo añadirás un método a cada clase y sus imports. Después reinicia la aplicación para cargar los cambios.
+
 
 ## 1. El nuevo concepto: MultipartFile
 
@@ -78,7 +72,7 @@ fun save(file: MultipartFile): String {
 6. Si ya existe un fichero con el mismo nombre en el destino, sustituye su contenido por el archivo recibido.
 7. Devuelve una confirmación al controlador, que la enviará al cliente como respuesta HTTP.
 
-En la opción 7 del ejercicio 2 copiábamos entre dos rutas. Aquí el origen es el flujo de entrada de una petición; el destino sigue siendo un fichero.
+
 
 ## 3. Añadir la operación al controlador
 
@@ -139,19 +133,47 @@ Invoke-RestMethod "http://localhost:8080/api/file?nombre=ejemplo.txt"
 
 El listado incluirá `ejemplo.txt` y la segunda petición devolverá su texto. También puedes volver a crear `notas.txt` con el JSON de la página anterior: ambas formas de guardar ficheros siguen disponibles.
 
-!!! info "Leer texto no es descargar cualquier archivo"
-    La subida copia bytes y permite guardar otros tipos de archivo, pero la operación de lectura usa `Files.readString` y está pensada para texto UTF-8. En esta práctica no implementamos una descarga de archivos binarios.
+### Probar con Postman
 
-## 5. Qué hemos aprendido
+Las instrucciones básicas de uso de Postman se explican en [Primera aplicación con ficheros](ficheros.md#comprobarlo-con-postman). Aquí las aplicaremos a la subida mediante `multipart/form-data`. Mantén la aplicación ejecutándose en IntelliJ y utiliza `http://localhost:8080` como dirección del servidor.
 
-| Forma de guardar | Datos de entrada | Escritura en el servicio |
-|---|---|---|
-| Primer ejemplo | Nombre y texto fijos | `Files.writeString` |
-| Creación de texto | Nombre y contenido recibidos en JSON | `Files.writeString` |
-| Subida | Archivo recibido como `MultipartFile` | `Files.copy` |
+#### Subir `ejemplo.txt`
 
-!!! success "Una nueva operación en el mismo proyecto"
-    Hemos añadido la subida manteniendo la creación de texto, la lectura y el listado. El controlador recibe el archivo y el servicio guarda su contenido.
+1. Crea una petición **POST** a `http://localhost:8080/api/files/upload`.
+2. Abre **Body** y selecciona **form-data**.
+3. Añade una fila con la clave `file`.
+4. Cambia el tipo de esa fila de **Text** a **File** y pulsa **Select Files**.
+5. Selecciona el archivo `ejemplo.txt` y pulsa **Send**.
+
+La respuesta debe ser:
+
+```text
+Fichero guardado: ejemplo.txt
+```
+
+![alt text](image-11.png)
+
+No añadas manualmente `Content-Type: application/json`: en una petición `multipart/form-data`, Postman genera la cabecera y el separador necesarios.
+
+#### Leer el archivo subido
+
+1. Crea una petición **GET** a `http://localhost:8080/api/file`.
+2. En **Params**, añade `nombre` como clave y `ejemplo.txt` como valor.
+3. Deja el cuerpo en **none** y pulsa **Send**.
+
+![alt text](image-12.png)
+
+Postman debe mostrar el texto guardado en `ejemplo.txt`. También puedes abrir la URL completa en el navegador, porque esta operación utiliza `GET`.
+
+![alt text](image-13.png)
+
+#### Listar los archivos
+
+Crea una petición **GET** a `http://localhost:8080/api/files`, sin cuerpo, y pulsa **Send**. La respuesta JSON debe incluir `ejemplo.txt` junto con los demás ficheros de la carpeta `data`.
+
+![alt text](image-14.png)
+
+
 
 !!! question "Comprueba que lo entiendes"
     ¿Qué diferencia hay entre enviar un JSON con `nombre` y `contenido` para crear texto y subir un archivo `ejemplo.txt` que ya existe en el ordenador del cliente?

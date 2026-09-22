@@ -1,8 +1,8 @@
 # 🗺️ Guía de estudio
 
-El módulo está dividido en **3 bloques temáticos**. Sigue el orden indicado: cada bloque parte de los conocimientos del anterior.
+El contenido está dividido en **4 temas**. Sigue el orden indicado: cada tema parte de los conocimientos del anterior.
 
-**Bloque 1 — Sistema de ficheros ⏱️ ~4h**
+**Tema 1 — Sistema de ficheros**
 
 Entenderás qué es un fichero, cómo se organiza el sistema de archivos y cómo acceder a él desde Kotlin.
 
@@ -14,7 +14,7 @@ Entenderás qué es un fichero, cómo se organiza el sistema de archivos y cómo
 
 ---
 
-**Bloque 2 — Manejo de ficheros ⏱️ ~6h**
+**Tema 2 — Manejo de ficheros**
 
 Aprenderás a leer y escribir ficheros de texto, binarios, imágenes y a hacer acceso aleatorio.
 
@@ -32,7 +32,7 @@ Aprenderás a leer y escribir ficheros de texto, binarios, imágenes y a hacer a
 
 ---
 
-**Bloque 3 — Ficheros de diferentes formatos ⏱️ ~6h**        
+**Tema 3 — Ficheros de diferentes formatos**
 
 Trabajarás con formatos de intercambio de datos (JSON, XML, CSV) usando librerías externas.
 
@@ -42,7 +42,23 @@ Trabajarás con formatos de intercambio de datos (JSON, XML, CSV) usando librer�
 | 2 | [Serialización de Objetos](T3_Formatos_diferentes/seriaci_dobjectes.md) | Convertir objetos a bytes y viceversa |
 | 3 | [Ficheros de intercambio](T3_Formatos_diferentes/ficheros_intercambio.md) | CSV, JSON y XML con librerías |
 | 4 | [Conversión entre formatos](T3_Formatos_diferentes/conversion.md) | De un formato a otro |
-| 5 | Ejercicio obligatorio 3 *(próximamente)* | Aplicación con múltiples formatos |
+| 5 | [Ejercicio obligatorio 3](T3_Formatos_diferentes/ejercicios.md) | Aplicación con múltiples formatos |
+
+---
+
+**Tema 4 — Spring Boot y componentes de acceso a datos**
+
+Aprenderás a integrar las operaciones con ficheros en una aplicación web mediante Spring Boot, Spring MVC, Tomcat y una API REST.
+
+| Orden | Página | Descripción |
+|-------|--------|-------------|
+| 1 | [Introducción a Spring Boot](T4_Spring_Boot/intro.md) | Aplicaciones web, Tomcat, Spring MVC y Spring Boot |
+| 2 | [Primera aplicación](T4_Spring_Boot/primera_aplicacion.md) | Crear una aplicación desde Spring Initializr |
+| 3 | [Primera aplicación con ficheros](T4_Spring_Boot/ficheros.md) | Leer y escribir ficheros mediante una API REST |
+| 4 | [Gestión de ficheros](T4_Spring_Boot/gestion_ficheros.md) | Crear, leer, listar y subir ficheros |
+| 5 | [Texto y listado](T4_Spring_Boot/texto_y_listado.md) | Trabajar con texto y listados de ficheros |
+| 6 | [Conversión CSV a JSON](T4_Spring_Boot/conversion.md) | Convertir datos mediante un servicio web |
+| 7 | [Ejercicio obligatorio 4](T4_Spring_Boot/ejercicios.md) | Diseñar una API de gestión de apuntes |
 
 ---
 
@@ -52,7 +68,7 @@ Trabajarás con formatos de intercambio de datos (JSON, XML, CSV) usando librer�
     - **Lee primero la teoría** de cada página antes de intentar ejecutar el código.
     - **Ejecuta todos los ejemplos** en IntelliJ: la práctica es esencial para afianzar los conceptos.
     - Antes de pasar a la siguiente página, asegúrate de que entiendes el ejemplo anterior: compara tu salida con la salida esperada que aparece en cada ejemplo.
-    - **Los ejercicios obligatorios habilitados** son la parte más importante: aplican todo lo aprendido en el bloque. Los ejercicios 2 y 3 estarán disponibles próximamente.
+    - **Los ejercicios obligatorios** son la parte más importante: aplican todo lo aprendido en cada bloque.
 
 
 ---

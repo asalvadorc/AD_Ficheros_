@@ -159,7 +159,32 @@ Arranca la aplicación y abre PowerShell en la carpeta que contiene `reporte.csv
 curl.exe -F "file=@reporte.csv" http://localhost:8080/api/conversions/csv-json
 ```
 
-No necesitas subirlo antes a `/api/files/upload`. Esta petición ya envía el CSV al controlador de conversión, que lo lee sin guardarlo en `data`.
+### Probar con Postman
+
+También puedes probar la conversión desde Postman:
+
+1. Crea una petición **POST** a `http://localhost:8080/api/conversions/csv-json`.
+2. Abre **Body** y selecciona **form-data**.
+3. Añade una fila con la clave `file`.
+4. Cambia el tipo de la fila de **Text** a **File** y selecciona `reporte.csv`.
+5. Pulsa **Send**.
+
+El campo debe llamarse exactamente `file`, porque el controlador utiliza `@RequestParam("file")`. No añadas manualmente `Content-Type`: Postman genera la cabecera `multipart/form-data` al seleccionar **form-data**.
+
+La respuesta aparecerá en **Body** con formato JSON. Con el CSV de prueba debe contener objetos como:
+
+```json
+[
+  { "nombre": "datos.csv", "tipo": "Archivo", "tamanyo": 51 },
+  { "nombre": "documento.txt", "tipo": "Archivo", "tamanyo": 180 }
+]
+```
+
+![alt text](image-15.png)
+
+Postman envía el CSV directamente al endpoint de conversión. No es necesario subirlo antes a `/api/files/upload` y el servidor no lo guarda automáticamente en `data`.
+
+La petición de PowerShell también envía el CSV directamente al controlador de conversión, que lo lee sin guardarlo en `data`.
 
 Con el contenido de prueba del apartado 1 recibirás estos datos JSON, aunque el espaciado puede ser diferente:
 
@@ -176,31 +201,15 @@ Antes de continuar, cambia `51` por `52` en el CSV y repite la petición. El pri
 
 Si no obtienes la respuesta esperada, comprueba que has reiniciado la aplicación tras añadir las clases, que PowerShell está en la carpeta del CSV y que las filas tienen tres columnas separadas por comas.
 
-## 6. Devolver JSON y guardar JSON son operaciones diferentes
 
-| Aspecto | Ejercicio 3 | Este ejemplo con Spring |
-|---|---|---|
-| Origen de los datos | `reporte.csv` generado previamente | Ese mismo CSV enviado en la petición |
-| Lectura | Abrir el CSV mediante su ruta | Leer el flujo del `MultipartFile` |
-| Modelo | Información de archivos y directorios | La misma información: nombre, tipo y tamaño |
-| Resultado JSON | Guardar `exportar/reporte.json` | Devolver JSON en la respuesta HTTP |
-| Resultado XML | Guardar `exportar/reporte.xml` | No se genera en este paso |
 
-**Spring convierte la lista a JSON para enviarla al cliente, pero no crea `reporte.json` en el servidor.** Tampoco guarda automáticamente el CSV recibido.
+!!! question "Preguntas de comprobación"
+    Intenta responder antes de desplegar las soluciones:
 
-Cuando adaptes el proyecto completo del ejercicio 3, deberás conservar sus funciones de escritura para generar `reporte.json` y `reporte.xml` en `exportar`. Devolver una respuesta JSON no sustituye ese requisito. La lista obtenida al leer el CSV puede utilizarse tanto para guardar los reportes como para responder al cliente.
-
-!!! success "La conversión conocida, accesible mediante HTTP"
-    Hemos reutilizado el formato del reporte y su modelo de datos. La novedad es recibir el CSV mediante una petición y devolver los objetos como JSON, sin volver a consultar el directorio.
-
-## 7. Comprueba que lo entiendes
-
-Intenta responder antes de desplegar las soluciones:
-
-1. ¿Qué recibe el controlador?
-2. ¿Qué devuelve el servicio?
-3. ¿Quién convierte la lista a JSON?
-4. ¿Se ha creado un fichero `reporte.json`?
+    1. ¿Qué recibe el controlador?
+    2. ¿Qué devuelve el servicio?
+    3. ¿Quién convierte la lista a JSON?
+    4. ¿Se ha creado un fichero `reporte.json`?
 
 ??? success "Respuestas"
     1. El CSV enviado por el cliente, representado por un `MultipartFile`.
