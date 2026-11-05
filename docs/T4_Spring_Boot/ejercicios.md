@@ -208,16 +208,16 @@ Para probarlo, selecciona una imagen en Postman mediante **Body → form-data �
 
 La calificación se obtiene sumando los siguientes apartados:
 
-| Reto | Aspectos evaluados | Puntuación máxima |
+| Criterio | Aspectos evaluados | Puntuación máxima |
 |---|---|:---:|
 | **Organización del proyecto** | Modelo, controlador y servicio separados; responsabilidades bien distribuidas y código legible. | **1,0** |
-| **Creación de apuntes** | Recibe JSON, guarda texto con varias líneas y sustituye el contenido cuando corresponde. | **1,5** |
-| **Lectura de apuntes** | Recibe el nombre en la URL y devuelve el contenido del fichero solicitado. | **1,0** |
-| **Listado de apuntes** | Devuelve JSON ordenado, filtra ficheros `.txt`, excluye carpetas y admite un listado vacío. | **1,0** |
-| **Subida de apuntes** | Recibe el campo `file`, copia el archivo y permite leerlo después. | **1,0** |
-| **Importación CSV** | Lee el CSV recibido, crea o sustituye los apuntes y devuelve sus nombres. | **1,25** |
-| **Conversión a XML** | Lee un apunte y genera una respuesta XML con su nombre y contenido. | **1,0** |
-| **Gestión de imágenes** | Sube, valida, almacena y devuelve imágenes con el tipo MIME correcto. | **1,0** |
-| **Almacenamiento y comprobaciones** | Crea la carpeta, conserva los datos, comprueba nombres y archivos vacíos y cierra los recursos. | **0,75** |
+| **Creación y actualización de ficheros** | Recibe JSON, guarda texto con varias líneas y sustituye el contenido cuando corresponde. | **1,5** |
+| **Lectura de ficheros** | Recibe el nombre en la URL y devuelve el contenido del fichero solicitado. | **1,0** |
+| **Listado y filtrado de ficheros** | Devuelve JSON ordenado, filtra ficheros `.txt`, excluye carpetas y admite un listado vacío. | **1,0** |
+| **Subida de ficheros** | Recibe el campo `file`, copia el archivo y permite leerlo después. | **1,0** |
+| **Importación de datos** | Lee el CSV recibido, crea o sustituye los apuntes y devuelve sus nombres. | **1,25** |
+| **Conversión de formatos** | Lee un apunte y genera una respuesta XML con su nombre y contenido. | **1,0** |
+| **Gestión de ficheros binarios** | Sube, valida, almacena y devuelve imágenes con el tipo MIME correcto. | **1,0** |
+| **Almacenamiento y validación** | Crea la carpeta, conserva los datos, comprueba nombres y archivos vacíos y cierra los recursos. | **0,75** |
 | **Pruebas y comprensión** | Entrega la colección, las evidencias y un vídeo breve; explica correctamente el papel del cliente, del controlador y del servicio. | **0,5** |
 | | **TOTAL** | **10,0** |

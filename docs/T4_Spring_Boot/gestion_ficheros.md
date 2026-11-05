@@ -135,7 +135,7 @@ El listado incluirá `ejemplo.txt` y la segunda petición devolverá su texto. T
 
 ### Probar con Postman
 
-Las instrucciones básicas de uso de Postman se explican en [Primera aplicación con ficheros](ficheros.md#comprobarlo-con-postman). Aquí las aplicaremos a la subida mediante `multipart/form-data`. Mantén la aplicación ejecutándose en IntelliJ y utiliza `http://localhost:8080` como dirección del servidor.
+Las instrucciones básicas de uso de Postman se explican en [Primera aplicación con ficheros](ficheros.md#4-probar-la-aplicación). Aquí las aplicaremos a la subida mediante `multipart/form-data`. Mantén la aplicación ejecutándose en IntelliJ y utiliza `http://localhost:8080` como dirección del servidor.
 
 #### Subir `ejemplo.txt`
 

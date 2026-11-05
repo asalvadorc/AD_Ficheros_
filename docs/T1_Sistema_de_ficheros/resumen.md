@@ -17,6 +17,11 @@ hide:
 | Persistencia | Los ficheros sirven para guardar datos de forma permanente. | Útil para configuraciones, historial o estado. |
 | Lectura/escritura | Permiten leer y guardar información de forma estructurada. | Se puede trabajar con texto o datos binarios. |
 | Gestión de errores | Es importante controlar excepciones al usar ficheros. | Se suelen manejar con `IOException`. |
+| Lambda | Es una función sin nombre que podemos pasar a otra función. | `{ nombre -> println(nombre) }`: antes de `->` va el parámetro; después, las instrucciones. |
+| `it` | Es el nombre implícito de un único parámetro cuando se omite su declaración. | `nombres.forEach { println(it) }`. |
+| `use` | Ejecuta un bloque con un recurso y lo cierra al terminar, incluso si el bloque falla. | `lector.use { reader -> println(reader.readLine()) }`. |
+
+Consulta [Entender las lambdas en Kotlin](lambdas.md) para comparar estas estructuras con un bucle `for` y con el cierre manual mediante `try/finally`.
 
 ## Operaciones principales con **Files**
 

@@ -156,106 +156,106 @@ class FileController(
 
 Podemos probar la misma API con **Postman** o con **PowerShell**. Elige una de las dos herramientas: no necesitas repetir las pruebas con ambas ni cambiar el código Kotlin.
 
-### Opción A: utilizar Postman
+=== "Postman"
 
 
-#### Escribir el fichero con POST
+    #### Escribir el fichero con POST
 
-1. En el selector situado junto a la URL, elige **POST**.
-2. Introduce `http://localhost:8080/api/file` en el campo de la URL.
-3. Abre la pestaña **Body**, selecciona **raw** y elige **JSON** como formato.
-4. Copia este contenido en el editor del cuerpo de la petición:
+    1. En el selector situado junto a la URL, elige **POST**.
+    2. Introduce `http://localhost:8080/api/file` en el campo de la URL.
+    3. Abre la pestaña **Body**, selecciona **raw** y elige **JSON** como formato.
+    4. Copia este contenido en el editor del cuerpo de la petición:
 
-```json
-{
-  "nombre": "mensaje.txt",
-  "contenido": "Primera linea\nSegunda linea"
-}
-```
+    ```json
+    {
+      "nombre": "mensaje.txt",
+      "contenido": "Primera linea\nSegunda linea"
+    }
+    ```
 
-5. Pulsa **Send** para enviar la petición.
+    5. Pulsa **Send** para enviar la petición.
 
-![alt text](image-7.png)
+    ![alt text](image-7.png)
 
-Al seleccionar JSON, Postman añade la cabecera `Content-Type: application/json`, que indica al servidor el formato de los datos. Puedes comprobarla en **Headers**. En este JSON, `\n` representa el salto de línea.
+    Al seleccionar JSON, Postman añade la cabecera `Content-Type: application/json`, que indica al servidor el formato de los datos. Puedes comprobarla en **Headers**. En este JSON, `\n` representa el salto de línea.
 
-En el panel de respuesta deberías ver el estado **200 OK** y este texto:
+    En el panel de respuesta deberías ver el estado **200 OK** y este texto:
 
-```text
-Fichero guardado: mensaje.txt
-```
+    ```text
+    Fichero guardado: mensaje.txt
+    ```
 
-Comprueba que `data/mensaje.txt` contiene las dos líneas enviadas. Ese fichero está en el servidor; Postman solo envía el nombre y el contenido.
+    Comprueba que `data/mensaje.txt` contiene las dos líneas enviadas. Ese fichero está en el servidor; Postman solo envía el nombre y el contenido.
 
-#### Leer el fichero con GET
+    #### Leer el fichero con GET
 
-1. Crea otra petición HTTP y elige **GET**.
-2. Introduce `http://localhost:8080/api/file`.
-3. En **Params**, añade una fila con **Key** `nombre` y **Value** `mensaje.txt`. Postman completará la URL con `?nombre=mensaje.txt`.
-4. Deja **Body → none**: para esta lectura no enviamos JSON.
-5. Pulsa **Send**.
+    1. Crea otra petición HTTP y elige **GET**.
+    2. Introduce `http://localhost:8080/api/file`.
+    3. En **Params**, añade una fila con **Key** `nombre` y **Value** `mensaje.txt`. Postman completará la URL con `?nombre=mensaje.txt`.
+    4. Deja **Body → none**: para esta lectura no enviamos JSON.
+    5. Pulsa **Send**.
 
-La respuesta debe tener el estado **200 OK** y mostrar:
+    La respuesta debe tener el estado **200 OK** y mostrar:
 
-```text
-Primera linea
-Segunda linea
-```
-![alt text](image-8.png)
+    ```text
+    Primera linea
+    Segunda linea
+    ```
+    ![alt text](image-8.png)
 
-Puedes guardar las peticiones con **Save** en una colección llamada `Ficheros API`, con los nombres `Escribir texto` y `Leer texto`, para reutilizarlas durante las pruebas.
+    Puedes guardar las peticiones con **Save** en una colección llamada `Ficheros API`, con los nombres `Escribir texto` y `Leer texto`, para reutilizarlas durante las pruebas.
 
-!!! tip "Si no recibes la respuesta esperada"
-    - **No se puede conectar:** comprueba que la aplicación está arrancada y utiliza el puerto `8080`.
-    - **404:** revisa la ruta `/api/file`.
-    - **405:** comprueba el método seleccionado, `POST` para escribir o `GET` para leer.
-    - **400 o 415 al escribir:** revisa que has elegido **Body → raw → JSON** y que el cuerpo contiene `nombre` y `contenido` entre comillas dobles.
-    - **Error al leer:** envía primero la escritura y comprueba que utilizas el mismo nombre.
+    !!! tip "Si no recibes la respuesta esperada"
+        - **No se puede conectar:** comprueba que la aplicación está arrancada y utiliza el puerto `8080`.
+        - **404:** revisa la ruta `/api/file`.
+        - **405:** comprueba el método seleccionado, `POST` para escribir o `GET` para leer.
+        - **400 o 415 al escribir:** revisa que has elegido **Body → raw → JSON** y que el cuerpo contiene `nombre` y `contenido` entre comillas dobles.
+        - **Error al leer:** envía primero la escritura y comprueba que utilizas el mismo nombre.
 
-Consulta la [guía oficial de Postman sobre parámetros y cuerpo de la petición](https://learning.postman.com/docs/sending-requests/create-requests/parameters/) si necesitas localizar estas opciones.
+    Consulta la [guía oficial de Postman sobre parámetros y cuerpo de la petición](https://learning.postman.com/docs/sending-requests/create-requests/parameters/) si necesitas localizar estas opciones.
 
-### Opción B: utilizar PowerShell
+=== "PowerShell"
 
-Reinicia la aplicación para cargar los cambios. En PowerShell, prepara el JSON del apartado 1 y envíalo con `POST`, como en el ejemplo anterior, añadiendo ahora el contenido de la petición:
+    Reinicia la aplicación para cargar los cambios. En PowerShell, prepara el JSON del apartado 1 y envíalo con `POST`, como en el ejemplo anterior, añadiendo ahora el contenido de la petición:
 
-```powershell
-$datos = @{
-    nombre = "mensaje.txt"
-    contenido = "Primera linea`nSegunda linea"
-} | ConvertTo-Json
+    ```powershell
+    $datos = @{
+        nombre = "mensaje.txt"
+        contenido = "Primera linea`nSegunda linea"
+    } | ConvertTo-Json
 
-Invoke-RestMethod -Method Post -Uri "http://localhost:8080/api/file" -ContentType "application/json" -Body $datos
-```
+    Invoke-RestMethod -Method Post -Uri "http://localhost:8080/api/file" -ContentType "application/json" -Body $datos
+    ```
 
-- `ConvertTo-Json` convierte el nombre y el contenido en JSON.
-- En la cadena de PowerShell, `` `n `` introduce el salto de línea; al convertirla a JSON se representa como `\n`.
-- `-ContentType` indica que enviamos JSON y `-Body` contiene los datos de la petición.
-- El servidor guarda el texto en `data/mensaje.txt`, sustituyendo el contenido del ejemplo anterior.
+    - `ConvertTo-Json` convierte el nombre y el contenido en JSON.
+    - En la cadena de PowerShell, `` `n `` introduce el salto de línea; al convertirla a JSON se representa como `\n`.
+    - `-ContentType` indica que enviamos JSON y `-Body` contiene los datos de la petición.
+    - El servidor guarda el texto en `data/mensaje.txt`, sustituyendo el contenido del ejemplo anterior.
 
-Debes recibir `Fichero guardado: mensaje.txt`. Comprueba que `data/mensaje.txt` contiene ahora las dos líneas enviadas.
+    Debes recibir `Fichero guardado: mensaje.txt`. Comprueba que `data/mensaje.txt` contiene ahora las dos líneas enviadas.
 
-Lee el contenido:
+    Lee el contenido:
 
-```powershell
-Invoke-RestMethod "http://localhost:8080/api/file?nombre=mensaje.txt"
-```
+    ```powershell
+    Invoke-RestMethod "http://localhost:8080/api/file?nombre=mensaje.txt"
+    ```
 
-```text
-Primera linea
-Segunda linea
-```
+    ```text
+    Primera linea
+    Segunda linea
+    ```
 
-Puedes abrir esa misma URL en el navegador para leer. Para escribir usamos Postman o PowerShell porque necesitamos enviar un `POST` con datos; la barra de direcciones del navegador envía un `GET`.
+    Puedes abrir esa misma URL en el navegador para leer. Para escribir usamos Postman o PowerShell porque necesitamos enviar un `POST` con datos; la barra de direcciones del navegador envía un `GET`.
 
-### Comprobar los cambios con cualquiera de las herramientas
+    ### Comprobar los cambios con cualquiera de las herramientas
 
-!!! question "Comprueba que lo entiendes"
-    Cambia `contenido` en el JSON de Postman y pulsa **Send**, o modifica y ejecuta de nuevo el bloque completo de PowerShell. Después repite la lectura. ¿Qué texto esperas recibir?
+    !!! question "Comprueba que lo entiendes"
+        Cambia `contenido` en el JSON de Postman y pulsa **Send**, o modifica y ejecuta de nuevo el bloque completo de PowerShell. Después repite la lectura. ¿Qué texto esperas recibir?
 
-??? success "Respuesta"
-    El nuevo texto. `Files.writeString` sustituye el contenido del fichero existente. No necesitas modificar el código Kotlin ni reiniciar Spring para enviar otros datos.
+    ??? success "Respuesta"
+        El nuevo texto. `Files.writeString` sustituye el contenido del fichero existente. No necesitas modificar el código Kotlin ni reiniciar Spring para enviar otros datos.
 
-### Probar otro nombre elegido por el cliente
+    ### Probar otro nombre elegido por el cliente
 
 Para comprobar la equivalencia con la opción 4 del ejercicio 2, cambia el valor de `nombre` de `mensaje.txt` a `notas.txt`. En Postman, modifica el JSON de la petición POST y pulsa **Send**; en PowerShell, modifica y ejecuta el bloque completo de escritura. **`notas.txt` es un nombre de prueba elegido ahora**, no un archivo que debas tener del ejercicio anterior.
 

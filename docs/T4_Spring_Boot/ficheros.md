@@ -251,62 +251,62 @@ Podemos probar la misma API con Postman o con PowerShell. Elige una de las dos h
 
 Ejecuta `FicherosApiApplication.kt`. 
 
-### Opción A: utilizar Postman
+=== "Postman"
 
 
-Usaremos Postman y nuestra aplicación en el mismo ordenador. Por eso la dirección del servidor será `http://localhost:8080`. Postman envía las peticiones; la aplicación debe seguir funcionando en IntelliJ para responder.
+    Usaremos Postman y nuestra aplicación en el mismo ordenador. Por eso la dirección del servidor será `http://localhost:8080`. Postman envía las peticiones; la aplicación debe seguir funcionando en IntelliJ para responder.
 
-#### Escribir el fichero con POST
+    #### Escribir el fichero con POST
 
-   - Crea una petición **POST** a `http://localhost:8080/api/file`.
-   - No añadas ningún cuerpo a la petición.
-   - Pulsa **Send**.
-   - Debes recibir `Fichero guardado`.
+       - Crea una petición **POST** a `http://localhost:8080/api/file`.
+       - No añadas ningún cuerpo a la petición.
+       - Pulsa **Send**.
+       - Debes recibir `Fichero guardado`.
 
-   ![alt text](image-16.png)
+       ![alt text](image-16.png)
 
-#### Leer el fichero con GET
+    #### Leer el fichero con GET
   
 
-   - Crea una petición **GET** a `http://localhost:8080/api/file`.
-   - No añadas ningún cuerpo.
-   - Pulsa **Send**.
-   - Debes recibir `Hola desde un fichero`.
+       - Crea una petición **GET** a `http://localhost:8080/api/file`.
+       - No añadas ningún cuerpo.
+       - Pulsa **Send**.
+       - Debes recibir `Hola desde un fichero`.
 
-![alt text](image-17.png)
+    ![alt text](image-17.png)
 
-### Opción B: utilizar PowerShell
+=== "PowerShell"
 
 
-Primero crea el fichero desde PowerShell:
+    Primero crea el fichero desde PowerShell:
 
-```powershell
-Invoke-RestMethod -Method Post http://localhost:8080/api/file
-```
+    ```powershell
+    Invoke-RestMethod -Method Post http://localhost:8080/api/file
+    ```
 
-La respuesta será:
+    La respuesta será:
 
-```text
-Fichero guardado
-```
+    ```text
+    Fichero guardado
+    ```
 
-Comprueba que se ha creado `data/mensaje.txt` en la raíz del proyecto. Después visita esta dirección en el navegador:
+    Comprueba que se ha creado `data/mensaje.txt` en la raíz del proyecto. Después visita esta dirección en el navegador:
 
-```text
-http://localhost:8080/api/file
-```
+    ```text
+    http://localhost:8080/api/file
+    ```
 
-También puedes leerlo desde PowerShell:
+    También puedes leerlo desde PowerShell:
 
-```powershell
-Invoke-RestMethod http://localhost:8080/api/file
-```
+    ```powershell
+    Invoke-RestMethod http://localhost:8080/api/file
+    ```
 
-La respuesta contendrá el texto guardado:
+    La respuesta contendrá el texto guardado:
 
-```text
-Hola desde un fichero
-```
+    ```text
+    Hola desde un fichero
+    ```
 
 
 ### Comprobar la equivalencia con el menú

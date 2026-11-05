@@ -151,6 +151,40 @@ Petición con reporte.csv
   → el cliente recibe la respuesta
 ```
 
+### Del CSV a la respuesta JSON
+
+El recorrido completo de la conversión es:
+
+```text
+reporte.csv → MultipartFile → List<ArchivoInfo> → respuesta JSON
+```
+
+El servicio lee el CSV y construye una lista de objetos `ArchivoInfo`. El controlador devuelve esa lista y **Spring la convierte automáticamente a JSON** al preparar la respuesta HTTP. Por tanto, esta operación devuelve los datos al cliente, pero **no crea ni guarda un fichero `reporte.json`**.
+
+Por ejemplo, una fila del CSV:
+
+```csv
+datos.csv,Archivo,51
+```
+
+se convierte primero en un objeto Kotlin:
+
+```kotlin
+ArchivoInfo("datos.csv", "Archivo", 51L)
+```
+
+y Spring lo incluye en la respuesta:
+
+```json
+[
+  {
+    "nombre": "datos.csv",
+    "tipo": "Archivo",
+    "tamanyo": 51
+  }
+]
+```
+
 ## 5. Probar la conversión
 
 Arranca la aplicación y abre PowerShell en la carpeta que contiene `reporte.csv` (por ejemplo, `exportar` en tu proyecto del ejercicio 3):

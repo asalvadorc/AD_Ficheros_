@@ -100,6 +100,7 @@ nav:
   - 00_entorno_y_proyecto.md  
 - T1. Sistema de ficheros:
   - 🔹 Introducción: T1_Sistema_de_ficheros/ficheros.md
+  - 🔹 Entender las lambdas en Kotlin: T1_Sistema_de_ficheros/lambdas.md
   - 🔹 Acceso al sistema de ficheros: T1_Sistema_de_ficheros/NIO_AccesoFicheros.md
   - 🔹 Resumen: T1_Sistema_de_ficheros/resumen.md
   - 📝 Ejercicio 1: T1_Sistema_de_ficheros/exercicis.md
