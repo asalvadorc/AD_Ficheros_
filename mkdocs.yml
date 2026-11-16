@@ -11,10 +11,12 @@ copyright: >
 
 extra_css:
   - css/extra.css
+  - css/tablas.css
   
 
 extra_javascript:
   - js/lightbox.js
+  - js/tablas.js
 
 theme: 
   name: material

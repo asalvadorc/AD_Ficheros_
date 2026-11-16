@@ -110,6 +110,47 @@ fun main() {
 7. Lee el siguiente byte en cada iteracion.
 
 
+!!! question "🧠 readAllBytes o flujos con búfer: ¿cómo copiarías un fichero grande?"
+    Se quiere copiar un vídeo de **2 GB** conservando exactamente sus bytes, sin cargar todo el fichero en memoria. El origen existe, el destino es distinto y hay permisos suficientes. Compara estas dos alternativas:
+
+    **Alternativa A: leer todo y escribirlo después**
+
+    ```kotlin
+    val datos = Files.readAllBytes(origen)
+    Files.write(destino, datos)
+    ```
+
+    **Alternativa B: leer y escribir por bloques**
+
+    ```kotlin
+    BufferedInputStream(Files.newInputStream(origen)).use { entrada ->
+        BufferedOutputStream(Files.newOutputStream(destino)).use { salida ->
+            val bloque = ByteArray(8192)
+            var leidos = entrada.read(bloque)
+            while (leidos != -1) {
+                salida.write(bloque, 0, leidos)
+                leidos = entrada.read(bloque)
+            }
+        }
+    }
+    ```
+
+    ¿Cuál elegirías para cumplir el objetivo y por qué? En la alternativa B, ¿por qué se escribe `salida.write(bloque, 0, leidos)` en lugar de `salida.write(bloque)`? Supón que la última lectura devuelve **1000**.
+
+    ??? success "Ver solución razonada"
+        Elegiría la **alternativa B**, porque procesa el fichero progresivamente y reutiliza el mismo array de 8192 bytes. Además de ese array, los flujos tienen sus propios búferes internos, pero no se mantiene el vídeo completo en memoria.
+
+        La alternativa A también trabaja con bytes y permite copiar fielmente un fichero que quepa en memoria, pero `readAllBytes` intenta construir un array con todo su contenido. Para un vídeo de 2 GB puede fallar por el tamaño del array o por falta de memoria; no cumple el objetivo de procesarlo sin cargarlo entero.
+
+        En B, `read(bloque)` devuelve **cuántos bytes se han leído en esa llamada**, o `-1` al llegar al final. Una lectura no tiene por qué llenar el array, aunque todavía queden datos por leer.
+
+        Si la última lectura devuelve **1000**:
+
+        - `write(bloque, 0, leidos)` escribe únicamente los **1000 bytes válidos** de esa lectura.
+        - `write(bloque)` escribiría los **8192 bytes del array**, incluyendo 7192 posiciones que no corresponden a esa lectura. Podrían contener datos de una lectura anterior o valores iniciales, y la copia quedaría alterada.
+
+        `use` cierra los dos flujos al terminar. Al cerrar el de salida se escriben también los bytes pendientes en su búfer. El bajo consumo de memoria se consigue al **procesar por bloques sin acumularlos**, no solo por usar una clase cuyo nombre empieza por `Buffered`.
+
 !!!question "🧠 Comprueba tu comprensión"
     ¿Qué ocurre si intentas abrir un archivo binario (como `.bin` o `.png`) con el Bloc de notas u otro editor de texto simple?
 

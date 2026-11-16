@@ -24,28 +24,35 @@ En este apartado estudiaremos cuándo resulta más conveniente utilizar cada una
 Cuando hay que guardar tipos primitivos (por ejemplo `Int`, `Double`) de forma secuencial, suele usarse `DataInputStream` y `DataOutputStream`.
 
 
-??? info "Clases y método de DataInputStream y DataOutputStream"
+??? info "Clases y métodos de DataInputStream y DataOutputStream"
 
-    | Clase               | Método                          | Tipo de dato           | Descripción                                               |
-    |--------------------|----------------------------------|------------------------|-----------------------------------------------------------|
-    | DataOutputStream   | `writeInt(int)`                  | Entero (4 bytes)       | Escribe un entero con signo                               |
-    |                    | `writeDouble(double)`            | Decimal (8 bytes)      | Escribe un número en coma flotante                        |
-    |                    | `writeFloat(float)`              | Decimal (4 bytes)      | Escribe un número float                                   |
-    |                    | `writeLong(long)`                | Entero largo (8 bytes) | Escribe un long                                           |
-    |                    | `writeBoolean(boolean)`          | Booleano (1 byte)      | Escribe un valor verdadero/falso                          |
-    |                    | `writeChar(char)`                | Carácter (2 bytes)     | Escribe un carácter Unicode                               |
-    |                    | `writeUTF(String)`               | Cadena UTF-8           | Escribe una cadena precedida por su longitud en 2 bytes   |
-    |                    | `writeByte(int)`                 | Byte (1 byte)          | Escribe un solo byte                                      |
-    |                    | `writeShort(int)`                | Entero corto (2 bytes) | Escribe un short                                          |
-    | DataInputStream    | `readInt()`                      | Entero                 | Lee un entero con signo                                   |
-    |                    | `readDouble()`                   | Decimal                | Lee un número double                                      |
-    |                    | `readFloat()`                    | Decimal                | Lee un número float                                       |
-    |                    | `readLong()`                     | Entero largo           | Lee un long                                               |
-    |                    | `readBoolean()`                  | Booleano               | Lee un valor verdadero/falso                              |
-    |                    | `readChar()`                     | Carácter               | Lee un carácter Unicode                                   |
-    |                    | `readUTF()`                      | Cadena UTF-8           | Lee una cadena UTF-8                                      |
-    |                    | `readByte()`                     | Byte                   | Lee un byte                                               |
-    |                    | `readShort()`                    | Entero corto           | Lee un short                                              |
+    **DataOutputStream — Escritura de datos**
+
+    | Método | Descripción |
+    |--------|-------------|
+    | `writeInt(int)` | Escribe un entero con signo de 4 bytes. |
+    | `writeDouble(double)` | Escribe un número en coma flotante de 8 bytes. |
+    | `writeFloat(float)` | Escribe un número en coma flotante de 4 bytes. |
+    | `writeLong(long)` | Escribe un entero largo de 8 bytes. |
+    | `writeBoolean(boolean)` | Escribe un valor verdadero/falso en 1 byte. |
+    | `writeChar(char)` | Escribe un carácter Unicode de 2 bytes. |
+    | `writeUTF(String)` | Escribe una cadena en UTF-8 modificada, precedida por la longitud en bytes de su representación, almacenada en 2 bytes. |
+    | `writeByte(int)` | Escribe un solo byte. |
+    | `writeShort(int)` | Escribe un entero corto de 2 bytes. |
+
+    **DataInputStream — Lectura de datos**
+
+    | Método | Descripción |
+    |--------|-------------|
+    | `readInt()` | Lee un entero con signo de 4 bytes. |
+    | `readDouble()` | Lee un número en coma flotante de 8 bytes. |
+    | `readFloat()` | Lee un número en coma flotante de 4 bytes. |
+    | `readLong()` | Lee un entero largo de 8 bytes. |
+    | `readBoolean()` | Lee un valor verdadero/falso almacenado en 1 byte. |
+    | `readChar()` | Lee un carácter Unicode de 2 bytes. |
+    | `readUTF()` | Lee una cadena escrita con `writeUTF`, interpretando su longitud y su codificación UTF-8 modificada. |
+    | `readByte()` | Lee un byte con signo. |
+    | `readShort()` | Lee un entero corto con signo de 2 bytes. |
 
 
 ---

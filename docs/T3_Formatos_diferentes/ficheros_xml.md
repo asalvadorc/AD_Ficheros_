@@ -62,7 +62,7 @@ XMLOutputter|	Convierte el árbol de elementos en texto XML.
     | `Document(Element root)`           | `Document`       | Crea un documento XML con el elemento raíz dado                            |
     | `getRootElement()`                 | `Document`       | Obtiene el elemento raíz del documento                                     |
     | `SAXBuilder().build(File)`         | `SAXBuilder`     | Carga un documento XML desde un archivo                                    |
-    | `XMLOutputter().output(Document, OutputStream)` | `XMLOutputter` | Escribe el documento XML en una salida (archivo, consola, etc.)            |
+    | `XMLOutputter().`<br>`output(Document, OutputStream)` | `XMLOutputter` | Escribe el documento XML en una salida (archivo, consola, etc.)            |
     | `setFormat(Format.prettyFormat())` | `XMLOutputter`   | Establece un formato bonito con sangrías                                   |
 
 <!--
@@ -317,7 +317,7 @@ Utilizaremos, por tanto, la librería **Jackson** para realizar la serializació
     | `writeValue(File, Object)`                   | `XmlMapper`  | Escribe un objeto como XML en un archivo                                   |
     | `writeValueAsString(Object)`                 | `XmlMapper`  | Convierte un objeto en una cadena XML                                      |
     | `writeValueAsBytes(Object)`                  | `XmlMapper`  | Convierte un objeto en un array de bytes XML                               |
-    | `registerModule(Module)`                     | `ObjectMapper` / `XmlMapper` | Registra un módulo como `KotlinModule` o `JavaTimeModule`        |
+    | `registerModule(Module)`                     | `ObjectMapper` /<br>`XmlMapper` | Registra un módulo como `KotlinModule` o `JavaTimeModule`        |
     | `enable(SerializationFeature)`               | `XmlMapper`  | Activa una opción de serialización (por ejemplo, indentado)                |
     | `disable(DeserializationFeature)`            | `XmlMapper`  | Desactiva una opción de deserialización                                    |
     | `configure(MapperFeature, boolean)`          | `XmlMapper`  | Configura opciones generales del mapeo                                     |

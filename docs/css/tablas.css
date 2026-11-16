@@ -1,0 +1,63 @@
+/* El texto descriptivo cede espacio a los nombres, métodos y códigos. */
+.md-typeset .md-typeset__scrollwrap:has(table[data-tabla-legible]) {
+    max-width: 100%;
+    margin-inline: 0;
+}
+
+.md-typeset .md-typeset__table:has(table[data-tabla-legible]) {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.md-typeset table[data-tabla-legible] {
+    display: table;
+    width: 100%;
+    min-width: 100%;
+    table-layout: auto;
+    overflow: visible;
+}
+
+.md-typeset table[data-tabla-legible] :is(th, td) {
+    min-width: 0;
+    width: auto;
+    max-width: 36rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    text-overflow: clip;
+    vertical-align: top;
+}
+
+.md-typeset table[data-tabla-legible] :is(th, td) code {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+/* También sirve para columnas clave que no sean la primera. */
+.md-typeset table[data-tabla-legible] :is(th, td).tabla-col-clave {
+    width: 1%;
+    min-width: max-content;
+    max-width: none;
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.md-typeset table[data-tabla-legible] :is(th, td).tabla-col-clave :is(code, a, strong) {
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+@media print {
+    .md-typeset table[data-tabla-legible] :is(th, td).tabla-col-clave,
+    .md-typeset table[data-tabla-legible] :is(th, td).tabla-col-clave :is(code, a, strong) {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+}

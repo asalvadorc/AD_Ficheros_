@@ -126,30 +126,30 @@ fun main() {
 
 ??? info "Lectura con OpenCSV"
 
-    | Clase / Método          | ¿Qué hace?                                                              | Ejemplo básico                                         |
-    | ----------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------ |
-    | `CSVReader(FileReader)` | Crea un lector de archivos CSV.                                         | `val reader = CSVReader(FileReader("archivo.csv"))`    |
-    | `readAll()`             | Lee todo el contenido como `List<Array<String>>`.                       | `val filas = reader.readAll()`                         |
-    | `readNext()`            | Lee una fila como `Array<String>`.                                      | `val fila = reader.readNext()`                         |
-    | `close()`               | Cierra el lector.                                                       | `reader.close()`                                       |
-    | `CSVReaderBuilder(...)` | Permite configurar el lector: separador, comillas, salto de línea, etc. | `CSVReaderBuilder(FileReader(...)).withSeparator(';')` |
-    | `withSkipLines(n)`      | Omite las primeras `n` líneas (útil para saltar cabeceras).             | `withSkipLines(1)`                                     |
-    | `build()`               | Construye el lector configurado.                                        | `build()`                                              |
+    | Clase / Método | ¿Qué hace? |
+    | ----------------------- | ----------------------------------------------------------------------- |
+    | `CSVReader(FileReader)` | Crea un lector de archivos CSV. |
+    | `readAll()` | Lee todo el contenido como `List<Array<String>>`. |
+    | `readNext()` | Lee una fila como `Array<String>`. |
+    | `close()` | Cierra el lector. |
+    | `CSVReaderBuilder(...)` | Permite configurar el lector: separador, comillas, salto de línea, etc. |
+    | `withSkipLines(n)` | Omite las primeras `n` líneas (útil para saltar cabeceras). |
+    | `build()` | Construye el lector configurado. |
 
 ??? info "Escritura con OpenCSV"
 
-    | Clase / Método                  | ¿Qué hace?                                                          | Ejemplo básico                                         |
-    | ------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------ |
-    | `CSVWriter(FileWriter)`         | Crea un escritor CSV básico.                                        | `val writer = CSVWriter(FileWriter("archivo.csv"))`    |
-    | `writeNext(Array<String>)`      | Escribe una línea al CSV.                                           | `writer.writeNext(arrayOf("Ana", "30"))`               |
-    | `writeAll(List<Array<String>>)` | Escribe múltiples filas al CSV.                                     | `writer.writeAll(listaFilas)`                          |
-    | `flush()`                       | Fuerza la escritura del buffer.                                     | `writer.flush()`                                       |
-    | `close()`                       | Cierra el escritor.                                                 | `writer.close()`                                       |
-    | `CSVWriterBuilder(...)`         | Permite configurar el escritor: delimitador, comillas, escape, etc. | `CSVWriterBuilder(FileWriter(...)).withSeparator(';')` |
-    | `withQuoteChar(c)`              | Define el carácter de comillas (por defecto es `"`).                | `withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)`          |
-    | `withEscapeChar(c)`             | Define el carácter de escape (por defecto `\`).                     | `withEscapeChar('\\')`                                 |
-    | `withLineEnd(e)`                | Define el carácter de fin de línea.                                 | `withLineEnd("\n")`                                    |
-    | `build()`                       | Construye el escritor configurado.                                  | `build()`                                              |
+    | Clase / Método | ¿Qué hace? |
+    | ------------------------------- | ------------------------------------------------------------------- |
+    | `CSVWriter(FileWriter)` | Crea un escritor CSV básico. |
+    | `writeNext(Array<String>)` | Escribe una línea al CSV. |
+    | `writeAll(List<Array<String>>)` | Escribe múltiples filas al CSV. |
+    | `flush()` | Fuerza la escritura del buffer. |
+    | `close()` | Cierra el escritor. |
+    | `CSVWriterBuilder(...)` | Permite configurar el escritor: delimitador, comillas, escape, etc. |
+    | `withQuoteChar(c)` | Define el carácter de comillas (por defecto es `"`). |
+    | `withEscapeChar(c)` | Define el carácter de escape (por defecto `\`). |
+    | `withLineEnd(e)` | Define el carácter de fin de línea. |
+    | `build()` | Construye el escritor configurado. |
 
 ---
 <a id="csv-opencsv"></a>

@@ -22,11 +22,11 @@ La siguiente tabla resume los principales métodos disponibles para trabajar con
     | Método | Tipo de acceso | Uso recomendado |
     |---------|----------------|-----------------|
     | `Files.readAllBytes()` | Carga el fichero completo en memoria | Ficheros pequeños o medianos. Muy útil para encriptación, cálculo de hashes o manipulación sencilla de imágenes, PDF o ZIP. |
-    | `DataInputStream` / `DataOutputStream` | Acceso secuencial | Lectura y escritura de **ficheros binarios estructurados** compuestos por tipos primitivos (`int`, `double`, `boolean`, etc.). |
-    | `BufferedInputStream` / `BufferedOutputStream` | Acceso secuencial por bloques | Lectura y escritura eficiente de cualquier fichero binario sin cargarlo completamente en memoria. |
+    | `DataInputStream`<br>`DataOutputStream` | Acceso secuencial | Lectura y escritura de **ficheros binarios estructurados** compuestos por tipos primitivos (`int`, `double`, `boolean`, etc.). |
+    | `BufferedInputStream`<br>`BufferedOutputStream` | Acceso secuencial por bloques | Lectura y escritura eficiente de cualquier fichero binario sin cargarlo completamente en memoria. |
     | `FileChannel` + `ByteBuffer` | Acceso por bloques o por posiciones | Ficheros grandes, acceso aleatorio y aplicaciones de alto rendimiento. Adecuado tanto para ficheros binarios estructurados como no estructurados. |
-    | `ImageIO.read(File)` / `ImageIO.read(InputStream)` | Lectura de imagen binaria | Carga imágenes (`png`, `jpg`, `bmp`, etc.) en un `BufferedImage` para poder procesarlas. |
-    | `ImageIO.write(BufferedImage, formato, File)` / `ImageIO.write(BufferedImage, formato, OutputStream)` | Escritura de imagen binaria | Guarda la imagen en disco o en stream en el formato indicado (`png`, `jpg`, etc.). |
+    | `ImageIO.read(File)`<br>`ImageIO.read(InputStream)` | Lectura de imagen binaria | Carga imágenes (`png`, `jpg`, `bmp`, etc.) en un `BufferedImage` para poder procesarlas. |
+    | `ImageIO.write(BufferedImage, formato, File)`<br>`ImageIO.write(BufferedImage, formato, OutputStream)` | Escritura de imagen binaria | Guarda la imagen en disco o en stream en el formato indicado (`png`, `jpg`, etc.). |
 
 
 
